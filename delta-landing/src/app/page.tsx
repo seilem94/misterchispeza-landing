@@ -54,7 +54,7 @@ export default function LandingElectrico() {
               <Zap className="h-5 w-5" />
             </span>
             <div className="text-left leading-tight">
-              <div className="text-sm font-bold tracking-wide">MR. CHISPEZA</div>
+              <div className="text-sm font-bold tracking-wide">Mr.Chispeza</div>
               <div className="text-[10px] uppercase text-slate-500">Servicios Eléctricos y Electrónicos</div>
             </div>
           </a>
@@ -85,14 +85,13 @@ export default function LandingElectrico() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="max-w-3xl text-4xl font-bold sm:text-5xl lg:text-6xl"
-          >
-            Soluciones <span className="text-amber-400">Eléctricas</span> y
-            <span className="text-amber-400">Electrónicas</span>
+            transition={{ duration: 0.8 }}
+            className="max-w-3xl text-4xl font-bold sm:text-5xl lg:text-6xl">
+            Soluciones <span className="text-amber-400">Eléctricas</span> <br />y
+            <span className="text-amber-400"> Electrónicas</span>
           </motion.h1>
           <p className="mt-6 max-w-2xl text-lg text-slate-200">
-            Para industrias, comercios y residenciales. Servicio preventivo, predictivo y correctivo.
+            Para industrias, comercios y residenciales. <br /> Servicio preventivo y correctivo.
           </p>
           <div className="mt-8 flex gap-3">
             <CTAButton href="#empresa">Conózcanos</CTAButton>
