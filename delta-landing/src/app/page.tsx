@@ -7,15 +7,33 @@ import { HardHat, ClipboardList, Wrench, Zap, Home, Factory, Store, Phone, Mail,
 // o pages/index.tsx (Pages Router). Usa <img> estándar para que también funcione
 // fuera de Next; si usas Next.js puedes remplazar <img> por <Image> fácilmente.
 
-const Section = ({ id, className = "", children }) => (
-  <section id={id} className={`w-full ${className}`}>{children}</section>
+interface SectionProps {
+  id?: string;
+  className?: string;
+  children: React.ReactNode;
+}
+
+const Section: React.FC<SectionProps> = ({ id, className = "", children }) => (
+  <section id={id} className={`w-full ${className}`}>
+    {children}
+  </section>
 );
 
-const Container = ({ className = "", children }) => (
+interface ContainerProps {
+  className?: string;
+  children: React.ReactNode;
+}
+
+const Container: React.FC<ContainerProps> = ({ className = "", children }) => (
   <div className={`mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8 ${className}`}>{children}</div>
 );
 
-const CTAButton = ({ children, href = "#contacto" }) => (
+interface CTAButtonProps {
+  children: React.ReactNode;
+  href?: string;
+}
+
+const CTAButton: React.FC<CTAButtonProps> = ({ children, href = "#contacto" }) => (
   <a
     href={href}
     className="inline-flex items-center gap-2 rounded-2xl bg-amber-500 px-6 py-3 font-semibold text-white shadow-lg transition hover:translate-y-[-1px] hover:bg-amber-600 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-amber-300"
