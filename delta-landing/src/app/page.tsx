@@ -74,7 +74,8 @@ export default function LandingElectrico() {
       <Section id="inicio" className="relative overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src="https://images.unsplash.com/photo-1602173991331-34665c2b2b13?q=80&w=1900&auto=format&fit=crop"
+            //src="https://images.unsplash.com/photo-1602173991331-34665c2b2b13?q=80&w=1900&auto=format&fit=crop"
+            src="../../public/hero-electricos.png"
             alt="Mantenimiento eléctrico"
             className="h-full w-full object-cover"
           />
@@ -106,7 +107,7 @@ export default function LandingElectrico() {
           <div className="max-w-4xl">
             <h2 className="text-3xl font-bold sm:text-4xl">Somos expertos en Instalaciones Eléctricas</h2>
             <p className="mt-4 text-amber-100">
-              Ingeniería y diseño de instalaciones; servicio preventivo, predictivo y correctivo de instalaciones eléctricas, para que su energía opere eficientemente.
+              Ingeniería y diseño de instalaciones; servicio preventivo y correctivo de instalaciones eléctricas, para que su energía opere eficientemente.
             </p>
             <div className="mt-6"><a href="#contacto" className="inline-block rounded-xl bg-white px-5 py-3 font-semibold text-amber-700 shadow-lg hover:translate-y-[-1px]">Contáctenos</a></div>
           </div>
@@ -122,19 +123,19 @@ export default function LandingElectrico() {
             {[
               {
                 icon: <ClipboardList className="h-7 w-7" />, title: "Ingeniería y diseño de proyectos eléctricos",
-                desc: "Planos, memoria técnica, cálculo de cargas, normativas NOM/NEC."
+                desc: "Planos, memoria técnica, cálculo de cargas, puesta a tierra, normalización SEC, Proyectos de Baja y Media Tensión."
               },
               {
-                icon: <HardHat className="h-7 w-7" />, title: "Elaboración y actualización de diagramas y planos",
-                desc: "As-built, unifilares, especificaciones y documentación."
+                icon: <HardHat className="h-7 w-7" />, title: "Elaboración y actualización de redes domiciliaras",
+                desc: "Actualizacion de instalaciones eléctricas obsoletas y construcción de nuevas redes."
               },
               {
                 icon: <Wrench className="h-7 w-7" />, title: "Suministro e instalación de equipos eléctricos",
-                desc: "Tableros, arrancadores, variadores, canalizaciones y cableado."
+                desc: "Tableros, reguladores, canalizaciones y cableado. Monofásico y Trifásico"
               },
               {
-                icon: <Zap className="h-7 w-7" />, title: "Servicio y mantenimiento a subestaciones eléctricas",
-                desc: "Pruebas, termografías, correctivo y predictivo."
+                icon: <Zap className="h-7 w-7" />, title: "Trámites y asesoría en normatividad eléctrica",
+                desc: "Gestión de permisos, cambio de tramo electrico, Nuevos Empalmes (TE1) y cumplimiento SEC."
               }
             ].map((s, i) => (
               <motion.div
@@ -178,13 +179,13 @@ export default function LandingElectrico() {
       <Section id="sectores" className="bg-white">
         <Container className="py-20">
           <h3 className="text-center text-2xl font-bold sm:text-3xl">Soluciones eléctricas para diversos sectores</h3>
-          <div className="mt-12 grid gap-6 sm:grid-cols-3">
+          <div className="mt-12 grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 justify-items-center">
             {[{
               icon: <Home className="h-8 w-8" />, title: "Residenciales",
               desc: "Sistemas que soportan cargas de climatización, iluminación y necesidades especiales."
             },{
               icon: <Factory className="h-8 w-8" />, title: "Industriales",
-              desc: "Sistemas eléctricos eficientes y mantenimiento adecuado para evitar paros."
+              desc: "Sistemas eléctricos eficientes y mantenimiento adecuado para evitar paros en la producción."
             },{
               icon: <Store className="h-8 w-8" />, title: "Comercios",
               desc: "Diseño y ejecución que garantizan una experiencia confortable y segura."
@@ -195,7 +196,7 @@ export default function LandingElectrico() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.05 }}
-                className="rounded-2xl border border-slate-200 p-6 text-center shadow-sm"
+                className="rounded-4xl border border-slate-200 p-6 text-center shadow-xl"
               >
                 <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-xl bg-amber-100 text-amber-700">{c.icon}</div>
                 <h4 className="text-lg font-semibold">{c.title}</h4>
