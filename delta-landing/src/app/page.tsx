@@ -237,9 +237,9 @@ export default function LandingElectrico() {
             <h3 className="text-2xl font-bold sm:text-3xl">Contacto</h3>
             <p className="mt-2 text-slate-300">Cuéntanos de tu proyecto y agenda una visita técnica.</p>
             <ul className="mt-6 space-y-2 text-sm">
-              <li className="flex items-center gap-2"><Phone className="h-4 w-4" /> +52 442 000 0000</li>
-              <li className="flex items-center gap-2"><Mail className="h-4 w-4" /> ventas@delta-electric.mx</li>
-              <li className="flex items-center gap-2"><MapPin className="h-4 w-4" /> Querétaro, México</li>
+              <li className="flex items-center gap-2"><Phone className="h-4 w-4" /> +56 9 8677 4423</li>
+              <li className="flex items-center gap-2"><Mail className="h-4 w-4" /> elielo.hhs@gmail.com</li>
+              <li className="flex items-center gap-2"><MapPin className="h-4 w-4" /> Valparaíso, Chile</li>
             </ul>
           </div>
           <form
