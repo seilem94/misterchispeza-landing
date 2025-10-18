@@ -2,6 +2,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { HardHat, ClipboardList, Wrench, Zap, Home, Factory, Store, Phone, Mail, MapPin, ChevronRight } from "lucide-react";
+import Image from "next/image";
 
 // Nota: Este componente está diseñado para pegarse como app/page.tsx (Next.js App Router)
 // o pages/index.tsx (Pages Router). Usa <img> estándar para que también funcione
@@ -70,7 +71,7 @@ export default function LandingElectrico() {
         </Container>
       </header>
 
-      {/* Hero */}
+      {/* Hero
       <Section id="inicio" className="relative overflow-hidden">
         <div className="absolute inset-0">
           <img
@@ -78,6 +79,24 @@ export default function LandingElectrico() {
             src="../../public/hero-electricos.png"
             alt="Mantenimiento eléctrico"
             className="h-full w-full object-cover"
+          />
+          <div className="absolute inset-0 bg-slate-900/60" />
+        </div>
+        <Container className="relative z-10 py-28 sm:py-36 lg:py-44 text-white">
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }} */}
+                  {/* Hero */}
+      <Section id="inicio" className="relative overflow-hidden">
+        <div className="absolute inset-0">
+          <Image
+            src="/hero.png"
+            alt="Mantenimiento eléctrico"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
           />
           <div className="absolute inset-0 bg-slate-900/60" />
         </div>
