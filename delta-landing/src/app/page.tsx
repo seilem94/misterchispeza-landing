@@ -56,7 +56,7 @@ export default function LandingElectrico() {
             </span>
             <div className="text-left leading-tight">
               <div className="text-sm font-bold tracking-wide">Mr.Chispeza</div>
-              <div className="text-[10px] uppercase text-slate-500">El amaro vale cualquier cualquier pico</div>
+              <div className="text-[10px] uppercase text-slate-500">Servicios Eléctricos y Electrónicos</div>
             </div>
           </a>
           <nav className="hidden gap-6 text-sm font-medium md:flex">
