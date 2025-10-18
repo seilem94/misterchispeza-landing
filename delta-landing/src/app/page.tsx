@@ -277,7 +277,7 @@ export default function LandingElectrico() {
               </div>
               <div>
                 <label className="block text-sm">Teléfono</label>
-                <input name="telefono" className="mt-1 w-full rounded-xl border border-slate-600 bg-slate-900 px-3 py-2 text-slate-100 placeholder-slate-400" placeholder="+52…" />
+                <input name="telefono" className="mt-1 w-full rounded-xl border border-slate-600 bg-slate-900 px-3 py-2 text-slate-100 placeholder-slate-400" placeholder="+569…" />
               </div>
               <div className="sm:col-span-2">
                 <label className="block text-sm">Mensaje</label>
@@ -295,9 +295,9 @@ export default function LandingElectrico() {
         <Container className="flex flex-col items-center justify-between gap-4 py-8 sm:flex-row">
           <div className="flex items-center gap-2">
             <span className="inline-flex h-8 w-8 items-center justify-center rounded-xl bg-amber-500 text-white"><Zap className="h-5 w-5" /></span>
-            <span className="text-sm font-semibold">DELTA Soluciones en Ingeniería & Mantenimiento Eléctrico</span>
+            <span className="text-sm font-semibold">Mr.Chispeza: Soluciones en Ingeniería & Mantenimiento Eléctrico</span>
           </div>
-          <p className="text-xs text-slate-500">© {new Date().getFullYear()} DELTA. Diseño de ejemplo por Chatito.</p>
+          <p className="text-xs text-slate-500">© {new Date().getFullYear()} Mr.Chispeza. Todos los derechos reservados.</p>
         </Container>
       </footer>
     </main>
