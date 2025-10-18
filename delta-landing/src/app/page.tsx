@@ -154,7 +154,7 @@ export default function LandingElectrico() {
               },
               {
                 icon: <Zap className="h-7 w-7" />, title: "Trámites y asesoría en normatividad eléctrica",
-                desc: "Gestión de permisos, cambio de tramo electrico, Nuevos Empalmes (TE1) y cumplimiento SEC."
+                desc: "Gestión de permisos, cambio de tramo electrico, Nuevos Empalmes (TE1, TE4, TE6) y cumplimiento SEC."
               }
             ].map((s, i) => (
               <motion.div
