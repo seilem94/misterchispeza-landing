@@ -137,7 +137,7 @@ export default function LandingElectrico() {
       {/* Servicios */}
       <Section id="servicios" className="bg-white">
         <Container className="py-20">
-          <h3 className="text-center text-2xl font-bold sm:text-3xl">Servicios Eléctricos y Proyectos</h3>
+          <h3 className="text-center text-2xl font-bold sm:text-3xl">Servicios</h3>
           <div className="mt-12 grid gap-6 sm:grid-cols-2">
             {[
               {
