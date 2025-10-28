@@ -1,7 +1,8 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
-import { HardHat, ClipboardList, Wrench, Zap, Home, Factory, Store, Phone, Mail, MapPin, ChevronRight } from "lucide-react";
+import { ChevronRight, Zap, Factory, Store, Plug, Home, FileCheck2, Building2, Camera, Lightbulb, 
+        Siren, Ruler, DraftingCompass, Fence, Sun, Phone, Mail, MapPin } from "lucide-react";
 import Image from "next/image";
 
 // Nota: Este componente está diseñado para pegarse como app/page.tsx (Next.js App Router)
@@ -137,24 +138,66 @@ export default function LandingElectrico() {
       {/* Servicios */}
       <Section id="servicios" className="bg-white">
         <Container className="py-20">
-          <h3 className="text-center text-2xl font-bold sm:text-3xl">Servicios</h3>
-          <div className="mt-12 grid gap-6 sm:grid-cols-2">
+          <h3 className="text-center text-2xl font-bold sm:text-3xl">
+            Servicios Eléctricos y Proyectos
+          </h3>
+
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {[
               {
-                icon: <ClipboardList className="h-7 w-7" />, title: "Ingeniería y diseño de proyectos eléctricos",
-                desc: "Planos, memoria técnica, cálculo de cargas, puesta a tierra, normalización SEC, Proyectos de Baja y Media Tensión."
+                icon: <Plug className="h-7 w-7" />,
+                title: "Empalmes",
+                desc: "Instalación y regularización del empalme eléctrico o conexión a la red para su nuevo medidor de luz. Gestionamos el proceso completo ante la compañía distribuidora."
               },
               {
-                icon: <HardHat className="h-7 w-7" />, title: "Elaboración y actualización de redes domiciliaras",
-                desc: "Actualizacion de instalaciones eléctricas obsoletas y construcción de nuevas redes."
+                icon: <Home className="h-7 w-7" />,
+                title: "Remodelación de instalaciones antiguas",
+                desc: "Renovación completa y segura de instalaciones eléctricas antiguas. Cambiamos cableado, tableros y protecciones para evitar fallas y aumentar la capacidad de su hogar."
               },
               {
-                icon: <Wrench className="h-7 w-7" />, title: "Suministro e instalación de equipos eléctricos",
-                desc: "Tableros, reguladores, canalizaciones y cableado. Monofásico y Trifásico"
+                icon: <FileCheck2 className="h-7 w-7" />,
+                title: "Trámites SEC (TE1, TE4, TE6)",
+                desc: "Gestión integral de trámites y declaraciones eléctricas ante la SEC, asegurando cumplimiento con las normas de seguridad eléctrica vigentes."
               },
               {
-                icon: <Zap className="h-7 w-7" />, title: "Trámites y asesoría en normatividad eléctrica",
-                desc: "Gestión de permisos, cambio de tramo electrico, Nuevos Empalmes (TE1, TE4, TE6) y cumplimiento SEC."
+                icon: <Building2 className="h-7 w-7" />,
+                title: "Trámites Compañía Eléctrica",
+                desc: "Asesoría y gestión ante la compañía eléctrica: aumento de capacidad, cambios de medidor o tarifa y otros requerimientos administrativos."
+              },
+              {
+                icon: <Camera className="h-7 w-7" />,
+                title: "Cámaras de Seguridad",
+                desc: "Suministro e instalación de cámaras CCTV e IP con configuración profesional y acceso remoto desde su móvil."
+              },
+              {
+                icon: <Lightbulb className="h-7 w-7" />,
+                title: "Instalaciones Varias (Enchufes, Lámparas)",
+                desc: "Instalación y reparación de enchufes, interruptores, lámparas, puntos de luz y extractores en su propiedad."
+              },
+              {
+                icon: <Siren className="h-7 w-7" />,
+                title: "Emergencias 24/7",
+                desc: "Servicio de electricista 24 horas para fallas urgentes, cortocircuitos o problemas con tableros eléctricos. (Consultar disponibilidad de técnico de turno)."
+              },
+              {
+                icon: <Ruler className="h-7 w-7" />,
+                title: "Proyectos desde Cero (Cabañas, Casas)",
+                desc: "Instalaciones eléctricas completas para proyectos nuevos: casas, cabañas, quinchos o ampliaciones. Todo certificado y normado."
+              },
+              {
+                icon: <DraftingCompass className="h-7 w-7" />,
+                title: "Ingeniería y Diseño de Proyectos",
+                desc: "Diseño técnico con cálculos de carga, diagramas unilineales y planos eléctricos detallados conforme a la normativa SEC."
+              },
+              {
+                icon: <Fence className="h-7 w-7" />,
+                title: "Cercos Eléctricos",
+                desc: "Instalación y certificación de cercos eléctricos perimetrales de alta seguridad para viviendas y recintos industriales."
+              },
+              {
+                icon: <Sun className="h-7 w-7" />,
+                title: "Paneles Solares",
+                desc: "Proyectos llave en mano de paneles solares para autoconsumo eléctrico en hogares y empresas. Energía limpia y ahorro garantizado."
               }
             ].map((s, i) => (
               <motion.div
@@ -166,16 +209,24 @@ export default function LandingElectrico() {
                 className="group rounded-2xl border border-slate-200 p-6 shadow-sm transition hover:shadow-lg"
               >
                 <div className="flex items-center gap-3">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-amber-100 text-amber-700">{s.icon}</div>
+                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-amber-100 text-amber-700">
+                    {s.icon}
+                  </div>
                   <h4 className="text-lg font-semibold">{s.title}</h4>
                 </div>
                 <p className="mt-3 text-slate-600">{s.desc}</p>
-                <a href="#contacto" className="mt-4 inline-block text-sm font-semibold text-amber-700 hover:underline">Ver más</a>
+                <a
+                  href="#contacto"
+                  className="mt-4 inline-block text-sm font-semibold text-amber-700 hover:underline"
+                >
+                  Ver más
+                </a>
               </motion.div>
             ))}
           </div>
         </Container>
       </Section>
+
 
       {/* Banner intermedio */}
       <Section className="relative overflow-hidden">
