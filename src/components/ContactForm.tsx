@@ -4,17 +4,16 @@ import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { useForm, ValidationError } from '@formspree/react'
 
-type Props = {
-  formId: string // ej: "mkgpzrpo"
-}
 
-export default function ContactForm({ formId }: Props) {
+export default function ContactForm() {
   const router = useRouter()
-  const [state, handleSubmit] = useForm(formId)
-
+  const formId = process.env.NEXT_PUBLIC_FORMSPREE_ID
+  if (!formId) {
+    console.error("❌ No se encontró NEXT_PUBLIC_FORMSPREE_ID en .env.local")
+  }
+  const [state, handleSubmit] = useForm(formId || "missing-form-id")
   useEffect(() => {
     if (state.succeeded) {
-      // Redirige a tu página interna de gracias
       router.push('/gracias')
     }
   }, [state.succeeded, router])
@@ -27,13 +26,7 @@ export default function ContactForm({ formId }: Props) {
       {/* Campos ocultos útiles */}
       <input type="hidden" name="_subject" value="Nuevo mensaje desde la web" />
       {/* Honeypot antispam (no remover) */}
-      <input
-        type="text"
-        name="_gotcha"
-        className="hidden"
-        tabIndex={-1}
-        autoComplete="off"
-      />
+      <input type="text" name="_gotcha" className="hidden" tabIndex={-1} autoComplete="off" />
 
       <div className="grid gap-4 sm:grid-cols-2">
         <div className="sm:col-span-2">
@@ -48,11 +41,7 @@ export default function ContactForm({ formId }: Props) {
             className="mt-1 w-full rounded-xl border border-slate-600 bg-slate-900 px-3 py-2 text-slate-100 placeholder-slate-400"
             placeholder="Tu nombre"
           />
-          <ValidationError
-            prefix="Nombre"
-            field="nombre"
-            errors={state.errors}
-          />
+          <ValidationError prefix="Nombre" field="nombre" errors={state.errors} />
         </div>
 
         <div>
@@ -82,11 +71,7 @@ export default function ContactForm({ formId }: Props) {
             className="mt-1 w-full rounded-xl border border-slate-600 bg-slate-900 px-3 py-2 text-slate-100 placeholder-slate-400"
             placeholder="+569…"
           />
-          <ValidationError
-            prefix="Teléfono"
-            field="telefono"
-            errors={state.errors}
-          />
+          <ValidationError prefix="Teléfono" field="telefono" errors={state.errors} />
         </div>
 
         <div className="sm:col-span-2">
@@ -101,11 +86,7 @@ export default function ContactForm({ formId }: Props) {
             className="mt-1 w-full rounded-xl border border-slate-600 bg-slate-900 px-3 py-2 text-slate-100 placeholder-slate-400"
             placeholder="¿Qué necesitas?"
           />
-          <ValidationError
-            prefix="Mensaje"
-            field="mensaje"
-            errors={state.errors}
-          />
+          <ValidationError prefix="Mensaje" field="mensaje" errors={state.errors} />
         </div>
       </div>
 

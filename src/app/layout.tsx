@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { site } from "@/shared/config/site"
-import Script from "next/script"
 import "./globals.css";
 import { Geist, Geist_Mono } from "next/font/google";
 
