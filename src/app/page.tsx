@@ -190,7 +190,7 @@ export default function LandingElectrico() {
                 desc: "Diseño técnico con cálculos de carga, diagramas unilineales y planos eléctricos detallados conforme a la normativa SEC."
               },
               {
-                icon: <Fence className="h-7 w-7" />,
+                icon: <Zap className="h-7 w-7" />,
                 title: "Cercos Eléctricos",
                 desc: "Instalación y certificación de cercos eléctricos perimetrales de alta seguridad para viviendas y recintos industriales."
               },
