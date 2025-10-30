@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { ChevronRight, Zap, Factory, Store, Plug, Home, FileCheck2, Building2, Camera, Lightbulb, 
         Siren, Ruler, DraftingCompass, Sun, Phone, Mail, MapPin } from "lucide-react";
 import Image from "next/image";
-
+import ContactForm from "@/components/ContactForm"
 
 // Nota: Este componente está diseñado para pegarse como app/page.tsx (Next.js App Router)
 // o pages/index.tsx (Pages Router). Usa <img> estándar para que también funcione
@@ -291,41 +291,21 @@ export default function LandingElectrico() {
         <Container className="grid gap-10 py-16 sm:grid-cols-2">
           <div>
             <h3 className="text-2xl font-bold sm:text-3xl">Contacto</h3>
-            <p className="mt-2 text-slate-300">Cuéntanos de tu proyecto y agenda una visita técnica.</p>
+            <p className="mt-2 text-slate-300">
+              Cuéntanos de tu proyecto y agenda una visita técnica.
+            </p>
             <ul className="mt-6 space-y-2 text-sm">
-              <li className="flex items-center gap-2"><Phone className="h-4 w-4" /> +56 9 8677 4423</li>
-              <li className="flex items-center gap-2"><Mail className="h-4 w-4" /> elielo.hhs@gmail.com</li>
-              <li className="flex items-center gap-2"><MapPin className="h-4 w-4" /> Valparaíso, Chile</li>
+              <li className="flex items-center gap-2"><Phone className="h-4 w-4" aria-hidden /> +56 9 8677 4423</li>
+              <li className="flex items-center gap-2"><Mail className="h-4 w-4" aria-hidden /> elielo.hhs@gmail.com</li>
+              <li className="flex items-center gap-2"><MapPin className="h-4 w-4" aria-hidden /> Valparaíso, Chile</li>
             </ul>
           </div>
-          <form
-            className="rounded-2xl border border-slate-700 bg-slate-800/40 p-6 backdrop-blur"
-            method="POST"
-            action="https://formspree.io/f/mkgpzrpo" // cambia este endpoint por el tuyo en Formspree/Resend/EmailJS
-          >
-            <div className="grid gap-4 sm:grid-cols-2">
-              <div className="sm:col-span-2">
-                <label className="block text-sm">Nombre</label>
-                <input name="nombre" required className="mt-1 w-full rounded-xl border border-slate-600 bg-slate-900 px-3 py-2 text-slate-100 placeholder-slate-400" placeholder="Tu nombre" />
-              </div>
-              <div>
-                <label className="block text-sm">Email</label>
-                <input type="email" name="email" required className="mt-1 w-full rounded-xl border border-slate-600 bg-slate-900 px-3 py-2 text-slate-100 placeholder-slate-400" placeholder="tucorreo@empresa.com" />
-              </div>
-              <div>
-                <label className="block text-sm">Teléfono</label>
-                <input name="telefono" className="mt-1 w-full rounded-xl border border-slate-600 bg-slate-900 px-3 py-2 text-slate-100 placeholder-slate-400" placeholder="+569…" />
-              </div>
-              <div className="sm:col-span-2">
-                <label className="block text-sm">Mensaje</label>
-                <textarea name="mensaje" rows={4} required className="mt-1 w-full rounded-xl border border-slate-600 bg-slate-900 px-3 py-2 text-slate-100 placeholder-slate-400" placeholder="¿Qué necesitas?" />
-              </div>
-            </div>
-            <button type="submit" className="mt-4 w-full rounded-2xl bg-amber-500 px-6 py-3 font-semibold text-slate-900 transition hover:bg-amber-400">Enviar</button>
-            <p className="mt-2 text-center text-xs text-slate-400">Al enviar aceptas nuestro aviso de privacidad.</p>
-          </form>
+
+          {/*Form*/}
+          <ContactForm formId="mkgpzrpo" />
         </Container>
       </Section>
+
 
       {/* Footer */}
       <footer className="border-t border-slate-200 bg-white">
