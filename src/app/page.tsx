@@ -74,23 +74,7 @@ export default function LandingElectrico() {
         </Container>
       </header>
 
-      {/* Hero
-      <Section id="inicio" className="relative overflow-hidden">
-        <div className="absolute inset-0">
-          <img
-            //src="https://images.unsplash.com/photo-1602173991331-34665c2b2b13?q=80&w=1900&auto=format&fit=crop"
-            src="../../public/hero-electricos.png"
-            alt="Mantenimiento eléctrico"
-            className="h-full w-full object-cover"
-          />
-          <div className="absolute inset-0 bg-slate-900/60" />
-        </div>
-        <Container className="relative z-10 py-28 sm:py-36 lg:py-44 text-white">
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }} */}
-                  {/* Hero */}
+
       <Section id="inicio" className="relative overflow-hidden">
         <div className="absolute inset-0">
           <Image
