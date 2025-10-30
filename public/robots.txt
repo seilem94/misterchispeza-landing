@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://misterchispeza.cl/sitemap.xml
