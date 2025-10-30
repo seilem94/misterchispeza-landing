@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   images: { remotePatterns: [{ protocol: "https", hostname: "**" }] },
   experimental: {
-    typedRoutes: true,
+    typedRoutes: false,
     optimizePackageImports: ["lucide-react", "framer-motion"],
   },
 };

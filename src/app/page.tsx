@@ -5,6 +5,7 @@ import { ChevronRight, Zap, Factory, Store, Plug, Home, FileCheck2, Building2, C
         Siren, Ruler, DraftingCompass, Sun, Phone, Mail, MapPin } from "lucide-react";
 import Image from "next/image";
 
+
 // Nota: Este componente está diseñado para pegarse como app/page.tsx (Next.js App Router)
 // o pages/index.tsx (Pages Router). Usa <img> estándar para que también funcione
 // fuera de Next; si usas Next.js puedes remplazar <img> por <Image> fácilmente.
@@ -65,6 +66,7 @@ export default function LandingElectrico() {
             <a href="#servicios" className="hover:text-amber-600">Servicios</a>
             <a href="#sectores" className="hover:text-amber-600">Sectores</a>
             <a href="#galeria" className="hover:text-amber-600">Imágenes</a>
+            <a href="#testimonios" className="hover:text-amber-600">Testimonios</a>
           </nav>
           <div className="flex items-center gap-3">
             <CTAButton>Contáctenos</CTAButton>
@@ -231,7 +233,7 @@ export default function LandingElectrico() {
       {/* Banner intermedio */}
       <Section className="relative overflow-hidden">
         <div className="absolute inset-0">
-          <Image
+          <img
             src="https://images.unsplash.com/photo-1581092098605-866e33fdd931?q=80&w=1900&auto=format&fit=crop"
             alt="Profesionales eléctricos"
             className="h-full w-full object-cover"
@@ -285,7 +287,7 @@ export default function LandingElectrico() {
             {["https://images.unsplash.com/photo-1581090700227-1e37b190418e?q=80&w=1200&auto=format&fit=crop",
               "https://images.unsplash.com/photo-1596495578065-8c2c2a1a4386?q=80&w=1200&auto=format&fit=crop",
               "https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1200&auto=format&fit=crop"].map((src, i)=> (
-              <Image key={i} src={src} alt={`galeria-${i}`} className="h-64 w-full rounded-2xl object-cover shadow" />
+              <img key={i} src={src} alt={`galeria-${i}`} className="h-64 w-full rounded-2xl object-cover shadow" />
             ))}
           </div>
         </Container>
