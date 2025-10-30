@@ -301,7 +301,7 @@ export default function LandingElectrico() {
           <form
             className="rounded-2xl border border-slate-700 bg-slate-800/40 p-6 backdrop-blur"
             method="POST"
-            action="https://formspree.io/f/xbjvjqka" // cambia este endpoint por el tuyo en Formspree/Resend/EmailJS
+            action="https://formspree.io/f/mkgpzrpo" // cambia este endpoint por el tuyo en Formspree/Resend/EmailJS
           >
             <div className="grid gap-4 sm:grid-cols-2">
               <div className="sm:col-span-2">
