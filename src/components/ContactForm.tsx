@@ -56,14 +56,6 @@ export default function ContactForm() {
   };
 }, []);
 
-
-  // 🔵 2. Callback global para capturar token Turnstile
-  useEffect(() => {
-    ;(window as any).onTurnstileToken = (token: string) => {
-      console.log("🔐 Turnstile TOKEN recibido:", token)
-    }
-  }, [])
-
   return (
     <form
       onSubmit={(e) => {
@@ -131,7 +123,6 @@ export default function ContactForm() {
       <div
         className="cf-turnstile mt-4"
         data-sitekey={siteKey}
-        data-callback="onTurnstileToken"
       ></div>
 
       <button
