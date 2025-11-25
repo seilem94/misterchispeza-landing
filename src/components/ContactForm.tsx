@@ -9,7 +9,7 @@ export default function ContactForm() {
   const router = useRouter()
   const formId = process.env.NEXT_PUBLIC_FORMSPREE_ID
   if (!formId) {
-    console.error("❌ No se encontró NEXT_PUBLIC_FORMSPREE_ID en .env.local")
+    console.error("No se encontró NEXT_PUBLIC_FORMSPREE_ID en .env.local")
   }
   const [state, handleSubmit] = useForm(formId || "missing-form-id")
   useEffect(() => {
