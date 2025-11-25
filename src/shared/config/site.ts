@@ -4,7 +4,7 @@ export const site = {
   url: "https://mrchispeza.cl",
   locale: "es_CL",
   facebook: "https://www.facebook.com/MisterChispeza",
-  ogImage: "/public/EXPRESION_APUNTANDO.png",
+  ogImage: "/EXPRESION_APUNTANDO.png",
   description:
     "Servicios eléctricos profesionales: Instalaciones, Mantención, Soluciones Fotovoltaicas y más.",
 } as const
