@@ -1,10 +1,10 @@
 export const site = {
   name: "Mr Chispeza",
   tagline: "Ingeniería y Mantenimiento Eléctrico",
-  url: "https://misterchispeza.cl",
+  url: "https://mrchispeza.cl",
   locale: "es_CL",
   facebook: "https://www.facebook.com/MisterChispeza",
   ogImage: "/public/EXPRESION_APUNTANDO.png",
   description:
-    "Servicios eléctricos profesionales: instalaciones, mantención y soluciones fotovoltaicas.",
+    "Servicios eléctricos profesionales: Instalaciones, Mantención, Soluciones Fotovoltaicas y más.",
 } as const
