@@ -8,8 +8,9 @@ const nextConfig: NextConfig = {
         { protocol: "https", hostname: "images.unsplash.com" },
       ],
     },
+  typedRoutes: true,
+
   experimental: {
-    typedRoutes: true,
     optimizePackageImports: ["lucide-react", "framer-motion"],
   },
 

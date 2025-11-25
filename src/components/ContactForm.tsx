@@ -7,35 +7,69 @@ import { useForm, ValidationError } from '@formspree/react'
 export default function ContactForm() {
   const router = useRouter()
   const formId = process.env.NEXT_PUBLIC_FORMSPREE_ID
+  const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY
 
-  if (!formId) {
-    console.error("No se encontró NEXT_PUBLIC_FORMSPREE_ID en .env.local")
-  }
+  // Debug: revisar variables de entorno
+  console.log("🔧 ENV CHECK → Formspree ID:", formId)
+  console.log("🔧 ENV CHECK → Turnstile SITE KEY:", siteKey)
 
+  if (!formId) console.error("❌ ERROR → No se encontró NEXT_PUBLIC_FORMSPREE_ID")
+  if (!siteKey) console.error("❌ ERROR → No se encontró NEXT_PUBLIC_TURNSTILE_SITE_KEY")
+
+  // Inicializar Formspree
   const [state, handleSubmit] = useForm(formId || "missing-form-id")
 
-  // --- Cargar script de Turnstile ---
+  // Debug: Logs de Formspree
   useEffect(() => {
-    const script = document.createElement('script')
-    script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js"
-    script.async = true
-    script.defer = true
-    document.body.appendChild(script)
-    return () => {
-      document.body.removeChild(script)
-    }
-  }, [])
+    if (state.submitting) console.log("📨 Enviando formulario a Formspree...")
+    if (state.succeeded) console.log("✅ Formspree aceptó el envío correctamente.")
+    if (state.errors) console.warn("❌ Formspree ERROR:", state.errors)
+  }, [state])
 
-  // Si el formulario fue enviado correctamente → redirigir
+  // Redirección en caso de éxito
   useEffect(() => {
     if (state.succeeded) {
       router.push('/gracias')
     }
   }, [state.succeeded, router])
 
+  // 🔵 1. Cargar script Turnstile
+  useEffect(() => {
+  console.log("🔵 Cargando script de Turnstile...");
+
+  const script = document.createElement("script");
+  script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js";
+  script.async = true;
+  script.defer = true;
+
+  script.onload = () =>
+    console.log("🟢 Script Turnstile cargado correctamente.");
+  script.onerror = () =>
+    console.error("❌ ERROR → No se pudo cargar Turnstile.");
+
+  document.body.appendChild(script);
+
+  // Cleanup
+  return () => {
+    console.log("🟡 Eliminando script de Turnstile...");
+    document.body.removeChild(script);
+  };
+}, []);
+
+
+  // 🔵 2. Callback global para capturar token Turnstile
+  useEffect(() => {
+    ;(window as any).onTurnstileToken = (token: string) => {
+      console.log("🔐 Turnstile TOKEN recibido:", token)
+    }
+  }, [])
+
   return (
     <form
-      onSubmit={handleSubmit}
+      onSubmit={(e) => {
+        console.log("📨 Formulario enviado → esperando token Turnstile...")
+        handleSubmit(e)
+      }}
       className="rounded-2xl border border-slate-700 bg-slate-800/40 p-6 backdrop-blur"
     >
       {/* Campos ocultos */}
@@ -49,8 +83,7 @@ export default function ContactForm() {
             id="nombre"
             name="nombre"
             required
-            autoComplete="name"
-            className="mt-1 w-full rounded-xl border border-slate-600 bg-slate-900 px-3 py-2 text-slate-100"
+            className="mt-1 w-full rounded-xl border border-slate-600 bg-slate-900 px-3 py-2"
             placeholder="Tu nombre"
           />
           <ValidationError prefix="Nombre" field="nombre" errors={state.errors} />
@@ -63,8 +96,7 @@ export default function ContactForm() {
             type="email"
             name="email"
             required
-            autoComplete="email"
-            className="mt-1 w-full rounded-xl border border-slate-600 bg-slate-900 px-3 py-2 text-slate-100"
+            className="mt-1 w-full rounded-xl border border-slate-600 bg-slate-900 px-3 py-2"
             placeholder="tucorreo@empresa.com"
           />
           <ValidationError prefix="Email" field="email" errors={state.errors} />
@@ -75,8 +107,7 @@ export default function ContactForm() {
           <input
             id="telefono"
             name="telefono"
-            autoComplete="tel"
-            className="mt-1 w-full rounded-xl border border-slate-600 bg-slate-900 px-3 py-2 text-slate-100"
+            className="mt-1 w-full rounded-xl border border-slate-600 bg-slate-900 px-3 py-2"
             placeholder="+569…"
           />
           <ValidationError prefix="Teléfono" field="telefono" errors={state.errors} />
@@ -89,31 +120,35 @@ export default function ContactForm() {
             name="mensaje"
             rows={4}
             required
-            className="mt-1 w-full rounded-xl border border-slate-600 bg-slate-900 px-3 py-2 text-slate-100"
+            className="mt-1 w-full rounded-xl border border-slate-600 bg-slate-900 px-3 py-2"
             placeholder="¿Qué necesitas?"
           />
           <ValidationError prefix="Mensaje" field="mensaje" errors={state.errors} />
         </div>
       </div>
 
-      {/* === Turnstile captcha === */}
+      {/* 🔵 3. Widget Turnstile con callback de debugging */}
       <div
         className="cf-turnstile mt-4"
-        data-sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
+        data-sitekey={siteKey}
+        data-callback="onTurnstileToken"
       ></div>
 
       <button
         type="submit"
         disabled={state.submitting}
-        className="mt-4 w-full rounded-2xl bg-amber-500 px-6 py-3 font-semibold text-slate-900 transition hover:bg-amber-400 disabled:opacity-60"
+        className="mt-4 w-full rounded-2xl bg-amber-500 px-6 py-3 font-semibold text-slate-900 hover:bg-amber-400 disabled:opacity-60"
       >
         {state.submitting ? 'Enviando…' : 'Enviar'}
       </button>
 
-      {!!state.errors && (
-        <p className="mt-2 text-center text-sm text-red-400">
-          Revisa los campos e intenta nuevamente.
-        </p>
+      {state.errors && (
+        <>
+          {console.warn("⚠️ FORM ERROR →", state.errors)}
+          <p className="mt-2 text-center text-sm text-red-400">
+            Error al enviar el formulario. Revisa la consola.
+          </p>
+        </>
       )}
 
       <p className="mt-2 text-center text-xs text-slate-400">
