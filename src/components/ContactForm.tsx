@@ -9,22 +9,8 @@ export default function ContactForm() {
   const formId = process.env.NEXT_PUBLIC_FORMSPREE_ID
   const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY
 
-  // Debug: revisar variables de entorno
-  console.log("🔧 ENV CHECK → Formspree ID:", formId)
-  console.log("🔧 ENV CHECK → Turnstile SITE KEY:", siteKey)
-
-  if (!formId) console.error("❌ ERROR → No se encontró NEXT_PUBLIC_FORMSPREE_ID")
-  if (!siteKey) console.error("❌ ERROR → No se encontró NEXT_PUBLIC_TURNSTILE_SITE_KEY")
-
   // Inicializar Formspree
   const [state, handleSubmit] = useForm(formId || "missing-form-id")
-
-  // Debug: Logs de Formspree
-  useEffect(() => {
-    if (state.submitting) console.log("📨 Enviando formulario a Formspree...")
-    if (state.succeeded) console.log("✅ Formspree aceptó el envío correctamente.")
-    if (state.errors) console.warn("❌ Formspree ERROR:", state.errors)
-  }, [state])
 
   // Redirección en caso de éxito
   useEffect(() => {
@@ -33,35 +19,27 @@ export default function ContactForm() {
     }
   }, [state.succeeded, router])
 
-  // 🔵 1. Cargar script Turnstile
+  // Cargar script Turnstile
   useEffect(() => {
-  console.log("🔵 Cargando script de Turnstile...");
+    if (!siteKey) return
 
-  const script = document.createElement("script");
-  script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js";
-  script.async = true;
-  script.defer = true;
+    const script = document.createElement("script");
+    script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js";
+    script.async = true;
+    script.defer = true;
 
-  script.onload = () =>
-    console.log("🟢 Script Turnstile cargado correctamente.");
-  script.onerror = () =>
-    console.error("❌ ERROR → No se pudo cargar Turnstile.");
+    document.body.appendChild(script);
 
-  document.body.appendChild(script);
+    // Cleanup
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, [siteKey]);
 
-  // Cleanup
-  return () => {
-    console.log("🟡 Eliminando script de Turnstile...");
-    document.body.removeChild(script);
-  };
-}, []);
 
   return (
     <form
-      onSubmit={(e) => {
-        console.log("📨 Formulario enviado → esperando token Turnstile...")
-        handleSubmit(e)
-      }}
+      onSubmit={handleSubmit}
       className="rounded-2xl border border-slate-700 bg-slate-800/40 p-6 backdrop-blur"
     >
       {/* Campos ocultos */}
@@ -119,11 +97,13 @@ export default function ContactForm() {
         </div>
       </div>
 
-      {/* 🔵 3. Widget Turnstile con callback de debugging */}
-      <div
-        className="cf-turnstile mt-4"
-        data-sitekey={siteKey}
-      ></div>
+      {/* Widget Turnstile: No tiene data-callback para que inyecte el token 'cf-turnstile-response' automáticamente. */}
+      {siteKey && (
+        <div
+          className="cf-turnstile mt-4"
+          data-sitekey={siteKey}
+        ></div>
+      )}
 
       <button
         type="submit"
@@ -134,12 +114,9 @@ export default function ContactForm() {
       </button>
 
       {state.errors && (
-        <>
-          {console.warn("⚠️ FORM ERROR →", state.errors)}
-          <p className="mt-2 text-center text-sm text-red-400">
-            Error al enviar el formulario. Revisa la consola.
-          </p>
-        </>
+        <p className="mt-2 text-center text-sm text-red-400">
+          Error al enviar el formulario. Por favor, inténtalo de nuevo.
+        </p>
       )}
 
       <p className="mt-2 text-center text-xs text-slate-400">
