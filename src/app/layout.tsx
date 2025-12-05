@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
   alternates: { canonical: site.url },
     verification: {
-    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION, // Search Console
+    google: "ZEuHaCA9yEXiCfRudpSLX-_WZwNKoyxS0eLCWR7VoZY",
   },
 }
 
