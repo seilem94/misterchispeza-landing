@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { site } from "@/shared/config/site"
 import "./globals.css";
 import { Geist, Geist_Mono } from "next/font/google";
+import Script from "next/script";
 
 
 const geistSans = Geist({
@@ -64,7 +65,20 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </noscript>
           </>
         )} */}
+{/* Google Analytics 4 */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-Y9K1TQYW9D"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
 
+            gtag('config', 'G-Y9K1TQYW9D');
+          `}
+        </Script>
         {children}
       </body>
     </html>
