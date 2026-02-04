@@ -84,6 +84,17 @@ export default function ContactForm() {
         </div>
 
         <div className="sm:col-span-2">
+          <label className="block text-sm" htmlFor="ubicacion">Ubicación</label>
+          <input
+            id="ubicacion"
+            name="ubicacion"
+            className="mt-1 w-full rounded-xl border border-slate-600 bg-slate-900 px-3 py-2"
+            placeholder="Valparaíso, V Region"
+          />
+          <ValidationError prefix="Ubicación" field="ubicacion" errors={state.errors} />
+        </div>
+        
+        <div className="sm:col-span-2">
           <label className="block text-sm" htmlFor="mensaje">Mensaje</label>
           <textarea
             id="mensaje"
