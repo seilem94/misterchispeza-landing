@@ -1,6 +1,8 @@
 'use client'
 
 import React from 'react'
+import Link from "next/link";
+import type { Route } from "next";
 import { motion } from 'framer-motion'
 import type { Service } from '@/lib/types'
 import { Card, CardHeader, CardContent, CardFooter } from '@/app/components/ui'
@@ -16,6 +18,10 @@ interface ServiceCardProps {
  */
 export function ServiceCard({ service, index }: ServiceCardProps) {
   const IconComponent = getIconComponent(service.icon)  // ← Usar helper
+  const href =
+    typeof service.href === "string" && service.href.length > 0
+      ? service.href
+      : "/#contacto";
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -32,12 +38,9 @@ export function ServiceCard({ service, index }: ServiceCardProps) {
           <p>{service.description}</p>
         </CardContent>
         <CardFooter>
-          <a
-            href="#contacto"
-            className="inline-block text-sm font-semibold text-amber-700 hover:underline"
-          >
+          <Link href={href} className="text-orange-600 font-medium hover:underline">
             Ver más
-          </a>
+          </Link>
         </CardFooter>
       </Card>
     </motion.div>

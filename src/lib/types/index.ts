@@ -1,5 +1,7 @@
 // src/lib/types/index.ts
 
+import { Route } from "next"
+
 /**
  * Servicio eléctrico ofrecido por la empresa
  */
@@ -12,6 +14,7 @@ export interface Service {
   slug: string
   category: 'electrical' | 'electronic' | 'solar' | 'security'
   featured?: boolean
+  href?: Route<string>; // opcional, para servicios destacados que tengan página propia
 }
 
 /**

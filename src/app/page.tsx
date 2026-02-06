@@ -467,7 +467,7 @@ import { ContactSection } from './_components/ContactSection'
  */
 export default function HomePage() {
   return (
-    <main className="min-h-screen scroll-smooth font-sans text-slate-800">
+    <main className="relative min-h-screen scroll-smooth font-sans text-slate-800">
       <Header />
       
       <Hero />
