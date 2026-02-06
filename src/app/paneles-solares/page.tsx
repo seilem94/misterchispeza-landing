@@ -34,7 +34,7 @@ export default function PanelesSolaresPage() {
       <header className="max-w-3xl">
         <h1 className="text-4xl font-bold tracking-tight">Paneles Solares</h1>
         <p className="mt-4 text-lg text-muted-foreground">
-          Instalación y mantenimiento de sistemas solares para hogares y empresas.
+          Instalación de sistemas solares para hogares y empresas.
           Te orientamos para elegir la mejor solución según tu consumo.
         </p>
 
@@ -57,9 +57,6 @@ export default function PanelesSolaresPage() {
       {/* SUB-SERVICIOS */}
       <section id="servicios-paneles" className="mt-12">
         <h2 className="text-2xl font-semibold">Servicios de Paneles</h2>
-        <p className="mt-2 text-muted-foreground">
-          Selecciona una categoría para ver el detalle.
-        </p>
 
         <div className="mt-6 grid gap-6 md:grid-cols-2">
           {panelesSolares.map((s) => (
@@ -84,7 +81,7 @@ export default function PanelesSolaresPage() {
       <section id="contacto-paneles" className="mt-14 rounded-2xl border p-6">
         <h2 className="text-2xl font-semibold">Cotiza tu proyecto</h2>
         <p className="mt-2 text-muted-foreground">
-          Completa el formulario y te contactamos. Si puedes, indica tu comuna y consumo aproximado.
+          Completa el formulario y te contactamos. Indica tu comuna y tu consumo aproximado.
         </p>
 
         <div className="mt-6">

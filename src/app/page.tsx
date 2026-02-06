@@ -448,8 +448,6 @@ export default function LandingElectrico() {
 }
 =======
 import React from 'react'
-import { Header } from '@/app/components/Header'
-import { Footer } from '@/app/components/Footer'
 import { Hero } from './_components/Hero'
 import { CompanySection } from './_components/CompanySection'
 import { ServicesGrid } from './_components/ServicesGrid'
@@ -468,7 +466,6 @@ import { ContactSection } from './_components/ContactSection'
 export default function HomePage() {
   return (
     <main className="relative min-h-screen scroll-smooth font-sans text-slate-800">
-      <Header />
       
       <Hero />
       <CompanySection />
@@ -479,7 +476,6 @@ export default function HomePage() {
       <CTASection />
       <ContactSection />
       
-      <Footer />
     </main>
   )
 }
