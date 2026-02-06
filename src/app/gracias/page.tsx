@@ -1,4 +1,8 @@
+<<<<<<< HEAD
   import Link from "next/link"
+=======
+import Link from "next/link"
+>>>>>>> 0a2b2ab (feat: add main components for the website including Hero, Gallery, Sectors, and Services sections)
 import { CheckCircle } from "lucide-react"
 
 export const metadata = {
@@ -44,4 +48,8 @@ export default function GraciasPage() {
       </div>
     </section>
   )
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 0a2b2ab (feat: add main components for the website including Hero, Gallery, Sectors, and Services sections)

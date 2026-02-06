@@ -36,6 +36,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
+<<<<<<< HEAD
     <html lang="es" >
       <body 
       className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
@@ -84,3 +85,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </html>
   )
 }
+=======
+    <html lang="es">
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        {children}
+      </body>
+    </html>
+  );
+}
+>>>>>>> 0a2b2ab (feat: add main components for the website including Hero, Gallery, Sectors, and Services sections)

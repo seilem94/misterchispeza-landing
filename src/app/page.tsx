@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 'use client'
 import React, { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
@@ -445,3 +446,41 @@ export default function LandingElectrico() {
     </main>
   )
 }
+=======
+import React from 'react'
+import { Header } from '@/app/components/Header'
+import { Footer } from '@/app/components/Footer'
+import { Hero } from './_components/Hero'
+import { CompanySection } from './_components/CompanySection'
+import { ServicesGrid } from './_components/ServicesGrid'
+import { BannerParallax } from './_components/BannerParallax'
+import { SectorsSection } from './_components/SectorsSection'
+import { GallerySection } from './_components/GallerySection'
+import { CTASection } from './_components/CTASection'
+import { ContactSection } from './_components/ContactSection'
+
+/**
+ * Página principal - Home
+ * 
+ * Esta página actúa como orquestador, componiendo las diferentes secciones
+ * del sitio. Cada sección es un componente independiente y reutilizable.
+ */
+export default function HomePage() {
+  return (
+    <main className="min-h-screen scroll-smooth font-sans text-slate-800">
+      <Header />
+      
+      <Hero />
+      <CompanySection />
+      <ServicesGrid />
+      <BannerParallax />
+      <SectorsSection />
+      <GallerySection />
+      <CTASection />
+      <ContactSection />
+      
+      <Footer />
+    </main>
+  )
+}
+>>>>>>> 0a2b2ab (feat: add main components for the website including Hero, Gallery, Sectors, and Services sections)
