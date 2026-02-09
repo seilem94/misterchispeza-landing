@@ -7,10 +7,10 @@ export function PortafolioPaneles() {
     <section id="portafolio" className="py-20">
       <Container>
         <div className="mb-12 text-center">
-          <h2 className="mb-4 text-4xl font-bold text-slate-900">
+          <h2 className="mb-4 text-4xl font-bold text-slate-300">
             Proyectos Realizados
           </h2>
-          <p className="mx-auto max-w-2xl text-lg text-slate-600">
+          <p className="mx-auto max-w-2xl text-lg text-slate-500">
             Instalaciones solares en Valparaíso y la región
           </p>
         </div>
