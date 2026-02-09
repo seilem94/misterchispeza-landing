@@ -31,6 +31,7 @@ Este proyecto usa **Next.js 15 con App Router** y está estructurado siguiendo l
 ### 1. **Componentes como Piezas de LEGO**
 
 Cada componente debe ser:
+
 - ✅ **Pequeño y enfocado**: Hace una sola cosa bien
 - ✅ **Reutilizable**: Se puede usar en múltiples contextos
 - ✅ **Composable**: Se combina con otros componentes
@@ -128,12 +129,14 @@ El Design System está en `app/components/ui/` y contiene:
 ```
 
 **Variantes:**
+
 - `primary`: Amarillo (CTA principal)
 - `secondary`: Gris oscuro
 - `outline`: Borde amarillo
 - `ghost`: Transparente con borde
 
 **Sizes:**
+
 - `sm`: Pequeño (móvil)
 - `md`: Mediano (default)
 - `lg`: Grande (hero sections)
@@ -149,6 +152,7 @@ El Design System está en `app/components/ui/` y contiene:
 ```
 
 **Beneficios:**
+
 - Estructura consistente
 - Fácil de estilizar globalmente
 - Composable (puedes usar solo las partes que necesitas)
@@ -164,6 +168,7 @@ El Design System está en `app/components/ui/` y contiene:
 ```
 
 **Variantes:**
+
 - `default`: Fondo blanco
 - `accent`: Fondo gris claro
 - `dark`: Fondo oscuro
@@ -178,6 +183,7 @@ El Design System está en `app/components/ui/` y contiene:
 ```
 
 **Sizes:**
+
 - `sm`: 768px (blog posts)
 - `md`: 1024px
 - `lg`: 1280px (default)
@@ -226,7 +232,7 @@ interface MyComponentProps {
 
 /**
  * Descripción del componente
- * 
+ *
  * @param data - Descripción del prop
  */
 export function MyComponent({ data, className }: MyComponentProps) {
@@ -245,6 +251,7 @@ export function MyComponent({ data, className }: MyComponentProps) {
 ### Client vs Server Components
 
 **Server Components (Default):**
+
 ```typescript
 // Sin 'use client'
 // Puede hacer fetch directo, acceso a DB, etc.
@@ -255,6 +262,7 @@ export function ServerComponent() {
 ```
 
 **Client Components:**
+
 ```typescript
 'use client'  // ← Requerido
 
@@ -266,6 +274,7 @@ export function ClientComponent() {
 ```
 
 **Regla:** Usa Server Components por defecto, Client solo cuando necesites:
+
 - `useState`, `useEffect`, otros hooks
 - Event handlers (`onClick`, `onChange`, etc.)
 - Browser APIs (`window`, `document`)
@@ -280,30 +289,30 @@ export function ClientComponent() {
 ```typescript
 // lib/types/index.ts
 export interface Service {
-  id: string
-  icon: LucideIcon
-  title: string
-  description: string
-  slug: string
-  category: 'electrical' | 'electronic'
+  id: string;
+  icon: LucideIcon;
+  title: string;
+  description: string;
+  slug: string;
+  category: "electrical" | "electronic";
 }
 
 // lib/constants/services.ts
 export const services: Service[] = [
   {
-    id: 'empalmes',
+    id: "empalmes",
     icon: Plug,
-    title: 'Empalmes',
-    description: '...',
-    slug: 'empalmes',
-    category: 'electrical',
+    title: "Empalmes",
+    description: "...",
+    slug: "empalmes",
+    category: "electrical",
   },
   // ... más servicios
-]
+];
 
 // Funciones helper
 export const getServiceBySlug = (slug: string) =>
-  services.find(s => s.slug === slug)
+  services.find((s) => s.slug === slug);
 ```
 
 ### ¿Por qué este patrón?
@@ -352,10 +361,10 @@ export function generateStaticParams() {
 }
 
 // Página dinámica
-export default function ServicePage({ 
-  params 
-}: { 
-  params: { slug: string } 
+export default function ServicePage({
+  params
+}: {
+  params: { slug: string }
 }) {
   const service = getServiceBySlug(params.slug)
   return <div>{service?.title}</div>
@@ -369,6 +378,7 @@ export default function ServicePage({
 ### Optimizaciones Implementadas
 
 1. **Next.js Image Optimization**
+
 ```typescript
 <Image
   src="/hero.png"
@@ -380,10 +390,12 @@ export default function ServicePage({
 ```
 
 2. **Code Splitting Automático**
+
 - Cada página es un bundle separado
 - Los componentes se cargan solo cuando se necesitan
 
 3. **Framer Motion Optimizado**
+
 ```typescript
 // viewport={{ once: true }} = anima solo la primera vez
 <motion.div
@@ -394,9 +406,10 @@ export default function ServicePage({
 ```
 
 4. **optimizePackageImports**
+
 ```typescript
 // next.config.ts
-optimizePackageImports: ['lucide-react', 'framer-motion']
+optimizePackageImports: ["lucide-react", "framer-motion"];
 ```
 
 ---
@@ -408,31 +421,35 @@ optimizePackageImports: ['lucide-react', 'framer-motion']
 #### Ejemplo: Agregar sección de Blog
 
 1. **Crear tipos**
+
 ```typescript
 // lib/types/index.ts
 export interface BlogPost {
-  id: string
-  title: string
-  excerpt: string
-  slug: string
-  date: string
-  author: string
+  id: string;
+  title: string;
+  excerpt: string;
+  slug: string;
+  date: string;
+  author: string;
 }
 ```
 
 2. **Crear constantes (o fetch desde CMS)**
+
 ```typescript
 // lib/constants/blog.ts
 export const blogPosts: BlogPost[] = [...]
 ```
 
 3. **Crear componentes**
+
 ```typescript
 // app/blog/_components/BlogCard.tsx
 // app/blog/_components/BlogGrid.tsx
 ```
 
 4. **Crear páginas**
+
 ```typescript
 // app/blog/page.tsx → Lista de posts
 // app/blog/[slug]/page.tsx → Post individual
@@ -462,10 +479,11 @@ export async function getServices(): Promise<Service[]> {
 ### Reglas de TypeScript
 
 1. **Siempre tipar props**
+
 ```typescript
 interface Props {
-  title: string
-  onClick?: () => void
+  title: string;
+  onClick?: () => void;
 }
 
 export function MyComponent({ title, onClick }: Props) {
@@ -474,8 +492,9 @@ export function MyComponent({ title, onClick }: Props) {
 ```
 
 2. **Usar tipos compartidos**
+
 ```typescript
-import type { Service } from '@/lib/types'
+import type { Service } from "@/lib/types";
 
 export function ServiceCard({ service }: { service: Service }) {
   // TypeScript autocompleta service.title, service.icon, etc.
@@ -483,12 +502,13 @@ export function ServiceCard({ service }: { service: Service }) {
 ```
 
 3. **Evitar `any`**
+
 ```typescript
 // ❌ MAL
-const data: any = fetchData()
+const data: any = fetchData();
 
 // ✅ BIEN
-const data: Service[] = fetchData()
+const data: Service[] = fetchData();
 ```
 
 ---

@@ -1,6 +1,6 @@
-import React from 'react'
-import { Zap } from 'lucide-react'
-import { Container } from '@/app/components/ui'
+import React from "react";
+import { Zap } from "lucide-react";
+import { Container } from "@/app/components/ui";
 
 /**
  * Footer con información de copyright
@@ -13,7 +13,7 @@ export function Footer() {
           <span className="inline-flex h-8 w-8 items-center justify-center rounded-xl bg-amber-500 text-white">
             <Zap className="h-5 w-5" />
           </span>
-          <span className="text-sm font-semibold">
+          <span className="text-sm font-semibold text-slate-500">
             Mr.Chispeza: Soluciones en Ingeniería & Mantenimiento Eléctrico
           </span>
         </div>
@@ -23,5 +23,5 @@ export function Footer() {
         </p>
       </Container>
     </footer>
-  )
+  );
 }

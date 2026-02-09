@@ -34,14 +34,14 @@ export function CompanySection() {
           <h2 className="text-3xl font-bold sm:text-4xl">
             Somos expertos en Instalaciones Eléctricas
           </h2>
-          
+
           {/* 👇 EDITA ESTE PÁRRAFO */}
           <p className="mt-4 text-amber-100">
             Ingeniería y diseño de instalaciones; servicio preventivo y
             correctivo de instalaciones eléctricas, para que su energía opere
             eficientemente.
           </p>
-          
+
           {/* 👇 EDITA EL TEXTO DEL BOTÓN */}
           <div className="mt-6">
             <a
@@ -59,6 +59,7 @@ export function CompanySection() {
 ```
 
 **Pasos:**
+
 1. Abre el archivo del componente
 2. Busca el texto que quieres cambiar
 3. Edita directamente el contenido
@@ -76,8 +77,8 @@ export function CompanySection() {
 
 export function CompanySection() {
   return (
-    <Section 
-      id="empresa" 
+    <Section
+      id="empresa"
       variant="gradient"  // 👈 OPCIONES: 'default' | 'accent' | 'dark' | 'gradient'
       className="relative"
     >
@@ -88,6 +89,7 @@ export function CompanySection() {
 ```
 
 **Variantes disponibles:**
+
 - `default` → Fondo blanco
 - `accent` → Fondo gris claro
 - `dark` → Fondo oscuro (negro/gris oscuro)
@@ -108,18 +110,19 @@ Los datos de servicios, sectores y galería están **separados** de los componen
 
 export const services: Service[] = [
   // ... servicios existentes ...
-  
+
   // 👇 AGREGAR NUEVO SERVICIO AQUÍ
   {
-    id: 'mantenimiento-aires',              // ID único
-    iconName: 'Wind',                       // Nombre del icono de Lucide
-    title: 'Mantenimiento de Aires Acondicionados',
-    description: 'Servicio profesional de mantención preventiva y correctiva de sistemas de climatización.',
-    slug: 'mantenimiento-aires-acondicionados',  // Para URL futura
-    category: 'electrical',                  // 'electrical' | 'electronic' | 'solar' | 'security'
-    featured: true,                         // Aparece en destacados (opcional)
+    id: "mantenimiento-aires", // ID único
+    iconName: "Wind", // Nombre del icono de Lucide
+    title: "Mantenimiento de Aires Acondicionados",
+    description:
+      "Servicio profesional de mantención preventiva y correctiva de sistemas de climatización.",
+    slug: "mantenimiento-aires-acondicionados", // Para URL futura
+    category: "electrical", // 'electrical' | 'electronic' | 'solar' | 'security'
+    featured: true, // Aparece en destacados (opcional)
   },
-]
+];
 ```
 
 **Lista completa de iconos:** https://lucide.dev/icons/
@@ -162,7 +165,7 @@ Simplemente **borra** todo el objeto (incluyendo las llaves `{ }`) del array.
 ```typescript
 export const services: Service[] = [
   {
-    id: 'empalmes',
+    id: "empalmes",
     // ...
   },
   // 👇 ELIMINAR ESTE SERVICIO COMPLETO (desde { hasta })
@@ -171,10 +174,10 @@ export const services: Service[] = [
   //   ...
   // },
   {
-    id: 'remodelacion',
+    id: "remodelacion",
     // ...
   },
-]
+];
 ```
 
 ---
@@ -184,6 +187,7 @@ export const services: Service[] = [
 ### 📄 Caso 1: Página Simple (Ej: "Sobre Nosotros")
 
 **Estructura:**
+
 ```
 src/app/
 └── sobre-nosotros/
@@ -193,6 +197,7 @@ src/app/
 **Pasos:**
 
 1. **Crear la carpeta:**
+
 ```bash
 mkdir src/app/sobre-nosotros
 ```
@@ -210,7 +215,7 @@ export default function SobreNosotrosPage() {
   return (
     <main className="min-h-screen scroll-smooth font-sans text-slate-800">
       <Header />
-      
+
       <Section id="sobre-nosotros" className="py-20">
         <Container>
           <h1 className="text-4xl font-bold">Sobre Nosotros</h1>
@@ -219,7 +224,7 @@ export default function SobreNosotrosPage() {
           </p>
         </Container>
       </Section>
-      
+
       <Footer />
     </main>
   )
@@ -237,6 +242,7 @@ export default function SobreNosotrosPage() {
 Crear una página individual para cada servicio automáticamente.
 
 **Estructura:**
+
 ```
 src/app/
 └── servicios/
@@ -260,17 +266,17 @@ export default function ServiciosPage() {
   return (
     <main className="min-h-screen scroll-smooth font-sans text-slate-800">
       <Header />
-      
+
       <Section className="py-20">
         <Container>
           <h1 className="text-4xl font-bold text-center mb-12">
             Nuestros Servicios
           </h1>
-          
+
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {services.map((service) => (
-              <Link 
-                key={service.id} 
+              <Link
+                key={service.id}
                 href={`/servicios/${service.slug}`}
                 className="block p-6 border rounded-2xl hover:shadow-lg transition"
               >
@@ -281,7 +287,7 @@ export default function ServiciosPage() {
           </div>
         </Container>
       </Section>
-      
+
       <Footer />
     </main>
   )
@@ -310,9 +316,9 @@ export function generateStaticParams() {
 // Genera metadata dinámico (SEO)
 export async function generateMetadata({ params }: { params: { slug: string } }) {
   const service = getServiceBySlug(params.slug)
-  
+
   if (!service) return {}
-  
+
   return {
     title: `${service.title} | Mr. Chispeza`,
     description: service.description,
@@ -321,18 +327,18 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 
 export default function ServicePage({ params }: { params: { slug: string } }) {
   const service = getServiceBySlug(params.slug)
-  
+
   // Si el servicio no existe, mostrar 404
   if (!service) {
     notFound()
   }
-  
+
   const IconComponent = getIconComponent(service.iconName)
-  
+
   return (
     <main className="min-h-screen scroll-smooth font-sans text-slate-800">
       <Header />
-      
+
       {/* Hero del servicio */}
       <Section className="py-20 bg-gradient-to-br from-amber-400 to-amber-600 text-white">
         <Container>
@@ -347,7 +353,7 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
           </p>
         </Container>
       </Section>
-      
+
       {/* Contenido del servicio */}
       <Section className="py-20">
         <Container>
@@ -356,7 +362,7 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
             <p>
               {service.fullDescription || service.description}
             </p>
-            
+
             <h2>¿Por qué elegir este servicio?</h2>
             <ul>
               <li>Profesionales certificados</li>
@@ -364,7 +370,7 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
               <li>Garantía de satisfacción</li>
               <li>Atención personalizada</li>
             </ul>
-            
+
             <h2>¿Cómo funciona?</h2>
             <ol>
               <li>Contacta con nosotros</li>
@@ -374,7 +380,7 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
               <li>Certificamos y entregamos garantía</li>
             </ol>
           </div>
-          
+
           <div className="mt-12 text-center">
             <Button variant="primary" size="lg" icon href="/#contacto">
               Solicitar este Servicio
@@ -382,7 +388,7 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
           </div>
         </Container>
       </Section>
-      
+
       <Footer />
     </main>
   )
@@ -396,10 +402,10 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
 
 export const services: Service[] = [
   {
-    id: 'empalmes',
-    iconName: 'Plug',
-    title: 'Empalmes',
-    description: 'Instalación y regularización del empalme eléctrico...',
+    id: "empalmes",
+    iconName: "Plug",
+    title: "Empalmes",
+    description: "Instalación y regularización del empalme eléctrico...",
     // 👇 AGREGAR DESCRIPCIÓN COMPLETA PARA LA PÁGINA INDIVIDUAL
     fullDescription: `
       En Mr. Chispeza nos especializamos en la instalación completa de empalmes 
@@ -414,15 +420,16 @@ export const services: Service[] = [
       - Certificación SEC
       - Gestión ante la compañía eléctrica
     `,
-    slug: 'empalmes',
-    category: 'electrical',
+    slug: "empalmes",
+    category: "electrical",
     featured: true,
   },
   // ... resto de servicios
-]
+];
 ```
 
 **Resultado:**
+
 - `/servicios` → Lista de todos los servicios
 - `/servicios/empalmes` → Página del servicio "Empalmes"
 - `/servicios/paneles-solares` → Página del servicio "Paneles Solares"
@@ -457,6 +464,7 @@ public/
 ```
 
 **Reglas:**
+
 - Usa nombres descriptivos sin espacios: `empalmes-electricos.jpg` ✅
 - Evita caracteres especiales: `instalación eléctrica.jpg` ❌
 - Formatos recomendados: `.jpg`, `.png`, `.webp`
@@ -493,10 +501,10 @@ const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       { protocol: "https", hostname: "images.unsplash.com" },
-      { protocol: "https", hostname: "tu-dominio.com" },  // 👈 Agregar aquí
+      { protocol: "https", hostname: "tu-dominio.com" }, // 👈 Agregar aquí
     ],
   },
-}
+};
 ```
 
 ```typescript
@@ -520,21 +528,21 @@ const nextConfig: NextConfig = {
 
 export const galleryImages: GalleryImage[] = [
   // Imágenes existentes...
-  
+
   // 👇 AGREGAR NUEVA IMAGEN
   {
-    id: 'img-4',                          // ID único
-    src: '/galeria/trabajo-nuevo.jpg',    // Ruta de la imagen
-    alt: 'Instalación industrial completa',
-    category: 'industrial',               // Opcional: para filtros futuros
+    id: "img-4", // ID único
+    src: "/galeria/trabajo-nuevo.jpg", // Ruta de la imagen
+    alt: "Instalación industrial completa",
+    category: "industrial", // Opcional: para filtros futuros
   },
   {
-    id: 'img-5',
-    src: 'https://images.unsplash.com/photo-xxxxx',  // O URL externa
-    alt: 'Panel solar residencial',
-    category: 'solar',
+    id: "img-5",
+    src: "https://images.unsplash.com/photo-xxxxx", // O URL externa
+    alt: "Panel solar residencial",
+    category: "solar",
   },
-]
+];
 ```
 
 **La galería se actualiza automáticamente** en `src/app/_components/GallerySection.tsx`
@@ -566,6 +574,7 @@ export function Hero() {
 ```
 
 **Pasos:**
+
 1. Guarda tu nueva imagen en `/public/` (ej: `/public/hero-nuevo.jpg`)
 2. Cambia `src="/hero.png"` a `src="/hero-nuevo.jpg"`
 3. Guarda el archivo
@@ -585,43 +594,44 @@ Los servicios se muestran en el **mismo orden** que están en el array.
 // ANTES: Empalmes aparece primero
 export const services: Service[] = [
   {
-    id: 'empalmes',
-    title: 'Empalmes',
+    id: "empalmes",
+    title: "Empalmes",
     // ...
   },
   {
-    id: 'remodelacion',
-    title: 'Remodelación',
+    id: "remodelacion",
+    title: "Remodelación",
     // ...
   },
   {
-    id: 'paneles-solares',
-    title: 'Paneles Solares',
+    id: "paneles-solares",
+    title: "Paneles Solares",
     // ...
   },
-]
+];
 
 // DESPUÉS: Paneles Solares aparece primero
 export const services: Service[] = [
   {
-    id: 'paneles-solares',     // 👈 Movido al inicio
-    title: 'Paneles Solares',
+    id: "paneles-solares", // 👈 Movido al inicio
+    title: "Paneles Solares",
     // ...
   },
   {
-    id: 'empalmes',
-    title: 'Empalmes',
+    id: "empalmes",
+    title: "Empalmes",
     // ...
   },
   {
-    id: 'remodelacion',
-    title: 'Remodelación',
+    id: "remodelacion",
+    title: "Remodelación",
     // ...
   },
-]
+];
 ```
 
 **Método simple:**
+
 1. Abre `src/lib/constants/services.ts`
 2. **Corta** el objeto completo del servicio (desde `{` hasta `},`)
 3. **Pega** en la posición deseada
@@ -637,18 +647,18 @@ export const services: Service[] = [
 // Mismo principio que servicios
 export const sectors: Sector[] = [
   {
-    id: 'residencial',  // 👈 Aparece primero
+    id: "residencial", // 👈 Aparece primero
     // ...
   },
   {
-    id: 'industrial',   // 👈 Aparece segundo
+    id: "industrial", // 👈 Aparece segundo
     // ...
   },
   {
-    id: 'comercial',    // 👈 Aparece tercero
+    id: "comercial", // 👈 Aparece tercero
     // ...
   },
-]
+];
 ```
 
 ---
@@ -696,6 +706,7 @@ export default function HomePage() {
 ```
 
 **Reglas importantes:**
+
 - `<Header />` siempre va primero
 - `<Footer />` siempre va al final
 - `<Hero />` típicamente va después del Header
@@ -711,14 +722,15 @@ export default function HomePage() {
 
 ```typescript
 export const contactInfo = {
-  phone: '+56 9 8677 4423',           // 👈 Cambiar teléfono
-  email: 'elielo.hhs@gmail.com',      // 👈 Cambiar email
-  location: 'Valparaíso, Chile',      // 👈 Cambiar ubicación
-  whatsapp: '+56986774423',           // 👈 Cambiar WhatsApp
-}
+  phone: "+56 9 8677 4423", // 👈 Cambiar teléfono
+  email: "elielo.hhs@gmail.com", // 👈 Cambiar email
+  location: "Valparaíso, Chile", // 👈 Cambiar ubicación
+  whatsapp: "+56986774423", // 👈 Cambiar WhatsApp
+};
 ```
 
 Esta información se usa automáticamente en:
+
 - Sección de contacto
 - Footer
 - Cualquier lugar que la importe
@@ -731,14 +743,14 @@ Esta información se usa automáticamente en:
 
 ```css
 :root {
-  --background: #ffffff;      /* Fondo claro */
-  --foreground: #171717;      /* Texto oscuro */
+  --background: #ffffff; /* Fondo claro */
+  --foreground: #171717; /* Texto oscuro */
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;    /* Fondo oscuro en dark mode */
-    --foreground: #ededed;    /* Texto claro en dark mode */
+    --background: #0a0a0a; /* Fondo oscuro en dark mode */
+    --foreground: #ededed; /* Texto claro en dark mode */
   }
 }
 ```
@@ -749,13 +761,14 @@ Busca en los componentes `amber-` y reemplaza por otro color:
 
 ```typescript
 // ANTES
-className="bg-amber-500 text-white"
+className = "bg-amber-500 text-white";
 
 // DESPUÉS (azul)
-className="bg-blue-500 text-white"
+className = "bg-blue-500 text-white";
 ```
 
 **Colores disponibles en Tailwind:**
+
 - `red`, `orange`, `amber`, `yellow`, `lime`, `green`
 - `emerald`, `teal`, `cyan`, `sky`, `blue`, `indigo`
 - `violet`, `purple`, `fuchsia`, `pink`, `rose`
@@ -774,21 +787,21 @@ export function Footer() {
     <footer className="border-t border-slate-200 bg-white">
       <Container className="flex flex-col items-center justify-between gap-4 py-8 sm:flex-row">
         {/* ... contenido existente ... */}
-        
+
         {/* 👇 AGREGAR REDES SOCIALES */}
         <div className="flex gap-4">
-          <a 
-            href="https://facebook.com/tu-pagina" 
-            target="_blank" 
+          <a
+            href="https://facebook.com/tu-pagina"
+            target="_blank"
             rel="noopener noreferrer"
             className="text-slate-600 hover:text-amber-500"
           >
             <Facebook className="h-5 w-5" />
           </a>
-          <a 
+          <a
             href="https://instagram.com/tu-cuenta"
             target="_blank"
-            rel="noopener noreferrer" 
+            rel="noopener noreferrer"
             className="text-slate-600 hover:text-amber-500"
           >
             <Instagram className="h-5 w-5" />
@@ -809,24 +822,24 @@ export function Footer() {
 ```typescript
 export const mainNavigation: NavItem[] = [
   {
-    label: 'Compañía',
-    href: '#empresa',
+    label: "Compañía",
+    href: "#empresa",
   },
   {
-    label: 'Servicios',
-    href: '#servicios',
+    label: "Servicios",
+    href: "#servicios",
   },
   // 👇 AGREGAR NUEVO LINK
   {
-    label: 'Blog',
-    href: '/blog',          // Ruta interna
+    label: "Blog",
+    href: "/blog", // Ruta interna
   },
   {
-    label: 'Tienda',
-    href: 'https://tienda.ejemplo.com',  // Ruta externa
+    label: "Tienda",
+    href: "https://tienda.ejemplo.com", // Ruta externa
     external: true,
   },
-]
+];
 ```
 
 ---
@@ -837,13 +850,13 @@ export const mainNavigation: NavItem[] = [
 
 ```typescript
 export const metadata: Metadata = {
-  title: { 
-    default: `Mr. Chispeza | Servicios Eléctricos`,  // 👈 Cambiar título
-    template: `%s | Mr. Chispeza` 
+  title: {
+    default: `Mr. Chispeza | Servicios Eléctricos`, // 👈 Cambiar título
+    template: `%s | Mr. Chispeza`,
   },
-  description: 'Servicios eléctricos profesionales en Valparaíso',  // 👈 Cambiar descripción
+  description: "Servicios eléctricos profesionales en Valparaíso", // 👈 Cambiar descripción
   // ...
-}
+};
 ```
 
 **Para páginas individuales:**
@@ -852,9 +865,9 @@ export const metadata: Metadata = {
 // src/app/sobre-nosotros/page.tsx
 
 export const metadata = {
-  title: 'Sobre Nosotros',
-  description: 'Conoce más sobre Mr. Chispeza',
-}
+  title: "Sobre Nosotros",
+  description: "Conoce más sobre Mr. Chispeza",
+};
 
 export default function SobreNosotrosPage() {
   // ...
@@ -937,10 +950,12 @@ Lista completa: https://lucide.dev/icons/
 ## ✅ Checklist Rápido
 
 **Antes de hacer cambios:**
+
 - [ ] `npm run dev` está corriendo
 - [ ] Hice backup de los archivos que voy a editar
 
 **Después de hacer cambios:**
+
 - [ ] Guardé el archivo
 - [ ] Verifiqué en el navegador
 - [ ] No hay errores en la consola
@@ -951,6 +966,7 @@ Lista completa: https://lucide.dev/icons/
 ¡Con este tutorial deberías poder manejar las tareas más comunes sin problemas! 🎉
 
 Si tienes dudas, recuerda que:
+
 - Los **datos** están en `/lib/constants/`
 - Los **componentes visuales** están en `/app/_components/`
 - Las **páginas** están en `/app/`

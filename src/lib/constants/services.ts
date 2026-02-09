@@ -125,19 +125,21 @@ export const services: Service[] = [
  * Obtener servicio por slug
  */
 export const getServiceBySlug = (slug: string): Service | undefined => {
-  return services.find(s => s.slug === slug)
-}
+  return services.find((s) => s.slug === slug);
+};
 
 /**
  * Obtener servicios por categoría
  */
-export const getServicesByCategory = (category: Service['category']): Service[] => {
-  return services.filter(s => s.category === category)
-}
+export const getServicesByCategory = (
+  category: Service["category"],
+): Service[] => {
+  return services.filter((s) => s.category === category);
+};
 
 /**
  * Obtener servicios destacados
  */
 export const getFeaturedServices = (): Service[] => {
-  return services.filter(s => s.featured)
-}
+  return services.filter((s) => s.featured);
+};

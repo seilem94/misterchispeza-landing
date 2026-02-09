@@ -1,8 +1,8 @@
-import React from 'react'
-import { Zap } from 'lucide-react'
-import { Container } from '@/app/components/ui'
-import { Button } from '@/app/components/ui/Button'
-import { mainNavigation } from '@/lib/constants/navigation'
+import React from "react";
+import { Zap } from "lucide-react";
+import { Container } from "@/app/components/ui";
+import { Button } from "@/app/components/ui/Button";
+import { mainNavigation } from "@/lib/constants/navigation";
 
 /**
  * Header sticky con navegación
@@ -17,7 +17,9 @@ export function Header() {
             <Zap className="h-5 w-5" />
           </span>
           <div className="text-left leading-tight">
-            <div className="text-sm font-bold tracking-wide">Mr.Chispeza</div>
+            <div className="text-[#16325B] hover:text-[#0b203f] text-sm font-bold tracking-wide">
+              Mr.Chispeza
+            </div>
             <div className="text-[10px] uppercase text-slate-500">
               Servicios Eléctricos y Electrónicos
             </div>
@@ -25,7 +27,7 @@ export function Header() {
         </a>
 
         {/* Navegación Desktop */}
-        <nav className="hidden gap-6 text-sm font-medium md:flex">
+        <nav className="text-[#16325B] hover:text-[#0b203f] hidden gap-6 text-sm font-medium md:flex">
           {mainNavigation.map((item) => (
             <a
               key={item.href}
@@ -45,5 +47,5 @@ export function Header() {
         </div>
       </Container>
     </header>
-  )
+  );
 }

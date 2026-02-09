@@ -1,21 +1,20 @@
-'use client'
+"use client";
 
-import React from 'react'
-import { motion } from 'framer-motion'
-import type { Sector } from '@/lib/types'
-import { getIconComponent } from '@/lib/utils/get-icon'
-
+import React from "react";
+import { motion } from "framer-motion";
+import type { Sector } from "@/lib/types";
+import { getIconComponent } from "@/lib/utils/get-icon";
 
 interface SectorCardProps {
-  sector: Sector
-  index: number
+  sector: Sector;
+  index: number;
 }
 
 /**
  * Tarjeta individual de sector
  */
 export function SectorCard({ sector, index }: SectorCardProps) {
-  const IconComponent = getIconComponent(sector.icon)
+  const IconComponent = getIconComponent(sector.icon);
 
   return (
     <motion.div
@@ -31,5 +30,5 @@ export function SectorCard({ sector, index }: SectorCardProps) {
       <h4 className="text-lg font-semibold">{sector.title}</h4>
       <p className="mt-2 text-slate-600">{sector.description}</p>
     </motion.div>
-  )
+  );
 }

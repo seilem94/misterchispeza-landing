@@ -1,7 +1,7 @@
-import React from 'react'
-import { Section, Container } from '@/app/components/ui'
-import { sectors } from '@/lib/constants/sectors'
-import { SectorCard } from './SectorCard'
+import React from "react";
+import { Section, Container } from "@/app/components/ui";
+import { sectors } from "@/lib/constants/sectors";
+import { SectorCard } from "./SectorCard";
 
 /**
  * Sección de sectores a los que prestamos servicio
@@ -16,14 +16,10 @@ export function SectorsSection() {
 
         <div className="mt-12 grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 justify-items-center">
           {sectors.map((sector, index) => (
-            <SectorCard 
-              key={sector.id} 
-              sector={sector} 
-              index={index} 
-            />
+            <SectorCard key={sector.id} sector={sector} index={index} />
           ))}
         </div>
       </Container>
     </Section>
-  )
+  );
 }

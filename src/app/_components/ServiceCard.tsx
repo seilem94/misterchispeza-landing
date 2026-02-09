@@ -1,23 +1,23 @@
-'use client'
+"use client";
 
-import React from 'react'
+import React from "react";
 import Link from "next/link";
 import type { Route } from "next";
-import { motion } from 'framer-motion'
-import type { Service } from '@/lib/types'
-import { Card, CardHeader, CardContent, CardFooter } from '@/app/components/ui'
-import { getIconComponent } from '@/lib/utils/get-icon'
+import { motion } from "framer-motion";
+import type { Service } from "@/lib/types";
+import { Card, CardHeader, CardContent, CardFooter } from "@/app/components/ui";
+import { getIconComponent } from "@/lib/utils/get-icon";
 
 interface ServiceCardProps {
-  service: Service
-  index: number
+  service: Service;
+  index: number;
 }
 
 /**
  * Tarjeta individual de servicio con animación
  */
 export function ServiceCard({ service, index }: ServiceCardProps) {
-  const IconComponent = getIconComponent(service.icon)  // ← Usar helper
+  const IconComponent = getIconComponent(service.icon); // ← Usar helper
   const href =
     typeof service.href === "string" && service.href.length > 0
       ? service.href
@@ -38,11 +38,14 @@ export function ServiceCard({ service, index }: ServiceCardProps) {
           <p>{service.description}</p>
         </CardContent>
         <CardFooter>
-          <Link href={href} className="text-orange-600 font-medium hover:underline">
+          <Link
+            href={href}
+            className="text-orange-600 font-medium hover:underline"
+          >
             Ver más
           </Link>
         </CardFooter>
       </Card>
     </motion.div>
-  )
+  );
 }

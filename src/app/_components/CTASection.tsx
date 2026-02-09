@@ -1,5 +1,5 @@
-import React from 'react'
-import { Section, Container, Button } from '@/app/components/ui'
+import React from "react";
+import { Section, Container, Button } from "@/app/components/ui";
 
 /**
  * Sección CTA final antes del contacto
@@ -21,5 +21,5 @@ export function CTASection() {
         </div>
       </Container>
     </Section>
-  )
+  );
 }

@@ -8,7 +8,7 @@ const FALLBACK_ICON: LucideIcon = LucideIcons.HelpCircle;
 
 function isReactComponentType(v: unknown): boolean {
   // forwardRef components suelen ser "object" en runtime
-  return (typeof v === "function") || (typeof v === "object" && v !== null);
+  return typeof v === "function" || (typeof v === "object" && v !== null);
 }
 
 export function getIconComponent(icon: string): LucideIcon {
@@ -16,5 +16,7 @@ export function getIconComponent(icon: string): LucideIcon {
 
   const candidate = LucideIcons[icon as IconName];
 
-  return isReactComponentType(candidate) ? (candidate as unknown as LucideIcon) : FALLBACK_ICON;
+  return isReactComponentType(candidate)
+    ? (candidate as unknown as LucideIcon)
+    : FALLBACK_ICON;
 }

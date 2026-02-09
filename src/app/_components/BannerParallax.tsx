@@ -1,21 +1,21 @@
-'use client'
+"use client";
 
-import React, { useRef } from 'react'
-import { motion, useScroll, useTransform } from 'framer-motion'
-import Image from 'next/image'
-import { Container, Button } from '@/app/components/ui'
+import React, { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import Image from "next/image";
+import { Container, Button } from "@/app/components/ui";
 
 /**
  * Banner con efecto parallax en la imagen de fondo
  */
 export function BannerParallax() {
-  const targetRef = useRef<HTMLDivElement | null>(null)
+  const targetRef = useRef<HTMLDivElement | null>(null);
   const { scrollYProgress } = useScroll({
     target: targetRef,
-    offset: ['start start', 'end end'],
-  })
+    offset: ["start start", "end end"],
+  });
 
-  const y = useTransform(scrollYProgress, [0, 1], ['-30%', '30%'])
+  const y = useTransform(scrollYProgress, [0, 1], ["-30%", "30%"]);
 
   return (
     <section className="relative overflow-hidden">
@@ -54,5 +54,5 @@ export function BannerParallax() {
         </div>
       </Container>
     </section>
-  )
+  );
 }

@@ -1,8 +1,8 @@
-import React from 'react'
-import { Phone, Mail, MapPin } from 'lucide-react'
-import { Section, Container } from '@/app/components/ui'
-import ContactForm from '@/app/components/ContactForm'
-import { contactInfo } from '@/lib/constants/navigation'
+import React from "react";
+import { Phone, Mail, MapPin } from "lucide-react";
+import { Section, Container } from "@/app/components/ui";
+import ContactForm from "@/app/components/ContactForm";
+import { contactInfo } from "@/lib/constants/navigation";
 
 /**
  * Sección de contacto con información y formulario
@@ -38,5 +38,5 @@ export function ContactSection() {
         <ContactForm />
       </Container>
     </Section>
-  )
+  );
 }

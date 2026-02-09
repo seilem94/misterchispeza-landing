@@ -63,6 +63,7 @@ npm install clsx tailwind-merge
 ```
 
 **¿Por qué estas librerías?**
+
 - `clsx`: Construcción condicional de classnames
 - `tailwind-merge`: Merge inteligente de clases Tailwind (evita conflictos)
 
@@ -151,21 +152,21 @@ Tu `ContactForm.tsx` actual ya está en `src/app/components/ContactForm.tsx`.
 
 ```typescript
 // Antes (con router.push)
-import { useRouter } from 'next/navigation'
-const router = useRouter()
+import { useRouter } from "next/navigation";
+const router = useRouter();
 
 useEffect(() => {
   if (state.succeeded) {
-    router.push('/gracias')  // ❌ Error de TypeScript
+    router.push("/gracias"); // ❌ Error de TypeScript
   }
-}, [state.succeeded, router])
+}, [state.succeeded, router]);
 
 // Después (con window.location.href)
 useEffect(() => {
   if (state.succeeded) {
-    window.location.href = '/gracias'  // ✅ Funciona perfectamente
+    window.location.href = "/gracias"; // ✅ Funciona perfectamente
   }
-}, [state.succeeded])
+}, [state.succeeded]);
 ```
 
 ---
@@ -199,40 +200,44 @@ npm run dev
 ### Agregar un Nuevo Servicio
 
 Antes (editabas el JSX directamente):
+
 ```typescript
 // ❌ Tenías que editar page.tsx y buscar el array entre 200 líneas de código
 ```
 
 Ahora (editas solo el archivo de datos):
+
 ```typescript
 // ✅ Editas lib/constants/services.ts
 export const services: Service[] = [
   // ... servicios existentes
   {
-    id: 'nuevo-servicio',
+    id: "nuevo-servicio",
     icon: Wrench,
-    title: 'Nuevo Servicio',
-    description: 'Descripción del nuevo servicio',
-    slug: 'nuevo-servicio',
-    category: 'electrical',
+    title: "Nuevo Servicio",
+    description: "Descripción del nuevo servicio",
+    slug: "nuevo-servicio",
+    category: "electrical",
     featured: true,
   },
-]
+];
 ```
 
 ### Cambiar el Estilo de Todos los Botones
 
 Antes:
+
 ```typescript
 // ❌ Tenías que buscar y cambiar cada botón en todo el código
 ```
 
 Ahora:
+
 ```typescript
 // ✅ Editas app/components/ui/Button.tsx una sola vez
 const variants = {
-  primary: 'bg-blue-500 text-white ...',  // Cambiar aquí afecta TODOS los botones
-}
+  primary: "bg-blue-500 text-white ...", // Cambiar aquí afecta TODOS los botones
+};
 ```
 
 ### Crear una Nueva Página de Servicio Individual
@@ -252,13 +257,13 @@ export function generateStaticParams() {
   return services.map(s => ({ slug: s.slug }))
 }
 
-export default function ServicePage({ 
-  params 
-}: { 
-  params: { slug: string } 
+export default function ServicePage({
+  params
+}: {
+  params: { slug: string }
 }) {
   const service = getServiceBySlug(params.slug)
-  
+
   if (!service) {
     return <div>Servicio no encontrado</div>
   }
@@ -319,6 +324,7 @@ export default function ServicePage({
 ### Error: "Module not found: Can't resolve 'clsx'"
 
 **Solución:**
+
 ```bash
 npm install clsx tailwind-merge
 ```
@@ -330,6 +336,7 @@ npm install clsx tailwind-merge
 ### Error con typed routes en /gracias
 
 **Solución:** Asegúrate de que:
+
 1. La carpeta sea `src/app/gracias/page.tsx` (no `gracias.tsx`)
 2. Usar `window.location.href = '/gracias'` en lugar de `router.push`
 

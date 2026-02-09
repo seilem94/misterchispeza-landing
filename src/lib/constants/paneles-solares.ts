@@ -1,4 +1,3 @@
-
 export type PanelSolarService = {
   title: string;
   slug: "instalacion" | "mantenimiento";
@@ -34,27 +33,39 @@ export const panelesSolares: PanelSolarService[] = [
       },
     ],
   },
-  {
-    title: "Mantenimiento y limpieza",
-    slug: "mantenimiento",
-    shortDescription:
-      "Mantén tu sistema en óptimo rendimiento con revisión y limpieza.",
-    longDescription:
-      "Realizamos inspección visual y eléctrica, limpieza (según condiciones), revisión de protecciones, cableado, estructura y mediciones. Entregamos recomendaciones para maximizar el rendimiento y prevenir fallas.",
-    benefits: [
-      "Mejor rendimiento del sistema",
-      "Prevención de fallas",
-      "Reporte y recomendaciones",
-    ],
-    faqs: [
-      {
-        q: "¿Cada cuánto se recomienda mantenimiento?",
-        a: "Depende de polvo, salinidad y entorno. En general, una revisión periódica ayuda a mantener el rendimiento.",
-      },
-    ],
-  },
 ];
+
+export const proyectosPaneles = [
+  {
+    id: 1,
+    titulo: 'Casa Familiar - Viña del Mar',
+    ubicacion: 'Viña del Mar, Valparaíso',
+    capacidad: '5.5 kW',
+    ahorro: '85%',
+    año: 2025,
+    imagen: '/proyectos/proyecto-1.jpg', // Añadir imágenes reales
+  },
+  {
+    id: 2,
+    titulo: 'Edificio Comercial - Valparaíso',
+    ubicacion: 'Centro, Valparaíso',
+    capacidad: '12 kW',
+    ahorro: '78%',
+    año: 2024,
+    imagen: '/proyectos/proyecto-2.jpg',
+  },
+  {
+    id: 3,
+    titulo: 'Industria - Quilpué',
+    ubicacion: 'Quilpué, Valparaíso',
+    capacidad: '25 kW',
+    ahorro: '90%',
+    año: 2024,
+    imagen: '/proyectos/proyecto-3.jpg',
+  },
+]
+
 
 export function getPanelSolarServiceBySlug(slug: string) {
   return panelesSolares.find((s) => s.slug === slug);
-};
+}

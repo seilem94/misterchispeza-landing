@@ -1,9 +1,9 @@
-'use client'
+"use client";
 
-import React from 'react'
-import { motion } from 'framer-motion'
-import Image from 'next/image'
-import { Section, Container, Button } from '@/app/components/ui'
+import React from "react";
+import { motion } from "framer-motion";
+import Image from "next/image";
+import { Section, Container, Button } from "@/app/components/ui";
 
 /**
  * Sección Hero principal con imagen de fondo
@@ -33,13 +33,13 @@ export function Hero() {
           transition={{ duration: 0.8 }}
           className="max-w-3xl text-4xl font-bold sm:text-5xl lg:text-6xl"
         >
-          Soluciones <span className="text-amber-400">Eléctricas</span> <br />
-          y<span className="text-amber-400"> Electrónicas</span>
+          Soluciones <span className="text-amber-400">Eléctricas</span> <br />y
+          <span className="text-amber-400"> Electrónicas</span>
         </motion.h1>
 
         <p className="mt-6 max-w-2xl text-lg text-slate-200">
-          Para industrias, comercios y residenciales. <br /> Servicio
-          preventivo y correctivo.
+          Para industrias, comercios y residenciales. <br /> Servicio preventivo
+          y correctivo.
         </p>
 
         <div className="mt-8 flex gap-3">
@@ -52,5 +52,5 @@ export function Hero() {
         </div>
       </Container>
     </Section>
-  )
+  );
 }
