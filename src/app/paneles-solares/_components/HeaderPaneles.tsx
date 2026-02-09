@@ -30,7 +30,7 @@ export function HeaderPaneles() {
           <div className="h-6 w-px bg-slate-300" />
           
           <Link href="/paneles-solares" className="flex items-center gap-2" aria-label="Paneles Solares">
-            <span className="inline-flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-to-br from-amber-500 to-orange-500 text-white">
+            <span className="inline-flex h-8 w-8 items-center justify-center rounded-xl bg-linear-to-br from-amber-500 to-orange-500 text-white">
               <Sun className="h-5 w-5" aria-hidden="true" />
             </span>
             <div className="text-left leading-tight">
@@ -65,7 +65,7 @@ export function HeaderPaneles() {
           <Button 
             size="sm" 
             href="#contacto-paneles"
-            className="bg-gradient-to-r from-amber-500 to-orange-500 text-white hover:from-amber-600 hover:to-orange-600"
+            className="bg-linear-to-r from-amber-500 to-orange-500 text-white hover:from-amber-600 hover:to-orange-600"
           >
             Cotizar
           </Button>

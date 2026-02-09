@@ -34,7 +34,6 @@ export default function ContactForm() {
           name="nombre"
           required
           placeholder="Tu nombre"
-          error={state.errors?.nombre}
         >
           <ValidationError prefix="Nombre" field="nombre" errors={state.errors} />
         </FormField>
@@ -46,7 +45,6 @@ export default function ContactForm() {
           type="email"
           required
           placeholder="tu.correo@empresa.com"
-          error={state.errors?.email}
         >
           <ValidationError prefix="Email" field="email" errors={state.errors} />
         </FormField>
@@ -57,7 +55,6 @@ export default function ContactForm() {
           name="telefono"
           type="tel"
           placeholder="+569 1234 5678"
-          error={state.errors?.telefono}
         >
           <ValidationError prefix="Teléfono" field="telefono" errors={state.errors} />
         </FormField>
@@ -67,7 +64,6 @@ export default function ContactForm() {
           id="ubicacion"
           name="ubicacion"
           placeholder="Valparaíso, V Región"
-          error={state.errors?.ubicacion}
         >
           <ValidationError prefix="Ubicación" field="ubicacion" errors={state.errors} />
         </FormField>
@@ -80,7 +76,6 @@ export default function ContactForm() {
             type="textarea"
             required
             placeholder="¿Qué necesitas?"
-            error={state.errors?.mensaje}
           >
             <ValidationError prefix="Mensaje" field="mensaje" errors={state.errors} />
           </FormField>
