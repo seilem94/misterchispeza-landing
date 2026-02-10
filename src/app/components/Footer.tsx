@@ -13,7 +13,7 @@ export function Footer() {
           <span className="inline-flex h-8 w-8 items-center justify-center rounded-xl bg-amber-500 text-white">
             <Zap className="h-5 w-5" />
           </span>
-          <span className="text-sm font-semibold text-slate-500">
+          <span className="text-sm font-semibold text-slate-600">
             Mr.Chispeza: Soluciones en Ingeniería & Mantenimiento Eléctrico
           </span>
         </div>

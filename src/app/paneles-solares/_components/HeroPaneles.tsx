@@ -4,7 +4,7 @@ import { Sun, Zap, TrendingDown } from "lucide-react";
 
 export function HeroPaneles() {
   return (
-    <section className="relative overflow-hidden bg-linear-to-br from-amber-500 via-orange-500 to-amber-600 py-24 text-white">
+    <section className="relative overflow-hidden bg-linear-to-br from-amber-500 via-orange-400 to-amber-300 py-20 text-white">
       {/* Patrón de fondo */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] bg-repeat" />
@@ -19,7 +19,7 @@ export function HeroPaneles() {
           </div>
 
           <h1 className="mb-6 text-5xl font-bold leading-tight md:text-6xl">
-            Instalación de Paneles Solares en Valparaíso
+            Instalación de Paneles Solares
           </h1>
 
           <p className="mb-8 text-xl text-amber-50 md:text-2xl">
@@ -47,7 +47,7 @@ export function HeroPaneles() {
             <Button 
               href="#contacto-paneles" 
               size="lg"
-              className="bg-white text-amber-600 hover:bg-amber-50"
+              className="bg-white text-amber-600 hover:bg-amber-100"
             >
               Solicitar Cotización
             </Button>

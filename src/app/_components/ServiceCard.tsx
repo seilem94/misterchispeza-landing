@@ -2,7 +2,6 @@
 
 import React from "react";
 import Link from "next/link";
-import type { Route } from "next";
 import { motion } from "framer-motion";
 import type { Service } from "@/lib/types";
 import { Card, CardHeader, CardContent, CardFooter } from "@/app/components/ui";

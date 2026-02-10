@@ -54,7 +54,7 @@ export function CardHeader({ icon, title, className = "" }: CardHeaderProps) {
           {icon}
         </div>
       )}
-      <h4 className="text-lg font-semibold">{title}</h4>
+      <h4 className="text-xl font-bold">{title}</h4>
     </div>
   );
 }

@@ -6,15 +6,16 @@ import { PortafolioPaneles } from './_components/PortafolioPaneles'
 import { CTAPaneles } from './_components/CTAPaneles'
 import ContactForm from '@/app/components/ContactForm'
 import { Container } from '@/app/components/ui'
+import { HeaderPaneles } from "@/app/paneles-solares/_components/HeaderPaneles";
 import { Footer } from '@/app/components/Footer'
 
 export const metadata: Metadata = {
   title: 'Instalación de Paneles Solares',
   description:
-    'Instalación profesional de paneles solares fotovoltaicos en Valparaíso. Reduce tu factura eléctrica hasta un 90%. Proyectos residenciales, comerciales e industriales.',
+    'Instalación profesional de paneles solares fotovoltaicos. Reduce tu factura eléctrica hasta un 90%. Proyectos residenciales, comerciales e industriales.',
   keywords: [
     'instalación paneles solares',
-    'energía solar Valparaíso',
+    'energía solar',
     'paneles fotovoltaicos',
     'ahorro energético',
     'energía renovable',
@@ -30,16 +31,13 @@ export const metadata: Metadata = {
 export default function PanelesSolaresPage() {
   return (
     <main className="min-h-screen">
+      <HeaderPaneles />
+
       <HeroPaneles />
-      
-      <section id="beneficios">
-        <BeneficiosPaneles />
-      </section>
-      
+      <BeneficiosPaneles />      
       <ProcesoInstalacion />
       <PortafolioPaneles />
-      <CTAPaneles />
-      
+      <CTAPaneles />      
       {/* Formulario de contacto */}
       <section id="contacto-paneles" className="bg-slate-900 py-20">
         <Container>
@@ -56,6 +54,7 @@ export default function PanelesSolaresPage() {
           </div>
         </Container>
       </section>
+
       <Footer />
     </main>
   )

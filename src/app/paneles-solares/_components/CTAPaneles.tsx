@@ -30,7 +30,7 @@ export function CTAPaneles() {
             </Button>
           </div>
           <p className="mt-6 text-sm text-slate-400">
-            Respuesta entre 24 y 48 horas • Visita técnica gratuita
+            • Respuesta en menos de 24 horas hábiles •
           </p>
         </div>
       </Container>
