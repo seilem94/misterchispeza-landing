@@ -38,30 +38,30 @@ export const panelesSolares: PanelSolarService[] = [
 export const proyectosPaneles = [
   {
     id: 1,
-    titulo: 'Casa Familiar - Viña del Mar',
-    ubicacion: 'Viña del Mar, Valparaíso',
+    titulo: 'Casa Familiar - Con-Con',
+    ubicacion: 'Con-Con, Valparaíso',
     capacidad: '5.5 kW',
     ahorro: '85%',
     año: 2025,
-    imagen: '/proyectos/proyecto-1.jpg', // Añadir imágenes reales
+    imagen: '/paneles-1.jpg', // Añadir imágenes reales
   },
   {
     id: 2,
-    titulo: 'Edificio Comercial - Valparaíso',
-    ubicacion: 'Centro, Valparaíso',
+    titulo: 'Edificio Comercial - Reñaca',
+    ubicacion: 'Viña del Mar, Valparaíso',
     capacidad: '12 kW',
     ahorro: '78%',
     año: 2024,
-    imagen: '/proyectos/proyecto-2.jpg',
+    imagen: '/paneles-2.jpeg',
   },
   {
     id: 3,
-    titulo: 'Industria - Quilpué',
-    ubicacion: 'Quilpué, Valparaíso',
-    capacidad: '25 kW',
+    titulo: 'Restaurant - Casablanca',
+    ubicacion: 'Casablanca, Valparaíso',
+    capacidad: '200 kW',
     ahorro: '90%',
     año: 2024,
-    imagen: '/proyectos/proyecto-3.jpg',
+    imagen: '/paneles-3.jpg',
   },
 ]
 

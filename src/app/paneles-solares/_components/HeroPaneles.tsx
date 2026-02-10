@@ -4,16 +4,16 @@ import { Sun, Zap, TrendingDown } from "lucide-react";
 
 export function HeroPaneles() {
   return (
-    <section className="relative overflow-hidden bg-linear-to-br from-amber-500 via-orange-400 to-amber-300 py-20 text-white">
+    <section className="relative overflow-hidden bg-slate-900/50 py-30 text-white">
       {/* Patrón de fondo */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] bg-repeat" />
+      <div className="absolute inset-0 h-full opacity-40">
+        <div className="absolute inset-0 h-full bg-[url('/grid-pattern.jpg')] bg-auto bg-bottom" />
       </div>
 
       <Container className="relative z-10">
         {/* ✅ CAMBIA: mx-auto max-w-4xl text-center → max-w-4xl text-left */}
         <div className="max-w-4xl text-left">
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-white/20 px-4 py-2 text-sm font-medium backdrop-blur">
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-white/40 px-4 py-2 text-md font-medium backdrop-blur">
             <Sun className="h-4 w-4" />
             Energía Solar Profesional
           </div>
@@ -22,7 +22,7 @@ export function HeroPaneles() {
             Instalación de Paneles Solares
           </h1>
 
-          <p className="mb-8 text-xl text-amber-50 md:text-2xl">
+          <p className="mb-8 text-xl text-amber-20 md:text-2xl">
             Reduce tu factura eléctrica hasta un 90% con energía limpia y renovable
           </p>
 
@@ -47,7 +47,7 @@ export function HeroPaneles() {
             <Button 
               href="#contacto-paneles" 
               size="lg"
-              className="bg-white text-amber-600 hover:bg-amber-100"
+              className="bg-white/95 text-amber-600 hover:bg-amber-100"
             >
               Solicitar Cotización
             </Button>
@@ -55,7 +55,7 @@ export function HeroPaneles() {
               href="#proceso" 
               size="lg"
               variant="outline"
-              className="border-white text-white hover:bg-white/10"
+              className="bg-amber-500/90 border-white text-white hover:bg-white/10"
             >
               Ver Proceso
             </Button>

@@ -14,7 +14,7 @@ const navItems = [
 
 export function HeaderPaneles() {
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-amber-200 bg-white/95 backdrop-blur-sm">
+    <header className="sticky top-0 z-40 w-full border-b bg-white/80 ">
       <Container className="flex h-16 items-center justify-between">
         {/* Logo + Volver */}
         <div className="flex items-center gap-4">
