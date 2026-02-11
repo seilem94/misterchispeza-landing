@@ -18,11 +18,11 @@ export function HeroPaneles() {
             Energía Solar Profesional
           </div>
 
-          <h1 className="mb-6 text-5xl font-bold leading-tight md:text-6xl">
-            Instalación de <span className="text-amber-400">Paneles Solares</span>
+          <h1 className="mb-6 text-6xl font-bold leading-tight">
+            Instalación de <span className="text-amber-500">Paneles Solares</span>
           </h1>
 
-          <p className="mb-8 text-xl text-amber-20 md:text-2xl">
+          <p className="py-5 mb-8 lg:text-lg font-bold text-amber-50 sm:text-xl">
             Reduce tu factura eléctrica hasta un 90% con energía limpia y renovable
           </p>
 
