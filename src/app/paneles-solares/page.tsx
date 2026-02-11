@@ -38,22 +38,6 @@ export default function PanelesSolaresPage() {
       <ProcesoInstalacion />
       <PortafolioPaneles />
       <CTAPaneles />      
-      {/* Formulario de contacto */}
-      <section id="contacto-paneles" className="bg-slate-900 py-20">
-        <Container>
-          <div className="mx-auto max-w-2xl">
-            <div className="mb-8 text-center">
-              <h2 className="mb-4 text-3xl font-bold text-white">
-                Solicita tu Cotización
-              </h2>
-              <p className="text-slate-300">
-                Completa el formulario y nos contactaremos contigo en menos de 24 horas
-              </p>
-            </div>
-            <ContactForm />          
-          </div>
-        </Container>
-      </section>
 
       <Footer />
     </main>

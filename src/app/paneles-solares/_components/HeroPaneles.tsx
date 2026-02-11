@@ -5,11 +5,10 @@ import { Sun, Zap, TrendingDown, DollarSign } from "lucide-react";
 import { motion } from "framer-motion";
 
 export function HeroPaneles() {
-  
   return (
-    <section className="relative overflow-hidden bg-slate-900/50 py-10 text-white">
+    <section className="relative overflow-hidden bg-slate-900/50 py-15 text-white">
       {/* Patrón de fondo */}
-      <div className="absolute inset-0 h-full opacity-40">
+      <div className="absolute inset-0 h-full opacity-30">
         <div className="absolute inset-0 h-full bg-[url('/grid-pattern.jpg')] bg-auto bg-bottom" />
       </div>
 
@@ -17,12 +16,13 @@ export function HeroPaneles() {
         {/* ✅ CAMBIA: mx-auto max-w-4xl text-center → max-w-4xl text-left */}
 
         <div className="max-w-4xl text-left">
+          {/* Badge */}
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{
               type: "tween",
-              duration: 0.7,
+              duration: 0.5,
               ease: [0.16, 1, 0.3, 1],
             }}
             className="mb-6 inline-flex items-center gap-2 rounded-full bg-white/50 px-4 py-2 text-md font-medium backdrop-blur"
@@ -30,12 +30,14 @@ export function HeroPaneles() {
             <Sun className="h-4 w-4" />
             Energía Solar Profesional
           </motion.div>
+
+          {/* Título */}
           <motion.h1
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{
               type: "tween",
-              duration: 0.7,
+              duration: 0.5,
               ease: [0.16, 1, 0.3, 1],
               delay: 0.2,
             }}
@@ -45,12 +47,13 @@ export function HeroPaneles() {
             <span className="text-amber-500">Paneles Solares</span>
           </motion.h1>
 
+          {/* Descripción */}
           <motion.p
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{
               type: "tween",
-              duration: 0.7,
+              duration: 0.5,
               ease: [0.16, 1, 0.3, 1],
               delay: 0.4,
             }}
@@ -60,15 +63,15 @@ export function HeroPaneles() {
             renovable
           </motion.p>
 
-          {/* ✅ CAMBIA: justify-center → justify-start */}
+          {/* Features - Cambiar x por y */}
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, x: -10 } as const} // ✅ CAMBIO: x → y
+            animate={{ opacity: 1, x: 0 } as const }
             transition={{
               type: "tween",
-              duration: 0.7,
+              duration: 0.5,
               ease: [0.16, 1, 0.3, 1],
-              delay: 0.4,
+              delay: 0.6, // ✅ CAMBIO: 0.4 → 0.6 para escalonar
             }}
             className="mb-12 flex flex-wrap justify-start gap-6"
           >

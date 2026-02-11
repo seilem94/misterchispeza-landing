@@ -4,7 +4,7 @@ import { proyectosPaneles } from '@/lib/constants/paneles-solares'
 
 export function PortafolioPaneles() {
   return (
-    <section id="portafolio" className="py-20">
+    <section id="portafolio" className="py-20 bg-linear-330 from-slate-800 to-slate-900">
       <Container>
         <div className="mb-12 text-center">
           <h2 className="mb-4 text-4xl font-bold text-slate-200">
