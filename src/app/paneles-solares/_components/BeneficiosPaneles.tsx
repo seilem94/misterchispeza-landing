@@ -25,7 +25,8 @@ const beneficios = [
   {
     icon: Shield,
     title: "Garantía Extendida",
-    description: 'Garantía estándar del producto: 10–12 años. Garantía de rendimiento: hasta 25 años.',
+    description:
+      "Garantía estándar del producto: 10–12 años. Garantía de rendimiento: hasta 25 años.",
   },
   {
     icon: Clock,
@@ -58,7 +59,7 @@ export function BeneficiosPaneles() {
               key={beneficio.title}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.5, delay: index * 0.05 }}
             >
               <Card hover className="text-left py-6 h-full">

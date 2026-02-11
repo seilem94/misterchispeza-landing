@@ -14,6 +14,12 @@ export const services: Service[] = [
     category: "solar",
     featured: true,
     href: "/paneles-solares",
+    features: [
+      "Diseño personalizado",
+      "Instalación llave en mano",
+      "Monitoreo en tiempo real",
+    ],
+    ctaText: "Ver más",
   },
   {
     id: "tramites-sec",
@@ -23,7 +29,8 @@ export const services: Service[] = [
       "Gestión integral de trámites y declaraciones eléctricas ante la SEC, asegurando cumplimiento con las normas de seguridad eléctrica vigentes.",
     slug: "tramites-sec",
     category: "electrical",
-    href: "/#contacto",
+    href: undefined, // Sin landing dedicada, redirige a contacto
+    ctaText: undefined,
   },
   {
     id: "empalmes",
@@ -34,7 +41,8 @@ export const services: Service[] = [
     slug: "empalmes",
     category: "electrical",
     featured: true,
-    href: "/#contacto",
+    href: undefined, // Sin landing dedicada, redirige a contacto
+    ctaText: undefined,
   },
   {
     id: "camaras-seguridad",
@@ -45,7 +53,8 @@ export const services: Service[] = [
     slug: "camaras-seguridad",
     category: "security",
     featured: true,
-    href: "/#contacto",
+    href: undefined, // Sin landing dedicada, redirige a contacto
+    ctaText: undefined,
   },
   {
     id: "tramites-compania",
@@ -55,7 +64,8 @@ export const services: Service[] = [
       "Asesoría y gestión ante la compañía eléctrica: aumento de capacidad, cambios de medidor o tarifa y otros requerimientos administrativos.",
     slug: "tramites-compania-electrica",
     category: "electrical",
-    href: "/#contacto",
+    href: undefined, // Sin landing dedicada, redirige a contacto
+    ctaText: undefined,
   },
   {
     id: "emergencias",
@@ -66,7 +76,8 @@ export const services: Service[] = [
     slug: "emergencias",
     category: "electrical",
     featured: true,
-    href: "/#contacto",
+    href: undefined, // Sin landing dedicada, redirige a contacto
+    ctaText: undefined,
   },
   {
     id: "ingenieria-diseno",
@@ -76,7 +87,8 @@ export const services: Service[] = [
       "Diseño técnico con cálculos de carga, diagramas unilineales y planos eléctricos detallados conforme a la normativa SEC.",
     slug: "ingenieria-diseno",
     category: "electrical",
-    href: "/#contacto",
+    href: undefined, // Sin landing dedicada, redirige a contacto
+    ctaText: undefined,
   },
   {
     id: "proyectos-nuevos",
@@ -86,7 +98,8 @@ export const services: Service[] = [
       "Instalaciones eléctricas completas para proyectos nuevos: casas, cabañas, quinchos o ampliaciones. Todo certificado y normado.",
     slug: "proyectos-nuevos",
     category: "electrical",
-    href: "/#contacto",
+    href: undefined, // Sin landing dedicada, redirige a contacto
+    ctaText: undefined,
   },
   {
     id: "remodelacion",
@@ -97,7 +110,8 @@ export const services: Service[] = [
     slug: "remodelacion-instalaciones",
     category: "electrical",
     featured: true,
-    href: "/#contacto",
+    href: undefined, // Sin landing dedicada, redirige a contacto
+    ctaText: undefined,
   },
   {
     id: "instalaciones-varias",
@@ -107,7 +121,8 @@ export const services: Service[] = [
       "Instalación y reparación de enchufes, interruptores, lámparas, puntos de luz y extractores en su propiedad.",
     slug: "instalaciones-varias",
     category: "electrical",
-    href: "/#contacto",
+    href: undefined, // Sin landing dedicada, redirige a contacto
+    ctaText: undefined,
   },
   {
     id: "cercos-electricos",
@@ -117,7 +132,8 @@ export const services: Service[] = [
       "Instalación y certificación de cercos eléctricos perimetrales de alta seguridad para viviendas y recintos industriales.",
     slug: "cercos-electricos",
     category: "security",
-    href: "/#contacto",
+    href: undefined, // Sin landing dedicada, redirige a contacto
+    ctaText: undefined,
   },
 ];
 

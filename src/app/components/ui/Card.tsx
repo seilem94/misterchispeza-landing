@@ -1,11 +1,11 @@
-import React from "react";
-import { cn } from "@/lib/utils/cn";
+import React from "react"
+import { cn } from "@/lib/utils/cn"
 
 interface CardProps {
-  children: React.ReactNode;
-  className?: string;
-  hover?: boolean;
-  padding?: "sm" | "md" | "lg";
+  children: React.ReactNode
+  className?: string
+  hover?: boolean
+  padding?: "sm" | "md" | "lg"
 }
 
 /**
@@ -21,64 +21,83 @@ export function Card({
     sm: "p-4",
     md: "p-6",
     lg: "p-8",
-  };
+  }
 
   return (
     <div
       className={cn(
-        "rounded-2xl border border-slate-200 bg-white shadow-sm",
-        hover && "transition-shadow hover:shadow-lg",
+        "rounded-2xl border border-slate-200 bg-white shadow-sm transition-all",
+        "flex flex-col", // ✅ Flexbox para alinear footer al fondo
+        hover && "hover:border-amber-400 hover:shadow-lg",
         paddingClasses[padding],
-        className,
+        className
       )}
     >
       {children}
     </div>
-  );
+  )
 }
 
+// CardHeader
 interface CardHeaderProps {
-  icon?: React.ReactNode;
-  title: string;
-  className?: string;
+  children?: React.ReactNode // ✅ AHORA ES OPCIONAL
+  className?: string
+  icon?: React.ReactNode
+  title?: string
 }
 
-/**
- * Header del Card con ícono opcional
- */
-export function CardHeader({ icon, title, className = "" }: CardHeaderProps) {
+export function CardHeader({
+  children,
+  className = "",
+  icon,
+  title,
+}: CardHeaderProps) {
   return (
-    <div className={cn("flex items-center gap-3", className)}>
+    <div className={cn("mb-4", className)}>
       {icon && (
-        <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-amber-100 text-amber-700">
+        <div className="mb-4 inline-flex rounded-xl bg-amber-100 p-3 text-amber-600 transition-colors group-hover:bg-amber-500 group-hover:text-white">
           {icon}
         </div>
       )}
-      <h4 className="text-xl font-bold">{title}</h4>
+      {title && (
+        <h3 className="text-xl font-bold text-slate-900">{title}</h3>
+      )}
+      {children}
     </div>
-  );
+  )
 }
 
+// CardContent
 interface CardContentProps {
-  children: React.ReactNode;
-  className?: string;
+  children: React.ReactNode
+  className?: string
 }
 
-/**
- * Contenido del Card
- */
 export function CardContent({ children, className = "" }: CardContentProps) {
-  return <div className={cn("mt-3 text-slate-600", className)}>{children}</div>;
+  return (
+    <div className={cn(
+      "text-sm text-slate-600",
+      "grow", // ✅ Crece para empujar el footer hacia abajo
+      className
+    )}>
+      {children}
+    </div>
+  )
 }
 
+// CardFooter
 interface CardFooterProps {
-  children: React.ReactNode;
-  className?: string;
+  children: React.ReactNode
+  className?: string
 }
 
-/**
- * Footer del Card
- */
 export function CardFooter({ children, className = "" }: CardFooterProps) {
-  return <div className={cn("mt-4", className)}>{children}</div>;
+  return (
+    <div className={cn(
+      "mt-auto pt-4", // ✅ Se mantiene al fondo
+      className
+    )}>
+      {children}
+    </div>
+  )
 }
