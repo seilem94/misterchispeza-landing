@@ -4,7 +4,7 @@ import { Sun, Zap, TrendingDown, DollarSign } from "lucide-react";
 
 export function HeroPaneles() {
   return (
-    <section className="relative overflow-hidden bg-slate-900/50 py-30 text-white">
+    <section className="relative overflow-hidden bg-slate-900/50 py-10 text-white">
       {/* Patrón de fondo */}
       <div className="absolute inset-0 h-full opacity-40">
         <div className="absolute inset-0 h-full bg-[url('/grid-pattern.jpg')] bg-auto bg-bottom" />
@@ -44,7 +44,7 @@ export function HeroPaneles() {
               <div className="rounded-lg bg-white/20 p-2 backdrop-blur">
                 <DollarSign className="h-5 w-5" />
               </div>
-              <span className="font-medium">Precios Desde $8MM + IVA </span>
+              <span className="font-medium">Desde $8MM + IVA — instalación tipo 8 kW</span>
             </div>
           </div>
 
