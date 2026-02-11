@@ -5,6 +5,7 @@ const nextConfig: NextConfig = {
     ignoreBuildErrors: true,
   },
 <<<<<<< HEAD
+<<<<<<< HEAD
   typedRoutes: true,
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -21,6 +22,9 @@ const nextConfig: NextConfig = {
     typedRoutes: true,
   },
   
+=======
+
+>>>>>>> fa1d53a (correccion de warning vercel)
   // ✅ Configuración optimizada de imágenes
   images: {
     formats: ['image/avif', 'image/webp'], // Formatos modernos (50% más livianos)

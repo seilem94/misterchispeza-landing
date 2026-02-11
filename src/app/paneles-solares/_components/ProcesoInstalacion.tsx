@@ -71,7 +71,7 @@ export function ProcesoInstalacion() {
           />
 
           <div className="space-y-8">
-            {pasos.map((paso, index) => {
+            {pasos.map((paso) => {
               const Icon = paso.icon;
               return (
                 <div
