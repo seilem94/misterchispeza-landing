@@ -1,6 +1,6 @@
 import { Container } from "@/app/components/ui";
 import { Button } from "@/app/components/ui/Button";
-import { Sun, Zap, TrendingDown } from "lucide-react";
+import { Sun, Zap, TrendingDown, DollarSign } from "lucide-react";
 
 export function HeroPaneles() {
   return (
@@ -19,7 +19,7 @@ export function HeroPaneles() {
           </div>
 
           <h1 className="mb-6 text-5xl font-bold leading-tight md:text-6xl">
-            Instalación de Paneles Solares
+            Instalación de <span className="text-amber-400">Paneles Solares</span>
           </h1>
 
           <p className="mb-8 text-xl text-amber-20 md:text-2xl">
@@ -39,6 +39,12 @@ export function HeroPaneles() {
                 <TrendingDown className="h-5 w-5" />
               </div>
               <span className="font-medium">Ahorro Garantizado</span>
+            </div>
+                        <div className="flex items-center gap-2">
+              <div className="rounded-lg bg-white/20 p-2 backdrop-blur">
+                <DollarSign className="h-5 w-5" />
+              </div>
+              <span className="font-medium">Precios Desde $8MM + IVA </span>
             </div>
           </div>
 

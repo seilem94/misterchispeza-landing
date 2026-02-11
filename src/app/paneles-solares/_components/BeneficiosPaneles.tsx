@@ -25,7 +25,7 @@ const beneficios = [
   {
     icon: Shield,
     title: "Garantía Extendida",
-    description: "Paneles con 25 años de garantía de fabricante",
+    description: 'Garantía estándar del producto: 10–12 años. Garantía de rendimiento: hasta 25 años.',
   },
   {
     icon: Clock,
