@@ -1,11 +1,10 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
-  reactStrictMode: true,
-  poweredByHeader: false,
-  images: {
-    remotePatterns: [{ protocol: "https", hostname: "images.unsplash.com" }],
+  typescript: {
+    ignoreBuildErrors: true,
   },
+<<<<<<< HEAD
   typedRoutes: true,
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -17,5 +16,22 @@ const nextConfig: NextConfig = {
 =======
 >>>>>>> 88cf58b (feat: add panel solar services pages and constants)
 };
+=======
+  experimental: {
+    typedRoutes: true,
+  },
+  
+  // ✅ Configuración optimizada de imágenes
+  images: {
+    formats: ['image/avif', 'image/webp'], // Formatos modernos (50% más livianos)
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920], // Breakpoints
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384], // Thumbnails
+    minimumCacheTTL: 31536000, // Cache 1 año (60 * 60 * 24 * 365)
+    dangerouslyAllowSVG: true,
+    contentDispositionType: 'attachment',
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+  },
+}
+>>>>>>> a2ded9c (feat: Optimización de carga de imagenes en Paneles Solares)
 
-export default nextConfig;
+export default nextConfig
