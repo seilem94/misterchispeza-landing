@@ -1,24 +1,7 @@
-<<<<<<< HEAD
-import type { Metadata } from "next";
-<<<<<<< HEAD
-import { site } from "@/shared/config/site"
-import "./globals.css";
-import { Geist, Geist_Mono } from "next/font/google";
-import Script from "next/script";
-
-=======
-import { Geist, Geist_Mono } from "next/font/google";
-import Script from "next/script";
-import "./globals.css";
-import { Footer } from "./components/Footer";
-import { Header } from "./components/Header";
->>>>>>> 88cf58b (feat: add panel solar services pages and constants)
-=======
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
->>>>>>> b4a5844 (Refactor code style and improve consistency across various files)
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -54,25 +37,6 @@ const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ?? ""; // ej
 const metadataBase = SITE_URL ? new URL(SITE_URL) : undefined;
 
 export const metadata: Metadata = {
-<<<<<<< HEAD
-  metadataBase: new URL(site.url),
-  title: { default: `${site.name} | ${site.tagline}`, template: `%s | ${site.name}` },
-  description: site.description,
-  openGraph: {
-    type: "website", siteName: site.name, url: site.url, locale: site.locale,
-    images: [{ 
-      url: site.ogImage, 
-      width: 1200, 
-      height: 630 
-    }],
-  },
-  robots: { index: true, follow: true },
-  alternates: { canonical: site.url },
-    verification: {
-    google: "ZEuHaCA9yEXiCfRudpSLX-_WZwNKoyxS0eLCWR7VoZY",
-  },
-}
-=======
   metadataBase,
 
   title: {
@@ -129,7 +93,6 @@ export const metadata: Metadata = {
     ? { google: GOOGLE_SITE_VERIFICATION }
     : undefined,
 };
->>>>>>> 88cf58b (feat: add panel solar services pages and constants)
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -144,63 +107,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-<<<<<<< HEAD
-<<<<<<< HEAD
-    <html lang="es" >
-      <body 
-      className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-
-        {/* 📄 Contenido principal */}
-        {/* <main id="contenido">{children}</main> */}
-
-        {/* GTM (Google Tag Manager) */}
-        {/* {process.env.NEXT_PUBLIC_GTM_ID && (
-          <>
-            {/* Head script (migrated to next/script) */}
-            {/* <Script id="gtm-init" strategy="afterInteractive">
-              {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-                j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-                'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-                })(window,document,'script','dataLayer','${process.env.NEXT_PUBLIC_GTM_ID}');`}
-            </Script> */}
-            {/* Body no-script fallback */}
-            {/* <noscript>
-              <iframe
-                src={`https://www.googletagmanager.com/ns.html?id=${process.env.NEXT_PUBLIC_GTM_ID}`}
-                height="0"
-                width="0"
-                style={{ display: "none", visibility: "hidden" }}
-              />
-            </noscript>
-          </>
-        )} */}
-{/* Google Analytics 4 */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-Y9K1TQYW9D"
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-
-            gtag('config', 'G-Y9K1TQYW9D');
-          `}
-        </Script>
-        {children}
-      </body>
-    </html>
-  )
-}
-=======
-    <html lang="es">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-=======
     <html lang="es" className={`${geistSans.variable} ${geistMono.variable}`}>
       <head>
->>>>>>> b4a5844 (Refactor code style and improve consistency across various files)
         {/* GA4 (solo si hay ID) */}
         {GA_MEASUREMENT_ID ? (
           <>
@@ -228,7 +136,3 @@ export default function RootLayout({
     </html>
   );
 }
-<<<<<<< HEAD
->>>>>>> 0a2b2ab (feat: add main components for the website including Hero, Gallery, Sectors, and Services sections)
-=======
->>>>>>> 88cf58b (feat: add panel solar services pages and constants)

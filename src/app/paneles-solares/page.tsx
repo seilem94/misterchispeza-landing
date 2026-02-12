@@ -4,8 +4,6 @@ import { BeneficiosPaneles } from './_components/BeneficiosPaneles'
 import { ProcesoInstalacion } from './_components/ProcesoInstalacion'
 import { PortafolioPaneles } from './_components/PortafolioPaneles'
 import { CTAPaneles } from './_components/CTAPaneles'
-import ContactForm from '@/app/components/ContactForm'
-import { Container } from '@/app/components/ui'
 import { HeaderPaneles } from "@/app/paneles-solares/_components/HeaderPaneles";
 import { Footer } from '@/app/components/Footer'
 

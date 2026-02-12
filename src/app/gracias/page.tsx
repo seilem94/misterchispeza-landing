@@ -1,16 +1,7 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-  import Link from "next/link"
-=======
-import Link from "next/link"
->>>>>>> 0a2b2ab (feat: add main components for the website including Hero, Gallery, Sectors, and Services sections)
-import { CheckCircle } from "lucide-react"
-=======
 import type { Metadata } from 'next'
 import { CheckCircle } from 'lucide-react'
 import { Container } from '@/app/components/ui'
 import { Button } from '@/app/components/ui/Button'
->>>>>>> b4a5844 (Refactor code style and improve consistency across various files)
 
 export const metadata: Metadata = {
   title: "Gracias por contactarnos | Mr. Chispeza",
@@ -59,8 +50,4 @@ export default function GraciasPage() {
       </Container>
     </main>
   )
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 0a2b2ab (feat: add main components for the website including Hero, Gallery, Sectors, and Services sections)
