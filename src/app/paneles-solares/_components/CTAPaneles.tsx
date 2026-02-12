@@ -1,11 +1,11 @@
 import ContactForm from "@/app/components/ContactForm";
-import { Container } from "@/app/components/ui";
+import { Container, Section } from "@/app/components/ui";
 import { Button } from "@/app/components/ui/Button";
 
 export function CTAPaneles() {
   return (
-    <section className="bg-linear-to-br from-slate-900 to-slate-800 py-20 text-white">
-      <Container className="flex flex-col lg:flex-row items-center gap-12">
+    <Section className="py-16 text-white" variant="dark">
+      <Container className="flex flex-col lg:flex-row items-center gap-12 py-16">
         <div className="w-full lg:w-1/2 mx-auto max-w-3xl text-center">
           <h2 className="mb-4 text-4xl font-bold">
             ¿Listo para generar tu propia energía?
@@ -51,6 +51,6 @@ export function CTAPaneles() {
           </div>
         </section>
       </Container>
-    </section>
+    </Section>
   );
 }
