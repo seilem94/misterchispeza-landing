@@ -50,19 +50,21 @@ export default function ContactForm() {
         </FormField>
 
         <FormField
-          label="Teléfono"
+          label="Teléfono *"
           id="telefono"
           name="telefono"
           type="tel"
+          required
           placeholder="+569 1234 5678"
         >
           <ValidationError prefix="Teléfono" field="telefono" errors={state.errors} />
         </FormField>
 
         <FormField
-          label="Ubicación"
+          label="Ubicación *"
           id="ubicacion"
           name="ubicacion"
+          required
           placeholder="Valparaíso, V Región"
         >
           <ValidationError prefix="Ubicación" field="ubicacion" errors={state.errors} />

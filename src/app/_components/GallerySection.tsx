@@ -9,8 +9,6 @@ import { galleryImages } from "@/lib/constants/gallery";
  * Sección de galería de imágenes
  */
 export function GallerySection() {
-  console.log("🖼️ Gallery images:", galleryImages);
-
   return (
     <Section id="galeria" className="bg-white">
       <Container className="py-16 sm:py-20 lg:py-24">
