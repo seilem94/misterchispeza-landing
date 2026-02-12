@@ -20,7 +20,7 @@ export function Hero() {
           priority
           sizes="100vw"
           className="object-cover object-center"
-          quality={70}
+          quality={50}
         />
         {/* Overlay más oscuro en mobile para mejor legibilidad */}
         <div className="absolute inset-0 bg-slate-900/70 sm:bg-slate-900/60" />
