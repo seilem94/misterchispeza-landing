@@ -23,25 +23,30 @@ export function ServiceCard({ service, index }: ServiceCardProps) {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ delay: index * 0.1 }}
-      className="h-full" // ✅ IMPORTANTE: Altura completa para que flexbox funcione
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      className="h-full"
     >
-      <Card hover className="group h-full"> {/* ✅ IMPORTANTE: h-full aquí también */}
+      <Card hover className="group h-full flex flex-col">
+        {/* Header con icono y título responsive */}
         <CardHeader
-          icon={<IconComponent className="h-6 w-6" />}
+          icon={<IconComponent className="h-5 w-5 sm:h-6 sm:w-6" />}
           title={service.title}
+          className="text-lg sm:text-xl"
         />
         
-        <CardContent>
-          <p>{service.description}</p>
+        {/* Contenido con flex-grow para empujar footer al fondo */}
+        <CardContent className="grow">
+          <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
+            {service.description}
+          </p>
         </CardContent>
 
-        {/* ✅ Este footer ahora se queda al fondo siempre */}
-        <CardFooter>
+        {/* Footer siempre al fondo */}
+        <CardFooter className="mt-auto">
           <Link
             href={buttonHref}
-            className="inline-flex items-center text-sm font-medium text-amber-600 transition-colors hover:text-amber-700"
+            className="inline-flex items-center text-sm sm:text-base font-medium text-amber-600 transition-colors hover:text-amber-700 group-hover:text-amber-700"
           >
             {buttonText}
             <svg
@@ -49,6 +54,7 @@ export function ServiceCard({ service, index }: ServiceCardProps) {
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
+              aria-hidden="true"
             >
               <path
                 strokeLinecap="round"
@@ -57,6 +63,7 @@ export function ServiceCard({ service, index }: ServiceCardProps) {
                 d="M9 5l7 7-7 7"
               />
             </svg>
+
           </Link>
         </CardFooter>
       </Card>

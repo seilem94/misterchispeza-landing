@@ -6,6 +6,7 @@ const nextConfig: NextConfig = {
   },
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   typedRoutes: true,
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -26,15 +27,23 @@ const nextConfig: NextConfig = {
 
 >>>>>>> fa1d53a (correccion de warning vercel)
   // ✅ Configuración optimizada de imágenes
+=======
+  typedRoutes: true,
+
+>>>>>>> a75748b (feat: enhance component responsiveness and styling; update image configurations and translations)
   images: {
-    formats: ['image/avif', 'image/webp'], // Formatos modernos (50% más livianos)
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920], // Breakpoints
-    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384], // Thumbnails
-    minimumCacheTTL: 31536000, // Cache 1 año (60 * 60 * 24 * 365)
+    formats: ['image/avif', 'image/webp'],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    minimumCacheTTL: 31536000,
     dangerouslyAllowSVG: true,
     contentDispositionType: 'attachment',
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
-    
+
+    // ✅ NUEVO: Configurar qualities permitidos
+    qualities: [70, 75, 80, 85, 90, 95, 100],
+
+    // ✅ Dominios externos permitidos
     remotePatterns: [
       {
         protocol: 'https',
@@ -42,23 +51,9 @@ const nextConfig: NextConfig = {
         port: '',
         pathname: '/**',
       },
-      {
-        protocol: 'https',
-        hostname: 'i.imgur.com',
-        port: '',
-        pathname: '/**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'lh3.googleusercontent.com',
-        port: '',
-        pathname: '/**',
-      },
     ],
   },
 }
 >>>>>>> a2ded9c (feat: Optimización de carga de imagenes en Paneles Solares)
-
-
 
 export default nextConfig

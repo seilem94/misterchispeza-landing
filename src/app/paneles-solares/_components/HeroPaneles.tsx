@@ -28,7 +28,7 @@ export function HeroPaneles() {
             className="mb-4 sm:mb-6 inline-flex items-center gap-2 rounded-full bg-white/50 px-3 py-1.5 sm:px-4 sm:py-2 text-sm sm:text-base font-medium backdrop-blur"
           >
             <Sun className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
-            <span className="text-slate-900">Energía Solar Profesional</span>
+            <span className="text-slate-200">Energía Solar Profesional</span>
           </motion.div>
 
           {/* Título - Mejor escalado responsive */}

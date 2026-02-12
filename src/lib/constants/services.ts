@@ -19,7 +19,7 @@ export const services: Service[] = [
       "Instalación llave en mano",
       "Monitoreo en tiempo real",
     ],
-    ctaText: "Ver más",
+    ctaText: "Ver más sobre paneles solares",
   },
   {
     id: "tramites-sec",
