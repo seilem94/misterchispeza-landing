@@ -28,7 +28,7 @@ const SITE_DESCRIPTION =
   process.env.NEXT_PUBLIC_SITE_DESCRIPTION ??
   "Servicios de instalaciones eléctricas y electrónicas.";
 const SITE_LOCALE = process.env.NEXT_PUBLIC_SITE_LOCALE ?? "es_CL";
-const OG_IMAGE = process.env.NEXT_PUBLIC_OG_IMAGE ?? "/logo-final.png"; // puede ser ruta relativa o URL absoluta
+const OG_IMAGE = process.env.NEXT_PUBLIC_OG_IMAGE ?? "/og-image.jpg"; // puede ser ruta relativa o URL absoluta
 
 const GOOGLE_SITE_VERIFICATION =
   process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ?? "";
