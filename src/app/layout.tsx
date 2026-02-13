@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/next"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,10 +24,10 @@ const geistMono = Geist_Mono({
 const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "").replace(/\/+$/, "");
 const SITE_NAME = process.env.NEXT_PUBLIC_SITE_NAME ?? "HHL Electricidad";
 const SITE_TAGLINE =
-  process.env.NEXT_PUBLIC_SITE_TAGLINE ?? "Servicios Eléctricos y Electrónicos";
+  process.env.NEXT_PUBLIC_SITE_TAGLINE ?? "Servicio Eléctrico Profesional en Valparaíso";
 const SITE_DESCRIPTION =
   process.env.NEXT_PUBLIC_SITE_DESCRIPTION ??
-  "Servicios de instalaciones eléctricas y electrónicas.";
+  "=Expertos en instalaciones eléctricas, mantenimiento, certificaciones SEC y proyectos eléctricos residenciales e industriales en Valparaíso.";
 const SITE_LOCALE = process.env.NEXT_PUBLIC_SITE_LOCALE ?? "es_CL";
 const OG_IMAGE = process.env.NEXT_PUBLIC_OG_IMAGE ?? "/og-image.jpg"; // puede ser ruta relativa o URL absoluta
 
@@ -132,6 +133,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-screen bg-white font-sans text-slate-900 antialiased">
         {children}
+        <Analytics />
       </body>
     </html>
   );
