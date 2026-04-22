@@ -29,9 +29,16 @@ export const mainNavigation: NavItem[] = [
 /**
  * Información de contacto
  */
-export const contactInfo = {
-  phone: "+56 9 8677 4423",
+export const contactCosta = {
+  phone: "+56 9 8677 4423 (Solo WhatsApp)",
   email: "elielo.hhs@gmail.com",
-  location: "Valparaíso, Chile",
+  location: "Provincia de Valparaíso, Chile",
+  whatsapp: "+56986774423 ",
+};
+
+export const contactMarga = {
+  phone: "+56 9 6820 4310 (Solo WhatsApp)",
+  email: "elielo.hhs@gmail.com",
+  location: "Provincia del Marga Marga, Chile",
   whatsapp: "+56986774423",
 };
