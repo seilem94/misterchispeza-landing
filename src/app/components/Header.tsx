@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image"
 import { Zap } from "lucide-react";
 import { Container } from "@/app/components/ui";
 import { Button } from "@/app/components/ui/Button";
@@ -10,9 +11,9 @@ import { mainNavigation } from "@/lib/constants/navigation";
 export function Header() {
   return (
     <header className="sticky top-0 z-40 w-full border-b border-slate-200 bg-white/80 backdrop-blur">
-      <Container className="flex h-16 items-center justify-between">
+      <Container className="flex h-22 items-center justify-between">
         {/* Logo */}
-        <a href="#" className="flex items-center gap-2">
+        {/* <a href="#" className="flex items-center gap-2">
           <span className="inline-flex h-8 w-8 items-center justify-center rounded-xl bg-amber-500 text-white">
             <Zap className="h-5 w-5" />
           </span>
@@ -24,7 +25,18 @@ export function Header() {
               Servicios Eléctricos y Electrónicos
             </div>
           </div>
+        </a> */}
+        <a href="#" className="flex items-center gap-2">
+         <Image
+              src="/logo_new.png"
+              alt="Logo Mr.Chispeza"
+              width={220}
+              height={120}
+              priority
+              className="object-contain"
+          />
         </a>
+
 
         {/* Navegación Desktop */}
         <nav className="text-[#16325B] hover:text-[#0b203f] hidden gap-6 text-sm font-medium md:flex">

@@ -30,7 +30,7 @@ export function Button({
     primary:
       "bg-amber-500 text-white shadow-lg hover:translate-y-[-1px] hover:bg-amber-600 hover:shadow-xl",
     secondary:
-      "bg-slate-800 text-white hover:bg-slate-700 shadow-md hover:shadow-lg",
+      "bg-slate-700 text-white hover:bg-slate-600 shadow-md hover:shadow-lg",
     outline:
       "border-2 border-amber-500 text-amber-500 hover:bg-amber-50 dark:hover:bg-amber-950",
     ghost:

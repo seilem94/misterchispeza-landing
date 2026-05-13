@@ -1,29 +1,32 @@
 import React from "react";
-import { Section, Container } from "@/app/components/ui";
+import { Section, Container, Button } from "@/app/components/ui";
 
 /**
  * Sección de información de la empresa
  */
 export function CompanySection() {
   return (
-    <Section id="empresa" variant="gradient" className="relative">
-      <Container className="py-20">
+    <Section id="empresa" variant="default" className="relative bg-gradient-to-br from-sky-800/70 to-blue-950/60">
+      <Container className="py-20 ">
         <div className="max-w-4xl">
-          <h2 className="text-3xl font-bold sm:text-4xl">
+          <h2 className="text-3xl font-bold sm:text-4xl text-amber-400">
             Somos expertos en Instalaciones Eléctricas
           </h2>
-          <p className="mt-4 text-amber-100">
+          <p className="mt-4 text-amber-100 font-semibold">
             Ingeniería y diseño de instalaciones; servicio preventivo y
             correctivo de instalaciones eléctricas, para que su energía opere
             eficientemente.
           </p>
           <div className="mt-6">
-            <a
-              href="#contacto"
-              className="inline-block rounded-xl bg-white px-5 py-3 font-semibold text-amber-700 shadow-lg hover:-translate-y-px transition-transform"
-            >
-              Contáctenos
-            </a>
+          <Button 
+            variant="primary" 
+            size="md" 
+            icon 
+            href="#empresa"
+            className="w-full sm:w-auto justify-center"
+          >
+            Contáctenos
+          </Button>
           </div>
         </div>
       </Container>
