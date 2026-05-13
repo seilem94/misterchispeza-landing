@@ -9,7 +9,7 @@ import { contactCosta, contactMarga } from "@/lib/constants/navigation";
  */
 export function ContactSection() {
   return (
-    <Section id="contacto" className="py-16 text-white bg-gradient-to-br from-sky-900/70 to-blue-950/60" variant="dark">
+    <Section id="contacto" className="py-16 text-white bg-linear-to-br from-sky-900/70 to-blue-950/60" variant="dark">
       <Container className="flex flex-col lg:flex-row lg:items-start gap-12 py-16">
         {/* Información de contacto */}
         <div className="w-full lg:w-1/2 text-center lg:text-left">
