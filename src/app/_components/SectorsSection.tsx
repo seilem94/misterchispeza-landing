@@ -1,7 +1,18 @@
-import React from "react"
+"use client"
+
+import { motion } from "framer-motion"
 import { Section, Container } from "@/app/components/ui"
 import { sectors } from "@/lib/constants/sectors"
 import { SectorCard } from "./SectorCard"
+
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.1
+    }
+  }
+}
 
 /**
  * Sección de sectores a los que prestamos servicio

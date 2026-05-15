@@ -4,7 +4,7 @@
 interface TurnstileOptions {
   sitekey: string;
   theme?: "light" | "dark" | "auto";
-  size?: "normal" | "compact";
+  size?: "normal" | "compact" | "flexible";
   action?: string;
   cData?: string;
   callback?: (token: string) => void;

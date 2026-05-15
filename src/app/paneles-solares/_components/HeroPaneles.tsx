@@ -8,9 +8,11 @@ import { Button } from "@/app/components/ui/Button"
 export function HeroPaneles() {
   return (
     <section className="relative overflow-hidden bg-slate-900/50 py-16 sm:py-20 lg:py-28 text-white">
-      {/* Patrón de fondo */}
       <div className="absolute inset-0 opacity-30">
-        <div className="absolute inset-0 bg-[url('/grid-pattern.jpg')] bg-auto bg-bottom" />
+        <div 
+          className="absolute inset-0 bg-auto bg-bottom" 
+          style={{ backgroundImage: "url('/grid-pattern.jpg')" }}
+        />
       </div>
 
       <Container className="relative z-10">

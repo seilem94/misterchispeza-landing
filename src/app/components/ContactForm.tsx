@@ -1,29 +1,27 @@
 'use client'
-import { useEffect } from 'react'
-import { useForm, ValidationError } from '@formspree/react'
+import { useEffect, useActionState } from 'react'
 import { useTurnstile } from './hooks/useTurnstile'
 import { FormField } from '@/app/components/ui/FormField'
-
-const formId = process.env.NEXT_PUBLIC_FORMSPREE_ID!
+import { submitContactForm } from '@/app/actions/contact'
 
 export default function ContactForm() {
   const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY
   const turnstileRef = useTurnstile({ siteKey })
 
-  const [state, handleSubmit] = useForm(formId)
+  const [state, formAction, isPending] = useActionState(submitContactForm, {})
 
   // ✅ Redirigir cuando el formulario se envió exitosamente
   useEffect(() => {
-    if (state.succeeded) {
+    if (state?.success) {
       console.log('✅ Formulario enviado, redirigiendo...') // Para debug
       setTimeout(() => {
         window.location.href = '/gracias'
-      }, 500) // Pequeño delay para asegurar que Formspree termine
+      }, 500) // Pequeño delay para asegurar la redirección
     }
-  }, [state.succeeded])
+  }, [state?.success])
 
   return (
-    <form onSubmit={handleSubmit} className="rounded-2xl border border-slate-700 bg-slate-800/40 p-6 backdrop-blur">
+    <form action={formAction} className="rounded-2xl border border-slate-700 bg-slate-800/40 p-6 backdrop-blur">
       <input type="text" name="_gotcha" className="hidden" tabIndex={-1} autoComplete="off" />
       <input type="hidden" name="_subject" value="Nuevo mensaje desde la web" />
 
@@ -34,9 +32,7 @@ export default function ContactForm() {
           name="nombre"
           required
           placeholder="Tu nombre"
-        >
-          <ValidationError prefix="Nombre" field="nombre" errors={state.errors} />
-        </FormField>
+        />
 
         <FormField
           label="Email *"
@@ -45,9 +41,7 @@ export default function ContactForm() {
           type="email"
           required
           placeholder="tu.correo@empresa.com"
-        >
-          <ValidationError prefix="Email" field="email" errors={state.errors} />
-        </FormField>
+        />
 
         <FormField
           label="Teléfono *"
@@ -56,9 +50,7 @@ export default function ContactForm() {
           type="tel"
           required
           placeholder="+569 1234 5678"
-        >
-          <ValidationError prefix="Teléfono" field="telefono" errors={state.errors} />
-        </FormField>
+        />
 
         <FormField
           label="Ubicación *"
@@ -66,9 +58,7 @@ export default function ContactForm() {
           name="ubicacion"
           required
           placeholder="Valparaíso, V Región"
-        >
-          <ValidationError prefix="Ubicación" field="ubicacion" errors={state.errors} />
-        </FormField>
+        />
 
         <div className="sm:col-span-2">
           <FormField
@@ -78,27 +68,27 @@ export default function ContactForm() {
             type="textarea"
             required
             placeholder="¿Qué necesitas?"
-          >
-            <ValidationError prefix="Mensaje" field="mensaje" errors={state.errors} />
-          </FormField>
+          />
         </div>
       </div>
 
       {siteKey && (
-        <div ref={turnstileRef} className="mt-4" aria-label="Verificación anti-spam" />
+        <div className="mt-4 flex justify-center">
+          <div ref={turnstileRef} aria-label="Verificación anti-spam" />
+        </div>
       )}
 
       <button
         type="submit"
-        disabled={state.submitting}
+        disabled={isPending}
         className="mt-4 w-full rounded-2xl bg-amber-500 px-6 py-3 font-semibold text-slate-900 hover:bg-amber-400 disabled:opacity-60 transition-colors focus:outline-none focus:ring-2 focus:ring-amber-400/50"
       >
-        {state.submitting ? 'Enviando...' : 'Enviar'}
+        {isPending ? 'Enviando...' : 'Enviar'}
       </button>
 
-      {state.errors && Object.keys(state.errors).length > 0 && (
+      {state?.error && (
         <p className="mt-2 text-center text-sm text-red-400" role="alert">
-          Error al enviar el formulario. Por favor, inténtalo de nuevo.
+          {state.error}
         </p>
       )}
 

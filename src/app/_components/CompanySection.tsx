@@ -1,4 +1,3 @@
-import React from "react";
 import { Section, Container, Button } from "@/app/components/ui";
 
 /**
@@ -12,7 +11,7 @@ export function CompanySection() {
           <h2 className="text-3xl font-bold sm:text-4xl text-amber-400">
             Somos expertos en Instalaciones Eléctricas
           </h2>
-          <p className="mt-4 text-amber-100 font-semibold">
+          <p className="mt-4 text-amber-50 font-semibold">
             Ingeniería y diseño de instalaciones; servicio preventivo y
             correctivo de instalaciones eléctricas, para que su energía opere
             eficientemente.

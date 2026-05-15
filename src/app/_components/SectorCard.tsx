@@ -1,8 +1,8 @@
 "use client"
 
-import React from "react"
 import { motion } from "framer-motion"
 import type { Sector } from "@/lib/types"
+import { Card, CardHeader, CardContent } from "@/app/components/ui"
 import { getIconComponent } from "@/lib/utils/get-icon"
 
 interface SectorCardProps {
@@ -22,22 +22,21 @@ export function SectorCard({ sector, index }: SectorCardProps) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="group rounded-2xl border border-slate-200 bg-white p-6 sm:p-8 transition-all hover:border-amber-400 hover:shadow-lg"
+      className="h-full"
     >
-      {/* Icono responsive */}
-      <div className="mb-4 inline-flex rounded-xl bg-amber-100 p-3 sm:p-4 text-amber-600 transition-colors group-hover:bg-amber-500 group-hover:text-white">
-        <IconComponent className="h-6 w-6 sm:h-7 sm:w-7" />
-      </div>
-      
-      {/* Título responsive */}
-      <h3 className="mb-2 text-lg sm:text-xl font-bold text-slate-900">
-        {sector.title}
-      </h3>
-      
-      {/* Descripción responsive */}
-      <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
-        {sector.description}
-      </p>
+      <Card hover className="group h-full flex flex-col">
+        <CardHeader
+          icon={<IconComponent className="h-5 w-5 sm:h-6 sm:w-6" />}
+          title={sector.title}
+          className="text-lg sm:text-xl"
+        />
+        
+        <CardContent className="grow">
+          <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
+            {sector.description}
+          </p>
+        </CardContent>
+      </Card>
     </motion.div>
   )
 }

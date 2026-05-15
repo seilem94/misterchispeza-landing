@@ -1,4 +1,3 @@
-import React from "react";
 import Image from "next/image"
 import { Container } from "@/app/components/ui";
 
@@ -21,17 +20,17 @@ export function Footer() {
           © {new Date().getFullYear()} Mr.Chispeza. Todos los derechos
           reservados.
         </p> */}
-        <a href="#" className="flex items-center gap-2">
+        <a href="#" className="flex items-center w-40 sm:w-48">
           <Image
               src="/logo_new.png"
               alt="Logo Mr.Chispeza"
               width={200}
               height={120}
               priority
-              className="object-contain"
+              className="w-full h-auto object-contain"
           />
         </a>
-        <p className="text-slate-500 text-right">
+        <p className="text-slate-500 text-center sm:text-right">
           © {new Date().getFullYear()} Mr.Chispeza. Todos los derechos reservados.
         </p>
       </Container>
