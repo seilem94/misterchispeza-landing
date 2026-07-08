@@ -85,15 +85,21 @@ export function WhatsAppWidget() {
               <div className="mt-4 flex flex-col gap-2.5">
                 <a
                   href="/gracias?to=whatsapp&zone=costa"
-                  className="flex w-full items-center justify-center rounded-xl bg-white border border-slate-200 hover:border-emerald-500 py-3 px-4 text-center text-sm font-semibold text-slate-700 hover:text-emerald-700 shadow-xs hover:shadow-md transition-all"
+                  className="flex flex-col w-full items-center justify-center rounded-xl bg-white border border-slate-200 hover:border-emerald-500 py-3 px-4 text-center text-sm font-semibold text-slate-700 hover:text-emerald-700 shadow-xs hover:shadow-md transition-all"
                 >
-                  📍 Quinta Costa <span className="text-xs text-slate-400 ml-1">(Valparaíso, Viña, Concón)</span>
+                  <span>📍 Quinta Costa</span>
+                  <span className="text-xs text-slate-400 font-normal mt-0.5">
+                    (Valparaíso, Viña, Concón)
+                  </span>
                 </a>
                 <a
                   href="/gracias?to=whatsapp&zone=marga"
-                  className="flex w-full items-center justify-center rounded-xl bg-white border border-slate-200 hover:border-emerald-500 py-3 px-4 text-center text-sm font-semibold text-slate-700 hover:text-emerald-700 shadow-xs hover:shadow-md transition-all"
+                  className="flex flex-col w-full items-center justify-center rounded-xl bg-white border border-slate-200 hover:border-emerald-500 py-3 px-4 text-center text-sm font-semibold text-slate-700 hover:text-emerald-700 shadow-xs hover:shadow-md transition-all"
                 >
-                  📍 Marga Marga <span className="text-xs text-slate-400 ml-1">(Quilpué, Villa Alemana, Limache)</span>
+                  <span>📍 Marga Marga</span>
+                  <span className="text-xs text-slate-400 font-normal mt-0.5">
+                    (Quilpué, Villa Alemana, Limache)
+                  </span>
                 </a>
               </div>
             </div>
