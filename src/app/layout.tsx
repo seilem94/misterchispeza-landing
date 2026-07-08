@@ -4,6 +4,7 @@ import Script from 'next/script'
 import './globals.css'
 import { Analytics } from '@vercel/analytics/next'
 import { SpeedInsights } from '@vercel/speed-insights/next'
+import { WhatsAppWidget } from '@/app/components/WhatsAppWidget'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -134,6 +135,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-screen bg-white font-sans text-slate-900 antialiased">
         {children}
+        <WhatsAppWidget />
         <Analytics />
         <SpeedInsights />
       </body>

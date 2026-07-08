@@ -21,8 +21,13 @@ export function ContactSection() {
           <h4 className="text-md font-bold mt-10 text-slate-400">Quinta Costa</h4>
             <ul className="mt-2 inline-flex flex-col items-start gap-3 text-sm">
               <li className="flex items-center gap-2">
-                <Phone className="h-4 w-4" aria-hidden="true" />
-                {contactCosta.phone}
+                <Phone className="h-4 w-4 text-emerald-500" aria-hidden="true" />
+                <a
+                  href="/gracias?to=whatsapp&zone=costa"
+                  className="hover:text-emerald-400 hover:underline transition-colors font-medium"
+                >
+                  {contactCosta.phone}
+                </a>
               </li>
               <li className="flex items-center gap-2">
                 <Mail className="h-4 w-4" aria-hidden="true" />
@@ -35,10 +40,15 @@ export function ContactSection() {
             </ul>
 
             <h4 className="text-md font-bold mt-10 text-slate-400">Marga Marga</h4>
-                        <ul className="mt-2 inline-flex flex-col items-start gap-3 text-sm">
+            <ul className="mt-2 inline-flex flex-col items-start gap-3 text-sm">
               <li className="flex items-center gap-2">
-                <Phone className="h-4 w-4" aria-hidden="true" />
-                {contactMarga.phone}
+                <Phone className="h-4 w-4 text-emerald-500" aria-hidden="true" />
+                <a
+                  href="/gracias?to=whatsapp&zone=marga"
+                  className="hover:text-emerald-400 hover:underline transition-colors font-medium"
+                >
+                  {contactMarga.phone}
+                </a>
               </li>
               <li className="flex items-center gap-2">
                 <Mail className="h-4 w-4" aria-hidden="true" />

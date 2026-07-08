@@ -40,5 +40,5 @@ export const contactMarga = {
   phone: "+56 9 6820 4310 (Solo WhatsApp)",
   email: "elielo.hhs@gmail.com",
   location: "Provincia del Marga Marga, Chile",
-  whatsapp: "+56986774423",
+  whatsapp: "+56968204310",
 };
