@@ -22,11 +22,12 @@ export function Footer() {
         </p> */}
         <a href="#" className="flex items-center w-40 sm:w-48">
           <Image
-              src="/logo_new.png"
+              src="/logo_new.webp"
               alt="Logo Mr.Chispeza"
               width={200}
               height={120}
               priority
+              sizes="(max-width: 768px) 160px, 256px"
               className="w-full h-auto object-contain"
           />
         </a>

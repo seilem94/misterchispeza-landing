@@ -14,13 +14,13 @@ export function Hero() {
       {/* Imagen de fondo */}
       <div className="absolute inset-0">
         <Image
-          src="/hero.png"
+          src="/hero.webp"
           alt="Mantenimiento eléctrico"
           fill
           priority
           sizes="100vw"
           className="object-cover object-center"
-          quality={70}
+          quality={80}
         />
         {/* Overlay más oscuro en mobile para mejor legibilidad */}
         <div className="absolute inset-0 bg-slate-900/70 sm:bg-slate-900/60" />
