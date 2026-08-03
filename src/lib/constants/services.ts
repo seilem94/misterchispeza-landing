@@ -67,18 +67,18 @@ export const services: Service[] = [
     href: undefined, // Sin landing dedicada, redirige a contacto
     ctaText: undefined,
   },
-  {
-    id: "emergencias",
-    icon: "Siren",
-    title: "Emergencias 24/7",
-    description:
-      "Servicio de electricista 24 horas para fallas urgentes, cortocircuitos o problemas con tableros eléctricos. (Consultar disponibilidad de técnico de turno).",
-    slug: "emergencias",
-    category: "electrical",
-    featured: true,
-    href: undefined, // Sin landing dedicada, redirige a contacto
-    ctaText: undefined,
-  },
+  // {
+  //   id: "emergencias",
+  //   icon: "Siren",
+  //   title: "Emergencias 24/7",
+  //   description:
+  //     "Servicio de electricista 24 horas para fallas urgentes, cortocircuitos o problemas con tableros eléctricos. (Consultar disponibilidad de técnico de turno).",
+  //   slug: "emergencias",
+  //   category: "electrical",
+  //   featured: true,
+  //   href: undefined, // Sin landing dedicada, redirige a contacto
+  //   ctaText: undefined,
+  // },
   {
     id: "ingenieria-diseno",
     icon: "DraftingCompass",
