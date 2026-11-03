@@ -54,7 +54,7 @@ export const proyectosPaneles: ProyectoPaneles[] = [
     capacidad: '5.5 kW',
     ahorro: '85%',
     año: 2025,
-    imagen: '/paneles-1.jpg',
+    imagen: '/paneles-1.webp',
     width: 1200,  // ✅ Ajusta según tu imagen real
     height: 675,  // ✅ Aspect ratio 16:9
   },
@@ -65,7 +65,7 @@ export const proyectosPaneles: ProyectoPaneles[] = [
     capacidad: '12 kW',
     ahorro: '78%',
     año: 2025,
-    imagen: '/paneles-2.jpeg',
+    imagen: '/paneles-2.webp',
     width: 1280,
     height: 960,
   },
@@ -76,7 +76,7 @@ export const proyectosPaneles: ProyectoPaneles[] = [
     capacidad: '200 kW',
     ahorro: '90%',
     año: 2025,
-    imagen: '/paneles-3.jpg',
+    imagen: '/paneles-3.webp',
     width: 1200,
     height: 675,
   },

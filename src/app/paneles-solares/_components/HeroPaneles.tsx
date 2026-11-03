@@ -11,7 +11,7 @@ export function HeroPaneles() {
       <div className="absolute inset-0 opacity-30">
         <div 
           className="absolute inset-0 bg-auto bg-bottom" 
-          style={{ backgroundImage: "url('/grid-pattern.jpg')" }}
+          style={{ backgroundImage: "url('/grid-pattern.webp')" }}
         />
       </div>
 

@@ -19,11 +19,12 @@ export function Header() {
         {/* Logo Responsive */}
         <a href="#" className="flex items-center w-36 sm:w-44 md:w-[220px]">
           <Image
-            src="/logo_new.png"
+            src="/logo_new.webp"
             alt="Logo Mr.Chispeza"
             width={220}
             height={120}
             priority={true}
+            sizes="(max-width: 768px) 160px, 256px"
             className="w-full h-auto object-contain object-left"
           />
         </a>
