@@ -16,14 +16,12 @@ export function WhatsAppWidget() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
   const widgetRef = useRef<HTMLDivElement>(null);
-
-  // Ocultar el widget si estamos en la página de agradecimiento
-  if (pathname === "/gracias") {
-    return null;
-  }
+  const isThankYouPage = pathname === "/gracias";
 
   // Cerrar al hacer clic fuera del widget
   useEffect(() => {
+    if (isThankYouPage) return;
+
     function handleClickOutside(event: MouseEvent) {
       if (widgetRef.current && !widgetRef.current.contains(event.target as Node)) {
         setIsOpen(false);
@@ -33,7 +31,12 @@ export function WhatsAppWidget() {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, []);
+  }, [isThankYouPage]);
+
+  // Mantener todos los hooks antes del retorno condicional.
+  if (isThankYouPage) {
+    return null;
+  }
 
   return (
     <div ref={widgetRef} className="fixed bottom-6 right-6 z-50 font-sans">
