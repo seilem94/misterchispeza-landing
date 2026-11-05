@@ -6,6 +6,31 @@ const nextConfig: NextConfig = {
   },
   typedRoutes: true,
 
+  async redirects() {
+    return [
+      {
+        source: '/proyectos-nuevos',
+        destination: '/instalacion-electrica-viviendas-nuevas',
+        permanent: false,
+      },
+      {
+        source: '/instalacion-electrica-casa-nueva',
+        destination: '/instalacion-electrica-viviendas-nuevas',
+        permanent: false,
+      },
+      {
+        source: '/remodelacion-instalaciones-antiguas',
+        destination: '/remodelacion-instalaciones',
+        permanent: false,
+      },
+      {
+        source: '/remodelacion-electrica',
+        destination: '/remodelacion-instalaciones',
+        permanent: false,
+      },
+    ]
+  },
+
   images: {
     formats: ['image/avif', 'image/webp'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920],

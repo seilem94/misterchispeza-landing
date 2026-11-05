@@ -4,7 +4,7 @@ import { BeneficiosPaneles } from './_components/BeneficiosPaneles'
 import { ProcesoInstalacion } from './_components/ProcesoInstalacion'
 import { PortafolioPaneles } from './_components/PortafolioPaneles'
 import { CTAPaneles } from './_components/CTAPaneles'
-import { HeaderPaneles } from "@/app/paneles-solares/_components/HeaderPaneles";
+import { HeaderPaneles } from './_components/HeaderPaneles'
 import { Footer } from '@/app/components/Footer'
 
 export const metadata: Metadata = {
