@@ -1,3 +1,24 @@
+export const panelesSolaresMetadata = {
+  title: 'Instalación de Paneles Solares',
+  description:
+    'Instalación profesional de paneles solares fotovoltaicos. Reduce tu factura eléctrica hasta un 90%. Proyectos residenciales, comerciales e industriales.',
+  keywords: [
+    'instalación paneles solares',
+    'energía solar',
+    'paneles fotovoltaicos',
+    'ahorro energético',
+    'energía renovable',
+    'instalador certificado',
+  ],
+  alternates: { canonical: '/paneles-solares' },
+  openGraph: {
+    title: 'Instalación de Paneles Solares - Mr.Chispeza',
+    description: 'Reduce tu factura eléctrica con energía solar profesional',
+    url: '/paneles-solares',
+    images: ['/og-image.webp'],
+  },
+}
+
 export type PanelSolarService = {
   title: string
   slug: 'instalacion' | 'mantenimiento'
