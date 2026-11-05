@@ -565,3 +565,27 @@ src/
 ---
 
 ¡Esta arquitectura está diseñada para crecer contigo! 🚀
+
+## Decisión 2026-11-05 — Home y accesos para campañas Ads
+
+**Estado:** adoptada para esta tarea por solicitud explícita del responsable del proyecto. Este registro precede a los cambios de código.
+
+**Problema:** las tarjetas con landing no están agrupadas, faltan anclas de campaña en el DOM, el menú apunta a una sección inexistente y existen fotografías de banco sin marcar. Las nuevas URLs solicitadas tampoco existen como rutas del App Router.
+
+**Alcance y decisión:**
+
+- Mantener `src/app/page.tsx` y `src/app/_components/` como estructura real de la home; no recrear el grupo `(home)` de los ejemplos históricos.
+- Ordenar estáticamente `services` con los servicios que tienen `href` y `ctaText` propios al principio, preservando el orden relativo del resto. La UI conserva el orden de las constantes.
+- Definir `href: /instalacion-electrica-casa-nueva` para `proyectos-nuevos` y `href: /remodelacion-electrica` para `remodelacion`, con textos de CTA específicos en `src/lib/constants/services.ts`.
+- Añadir `anchorId?: string` al contrato `Service`. Cada tarjeta utiliza `anchorId ?? id` como ID del DOM; `proyectos-nuevos` declara `anchorId: proyectos-desde-cero`. Así se resuelven también `#remodelacion`, `#tramites-sec` y `#empalmes` sin mapas comerciales en JSX. Reservar margen de scroll para el header sticky.
+- Las URLs nuevas son accesos de campaña mediante redirecciones temporales de servidor a `/instalacion-electrica-viviendas-nuevas` y `/remodelacion-instalaciones`. Las páginas existentes siguen siendo las únicas que renderizan cada servicio; este cambio no crea ni duplica sub-landings. Cuando se implemente contenido propio en las rutas de campaña, revisar esta decisión antes de sustituir los alias.
+- Retirar `#testimonios` de `mainNavigation` hasta que exista una sección real.
+- Marcar con `// TODO:` las fotos de Unsplash de galería y banner para sustituirlas por obras reales. La foto local del Hero requiere confirmar procedencia; no se declara de banco ni se certifica como trabajo propio solo por su apariencia.
+
+**Alternativas descartadas:** dejar enlaces a rutas inexistentes produciría 404 y errores de rutas tipadas; duplicar o trasladar ahora las landings ampliaría el alcance. Las redirecciones temporales conservan la navegación existente y permiten una futura sustitución sin fijar una redirección permanente.
+
+**Archivos afectados:** constantes de servicios, navegación y galería; contrato `Service`; tarjeta local de servicio; comentarios de Hero, Galería y Banner; dos páginas de redirección; este documento y `PROJECT_STATUS.md`.
+
+**Validación:** generar tipos de rutas, ejecutar typecheck, ESLint y build; comprobar orden, CTAs, existencia y unicidad de anclas en el HTML y destino de ambas redirecciones. Registrar las limitaciones del entorno y los fallos previos separadamente de los resultados del cambio.
+
+**Riesgos y reversión:** las fotos de banco seguirán visibles hasta disponer de sustitutos aprobados y el recorrido de campaña incluye una redirección. Para revertir, restaurar propiedades, orden, navegación y contrato anteriores y retirar los dos alias, manteniendo intactas las páginas existentes. No se altera Formspree, Turnstile ni la medición.
