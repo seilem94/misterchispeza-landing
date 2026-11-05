@@ -167,6 +167,14 @@ El cambio conserva el comportamiento del widget, la medición y la redirección 
 
 **Aclaración de entorno autorizada por el responsable:** Turnstile `110200` en localhost queda excluido de esta validación y no bloquea este hito. El responsable confirma que el dominio de producción está configurado correctamente en Cloudflare. Esta instrucción sustituye la consideración previa del error local como bloqueo; no se modifica la configuración de CAPTCHA ni se realiza una prueba de envío real.
 
+## Seguimiento 2026-11-05 — REM-01: contenido de la campaña de remodelación
+
+**Decisión previa a la implementación:** aplicar el brief de remodelación mediante constantes tipadas y cinco secciones de servidor locales, vídeo bajo el Hero y un CTA cliente que abre el selector de WhatsApp existente con el mensaje de campaña. La decisión REM-01 de `ARQUITECTURA.md` documenta el contrato, el transporte del mensaje, la limpieza de secciones sustituidas y la conservación del formulario secundario.
+
+Se trabajará en tres commits lógicos: datos y SSOT; UI e integración; validaciones y registro. La ruta pública, el grupo `(ads)` y las redirecciones ADS-01 no cambian.
+
+**Pendientes conocidos del brief:** los archivos `/videos/remodelacion-placeholder.mp4` y `/galeria/remodelacion-poster.jpg` no existen; se solicitan expresamente como placeholders. Las cifras entre corchetes requieren confirmación del negocio. La implementación preparatoria no equivale a una campaña lista para publicar ni permite declarar el DoD multimedia completo. El error local Turnstile `110200` mantiene la exclusión previamente autorizada; no se enviarán formularios o mensajes reales.
+
 ## Registro de Cambios (Changelog)
 
 ### 2026-11-05 — LINT-01: deuda técnica de linting saldada
