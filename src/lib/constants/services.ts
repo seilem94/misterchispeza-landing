@@ -31,7 +31,7 @@ export const services: Service[] = [
       "Instalaciones eléctricas completas para proyectos nuevos: casas, cabañas, quinchos o ampliaciones. Todo certificado y normado.",
     slug: "proyectos-nuevos",
     category: "electrical",
-    href: "/instalacion-electrica-casa-nueva",
+    href: "/instalacion-electrica-viviendas-nuevas",
     ctaText: "Ver detalles de tu instalación nueva",
   },
   {
@@ -43,7 +43,7 @@ export const services: Service[] = [
     slug: "remodelacion-instalaciones",
     category: "electrical",
     featured: true,
-    href: "/remodelacion-electrica",
+    href: "/remodelacion-instalaciones",
     ctaText: "Ver cómo renovar tu instalación",
   },
   {
