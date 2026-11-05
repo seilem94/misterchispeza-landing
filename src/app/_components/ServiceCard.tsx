@@ -3,6 +3,7 @@
 import Link from "next/link"
 import { motion } from "framer-motion"
 import type { Service } from "@/lib/types"
+import { serviceCtaDefaults } from "@/lib/constants/services"
 import { Card, CardHeader, CardContent, CardFooter } from "@/app/components/ui"
 import { getIconComponent } from "@/lib/utils/get-icon"
 
@@ -16,16 +17,19 @@ interface ServiceCardProps {
  */
 export function ServiceCard({ service, index }: ServiceCardProps) {
   const IconComponent = getIconComponent(service.icon)
-  const buttonHref = service.href || '#contacto'
-  const buttonText = service.ctaText || (service.href ? 'Ver más' : 'Cotizar')
+  const buttonHref = service.href ?? serviceCtaDefaults.href
+  const buttonText = service.ctaText ?? (
+    service.href ? serviceCtaDefaults.detailsText : serviceCtaDefaults.quoteText
+  )
 
   return (
     <motion.div
+      id={service.anchorId ?? service.id}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="h-full"
+      className="h-full scroll-mt-28 sm:scroll-mt-32"
     >
       <Card hover className="group h-full flex flex-col">
         {/* Header con icono y título responsive */}
