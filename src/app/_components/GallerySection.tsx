@@ -8,6 +8,7 @@ import { galleryImages } from "@/lib/constants/gallery";
 /**
  * Sección de galería de imágenes
  */
+// TODO: Reemplazar las fotos de banco de galleryImages (Unsplash) por fotografías reales de obras de Mr. Chispeza.
 export function GallerySection() {
   return (
     <Section id="galeria" className="bg-white">

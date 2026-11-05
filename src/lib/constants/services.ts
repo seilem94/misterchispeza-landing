@@ -1,7 +1,8 @@
 import type { Service } from "@/lib/types";
 
 /**
- * Lista completa de servicios eléctricos ofrecidos
+ * Lista completa de servicios eléctricos ofrecidos.
+ * Los servicios con landing y CTA propio aparecen antes de los de contacto directo.
  */
 export const services: Service[] = [
   {
@@ -20,6 +21,30 @@ export const services: Service[] = [
       "Monitoreo en tiempo real",
     ],
     ctaText: "Ver más sobre paneles solares",
+  },
+  {
+    id: "proyectos-nuevos",
+    anchorId: "proyectos-desde-cero",
+    icon: "Ruler",
+    title: "Proyectos desde Cero (Cabañas, Casas)",
+    description:
+      "Instalaciones eléctricas completas para proyectos nuevos: casas, cabañas, quinchos o ampliaciones. Todo certificado y normado.",
+    slug: "proyectos-nuevos",
+    category: "electrical",
+    href: "/instalacion-electrica-casa-nueva",
+    ctaText: "Ver detalles de tu instalación nueva",
+  },
+  {
+    id: "remodelacion",
+    icon: "Home",
+    title: "Remodelación de instalaciones antiguas",
+    description:
+      "Renovación completa y segura de instalaciones eléctricas antiguas. Cambiamos cableado, tableros y protecciones para evitar fallas y aumentar la capacidad de su hogar.",
+    slug: "remodelacion-instalaciones",
+    category: "electrical",
+    featured: true,
+    href: "/remodelacion-electrica",
+    ctaText: "Ver cómo renovar tu instalación",
   },
   {
     id: "tramites-sec",
@@ -91,29 +116,6 @@ export const services: Service[] = [
     ctaText: undefined,
   },
   {
-    id: "proyectos-desde-cero",
-    icon: "Ruler",
-    title: "Proyectos desde Cero (Cabañas, Casas)",
-    description:
-      "Instalaciones eléctricas completas para proyectos nuevos: casas, cabañas, quinchos o ampliaciones. Todo certificado y normado.",
-    slug: "proyectos-nuevos",
-    category: "electrical",
-    href: undefined, // Sin landing dedicada, redirige a contacto
-    ctaText: undefined,
-  },
-  {
-    id: "remodelacion",
-    icon: "Home",
-    title: "Remodelación de instalaciones antiguas",
-    description:
-      "Renovación completa y segura de instalaciones eléctricas antiguas. Cambiamos cableado, tableros y protecciones para evitar fallas y aumentar la capacidad de su hogar.",
-    slug: "remodelacion-instalaciones",
-    category: "electrical",
-    featured: true,
-    href: undefined, // Sin landing dedicada, redirige a contacto
-    ctaText: undefined,
-  },
-  {
     id: "instalaciones-varias",
     icon: "Lightbulb",
     title: "Instalaciones Varias (Enchufes, Lámparas)",
@@ -136,6 +138,12 @@ export const services: Service[] = [
     ctaText: undefined,
   },
 ];
+
+export const serviceCtaDefaults = {
+  href: "#contacto",
+  detailsText: "Ver más",
+  quoteText: "Cotizar",
+} as const;
 
 /**
  * Obtener servicio por slug

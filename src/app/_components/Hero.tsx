@@ -8,6 +8,7 @@ import { Section, Container, Button } from "@/app/components/ui"
 /**
  * Sección Hero principal con imagen de fondo
  */
+// TODO: Confirmar con marketing que /hero.webp pertenece a una obra real de Mr. Chispeza; su procedencia no está documentada.
 export function Hero() {
   return (
     <Section id="inicio" className="relative overflow-hidden">
