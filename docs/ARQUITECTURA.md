@@ -402,6 +402,27 @@ Los CTA internos de `src/lib/constants/services.ts` enlazan directamente a las r
 
 **Reversión:** revertir los commits REM-01 mediante Git, recuperando composición y mensajes anteriores sin tocar rutas finales, redirecciones nativas, secretos ni configuración externa. No cambiar los alias como efecto colateral de un cambio de copy.
 
+### Contenido y conversión de viviendas nuevas — VIV-01
+
+**Decisión adoptada antes del código, 2026-11-05:** aplicar a `/instalacion-electrica-viviendas-nuevas` el brief de viviendas nuevas y el patrón validado REM-01. Se conserva el layout ADS-01, la URL final, su canonical, los alias nativos y el formulario secundario. Se sustituye el contenido anterior centrado en parcelas para evitar copy incrustado, plazos no confirmados y casos sin evidencia.
+
+- `src/lib/constants/viviendas-nuevas.ts` exporta contratos y objetos tipados `heroData`, `problemData`, `solutionData`, `processData`, `includesData`, `targetData` y `whatsappMessage`, más encabezados, metadata, vídeo y cierre de contacto. Los arrays llevan IDs estables y se mantienen serializables, sin imports de UI ni dependencias de las constantes de remodelación.
+- El orden del recorrido es Hero → vídeo → problemas → solución → proceso → incluidos → perfiles → cierre de contacto. Las seis secciones nuevas viven en `_components/` de viviendas y son Server Components con props tipadas; `page.tsx` compone sin copy comercial. Se conserva `#contacto-viviendas-nuevas` y `ContactForm` con Formspree + Turnstile como alternativa secundaria.
+- El botón cliente de REM-01 pasa a ser `src/app/components/WhatsAppCTAButton.tsx`, compartido por ambas campañas al aparecer su segundo consumidor real. Recibe `label` y `message`, usa `Button.primary` y `cn()`, y solicita la apertura mediante la utilidad existente. Se actualizan los dos consumidores de remodelación y se elimina su botón privado anterior. No se importa UI entre carpetas privadas ni se duplica el selector, la integración o la lógica de transporte.
+- `src/lib/constants/whatsapp.ts` asocia cada ruta final a su propio mensaje. El selector flotante de viviendas utiliza el mismo mensaje que sus CTA. Costa/Marga Marga conservan los teléfonos configurados y el transporte por `/gracias` definido en REM-01. Home y paneles solares mantienen sus mensajes genéricos.
+- Se retiran los seis componentes anteriores sustituidos y sus exports sin consumidores; `CTAViviendasNuevas` se convierte en sección de servidor con contenido desde constantes. El visitante puede compartir planos en WhatsApp; el formulario web conserva sus campos actuales y no ofrece una subida de archivos inexistente.
+- La prueba social y el plazo permanecen como `[número] viviendas instaladas` y `Presupuesto en [X días]`, con avisos de confirmación pendiente. Son preparación de copy aprobada, no evidencia ni garantías de experiencia o plazo. `[comuna]` es un campo intencionado del mensaje que completa el visitante.
+
+**Excepción audiovisual del brief:** integrar `AdsVideoPlayer` bajo el Hero con `/videos/viviendas-placeholder.mp4` y `/galeria/viviendas-poster.jpg` desde `videoData`. Ambos archivos están ausentes al adoptar la decisión; mostrar un aviso visible de material pendiente y mantener `controls`, `preload="none"` y ausencia de autoplay. Marketing debe aportar vídeo real, poster propio y subtítulos cuando haya voz. No fabricar recursos ni certificar reproducción o DoD multimedia con estas rutas de preparación.
+
+**Alternativas y alcance:** duplicar el botón por campaña incumpliría la regla de extracción al segundo consumidor; importar el botón privado de remodelación rompería la colocación. Se comparte únicamente esta frontera cliente, conservando las secciones específicas cerca de sus páginas. No se añaden abstracciones, dependencias ni proveedores.
+
+**Fases y archivos:** primero SSOT y constantes (exports heredados solo durante la transición); después las seis secciones, composición, cierre de contacto y extracción del botón; finalmente validación y registro en `PROJECT_STATUS.md`. Se actualiza el procedimiento de mantenimiento en `TUTORIAL.md`.
+
+**Validación:** typecheck, lint con cero advertencias y build por cambiar renderizado; responsive en móvil y límites `sm`/`md`/`lg`/`xl`; un H1, ausencia de desbordamientos y CTA en primer viewport. Comprobar CTA inicial/final, dos zonas, mensaje exacto, foco y Escape; verificar que remodelación conserva su copy y que Home/solar no reciben mensajes de campaña. No enviar mensajes o formularios reales. Registrar los placeholders y mantener la exclusión autorizada del Turnstile local `110200`.
+
+**Reversión:** revertir VIV-01 mediante Git y devolver el botón al ámbito privado solo si deja de existir el segundo consumidor. Conservar rutas públicas, redirecciones nativas y configuración externa. Esta decisión amplía REM-01; sus observaciones históricas sobre mensajes genéricos de viviendas describen el estado anterior.
+
 ### Route Groups `(home)`
 
 **¿Por qué usar `(home)`?**

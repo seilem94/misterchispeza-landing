@@ -1,7 +1,7 @@
 export const viviendasNuevasMetadata = {
-  title: 'Instalación Eléctrica para Viviendas Nuevas y Parcelas',
+  title: 'Instalación eléctrica para viviendas nuevas',
   description:
-    'Ingeniería y ejecución eléctrica para casas nuevas, parcelas de agrado y cabañas en la Región de Valparaíso. Empalmes de larga distancia, alimentadores sin caída de tensión y certificación SEC TE1.',
+    'Proyecto, instalación eléctrica y certificado TE1 para casas nuevas, cabañas y ampliaciones en Costa y Marga Marga. Comparte tus planos para cotizar.',
   keywords: [
     'instalacion electrica para viviendas nuevas',
     'instalacion electrica casas nuevas',
@@ -15,12 +15,249 @@ export const viviendasNuevasMetadata = {
   ],
   alternates: { canonical: '/instalacion-electrica-viviendas-nuevas' },
   openGraph: {
-    title: 'Instalación Eléctrica para Viviendas Nuevas y Parcelas - Mr.Chispeza',
+    title: 'La electricidad de tu casa nueva, bien hecha desde el primer día',
     description:
-      'Soluciones eléctricas profesionales para obras desde cero y parcelas rurales con certificación SEC TE1.',
+      'Primero el proyecto, después el cable: diseño, instalación y TE1 para tu casa, cabaña o ampliación.',
     url: '/instalacion-electrica-viviendas-nuevas',
     images: ['/hero.webp'],
   },
+}
+
+export interface ViviendasNuevasSectionData {
+  id: string
+  title: string
+  description: string
+}
+
+export interface ViviendasNuevasHeroData extends ViviendasNuevasSectionData {
+  eyebrow: string
+  ctaText: string
+  socialProof: string
+  referencesNote: string
+}
+
+export interface ViviendasNuevasProblem {
+  id: string
+  text: string
+}
+
+export interface ViviendasNuevasProblemData extends ViviendasNuevasSectionData {
+  items: readonly ViviendasNuevasProblem[]
+}
+
+export interface ViviendasNuevasSolutionData extends ViviendasNuevasSectionData {
+  statement: string
+}
+
+export interface ViviendasNuevasItem {
+  id: string
+  title: string
+  description: string
+}
+
+export interface ViviendasNuevasProcessStep extends ViviendasNuevasItem {
+  number: number
+}
+
+export interface ViviendasNuevasIncludesData extends ViviendasNuevasSectionData {
+  scopeNote: string
+}
+
+export interface ViviendasNuevasVideoData extends ViviendasNuevasSectionData {
+  src: string
+  poster: string
+  label: string
+  pendingNote: string
+}
+
+export interface ViviendasNuevasContactData extends ViviendasNuevasSectionData {
+  eyebrow: string
+  ctaText: string
+  formTitle: string
+  formDescription: string
+}
+
+export const heroData: ViviendasNuevasHeroData = {
+  id: 'viviendas-nuevas',
+  eyebrow: 'Instalación eléctrica para viviendas nuevas',
+  title: 'La electricidad de tu casa nueva, bien hecha desde el primer día',
+  description:
+    'Proyecto, instalación y certificado TE1 para casas, cabañas y ampliaciones. Coordinamos la electricidad con las etapas de tu obra, desde los planos hasta la entrega.',
+  ctaText: 'Enviar mis planos por WhatsApp',
+  socialProof:
+    'Electricistas certificados SEC Costa y Marga Marga · [número] viviendas instaladas',
+  referencesNote:
+    'Cifra de viviendas y respaldo de experiencia pendientes de confirmación.',
+}
+
+export const problemData: ViviendasNuevasProblemData = {
+  id: 'problemas-obra',
+  title: 'Lo que se instala mal en la obra se paga dos veces',
+  description:
+    'Definir la electricidad a tiempo ayuda a evitar correcciones que interrumpen el avance de la construcción.',
+  items: [
+    {
+      id: 'circuitos',
+      text: 'Circuitos mal calculados que no responden a la demanda de tu casa',
+    },
+    {
+      id: 'te1',
+      text: 'Observaciones al pedir el TE1 porque la instalación no coincide con el proyecto',
+    },
+    {
+      id: 'terminaciones',
+      text: 'Muros y cielos terminados que hay que abrir para corregir recorridos o agregar puntos',
+    },
+  ],
+}
+
+export const solutionData: ViviendasNuevasSolutionData = {
+  id: 'soluciones',
+  title: 'Primero el proyecto, después el cable',
+  description:
+    'Revisamos tus planos y diseñamos la instalación según los espacios, los equipos que usarás y las etapas de tu obra. Coordinamos las canalizaciones antes de cerrar muros y cielos para que la electricidad acompañe la construcción.',
+  statement: 'El mismo equipo que diseña, instala y certifica.',
+}
+
+export const processSectionData: ViviendasNuevasSectionData = {
+  id: 'etapas',
+  title: 'De tus planos a la instalación terminada',
+  description:
+    'Tres pasos para definir el proyecto, acordar el presupuesto y coordinar la ejecución con tu obra.',
+}
+
+export const processData: readonly ViviendasNuevasProcessStep[] = [
+  {
+    id: 'planos',
+    number: 1,
+    title: 'Mandas tus planos por WhatsApp',
+    description:
+      'Seleccionas tu zona y nos cuentas la comuna y la etapa de construcción. Comparte los planos en la conversación para revisar la distribución y lo que necesitas instalar.',
+  },
+  {
+    id: 'presupuesto',
+    number: 2,
+    title: 'Presupuesto en [X días]',
+    description:
+      'Revisamos la información y definimos alcance, materiales y etapas de trabajo. El plazo [X días] está pendiente de confirmar con el equipo; la fecha de entrega del presupuesto se acuerda al revisar tu proyecto.',
+  },
+  {
+    id: 'instalacion',
+    number: 3,
+    title: 'Instalación y TE1',
+    description:
+      'Coordinamos las canalizaciones, el cableado y las terminaciones con el avance de la construcción. Realizamos las pruebas y gestionamos el TE1 y la documentación según el alcance contratado.',
+  },
+]
+
+export const includesSectionData: ViviendasNuevasIncludesData = {
+  id: 'incluidos',
+  title: 'Qué incluye el proyecto de tu casa nueva',
+  description:
+    'Una propuesta que conecta el diseño con lo que se ejecutará en terreno.',
+  scopeNote:
+    'El presupuesto detalla los materiales, los trabajos y las etapas incluidos en tu caso. Empalmes, extensiones de red y otros trabajos adicionales deben quedar expresamente acordados.',
+}
+
+export const includesData: readonly ViviendasNuevasItem[] = [
+  {
+    id: 'diseno',
+    title: 'Diseño de proyecto',
+    description:
+      'Distribución de puntos, circuitos y cargas a partir de tus planos y necesidades.',
+  },
+  {
+    id: 'canalizacion',
+    title: 'Canalización en obra gruesa',
+    description:
+      'Coordinación de ductos y cajas antes de cerrar muros, cielos y otras terminaciones.',
+  },
+  {
+    id: 'cableado',
+    title: 'Cableado y puntos eléctricos',
+    description:
+      'Tendido de conductores y conexión de enchufes, interruptores y puntos de iluminación acordados.',
+  },
+  {
+    id: 'tablero',
+    title: 'Tablero y protecciones',
+    description:
+      'Montaje y rotulación de circuitos con las protecciones definidas en el proyecto.',
+  },
+  {
+    id: 'tierra',
+    title: 'Puesta a tierra y pruebas',
+    description:
+      'Ejecución del sistema de protección y verificación de la instalación antes de la entrega.',
+  },
+  {
+    id: 'te1',
+    title: 'Certificado TE1',
+    description:
+      'Gestión de la declaración y entrega de documentación técnica según el alcance contratado.',
+  },
+]
+
+export const targetSectionData: ViviendasNuevasSectionData = {
+  id: 'para-quien',
+  title: 'Para tu casa nueva, cabaña o ampliación',
+  description:
+    'Podemos revisar tu proyecto desde la planificación o coordinar la instalación con una obra que ya está en marcha.',
+}
+
+export const targetData: readonly ViviendasNuevasItem[] = [
+  {
+    id: 'casa-propia',
+    title: 'Casa propia en construcción',
+    description:
+      'Quieres definir la electricidad junto con la distribución de tu casa y tus hábitos de uso.',
+  },
+  {
+    id: 'cabanas',
+    title: 'Cabañas para arriendo',
+    description:
+      'Necesitas planificar los consumos y la distribución eléctrica de una o varias cabañas.',
+  },
+  {
+    id: 'ampliaciones',
+    title: 'Ampliaciones',
+    description:
+      'Vas a sumar espacios y necesitas evaluar cómo integrarlos a la instalación existente.',
+  },
+  {
+    id: 'parcelas',
+    title: 'Vivienda nueva en parcela',
+    description:
+      'Estás construyendo y necesitas revisar la ubicación, las distancias y las necesidades del proyecto.',
+  },
+]
+
+export const whatsappMessage: string =
+  'Hola Mr Chispeza, estoy construyendo en [comuna] y quiero cotizar la instalación eléctrica. ¿Les mando los planos?'
+
+export const videoData: ViviendasNuevasVideoData = {
+  id: 'video-viviendas-nuevas',
+  title: 'Así se prepara la electricidad de una casa nueva',
+  description:
+    'Un espacio para mostrar el trabajo real y explicar cómo se coordina la instalación con la obra.',
+  src: '/videos/viviendas-placeholder.mp4',
+  poster: '/galeria/viviendas-poster.jpg',
+  label:
+    'Vídeo de instalación eléctrica para viviendas nuevas: material pendiente de incorporar',
+  pendingNote:
+    'Vídeo y miniatura pendientes: este reproductor utiliza rutas de preparación hasta recibir material real de Mr. Chispeza.',
+}
+
+export const contactData: ViviendasNuevasContactData = {
+  id: 'contacto-viviendas-nuevas',
+  eyebrow: 'Planifiquemos la electricidad de tu obra',
+  title: 'Comparte tus planos y conversemos sobre tu proyecto',
+  description:
+    'Elige tu zona en WhatsApp y cuéntanos en qué etapa está la construcción. Desde esa conversación puedes compartir los planos con el equipo.',
+  ctaText: heroData.ctaText,
+  formTitle: '¿Prefieres dejar una consulta?',
+  formDescription:
+    'Déjanos tus datos y los detalles del proyecto. Este formulario no recibe archivos; los planos se comparten por WhatsApp.',
 }
 
 export interface RuralChallenge {
@@ -214,7 +451,10 @@ export const etapasObraNueva: EtapaObraNueva[] = [
     duracion: '1 a 3 días',
     descripcion:
       'Visitamos tu parcela o sitio en construcción para medir distancias a la red eléctrica pública, calcular la caída de tensión esperada, evaluar el tipo de suelo y determinar si se requiere empalme monofásico o trifásico.',
-    hitos: ['Revisión de poste distribuidora', 'Definición de trazado de acometida'],
+    hitos: [
+      'Revisión de poste distribuidora',
+      'Definición de trazado de acometida',
+    ],
     iconName: 'MapPin',
   },
   {
@@ -224,7 +464,10 @@ export const etapasObraNueva: EtapaObraNueva[] = [
     duracion: '1 a 2 semanas',
     descripcion:
       'Confeccionamos los planos eléctricos completos, cuadro de cargas y solicitamos a la distribuidora la factibilidad de conexión. Montamos el poste de empalme o murete normado en el deslinde de la propiedad.',
-    hitos: ['Aprobación de factibilidad de compañía', 'Murete/Poste de empalme instalado'],
+    hitos: [
+      'Aprobación de factibilidad de compañía',
+      'Murete/Poste de empalme instalado',
+    ],
     iconName: 'FileText',
   },
   {
@@ -234,7 +477,10 @@ export const etapasObraNueva: EtapaObraNueva[] = [
     duracion: 'En paralelo a construcción',
     descripcion:
       'Antes de que se vierta el radier o se cierren las paredes con volcanita/madera, tendemos las tuberías conduit, dejamos cajas de paso y construimos la malla a tierra en terreno.',
-    hitos: ['Tuberías embutidas en radier/muros', 'Malla a tierra hincada y medida'],
+    hitos: [
+      'Tuberías embutidas en radier/muros',
+      'Malla a tierra hincada y medida',
+    ],
     iconName: 'Hammer',
   },
   {
@@ -244,7 +490,10 @@ export const etapasObraNueva: EtapaObraNueva[] = [
     duracion: '3 a 7 días',
     descripcion:
       'Tendido de conductores libres de halógenos, armado del tablero general con sus diferenciales y automáticos, conexionado de enchufes, interruptores, bombas de agua y luminarias.',
-    hitos: ['Tablero general cableado y rotulado', 'Conexión de artefactos y circuitos especiales'],
+    hitos: [
+      'Tablero general cableado y rotulado',
+      'Conexión de artefactos y circuitos especiales',
+    ],
     iconName: 'Wrench',
   },
   {
@@ -254,7 +503,10 @@ export const etapasObraNueva: EtapaObraNueva[] = [
     duracion: '1 semana',
     descripcion:
       'Medición de aislamiento de circuitos, verificación de disparo diferencial, protocolo de medición de tierra e ingreso formal ante la SEC. Entrega del certificado TE1 definitivo para la colocación del medidor.',
-    hitos: ['Certificado TE1 emitido por SEC', 'Energización definitiva de la propiedad'],
+    hitos: [
+      'Certificado TE1 emitido por SEC',
+      'Energización definitiva de la propiedad',
+    ],
     iconName: 'Award',
   },
 ]
@@ -266,7 +518,8 @@ export const proyectosObraNueva: ProyectoObraNueva[] = [
     ubicacion: 'Casablanca, Valparaíso',
     tipoTerreno: 'Parcela Rural 5.000 m²',
     potencia: 'Trifásico 25A (16.5 kW)',
-    alcance: 'Tendido subterráneo 180m, empalme provisorio y definitivo, bomba pozo 3HP y TE1 aprobado.',
+    alcance:
+      'Tendido subterráneo 180m, empalme provisorio y definitivo, bomba pozo 3HP y TE1 aprobado.',
     año: 2025,
     imagen: '/hero.webp',
     width: 1200,
@@ -279,7 +532,8 @@ export const proyectosObraNueva: ProyectoObraNueva[] = [
     ubicacion: 'Limache, Valparaíso',
     tipoTerreno: 'Vivienda Nueva 160 m²',
     potencia: 'Monofásico 40A (8.8 kW)',
-    alcance: 'Proyecto eléctrico completo desde radier, tablero 18 circuitos, quincho y respaldo generador.',
+    alcance:
+      'Proyecto eléctrico completo desde radier, tablero 18 circuitos, quincho y respaldo generador.',
     año: 2025,
     imagen: '/paneles-1.webp',
     width: 1200,
@@ -292,7 +546,8 @@ export const proyectosObraNueva: ProyectoObraNueva[] = [
     ubicacion: 'Puchuncaví / Maitencillo',
     tipoTerreno: '3 Cabañas Turísticas + Administración',
     potencia: 'Trifásico 40A (26.4 kW)',
-    alcance: 'Empalme centralizado, subtableros independientes por cabaña, iluminación de jardines y TE1.',
+    alcance:
+      'Empalme centralizado, subtableros independientes por cabaña, iluminación de jardines y TE1.',
     año: 2025,
     imagen: '/paneles-3.webp',
     width: 1200,
@@ -303,22 +558,26 @@ export const proyectosObraNueva: ProyectoObraNueva[] = [
 
 export const faqsViviendasNuevas: ViviendaNuevaFAQ[] = [
   {
-    pregunta: '¿Cómo solicito luz para mi terreno si el poste de la distribuidora está lejos de mi parcela?',
+    pregunta:
+      '¿Cómo solicito luz para mi terreno si el poste de la distribuidora está lejos de mi parcela?',
     respuesta:
       'Nosotros realizamos el levantamiento técnico en terreno y la solicitud de factibilidad ante la compañía eléctrica (Chilquinta, CGE, etc.). Dependiendo de la distancia y topografía, diseñamos la extensión de red a través de postación privada interior o mediante tendido subterráneo en zanja reglamentaria con conductores de sección calculada para evitar caídas de voltaje.',
   },
   {
-    pregunta: '¿Qué es el empalme provisorio de faena y cuándo conviene solicitarlo?',
+    pregunta:
+      '¿Qué es el empalme provisorio de faena y cuándo conviene solicitarlo?',
     respuesta:
       'El empalme provisorio es una conexión temporal autorizada por la SEC y la distribuidora que permite tener energía eléctrica legal para alimentar trompos de hormigón, sierras, soldadoras y herramientas durante la etapa de construcción, sin tener que depender de ruidosos y costosos generadores de bencina.',
   },
   {
-    pregunta: '¿Cuándo me conviene contratar un empalme monofásico (220V) vs trifásico (380V)?',
+    pregunta:
+      '¿Cuándo me conviene contratar un empalme monofásico (220V) vs trifásico (380V)?',
     respuesta:
       'Para casas familiares estándar suele ser suficiente un empalme monofásico de 25A o 40A. Sin embargo, en parcelas o terrenos rurales donde se planea instalar bombas de pozo profundo de más de 2HP, climatización centralizada, piscina, taller de herramientas o cargador de vehículo eléctrico, un empalme trifásico ofrece mayor estabilidad, balance de cargas y menor costo operativo en motores.',
   },
   {
-    pregunta: '¿Mr. Chispeza se encarga de todo el trámite ante la SEC y la distribuidora eléctrica?',
+    pregunta:
+      '¿Mr. Chispeza se encarga de todo el trámite ante la SEC y la distribuidora eléctrica?',
     respuesta:
       'Sí, nos encargamos del proceso "llave en mano": elaboración de memorias de cálculo, planos de instalación en formato digital, presentación de carpetas ante la distribuidora, hincado y medición de malla a tierra, e inscripción formal de la declaración TE1 en la Superintendencia de Electricidad y Combustibles (SEC).',
   },

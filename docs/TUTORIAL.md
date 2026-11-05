@@ -981,3 +981,12 @@ Este procedimiento vigente prevalece sobre los ejemplos históricos de edición 
 4. La UI local vive en `src/app/(ads)/remodelacion-instalaciones/_components/`; `page.tsx` solo ensambla datos y secciones. No añadir header, footer o widget adicionales: pertenecen al layout `(ads)`.
 5. El CTA pasa `whatsappMessage` al selector existente. Costa/Marga Marga conservan sus teléfonos desde `navigation.ts`; los textos compartidos viven en `constants/whatsapp.ts`. No editar mensajes en el widget ni en la pantalla de redirección. No añadir el nombre, teléfono o datos personales de un cliente a la plantilla de campaña.
 6. Ejecutar typecheck, lint y build; revisar responsive y los dos enlaces de zona sin enviar mensajes reales. Registrar evidencia y pendientes en una nueva entrada de `PROJECT_STATUS.md`, sin reescribir el historial.
+
+## Mantenimiento de la campaña de viviendas nuevas — VIV-01
+
+1. Editar únicamente `src/lib/constants/viviendas-nuevas.ts` para cambiar H1, bajada, problemas, solución, pasos, incluidos, perfiles, CTA, mensaje o metadata. Mantener los contratos tipados y la UI local en `src/app/(ads)/instalacion-electrica-viviendas-nuevas/_components/`.
+2. Marketing debe confirmar la cifra `[número]` y el plazo `[X días]`, además de respaldar la prueba social y el alcance ofrecido, antes de publicar la campaña. No convertir estos marcadores en cifras inventadas. `[comuna]` se completa por el visitante en WhatsApp.
+3. Sustituir `/videos/viviendas-placeholder.mp4` y `/galeria/viviendas-poster.jpg` por material real propio desde `videoData`, retirar el aviso de preparación tras verificar ambos archivos e incorporar subtítulos si el vídeo tiene voz. Mantener controles, `preload="none"` y ausencia de autoplay.
+4. Las dos campañas consumen `src/app/components/WhatsAppCTAButton.tsx`: no crear botones privados que dupliquen el mismo comportamiento ni importar `_components` de otra ruta. Cada CTA recibe su mensaje desde las constantes de su servicio.
+5. Verificar la asociación de la ruta final en `constants/whatsapp.ts`, ambos enlaces Costa/Marga Marga y la conservación del texto al construir `wa.me`. Los planos se comparten en la conversación de WhatsApp; el formulario web es solo una alternativa de consulta, sin carga de archivos.
+6. Ejecutar typecheck, lint y build. Revisar móvil y breakpoints, regresión de remodelación, enlaces genéricos de Home/solar, foco y Escape. Añadir resultados y pendientes a `PROJECT_STATUS.md`; los placeholders no acreditan el DoD multimedia ni autorizan el lanzamiento de Ads.
