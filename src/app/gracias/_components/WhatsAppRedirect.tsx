@@ -5,6 +5,18 @@ import { useSearchParams } from "next/navigation";
 import { Loader2, MessageSquare } from "lucide-react";
 import { Button } from "@/app/components/ui/Button";
 
+interface WhatsAppAnalyticsWindow extends Window {
+  gtag?: (
+    command: "event",
+    eventName: "whatsapp_contact_conversion",
+    parameters: {
+      event_category: "Lead";
+      event_label: string;
+      zone: string | null;
+    },
+  ) => void;
+}
+
 export default function WhatsAppRedirect() {
   const searchParams = useSearchParams();
   const [isRedirecting, setIsRedirecting] = useState(false);
@@ -36,8 +48,11 @@ export default function WhatsAppRedirect() {
       setWhatsappUrl(url);
 
       // Track conversion in Google Analytics
-      if (typeof window !== "undefined" && (window as any).gtag) {
-        (window as any).gtag("event", "whatsapp_contact_conversion", {
+      const analyticsWindow: WhatsAppAnalyticsWindow | undefined =
+        typeof window !== "undefined" ? window : undefined;
+
+      if (typeof analyticsWindow?.gtag === "function") {
+        analyticsWindow.gtag("event", "whatsapp_contact_conversion", {
           event_category: "Lead",
           event_label: label,
           zone: zone,
