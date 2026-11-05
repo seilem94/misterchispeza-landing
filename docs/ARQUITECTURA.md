@@ -380,6 +380,28 @@ Los CTA internos de `src/lib/constants/services.ts` enlazan directamente a las r
 
 **Validación y reversión de ADS-01:** ejecutar typecheck, lint y build, comprobar los cuatro alias por HTTP con sus parámetros, las tres páginas finales, la ausencia de enlaces en header/footer y el widget único y flotante en móvil. La reversión restauraría las rutas y layouts mediante Git; cualquier cambio futuro del contrato se documenta primero y debe seguir usando redirecciones nativas.
 
+### Contenido y conversión de remodelación — REM-01
+
+**Decisión adoptada antes del código, 2026-11-05:** poblar `/remodelacion-instalaciones` con el brief aprobado. La ruta y el layout ADS-01 se conservan. El problema actual es la presencia de copy incrustado, promesas sin confirmar y un selector de WhatsApp que pierde el contexto del servicio.
+
+- `src/lib/constants/remodelacion-antiguas.ts` exportará contratos y datos tipados: `heroData`, `symptomsData`, `fearsData`, `processData`, `includesData`, `whatsappMessage`, metadata, contenido audiovisual y cierre de contacto. Los valores pendientes se mantienen entre corchetes (`[numero]`, `[100 m2]`, `[X días]`); no son evidencia de resultados ni compromisos de plazo.
+- La página compone, en este orden, `RemodelacionHero`, vídeo, `SymptomsSection`, `FearsSection`, `ProcessSection`, `IncludesSection` y el cierre de contacto existente. Todas las secciones son Server Components; reciben datos por props. El botón local de WhatsApp es la frontera cliente mínima.
+- Los seis componentes anteriores de hero, señales, soluciones, proceso, proyectos y FAQ se sustituyen por este recorrido. Se retiran sus constantes sin consumidores para evitar dos fuentes del mismo mensaje. No se reutilizan como prueba social casos o cifras cuya procedencia no está acreditada.
+- Se conserva `#contacto-remodelacion` y el `ContactForm` compartido como alternativa secundaria con Formspree + Turnstile. El CTA de WhatsApp se repite en el cierre; no se ofrecen llamadas a números identificados como «Solo WhatsApp» ni se modifican proveedores, CAPTCHA o envíos.
+- El botón solicita la apertura del **único selector flotante existente**, mediante un evento de navegador tipado compartido en `src/lib/utils/whatsapp.ts`, con el mensaje obtenido de constantes. No se añade un segundo modal ni un proveedor externo. Se elige este contrato frente a un contexto en todo el layout para mantener estáticas las secciones y limitar el cambio compartido al contacto.
+- El selector conserva la elección Costa/Marga Marga. Sus enlaces a `/gracias?to=whatsapp&zone=…` añaden `message` mediante `URLSearchParams`; la pantalla existente construye `wa.me` con el teléfono de la zona y ese texto codificado. Solo se acepta texto no vacío de hasta 1.000 caracteres; en su ausencia se conserva el mensaje genérico de cada zona. El parámetro no controla teléfonos, destinos ni código. No incorporar datos personales a la plantilla: el visitante completa `[comuna]` y `[años]` en WhatsApp.
+- `src/lib/constants/whatsapp.ts` centraliza los textos del selector y de su redirección, reutiliza los teléfonos de `navigation.ts` y asocia la ruta de remodelación a su mensaje. Así, el botón flotante de esta campaña conserva también el contexto del servicio; las demás rutas mantienen sus mensajes genéricos. Se conservan el evento de medición existente y su significado: abrir el contacto no acredita un mensaje enviado.
+- El selector expone nombre accesible, estado expandido, foco al abrir, cierre con Escape y retorno al disparador. No se declara modal bloqueante ni se encierra el foco, puesto que sigue siendo un panel flotante no modal.
+- Se corrige la variante compartida `Button.primary` a texto `slate-950` sobre `amber-500`, conservando su API, para ofrecer contraste legible sin repetir correcciones en cada CTA.
+
+**Vídeo autorizado como placeholder:** `videoData` define exactamente `/videos/remodelacion-placeholder.mp4` y `/galeria/remodelacion-poster.jpg`. Ambos recursos están ausentes al adoptar esta decisión; se integran como referencias de preparación, con aviso visible de material pendiente y `preload="none"`. Esta excepción explícita del brief no certifica reproducción, ausencia de 404 del poster ni cumplimiento multimedia del DoD. Marketing debe proporcionar vídeo real, miniatura propia y subtítulos antes de activar la campaña. No generar archivos falsos para ocultar el pendiente.
+
+**Archivos y fases:** fase 1, este contrato y constantes tipadas; fase 2, secciones locales, composición, botón y adaptación compartida del selector/redirección; fase 3, validación y registro en `PROJECT_STATUS.md`. Los exports heredados se conservan únicamente durante la transición de la primera fase y se retiran con sus consumidores en la segunda.
+
+**Validación:** ejecutar `npm run typecheck`, `npm run lint` y, por cambiar renderizado, `npm run build`. Comprobar H1 único, ausencia de copy comercial en la nueva UI, layout sin navegación, breakpoints, CTA inicial y final, dos zonas y conservación exacta del mensaje en los enlaces. Verificar la construcción de `wa.me` sin enviar mensajes ni formularios reales. Registrar por separado los placeholders y el Turnstile local `110200`, ya excluido por el responsable.
+
+**Reversión:** revertir los commits REM-01 mediante Git, recuperando composición y mensajes anteriores sin tocar rutas finales, redirecciones nativas, secretos ni configuración externa. No cambiar los alias como efecto colateral de un cambio de copy.
+
 ### Route Groups `(home)`
 
 **¿Por qué usar `(home)`?**

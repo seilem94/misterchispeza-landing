@@ -971,3 +971,13 @@ Si tienes dudas, recuerda que:
 - Los **componentes visuales** están en `/app/_components/`
 - Las **páginas** están en `/app/`
 - Los **estilos globales** están en `/app/globals.css`
+## Mantenimiento de la campaña de remodelación — REM-01
+
+Este procedimiento vigente prevalece sobre los ejemplos históricos de edición de JSX que aparecen más abajo. Leer primero `AGENT.md`, el estado vigente de `PROJECT_STATUS.md` y la decisión REM-01 en `ARQUITECTURA.md`.
+
+1. Editar copy, títulos, objeciones, pasos, incluidos, CTA y metadata exclusivamente en `src/lib/constants/remodelacion-antiguas.ts`. Mantener sus contratos TypeScript; no introducir JSX ni imports desde `app/` en las constantes.
+2. Confirmar con el negocio los valores entre corchetes antes de publicar: `[numero]`, `[100 m2]` y `[X días]` son pendientes, no afirmaciones verificadas. `[comuna]` y `[años]` son campos que el visitante completa en la conversación.
+3. Añadir el vídeo real a `public/videos/` y su miniatura propia a `public/galeria/`; actualizar `videoData` y su aviso al reemplazar los placeholders. No copiar material de banco ni inventar obras. Incorporar subtítulos cuando haya voz; `AdsVideoPlayer` ya admite una pista opcional. Conservar `controls`, `preload="none"` y ausencia de autoplay.
+4. La UI local vive en `src/app/(ads)/remodelacion-instalaciones/_components/`; `page.tsx` solo ensambla datos y secciones. No añadir header, footer o widget adicionales: pertenecen al layout `(ads)`.
+5. El CTA pasa `whatsappMessage` al selector existente. Costa/Marga Marga conservan sus teléfonos desde `navigation.ts`; los textos compartidos viven en `constants/whatsapp.ts`. No editar mensajes en el widget ni en la pantalla de redirección. No añadir el nombre, teléfono o datos personales de un cliente a la plantilla de campaña.
+6. Ejecutar typecheck, lint y build; revisar responsive y los dos enlaces de zona sin enviar mensajes reales. Registrar evidencia y pendientes en una nueva entrada de `PROJECT_STATUS.md`, sin reescribir el historial.
