@@ -1,98 +1,83 @@
-"use client";
+'use client'
 
-import { useEffect, useState } from "react";
-import { useSearchParams } from "next/navigation";
-import { Loader2, MessageSquare } from "lucide-react";
-import { Button } from "@/app/components/ui/Button";
+import { useEffect, useRef } from 'react'
+import { useSearchParams } from 'next/navigation'
+import { Loader2, MessageSquare } from 'lucide-react'
+import { Button } from '@/app/components/ui/Button'
+import { whatsappRedirectContent } from '@/lib/constants/whatsapp'
+import { getWhatsAppDestination } from '@/lib/utils/whatsapp'
 
 interface WhatsAppAnalyticsWindow extends Window {
   gtag?: (
-    command: "event",
-    eventName: "whatsapp_contact_conversion",
+    command: 'event',
+    eventName: 'whatsapp_contact_conversion',
     parameters: {
-      event_category: "Lead";
-      event_label: string;
-      zone: string | null;
+      event_category: 'Lead'
+      event_label: string
+      zone: string | null
     },
-  ) => void;
+  ) => void
 }
 
 export default function WhatsAppRedirect() {
-  const searchParams = useSearchParams();
-  const [isRedirecting, setIsRedirecting] = useState(false);
-  const [zoneLabel, setZoneLabel] = useState("");
-  const [whatsappUrl, setWhatsappUrl] = useState("");
+  const searchParams = useSearchParams()
+  const trackedDestination = useRef<string | null>(null)
+  const isRedirecting = searchParams.get('to') === 'whatsapp'
+  const zone = searchParams.get('zone')
+  const { label, url } = getWhatsAppDestination(
+    zone,
+    searchParams.get('message'),
+  )
 
   useEffect(() => {
-    const to = searchParams.get("to");
-    const zone = searchParams.get("zone");
+    if (!isRedirecting) return
 
-    if (to === "whatsapp") {
-      setIsRedirecting(true);
-
-      // Configuración de números y mensajes según la zona
-      let phone = "56986774423"; // Quinta Costa (default)
-      let label = "Quinta Costa";
-      let text = "Hola, me gustaría realizar una consulta sobre sus servicios eléctricos (Quinta Costa).";
-
-      if (zone === "marga") {
-        phone = "56968204310";
-        label = "Marga Marga";
-        text = "Hola, me gustaría realizar una consulta sobre sus servicios eléctricos (Marga Marga).";
-      }
-
-      setZoneLabel(label);
-      
-      const encodedText = encodeURIComponent(text);
-      const url = `https://wa.me/${phone}?text=${encodedText}`;
-      setWhatsappUrl(url);
-
-      // Track conversion in Google Analytics
-      const analyticsWindow: WhatsAppAnalyticsWindow | undefined =
-        typeof window !== "undefined" ? window : undefined;
-
-      if (typeof analyticsWindow?.gtag === "function") {
-        analyticsWindow.gtag("event", "whatsapp_contact_conversion", {
-          event_category: "Lead",
-          event_label: label,
-          zone: zone,
-        });
-      }
-
-      // Redirigir después de 1.5 segundos
-      const timer = setTimeout(() => {
-        window.location.href = url;
-      }, 1500);
-
-      return () => clearTimeout(timer);
+    const analyticsWindow: WhatsAppAnalyticsWindow = window
+    if (
+      typeof analyticsWindow.gtag === 'function' &&
+      trackedDestination.current !== url
+    ) {
+      analyticsWindow.gtag('event', 'whatsapp_contact_conversion', {
+        event_category: 'Lead',
+        event_label: label,
+        zone,
+      })
+      trackedDestination.current = url
     }
-  }, [searchParams]);
 
-  if (!isRedirecting) return null;
+    const timer = setTimeout(() => {
+      window.location.href = url
+    }, 1500)
+    return () => clearTimeout(timer)
+  }, [isRedirecting, label, url, zone])
+
+  if (!isRedirecting) return null
 
   return (
-    <div className="mt-8 rounded-2xl border border-slate-800 bg-slate-900/50 p-6 backdrop-blur-xs text-center max-w-md mx-auto">
+    <div className="mx-auto mt-8 max-w-md rounded-2xl border border-slate-800 bg-slate-900/50 p-6 text-center backdrop-blur-xs">
       <div className="mb-4 flex justify-center">
-        <Loader2 className="h-10 w-10 text-emerald-400 animate-spin" />
+        <Loader2
+          className="h-10 w-10 text-emerald-400 motion-safe:animate-spin"
+          aria-hidden="true"
+        />
       </div>
-      <h2 className="text-xl font-bold text-slate-100 mb-2">
-        Redirigiéndote a WhatsApp
+      <h2 className="mb-2 text-xl font-bold text-slate-100">
+        {whatsappRedirectContent.title}
       </h2>
-      <p className="text-slate-400 text-sm mb-6">
-        Te estamos derivando con el técnico de la zona de <strong className="text-emerald-400">{zoneLabel}</strong>. Esto tomará sólo un segundo...
+      <p className="mb-6 text-sm text-slate-300">
+        {whatsappRedirectContent.description}{' '}
+        <strong className="text-emerald-400">{label}</strong>.{' '}
+        {whatsappRedirectContent.waitNote}
       </p>
-      
-      <div className="space-y-3">
-        <Button
-          href={whatsappUrl}
-          variant="primary"
-          size="md"
-          className="w-full bg-emerald-600 hover:bg-emerald-500 border-0 flex items-center justify-center gap-2"
-        >
-          <MessageSquare className="h-4 w-4" />
-          Hacer clic si no eres redirigido
-        </Button>
-      </div>
+      <Button
+        href={url}
+        variant="primary"
+        size="md"
+        className="w-full gap-2 bg-emerald-700 text-white hover:bg-emerald-800"
+      >
+        <MessageSquare className="h-4 w-4" aria-hidden="true" />
+        {whatsappRedirectContent.fallbackCta}
+      </Button>
     </div>
-  );
+  )
 }
