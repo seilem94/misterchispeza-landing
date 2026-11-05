@@ -239,3 +239,35 @@ Se revisaron los diffs y la pertenencia exacta de los archivos a cada grupo ante
 - No se observaron errores de consola distintos del Turnstile local `110200`, excluido por instrucción del responsable. No se enviaron formularios ni mensajes reales. El reproductor queda disponible para integrar vídeos reales; no se declara probada una reproducción con un archivo aún no proporcionado.
 
 **Registro de entrega:** el commit de layout y vídeo incluye esta entrada y la implementación validada, después de los commits `bb3e687` (SSOT) y `cc4dc5c` (rutas). Se conservan los antecedentes y las tareas de contenido pendientes, incluida la sustitución de fotografías de banco; este hito no certifica el cierre de esas tareas comerciales.
+
+### 2026-11-05 — REM-01: contenido y recorrido de remodelación preparados
+
+**Estado:** implementación preparatoria solicitada entregada y comprobaciones técnicas aprobadas, zona horaria America/Santiago. El DoD completo de publicación sigue pendiente del material audiovisual real y de confirmar los datos comerciales entre corchetes. No se declara activada ni lista para recibir inversión la campaña.
+
+**Fase 1 — SSOT y datos (`330191c`):** antes de modificar la UI se adoptó REM-01 en `ARQUITECTURA.md`, se añadió el procedimiento de mantenimiento en `TUTORIAL.md` y se registró el alcance en este documento. `src/lib/constants/remodelacion-antiguas.ts` incorpora contratos y exports tipados `heroData`, `symptomsData`, `fearsData`, `processData`, `includesData`, `whatsappMessage`, encabezados de secciones, vídeo y cierre de contacto. Los números, superficies y plazos no confirmados permanecen explícitos como pendientes. `src/lib/constants/whatsapp.ts` centraliza textos compartidos y reutiliza los teléfonos existentes de `navigation.ts`.
+
+**Fase 2 — UI e integración (`6a73dca`):**
+
+- Creados en `src/app/(ads)/remodelacion-instalaciones/_components/`: `RemodelacionHero.tsx`, `SymptomsSection.tsx`, `FearsSection.tsx`, `ProcessSection.tsx`, `IncludesSection.tsx` y el botón cliente mínimo `RemodelacionWhatsAppButton.tsx`.
+- `page.tsx` compone las cinco secciones y el reproductor debajo del Hero. `CTARemodelacion.tsx` se convierte en sección de servidor con datos por props, repite el CTA y conserva el formulario secundario compartido. Se usan `Section`, `Container`, `Card`, `Button` y `AdsVideoPlayer` del Design System, sin nuevos proveedores ni dependencias.
+- Retirados los seis componentes sustituidos (`HeroRemodelacion`, `SenalesAlerta`, `SolucionesBeneficios`, `ProcesoRemodelacion`, `ProyectosRemodelacion` y `FAQRemodelacion`) y sus datos sin consumidores. Se evita mantener copy duplicado o reutilizar los casos antiguos como evidencia no acreditada.
+- `src/lib/utils/whatsapp.ts` define la apertura tipada del selector y construye los enlaces internos y finales con codificación del mensaje. `WhatsAppWidget.tsx` mantiene una sola instancia flotante, admite el mensaje solicitado por el CTA y conserva ese contexto al abrir directamente desde el botón flotante de remodelación.
+- `WhatsAppRedirect.tsx` utiliza el texto de campaña cuando existe y los mensajes genéricos cuando no existe o es inválido. Los teléfonos siguen dependiendo exclusivamente de la zona configurada. Se mantiene el temporizador y el evento de analítica existente; se evita repetir ese evento para el mismo destino durante el montaje. No se interpreta la apertura como confirmación de mensaje enviado.
+- La variante compartida `Button.primary` usa texto oscuro para mejorar contraste sobre el fondo ámbar, sin cambiar su API. Los textos comerciales de la nueva UI, del selector y de su redirección provienen de constantes.
+
+**Fase 3 — Evidencia ejecutada sobre esta implementación:**
+
+- `npm run typecheck` → `tsc --noEmit`: **código 0**.
+- `npm run lint` → `eslint . --max-warnings=0`: **código 0, cero errores y cero advertencias**.
+- `npm run build` → `next build --turbopack`: **código 0**, siete páginas estáticas generadas. Se utilizaron `npm.cmd` y Next.js 16.4.2 instalados, sin cambiar dependencias. Continúa el aviso previo del lockfile externo a este repositorio; el typecheck independiente sigue siendo necesario por `ignoreBuildErrors` heredado.
+- Auditoría de los diez archivos afectados de UI mediante el AST de TypeScript: cero nodos de texto JSX con copy comercial literal. Se revisaron las props y las constantes; no se añadieron `any`, secciones de cliente completas ni imports entre carpetas privadas de rutas.
+- Navegador de producción local, `/remodelacion-instalaciones`, **360, 639, 640, 767, 768, 1023, 1024, 1279 y 1280 px**, alto 800 px: sin desbordamiento horizontal, un H1, cero menús, cero enlaces en header/footer, una sola instancia del widget y CTA inicial completamente visible. A 360 px el CTA termina a 580 px y el widget permanece a 24 px del borde inferior, también al acceder al cierre de contacto.
+- Los CTA inicial y final abren el mismo selector, con dos enlaces de zona y el mensaje exacto configurado. Se comprobó foco inicial en el cierre, Escape y retorno al CTA correspondiente; el panel cabe en el viewport móvil. `video` declara las dos rutas solicitadas, controles, `preload="none"` y ausencia de autoplay.
+- Se ejecutaron comprobaciones sobre las utilidades reales: selección de teléfonos de Costa y Marga Marga, conservación exacta de acentos y corchetes en el recorrido interno → `wa.me`, caracteres especiales, fallback de zona desconocida, mensaje vacío, entrada inválida y límite de 1.000 caracteres. Código 0, sin solicitudes externas ni envío de mensajes.
+- Regresión en Home, paneles solares y viviendas nuevas: un widget y un selector por página; los dos enlaces de zona conservan los mensajes genéricos, sin arrastrar el texto de remodelación.
+- HTTP: la landing responde **200**. Vídeo y poster placeholder responden **404**, pendiente esperado y expresamente autorizado como preparación, no resuelto ni ocultado mediante archivos ficticios. No se certifica reproducción, ausencia de errores de recursos o DoD multimedia.
+- La consola mostró únicamente el Turnstile local `110200` ya excluido por instrucción del responsable. No se enviaron formularios, no se modificó CAPTCHA y no se verificó una recepción real en Formspree ni un mensaje entregado en WhatsApp. La compilación y los cambios locales no alteran ese alcance.
+
+**Antes de publicar:** aportar vídeo real, miniatura propia y subtítulos cuando haya voz; sustituir las rutas de preparación y retirar su aviso; confirmar `[numero]`, `[100 m2]`, `[X días]` y la prueba social con el negocio; comprobar el material definitivo y el recorrido de contacto en el entorno de campaña. `[comuna]` y `[años]` son campos intencionados de la plantilla que completa el visitante, no cifras pendientes del negocio.
+
+**Entrega y reversión:** fases 1 y 2 identificadas por los commits anteriores; el commit documental de esta entrada registra la fase 3. Sin push en esta tarea. La captura móvil de comprobación queda fuera del repositorio, en `C:/Users/ESS/Documents/Codex/remodelacion-rem01-mobile.jpg`. Los commits permiten revertir el contenido sin cambiar rutas, alias nativos o configuración externa.
