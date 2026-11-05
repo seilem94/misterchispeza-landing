@@ -133,4 +133,74 @@ Al cumplir íntegramente el DoD de `AGENT.md`, agregar una entrada al final del 
 - Referencia verificable de entrega: commit existente o PR; no inventar el SHA del commit que todavía no existe.
 - Pendientes externos al hito, si los hay, identificados sin presentarlos como resueltos ni ocultar incumplimientos del DoD.
 
+## Seguimiento 2026-11-05 — Preparación del Home para Ads
+
+**Estado al comenzar:** implementación y validación en curso; no es un cierre del DoD global.
+
+La petición actual actualiza el contrato de entrada respecto de la línea base: `proyectos-nuevos` enlazará a `/instalacion-electrica-casa-nueva` y `remodelacion` a `/remodelacion-electrica`. Estas URLs serán alias temporales de servidor hacia las landings existentes; no se elimina ni duplica su contenido. La decisión y su reversión están documentadas en `ARQUITECTURA.md`, sección «Decisión 2026-11-05».
+
+El alcance añade prioridad de servicios con landing al comienzo del array, las anclas `#remodelacion`, `#proyectos-desde-cero`, `#tramites-sec` y `#empalmes`, retirada del enlace inexistente a testimonios y comentarios de auditoría de fotografías. Las anclas y los CTA se mantienen en constantes; la tarjeta local únicamente los renderiza.
+
+Las tres imágenes de la galería y el fondo del banner proceden de Unsplash. El Hero utiliza `/hero.webp`, una imagen local cuya procedencia no está acreditada en el repositorio. Marketing deberá sustituir las imágenes de banco y confirmar la autoría de las fotografías propias antes de anunciar un Home con 100 % de obras reales.
+
+### Resultado de la preparación del Home — 2026-11-05
+
+**Estado actual:** los cinco cambios solicitados están implementados y comprobados dentro de su alcance. La aceptación global para campañas sigue pendiente de las fotografías reales, la deuda previa de lint y la validación del contacto.
+
+- `services` comienza con `paneles-solares`, `proyectos-nuevos` y `remodelacion`; los demás servicios mantienen su orden relativo. Los dos nuevos CTA tienen texto específico y las URLs de campaña solicitadas.
+- Las tarjetas renderizan anclas desde `anchorId ?? id`. Las cuatro anclas de Ads aparecen exactamente una vez en el DOM del Home. Los textos y el destino del CTA por defecto se extrajeron a constantes, conservando la separación de UI y datos.
+- `#testimonios` fue retirado de `mainNavigation`, compartido por los menús móvil y de escritorio.
+- Se añadieron comentarios `// TODO:` en las tres imágenes de la galería, su componente, el banner y el Hero. No se sustituyeron fotografías ni se atribuyó autoría no demostrada.
+- Las páginas de alias de campaña redirigen en servidor a las landings existentes. Se comprobaron ambos enlaces desde sus tarjetas en el navegador: viviendas llega a `/instalacion-electrica-viviendas-nuevas` y remodelación a `/remodelacion-instalaciones`, con sus respectivos H1 y sin 404.
+- `next typegen` y el script `typecheck` (`tsc --noEmit`) finalizaron con código 0. `npm run build`, ejecutado mediante el CLI local disponible de npm, también finalizó con código 0 y generó ambas rutas nuevas. La instalación efectiva utilizada sigue siendo Next.js 16.4.2; el lockfile del proyecto conserva 16.2.6. El build mantiene el aviso previo sobre un lockfile externo al repositorio y la configuración heredada que omite el chequeo de tipos durante la compilación.
+- Se comprobó ausencia de desbordamiento horizontal en 360, 639, 640, 767, 768, 1023, 1024, 1279 y 1280 px. Las cuatro anclas dejan su tarjeta por debajo del header sticky tanto en 360 como en 1280 px.
+- ESLint completo continúa fallando con los mismos tres errores y dos advertencias previos, en `WhatsAppWidget.tsx`, `WhatsAppRedirect.tsx` y `SectorsSection.tsx`; no detectó incidencias en los archivos modificados. Su reparación no forma parte de los cinco cambios concretos de esta petición.
+- La consola de la prueba local mostró Turnstile `110200`: dominio no autorizado para la site key configurada. Se debe habilitar el hostname de desarrollo apropiado o preparar un entorno de prueba antes de verificar el formulario. No se modificó CAPTCHA ni se enviaron formularios reales. [Código oficial de Cloudflare](https://developers.cloudflare.com/turnstile/troubleshooting/client-side-errors/error-codes/).
+
+El changelog de hitos con DoD completo se conserva vacío: esta observación registra el trabajo comprobado y sus bloqueos, sin certificar todavía el recorrido de contacto ni el lanzamiento de campañas.
+
+## Seguimiento 2026-11-05 — Saneamiento de lint aprobado
+
+**Decisión previa a la implementación:** el responsable aprobó las cuatro correcciones: estabilizar el orden de hooks de `WhatsAppWidget`, sustituir los dos `any` de `WhatsAppRedirect` por un contrato explícito para la llamada existente a `gtag`, retirar `motion` y `containerVariants` sin uso en `SectorsSection` y actualizar `scripts.lint` a `eslint . --max-warnings=0` para Next.js 16.
+
+El cambio conserva el comportamiento del widget, la medición y la redirección de WhatsApp, sin añadir dependencias ni alterar las integraciones de contacto. Su aceptación requiere que `npm run typecheck`, `npm run lint` y `npm run build` finalicen correctamente; los resultados se incorporarán al changelog después de ejecutarlos.
+
+**Aclaración de entorno autorizada por el responsable:** Turnstile `110200` en localhost queda excluido de esta validación y no bloquea este hito. El responsable confirma que el dominio de producción está configurado correctamente en Cloudflare. Esta instrucción sustituye la consideración previa del error local como bloqueo; no se modifica la configuración de CAPTCHA ni se realiza una prueba de envío real.
+
 ## Registro de Cambios (Changelog)
+
+### 2026-11-05 — LINT-01: deuda técnica de linting saldada
+
+**Estado:** completado. La deuda técnica de linting de **3 errores y 2 advertencias**, junto con la actualización del script de lint a **Next.js 16**, ha sido saldada y **cumple con el DoD de este hito**, conforme al alcance aprobado por el responsable.
+
+**Resoluciones implementadas:**
+
+- `src/app/components/WhatsAppWidget.tsx`: el `useEffect` se ejecuta siempre en el mismo orden, antes del retorno condicional. La condición de `/gracias` se evalúa dentro del efecto; el listener de clic exterior se elimina al cambiar a esa ruta y al desmontar el componente. Se conserva su limpieza y se declara la dependencia correspondiente.
+- `src/app/gracias/_components/WhatsAppRedirect.tsx`: se eliminaron los dos `as any`. Un contrato local `WhatsAppAnalyticsWindow` tipa la llamada existente a `gtag`, sus parámetros y la zona nullable; se comprueba que la API sea una función antes de invocarla. Se conservan el nombre del evento, su payload y el temporizador con su limpieza.
+- `src/app/_components/SectorsSection.tsx`: se retiraron el import de `motion` y la declaración `containerVariants`, ambos sin uso.
+- `package.json`: `scripts.lint` utiliza ahora `eslint . --max-warnings=0`, con el CLI de ESLint instalado y sin depender de `next lint`.
+
+**Validación ejecutada en el árbol de trabajo, zona horaria America/Santiago:**
+
+- `npm run typecheck` → `tsc --noEmit`: **código 0**, sin errores.
+- `npm run lint` → `eslint . --max-warnings=0`: **código 0, cero errores y cero advertencias** en todo el proyecto.
+- `npm run build` → `next build --turbopack`: **código 0**, compilación y generación de las 11 páginas estáticas completadas, incluidos los accesos de campaña existentes.
+- Los tres scripts se ejecutaron con `npm.cmd`, el lanzador funcional de npm de esta máquina. El entorno instalado utilizado es Next.js 16.4.2; el lockfile del proyecto sigue fijando 16.2.6.
+
+**Cierre del DoD del hito:** tipado y lint global aprobados, build de producción aprobado y documentación sincronizada con evidencia. Los componentes conservan su colocación local o global; las correcciones se limitan a orden de hooks, tipos, código sin uso y herramientas. No introducen contenido comercial, estilos, imágenes, rutas ni nuevos proveedores. La aceptación aquí registrada corresponde al saneamiento de lint aprobado, no al cierre de los restantes hitos de contenido o del layout de campañas.
+
+**Exclusión autorizada:** el error local Turnstile `110200` no se considera bloqueo de este hito. El responsable confirma la configuración correcta del dominio de producción en Cloudflare; no se ha modificado CAPTCHA ni se ha realizado un envío real como parte de estas correcciones.
+
+**Aviso de entorno independiente de ESLint:** el build conserva el aviso previo de Next.js sobre `C:/Users/ESS/package-lock.json`, situado fuera del repositorio. Ese aviso no es una de las dos advertencias de lint resueltas y no impide la compilación. El typecheck se ejecutó de forma independiente, dado que continúa la configuración heredada `typescript.ignoreBuildErrors: true`.
+
+**Referencia de entrega:** cambios locales revisables con `git diff` en la rama `feature/sublandings-remodelacion-viviendas-nuevas`, sobre la base `d6df99b`. Se conserva el trabajo previo de preparación del Home; este hito no crea un commit ni realiza un push.
+
+### 2026-11-05 — Consolidación de la preparación en commits semánticos
+
+Por solicitud del responsable, los cambios revisados se consolidan en tres grupos sobre la rama `feature/sublandings-remodelacion-viviendas-nuevas`:
+
+- `6a3ec20` — `fix: resolver errores de ESLint, tipado en redirecciones y actualizar script de lint`: los cuatro archivos de saneamiento técnico de LINT-01.
+- `68ea4bc` — `feat: preparar home para tráfico de Ads con anclas, reordenamiento y redirecciones`: los diez archivos de servicios, navegación, tipos, UI del Home, auditoría de imágenes y accesos de campaña.
+- El commit documental de esta entrada — `docs: actualizar decisiones de arquitectura y registrar correcciones en el changelog`: `docs/ARQUITECTURA.md` y `docs/PROJECT_STATUS.md`, con las decisiones, resultados y referencias de entrega.
+
+Se revisaron los diffs y la pertenencia exacta de los archivos a cada grupo antes de confirmar los commits. La validación de typecheck, lint y build registrada en LINT-01 corresponde a esta misma implementación; la consolidación conserva ese código validado. Esta entrada complementa las referencias de entrega local anteriores y mantiene intacto su historial.
