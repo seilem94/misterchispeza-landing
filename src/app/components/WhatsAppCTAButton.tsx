@@ -5,17 +5,17 @@ import { Button } from '@/app/components/ui'
 import { cn } from '@/lib/utils/cn'
 import { openWhatsAppSelector } from '@/lib/utils/whatsapp'
 
-interface RemodelacionWhatsAppButtonProps {
+interface WhatsAppCTAButtonProps {
   label: string
   message: string
   className?: string
 }
 
-export function RemodelacionWhatsAppButton({
+export function WhatsAppCTAButton({
   label,
   message,
   className,
-}: RemodelacionWhatsAppButtonProps) {
+}: WhatsAppCTAButtonProps) {
   return (
     <Button
       type="button"
