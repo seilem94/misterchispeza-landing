@@ -37,6 +37,9 @@ Aplicar Clean Architecture mediante separación de responsabilidades sobre la es
 ```text
 src/app/page.tsx                         Orquestación de la home
 src/app/_components/                    UI exclusiva de la home
+src/app/(ads)/layout.tsx                 Layout restrictivo de campañas pagadas
+src/app/(ads)/<ruta>/page.tsx            Landing de campaña; URL sin el grupo
+src/app/(ads)/<ruta>/_components/        UI exclusiva de esa landing
 src/app/<ruta>/page.tsx                  Orquestación y metadata de cada landing
 src/app/<ruta>/_components/              UI exclusiva de esa ruta
 src/app/components/                     Componentes usados por dos o más páginas
@@ -118,6 +121,8 @@ Estas reglas hacen explícitos los principios de mobile-first, Design System, he
 
 ### 4.3 SEO técnico
 
+- Queda estrictamente prohibido crear carpetas o archivos físicos (ej. `page.tsx`) cuyo único propósito sea redirigir tráfico (carpetas proxy). Toda redirección de URLs heredadas, alias o campañas debe configurarse nativamente usando la función `redirects()` dentro de `next.config.ts`.
+- Todas las sub-landings de campañas pagadas pertenecen a `src/app/(ads)/` y comparten su layout restrictivo: header únicamente con logo centrado sin `href`, footer legal sin enlaces y una sola instancia de WhatsApp flotante, visible también en móviles. Las páginas no añaden cabeceras, menús ni pies de navegación propios.
 - Declarar metadata específica por landing con la API `Metadata` de Next.js en servidor. Consumir textos e imágenes desde constantes y evitar tags duplicados por sistemas SEO paralelos.
 - Usar un solo H1 alineado con el servicio y una jerarquía de encabezados coherente. Mantener contenido esencial renderizado desde servidor.
 - Definir canonical y `openGraph.url` de cada ruta final usando el dominio de producción configurado. No heredar por accidente el canonical de la home ni publicar localhost como dominio.

@@ -330,17 +330,55 @@ export const getServiceBySlug = (slug: string) =>
 ### Estructura de Rutas
 
 ```
-app/
-├── (home)/
-│   └── page.tsx          → /
+src/app/
+├── layout.tsx                         # Documento, fuentes y medición compartida
+├── page.tsx                           # /: Home con navegación y widget propio
+├── _components/                       # Secciones privadas de la Home
+├── (ads)/
+│   ├── layout.tsx                     # Layout restrictivo compartido de campañas
+│   ├── instalacion-electrica-viviendas-nuevas/
+│   │   ├── page.tsx                   # /instalacion-electrica-viviendas-nuevas
+│   │   └── _components/
+│   ├── remodelacion-instalaciones/
+│   │   ├── page.tsx                   # /remodelacion-instalaciones
+│   │   └── _components/
+│   └── paneles-solares/
+│       ├── page.tsx                   # /paneles-solares
+│       └── _components/
 ├── gracias/
-│   └── page.tsx          → /gracias
-├── servicios/
-│   ├── page.tsx          → /servicios
-│   └── [slug]/
-│       └── page.tsx      → /servicios/empalmes, /servicios/paneles-solares, etc.
-└── layout.tsx
+│   └── page.tsx                       # /gracias: resultado del contacto
+└── components/                        # Componentes compartidos y Design System
 ```
+
+### Route Group `(ads)` y Layout de conversión — ADS-01
+
+**Decisión adoptada antes de implementar, 2026-11-05:** todas las sub-landings para tráfico pagado de Google Ads deben vivir dentro de `src/app/(ads)/`. Los paréntesis organizan las rutas y permiten compartir un layout sin añadir `(ads)` a la URL pública. Las tres rutas finales anteriores mantienen sus URLs. [Convención de Next.js](https://nextjs.org/docs/app/api-reference/file-conventions/route-groups).
+
+`src/app/(ads)/layout.tsx` es un Server Component restrictivo diseñado para conversión bajo el criterio **Zero Exit Links**:
+
+- El Header contiene únicamente el logo de Mr. Chispeza centrado, renderizado con `next/image` y dimensiones intrínsecas. El logo no tiene `href` ni está envuelto en un enlace.
+- No hay navegación principal, menú hamburguesa, enlaces para volver a la Home ni cabeceras de navegación privadas en las páginas hijas.
+- El Footer contiene únicamente copyright o información legal y no incluye enlaces extra. Los textos e información de marca se consumen desde `src/lib/constants/`, reutilizando la configuración de marca existente.
+- El layout monta una sola instancia de `WhatsAppWidget`. Su botón utiliza posicionamiento Tailwind `fixed`, `bottom-6`, `right-6`, `z-50` y permanece visible desde el primer viewport en móviles menores de 768 px y al desplazarse por la página. Los enlaces de contacto del propio widget y los CTA de conversión dentro del contenido siguen disponibles.
+- El layout raíz conserva documento, fuentes y medición, sin inyectar un segundo widget en campañas. La Home monta su widget en su propio árbol y conserva su navegación habitual. `/gracias` no muestra el widget.
+- Cada `page.tsx` se limita a la metadata y sus secciones de contenido. Se retiran sus headers y footers anteriores para evitar navegación duplicada. La metadata conserva su contenido en constantes y declara canonical y `openGraph.url` de la ruta final.
+
+### Redirecciones nativas; prohibición de carpetas proxy
+
+Quedan prohibidos los `page.tsx` y directorios cuya única función sea redirigir. Los alias se declaran exclusivamente en `redirects()` de `next.config.ts`, mediante pares explícitos `source`/`destination`. Se mantiene `permanent: false` para conservar la semántica temporal de las redirecciones actuales; no se introducen cadenas ni bucles. [API nativa de Next.js](https://nextjs.org/docs/app/api-reference/config/next-config-js/redirects).
+
+La configuración debe cubrir estos accesos heredados y de campaña:
+
+- `/proyectos-nuevos` y `/instalacion-electrica-casa-nueva` → `/instalacion-electrica-viviendas-nuevas`.
+- `/remodelacion-instalaciones-antiguas` y `/remodelacion-electrica` → `/remodelacion-instalaciones`.
+
+Los CTA internos de `src/lib/constants/services.ts` enlazan directamente a las rutas finales para evitar saltos innecesarios. Los alias conservan los accesos publicados previamente y sus parámetros de campaña. Esta decisión **sustituye** el uso de páginas de redirección aprobado en «Home y accesos para campañas Ads»; aquel registro se conserva como antecedente histórico.
+
+### Vídeo de campañas
+
+`src/app/components/ui/AdsVideoPlayer.tsx` es una primitiva compartida del Design System. Recibe `src` y `poster` obligatorios y utiliza `<video controls preload="none" playsInline>` sin autoplay. No carga librerías ni iframes externos. La miniatura se entrega mediante el atributo nativo `poster`; no se añade una imagen superpuesta que duplique la descarga. Su aspecto responsive reserva espacio y sus clases se combinan con `cn()`. Los archivos de vídeo y las miniaturas reales se suministran desde constantes al integrarlo en una landing; no se inventan recursos ni se insertan demos de banco. [Elemento de vídeo HTML](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/video).
+
+**Validación y reversión de ADS-01:** ejecutar typecheck, lint y build, comprobar los cuatro alias por HTTP con sus parámetros, las tres páginas finales, la ausencia de enlaces en header/footer y el widget único y flotante en móvil. La reversión restauraría las rutas y layouts mediante Git; cualquier cambio futuro del contrato se documenta primero y debe seguir usando redirecciones nativas.
 
 ### Route Groups `(home)`
 
