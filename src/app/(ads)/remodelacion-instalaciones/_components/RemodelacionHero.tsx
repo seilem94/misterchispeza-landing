@@ -1,7 +1,7 @@
 import { ShieldCheck } from 'lucide-react'
 import { Container, Section } from '@/app/components/ui'
 import type { RemodelacionHeroData } from '@/lib/constants/remodelacion-antiguas'
-import { RemodelacionWhatsAppButton } from './RemodelacionWhatsAppButton'
+import { WhatsAppCTAButton } from '@/app/components/WhatsAppCTAButton'
 
 interface RemodelacionHeroProps {
   data: RemodelacionHeroData
@@ -26,10 +26,7 @@ export function RemodelacionHero({
             {data.description}
           </p>
           <div className="mt-6">
-            <RemodelacionWhatsAppButton
-              label={data.ctaText}
-              message={whatsappMessage}
-            />
+            <WhatsAppCTAButton label={data.ctaText} message={whatsappMessage} />
           </div>
           <p className="mt-5 flex max-w-2xl items-start gap-2 text-sm text-slate-200">
             <ShieldCheck

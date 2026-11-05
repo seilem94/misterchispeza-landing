@@ -1,7 +1,7 @@
 import ContactForm from '@/app/components/ContactForm'
 import { Card, Container, Section } from '@/app/components/ui'
 import type { RemodelacionContactData } from '@/lib/constants/remodelacion-antiguas'
-import { RemodelacionWhatsAppButton } from './RemodelacionWhatsAppButton'
+import { WhatsAppCTAButton } from '@/app/components/WhatsAppCTAButton'
 
 interface CTARemodelacionProps {
   data: RemodelacionContactData
@@ -30,10 +30,7 @@ export function CTARemodelacion({
             {data.description}
           </p>
           <div className="mt-6">
-            <RemodelacionWhatsAppButton
-              label={data.ctaText}
-              message={whatsappMessage}
-            />
+            <WhatsAppCTAButton label={data.ctaText} message={whatsappMessage} />
           </div>
         </div>
         <Card className="border-slate-700 bg-slate-900" padding="sm">
