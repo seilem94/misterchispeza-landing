@@ -1,3 +1,28 @@
+export const viviendasNuevasMetadata = {
+  title: 'Instalación Eléctrica para Viviendas Nuevas y Parcelas',
+  description:
+    'Ingeniería y ejecución eléctrica para casas nuevas, parcelas de agrado y cabañas en la Región de Valparaíso. Empalmes de larga distancia, alimentadores sin caída de tensión y certificación SEC TE1.',
+  keywords: [
+    'instalacion electrica para viviendas nuevas',
+    'instalacion electrica casas nuevas',
+    'electricidad parcelas rurales',
+    'empalme electrico parcela Valparaiso',
+    'tendido subterraneo alimentador',
+    'electricista certificado parcelas Casablanca',
+    'electricista parcelas Limache Olmue',
+    'certificacion SEC TE1 casa nueva',
+    'proyectos electricos desde cero',
+  ],
+  alternates: { canonical: '/instalacion-electrica-viviendas-nuevas' },
+  openGraph: {
+    title: 'Instalación Eléctrica para Viviendas Nuevas y Parcelas - Mr.Chispeza',
+    description:
+      'Soluciones eléctricas profesionales para obras desde cero y parcelas rurales con certificación SEC TE1.',
+    url: '/instalacion-electrica-viviendas-nuevas',
+    images: ['/hero.webp'],
+  },
+}
+
 export interface RuralChallenge {
   id: string
   title: string

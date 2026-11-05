@@ -204,3 +204,30 @@ Por solicitud del responsable, los cambios revisados se consolidan en tres grupo
 - El commit documental de esta entrada — `docs: actualizar decisiones de arquitectura y registrar correcciones en el changelog`: `docs/ARQUITECTURA.md` y `docs/PROJECT_STATUS.md`, con las decisiones, resultados y referencias de entrega.
 
 Se revisaron los diffs y la pertenencia exacta de los archivos a cada grupo antes de confirmar los commits. La validación de typecheck, lint y build registrada en LINT-01 corresponde a esta misma implementación; la consolidación conserva ese código validado. Esta entrada complementa las referencias de entrega local anteriores y mantiene intacto su historial.
+
+### 2026-11-05 — ADS-01: Route Group de campañas, redirecciones nativas y layout restrictivo
+
+**Estado:** completado en el alcance solicitado, con SSOT actualizado antes del código y validaciones técnicas aprobadas.
+
+**Orden de ejecución y decisiones:**
+
+1. `docs/AGENT.md` incorpora en «4.3 SEO técnico» la prohibición de carpetas proxy y el uso obligatorio de `redirects()` en `next.config.ts`. «Routing» de `docs/ARQUITECTURA.md` define `(ads)`, Zero Exit Links, distribución del widget y contrato del reproductor de vídeo. Primera entrega: `bb3e687`, anterior a la refactorización.
+2. Se retiraron los cuatro directorios cuyo único archivo redirigía tráfico: `proyectos-nuevos`, `remodelacion-instalaciones-antiguas`, `instalacion-electrica-casa-nueva` y `remodelacion-electrica`. Sus redirecciones temporales se configuraron nativamente, sin cadenas ni cambio de destino. Las tres carpetas finales se movieron con sus componentes privados a `src/app/(ads)/`, conservando las URLs públicas. Los CTA de servicios apuntan directamente a esas rutas finales. Entrega de rutas: `cc4dc5c`.
+3. `src/app/(ads)/layout.tsx` proporciona un header únicamente con logo centrado y sin enlace, un footer de copyright sin enlaces y una instancia de `WhatsAppWidget`. Se retiraron las tres cabeceras anteriores y los footers privados de las landings. El layout raíz conserva fuentes y medición; la Home monta su propio widget para evitar duplicaciones en campañas.
+4. `AdsVideoPlayer.tsx`, exportado por el Design System, recibe `src` y `poster` obligatorios y combina sus clases con `cn()`. Utiliza vídeo nativo con controles, `preload="none"`, `playsInline`, sin autoplay y con soporte opcional de subtítulos. Los mensajes y la marca del layout proceden de `src/lib/constants/ads.ts`; no se introdujo un archivo de vídeo de demostración ni se atribuyeron obras ficticias.
+
+**SEO y separación de responsabilidades:** las tres páginas son orquestadores de servidor; su metadata se consume desde las constantes de cada servicio. Cada una declara su canonical y `openGraph.url` con la ruta final, resueltos contra el dominio configurado en `metadataBase`. En paneles solares se reemplazó la referencia OG inexistente por `/og-image.webp`, un recurso ya presente en el proyecto. El entorno local utiliza su dominio de desarrollo; no se alteraron variables de producción.
+
+**Resultados ejecutados:**
+
+- `next typegen`: código 0. Se regeneraron los tipos tras mover las rutas y se retiró exclusivamente la caché obsoleta `.next/dev/types`, cuyos imports apuntaban a carpetas antiguas.
+- `npm run typecheck`: **código 0**, sin errores.
+- `npm run lint`: **código 0, cero errores y cero advertencias**.
+- `npm run build`: **código 0**; siete páginas estáticas generadas y las tres rutas finales conservadas. Se mantiene únicamente el aviso de entorno sobre un lockfile externo, ya documentado en LINT-01. El typecheck independiente compensa la configuración heredada que omite tipos durante el build.
+- Las comprobaciones se ejecutaron mediante `npm.cmd` con la instalación local Next.js 16.4.2. No se actualizaron dependencias ni el lockfile 16.2.6.
+- HTTP: los cuatro alias responden **307** hacia el destino esperado y preservan `utm_source` y `utm_campaign`. Las tres landings finales, `/` y `/gracias` responden **200**.
+- Navegador: las tres landings se validaron a **360, 767, 768, 1024 y 1280 px**. En las 15 combinaciones se verificó ausencia de desbordamiento horizontal, un solo header, logo centrado sin enlace, cero menús, cero enlaces en header/footer y un único widget con `position: fixed` y `z-index: 50`.
+- A 360 px el botón de WhatsApp permanece visible desde el primer viewport y tras desplazarse al final de cada landing, a 24 px del borde inferior. La Home conserva una navegación y un widget; `/gracias` muestra cero widgets.
+- No se observaron errores de consola distintos del Turnstile local `110200`, excluido por instrucción del responsable. No se enviaron formularios ni mensajes reales. El reproductor queda disponible para integrar vídeos reales; no se declara probada una reproducción con un archivo aún no proporcionado.
+
+**Registro de entrega:** el commit de layout y vídeo incluye esta entrada y la implementación validada, después de los commits `bb3e687` (SSOT) y `cc4dc5c` (rutas). Se conservan los antecedentes y las tareas de contenido pendientes, incluida la sustitución de fotografías de banco; este hito no certifica el cierre de esas tareas comerciales.

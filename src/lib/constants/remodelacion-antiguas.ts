@@ -1,3 +1,28 @@
+export const remodelacionMetadata = {
+  title: 'Remodelación de Instalaciones Antiguas',
+  description:
+    'Renovación integral y segura de instalaciones eléctricas antiguas en la Región de Valparaíso. Reemplazo de cableado vetusto, nuevos tableros con salvavidas y certificación SEC TE1.',
+  keywords: [
+    'remodelación de instalaciones antiguas',
+    'recableado casas antiguas',
+    'cambio cable tela Valparaíso',
+    'tablero eléctrico con diferencial',
+    'aumento de capacidad eléctrica',
+    'normalización eléctrica SEC',
+    'electricista certificado Valparaíso',
+    'electricista Viña del Mar',
+    'certificación TE1 SEC',
+  ],
+  alternates: { canonical: '/remodelacion-instalaciones' },
+  openGraph: {
+    title: 'Remodelación de Instalaciones Eléctricas Antiguas - Mr.Chispeza',
+    description:
+      'Protege tu hogar renovando cables antiguos, tableros y protecciones bajo normativa SEC RIC.',
+    url: '/remodelacion-instalaciones',
+    images: ['/hero.webp'],
+  },
+}
+
 export interface WarningSign {
   id: string
   title: string
