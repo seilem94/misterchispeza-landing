@@ -175,6 +175,14 @@ Se trabajará en tres commits lógicos: datos y SSOT; UI e integración; validac
 
 **Pendientes conocidos del brief:** los archivos `/videos/remodelacion-placeholder.mp4` y `/galeria/remodelacion-poster.jpg` no existen; se solicitan expresamente como placeholders. Las cifras entre corchetes requieren confirmación del negocio. La implementación preparatoria no equivale a una campaña lista para publicar ni permite declarar el DoD multimedia completo. El error local Turnstile `110200` mantiene la exclusión previamente autorizada; no se enviarán formularios o mensajes reales.
 
+## Seguimiento 2026-11-05 — VIV-01: contenido de viviendas nuevas
+
+**Decisión previa a la implementación:** aplicar el brief mediante constantes tipadas, seis secciones locales de servidor y vídeo bajo el Hero, conservando el formulario secundario. La decisión VIV-01 de `ARQUITECTURA.md` define la extracción del botón cliente compartido, los mensajes por campaña y la retirada de secciones sustituidas. Los alias, las URLs finales y el layout ADS-01 se conservan.
+
+Se realizarán tres commits lógicos: SSOT y datos; UI y reutilización del CTA; validación y registro. El mensaje de viviendas se añade al mapa de rutas del selector existente, sin duplicar widgets o introducir proveedores.
+
+**Pendientes explícitos de marketing:** `[número]` viviendas instaladas, `[X días]` para presupuesto y respaldo del copy comercial; vídeo `/videos/viviendas-placeholder.mp4`, poster `/galeria/viviendas-poster.jpg` y subtítulos cuando haya voz. Los archivos están ausentes y se integrarán como placeholders solicitados, sin certificar reproducción ni campaña lista para invertir. `[comuna]` es un campo que completa el visitante. Se conserva la exclusión autorizada de Turnstile `110200` en local y no se realizarán envíos reales.
+
 ## Registro de Cambios (Changelog)
 
 ### 2026-11-05 — LINT-01: deuda técnica de linting saldada

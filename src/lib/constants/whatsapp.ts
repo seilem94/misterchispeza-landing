@@ -1,5 +1,6 @@
 import { contactCosta, contactMarga } from '@/lib/constants/navigation'
-import { whatsappMessage } from '@/lib/constants/remodelacion-antiguas'
+import { whatsappMessage as remodelacionWhatsappMessage } from '@/lib/constants/remodelacion-antiguas'
+import { whatsappMessage as viviendasWhatsappMessage } from '@/lib/constants/viviendas-nuevas'
 
 export type WhatsAppZone = 'costa' | 'marga'
 
@@ -31,7 +32,8 @@ export const whatsappZones: readonly WhatsAppContactZone[] = [
 ]
 
 export const whatsappCampaignMessages: Readonly<Record<string, string>> = {
-  '/remodelacion-instalaciones': whatsappMessage,
+  '/remodelacion-instalaciones': remodelacionWhatsappMessage,
+  '/instalacion-electrica-viviendas-nuevas': viviendasWhatsappMessage,
 }
 
 export const whatsappWidgetContent = {
