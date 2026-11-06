@@ -21,11 +21,12 @@ export function ServiceCard({ service, index }: ServiceCardProps) {
 
   return (
     <motion.div
+      id={service.id}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="h-full"
+      className="h-full scroll-mt-24"
     >
       <Card hover className="group h-full flex flex-col">
         {/* Header con icono y título responsive */}

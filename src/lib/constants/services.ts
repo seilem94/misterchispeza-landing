@@ -91,7 +91,7 @@ export const services: Service[] = [
     ctaText: undefined,
   },
   {
-    id: "proyectos-nuevos",
+    id: "proyectos-desde-cero",
     icon: "Ruler",
     title: "Proyectos desde Cero (Cabañas, Casas)",
     description:

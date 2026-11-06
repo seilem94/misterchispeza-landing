@@ -20,10 +20,6 @@ export const mainNavigation: NavItem[] = [
     label: "Imágenes",
     href: "#galeria",
   },
-  {
-    label: "Testimonios",
-    href: "#testimonios",
-  },
 ];
 
 /**
