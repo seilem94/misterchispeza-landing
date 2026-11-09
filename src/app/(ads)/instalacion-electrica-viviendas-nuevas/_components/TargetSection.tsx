@@ -1,10 +1,16 @@
+'use client'
+
+import { motion } from 'framer-motion'
+import { House } from 'lucide-react'
 import {
   Card,
-  CardContent,
   CardHeader,
+  CardContent,
   Container,
   Section,
 } from '@/app/components/ui'
+import { useAdsReveal } from '@/app/components/hooks/useAdsReveal'
+import { adsStyles } from '@/lib/constants/ads'
 import type {
   ViviendasNuevasItem,
   ViviendasNuevasSectionData,
@@ -16,25 +22,27 @@ interface TargetSectionProps {
 }
 
 export function TargetSection({ data, items }: TargetSectionProps) {
+  const reveal = useAdsReveal()
   return (
-    <Section id={data.id} variant="accent" className="py-12 sm:py-16">
+    <Section id={data.id} className={adsStyles.section}>
       <Container>
-        <h2 className="text-2xl font-bold text-slate-950 sm:text-3xl">
-          {data.title}
-        </h2>
-        <p className="mt-4 max-w-2xl leading-relaxed text-slate-700">
-          {data.description}
-        </p>
-        <ul className="mt-8 grid gap-5 md:grid-cols-2">
+        <motion.div {...reveal}>
+          <h2 className={adsStyles.heading}>{data.title}</h2>
+          <p className={adsStyles.description}>{data.description}</p>
+        </motion.div>
+        <ul className="grid gap-6 md:grid-cols-2">
           {items.map((item) => (
-            <li key={item.id}>
-              <Card className="h-full">
+            <motion.li key={item.id} {...reveal}>
+              <Card className={adsStyles.card} padding="lg">
+                <span className={adsStyles.iconBadge}>
+                  <House className={adsStyles.icon} aria-hidden="true" />
+                </span>
                 <CardHeader title={item.title} />
-                <CardContent className="text-base leading-relaxed text-slate-700">
+                <CardContent className="text-base leading-7 text-slate-600">
                   <p>{item.description}</p>
                 </CardContent>
               </Card>
-            </li>
+            </motion.li>
           ))}
         </ul>
       </Container>

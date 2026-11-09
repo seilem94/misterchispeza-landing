@@ -80,6 +80,7 @@ src/shared/config/site.ts               Configuración de sitio heredada
 - Los datos enviados a Client Components deben ser serializables. Mantener los iconos como identificadores de datos y resolverlos con la utilidad existente donde se renderizan.
 - Mantener secretos y operaciones de servidor fuera del grafo de imports del cliente. Las Server Actions validan sus entradas aunque el navegador ya lo haya hecho.
 - No convertir la página completa en cliente para resolver un problema local. Mantener la metadata en la frontera de servidor.
+- Excepción adoptada en ADS-02: las secciones visuales de las dos campañas usan Framer Motion como Client Components; las páginas, metadata y layout permanecen en servidor. Compartir la configuración de entrada mediante `useAdsReveal`, respetar movimiento reducido y mantener los datos serializables en constantes.
 
 ### 3.5 UI y datos separados
 
@@ -108,8 +109,8 @@ Estas reglas hacen explícitos los principios de mobile-first, Design System, he
 - Mantener un CTA principal visible en el primer viewport y disponible durante el recorrido mediante el header sticky o el patrón persistente existente. En móvil debe poder accederse sin abrir un menú. Repetirlo al final sin tapar contenido, campos ni el widget de contacto.
 - Usar `Button` y sus variantes; `primary` identifica la acción principal y las variantes secundarias mantienen la jerarquía. Si el contraste de una variante falla, proponer su corrección compartida en lugar de duplicar estilos locales.
 - Mantener header al inicio, hero a continuación y footer al final. Las secciones intermedias deben respaldar la decisión de contacto con beneficios, proceso y evidencia real.
-- `href` y `ctaText` se definen en constantes. Un CTA de tarjeta hacia una sub-landing usa la ruta final existente; un CTA de cotización usa el ancla real del formulario de esa página. Evitar enlaces `#` sin destino y anclas de la home que no existen en la sub-landing.
-- Mantener enlaces manuales de contacto ya existentes cuando estén respaldados por los datos del negocio. No convertirlos en automatizaciones ni sustituir el formulario acordado.
+- `href` y `ctaText` se definen en constantes. Una tarjeta hacia una sub-landing usa su ruta final. En remodelación y viviendas se renderizan al menos tres `WhatsAppCTAButton`: Hero, mitad del recorrido y cierre. Cada uno abre el selector único con su mensaje de campaña; el widget flotante no sustituye estas tres instancias.
+- En todo `(ads)` el único contacto permitido es WhatsApp: prohibidos formularios de email, `ContactForm`, Formspree, Turnstile y enlaces de contacto `mailto:` o `tel:`. Las anclas de cierre conservadas llevan al CTA de WhatsApp. Fuera de campañas se conserva el formulario acordado. No inventar automatizaciones ni proveedores.
 - Reutilizar la medición existente sin inventar IDs ni añadir proveedores. Distinguir clic de CTA, apertura de WhatsApp y formulario aceptado; una visita directa a `/gracias` no demuestra por sí sola un lead enviado.
 
 ### 4.2 Accesibilidad y responsive
@@ -138,7 +139,9 @@ Estas reglas hacen explícitos los principios de mobile-first, Design System, he
 - Mantener carga diferida fuera del primer viewport y respetar `images.remotePatterns` y `images.qualities` de `next.config.ts`. Documentar antes de ampliar orígenes externos.
 - Verificar ausencia de CLS atribuible al cambio y carga correcta de imágenes. No presentar métricas de Lighthouse o Core Web Vitals como medidas si no se ejecutó la medición.
 
-## 5. Stack de contacto exclusivo: Formspree + Cloudflare Turnstile
+## 5. Contacto: WhatsApp en campañas y formularios fuera de `(ads)`
+
+**Regla vigente ADS-02, 2026-11-09:** todas las rutas de `(ads)`, incluido paneles solares, utilizan exclusivamente el selector existente de WhatsApp. Las reglas de Formspree + Turnstile siguientes se aplican solo donde se permiten formularios, fuera de ese grupo. Esta instrucción sustituye la alternativa de formulario de REM-01 y VIV-01.
 
 ### 5.1 Flujo y responsabilidad de validación
 
@@ -158,7 +161,7 @@ El token es de un solo uso y caduca a los cinco minutos. No validarlo primero me
 
 ### 5.2 Contrato operativo
 
-- Reutilizar `src/app/components/ContactForm.tsx`, `src/app/components/hooks/useTurnstile.ts` y `src/app/actions/contact.ts` en ambas sub-landings.
+- Reutilizar `src/app/components/ContactForm.tsx`, `src/app/components/hooks/useTurnstile.ts` y `src/app/actions/contact.ts` exclusivamente fuera de `(ads)` donde exista un formulario autorizado; no importarlos desde campañas.
 - Mantener las variables públicas existentes `NEXT_PUBLIC_FORMSPREE_ID` y `NEXT_PUBLIC_TURNSTILE_SITE_KEY`. Ninguna clave secreta puede llevar el prefijo `NEXT_PUBLIC_`, incluirse en constantes o publicarse en Git, logs o documentación.
 - Validar en servidor los campos `nombre`, `email`, `telefono`, `ubicacion` y `mensaje`; rechazar valores ausentes, tipos inesperados y contenido inválido. Aplicar una lista explícita de campos enviados, preservando el token y el comportamiento anti-spam acordado.
 - La ausencia de site key, token o configuración de validación impide dar el flujo por válido. El navegador debe ofrecer un error útil; no añadir bypasses de CAPTCHA para producción.
@@ -176,7 +179,7 @@ Un hito solo se declara completado cuando cumple **todos** los puntos siguientes
 3. **Separación de responsabilidades.** Cero datos comerciales hardcodeados en componentes visuales afectados. Todo el contenido está en `src/lib/constants/`, con contratos tipados y sin duplicación. La UI no contiene lógica de integración.
 4. **Performance.** Las imágenes usan `next/image`, espacio reservado, `sizes` adecuados y prioridad de carga compatible con la versión efectiva. No hay imágenes rotas ni CLS causado por el cambio.
 5. **Responsive.** La UI se valida en viewport móvil y en `sm`, `md`, `lg`, `xl`, incluidos sus límites. No hay desbordamientos, contenido cortado, CTA oculto ni formulario tapado. Registrar rutas y tamaños comprobados.
-6. **Conversión.** CTAs funcionales con destinos y anclas correctos. El formulario compartido completa Formspree + Turnstile y maneja token ausente, inválido o expirado y fallo de red. La navegación y el envío válido no producen errores de consola; los rechazos de prueba se manejan sin excepciones no controladas. La aceptación conduce a `/gracias` y la medición no duplica conversiones.
+6. **Conversión.** CTAs funcionales con destinos y anclas correctos. En las dos campañas, comprobar al menos tres `WhatsAppCTAButton`, selector único, elección de las dos zonas, conservación del mensaje, foco y Escape; en todo `(ads)` comprobar ausencia de formularios y contacto alternativo. Fuera de `(ads)`, cuando el cambio afecte formularios, validar Formspree + Turnstile, token ausente/inválido/expirado, fallo de red y aceptación previa a `/gracias`. No duplicar conversiones ni confundir apertura de WhatsApp con mensaje enviado. La navegación probada debe estar libre de errores, registrando aparte los placeholders autorizados.
 7. **Documentación sincronizada.** `PROJECT_STATUS.md` incorpora una nueva entrada del hito cumplido, con alcance, archivos, evidencias y referencia de entrega. Los documentos afectados por decisiones de arquitectura o flujo se han actualizado previamente. No borrar ni reescribir entradas históricas.
 
 No marcar una validación como realizada por inspección del código cuando exige ejecución. El estado inicial y sus bloqueos están en [PROJECT_STATUS.md](./PROJECT_STATUS.md); su changelog se entrega vacío para registrar únicamente futuros hitos que cumplan este DoD.

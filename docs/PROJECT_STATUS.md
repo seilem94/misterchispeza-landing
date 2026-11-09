@@ -311,3 +311,39 @@ Se revisaron los diffs y la pertenencia exacta de los archivos a cada grupo ante
 **Pendientes explícitos del equipo de marketing antes de publicar:** confirmar `[número]` viviendas instaladas, `[X días]` para presupuesto y respaldo de la prueba social y del alcance ofrecido; proporcionar vídeo real de obras, poster propio y subtítulos cuando haya voz; sustituir las rutas de preparación, retirar su aviso y verificar los recursos definitivos y el contacto en el entorno de campaña. El marcador `[comuna]` es intencionado para que lo complete el visitante en WhatsApp.
 
 **Entrega:** fases de datos y UI en los commits citados; el commit documental de esta entrada registra la validación. Captura móvil fuera del repositorio: `C:/Users/ESS/Documents/Codex/viviendas-viv01-mobile.jpg`. El conjunto se puede revertir mediante Git sin cambiar las rutas, los alias nativos o la configuración externa.
+
+### 2026-11-09 — ADS-02: UI premium y embudo exclusivo de WhatsApp
+
+**Estado:** alcance solicitado implementado y verificado en la rama `feature/sublandings-remodelacion-viviendas-nuevas`, sobre `2bf4873`, zona horaria America/Santiago. SSOT actualizado antes del cambio de flujo mediante la decisión ADS-02 de `ARQUITECTURA.md`, las reglas de `AGENT.md` y el procedimiento vigente de `TUTORIAL.md`.
+
+**UI de campañas mejorada con animaciones Framer Motion y estilos premium. Formularios de email eliminados y regla de 3 CTAs por landing implementada según el brief.**
+
+**Ejecución en el orden solicitado:**
+
+1. Revisadas las cuatro reglas de `redirects()` en `next.config.ts`: ya estaban activas en la base. Se conservó su configuración nativa, sin añadir páginas proxy o cambios artificiales. Comprobación HTTP: `/proyectos-nuevos` y `/instalacion-electrica-casa-nueva` responden 307 hacia viviendas; `/remodelacion-instalaciones-antiguas` y `/remodelacion-electrica` responden 307 hacia remodelación. Se preservan `utm_source` y `utm_campaign`.
+2. Retirados imports y renderizados de `ContactForm` de los cierres de remodelación y viviendas, junto con el copy de formulario sin consumidores en sus constantes. Para aplicar la regla a todo `(ads)`, el cierre solar también pierde formulario y enlace telefónico y consume `panelesContactData` con un CTA de WhatsApp. Las tres páginas responden 200 sin formulario, contacto de email/teléfono ni Turnstile en su HTML. El formulario del Home y su backend fuera del grupo no se modifican.
+3. Cada landing tiene **tres `WhatsAppCTAButton` de contenido**: Hero, mitad del recorrido y cierre. El intermedio vive en `FearsSection` para remodelación y `SolutionSection` para viviendas; label y mensaje llegan desde constantes mediante props. El widget flotante permanece único y no se cuenta como uno de estos tres botones.
+4. Refactorizados los **trece componentes visuales locales** de las dos rutas: entradas sutiles con `motion`, `whileInView` y `viewport.once`, fondos alternados blanco/slate-50, H2 centrados y jerarquía uniforme, tarjetas del Design System con sombra y padding amplio e iconos ámbar de al menos 32 px. Hero y cierre usan composición centrada. `useAdsReveal` comparte la configuración y soporta movimiento reducido; páginas, metadata y layout permanecen en servidor.
+5. Registro de cambios y evidencias incorporado después de las comprobaciones siguientes.
+
+**Piezas compartidas y separación de responsabilidades:** `AdsVideoSection.tsx` sustituye los bloques audiovisuales duplicados y mantiene el reproductor nativo existente; `WhatsAppCTAButton.tsx` mejora tamaño, contraste del icono y sombra sin alterar el transporte. Los estilos compartidos viven en `constants/ads.ts`; el contenido comercial sigue en las constantes de cada servicio. Se conservaron anclas, URLs finales, mensajes por zona y proveedores existentes; no se añadieron dependencias ni integraciones. `AGENT.md` deja explícita la excepción cliente para secciones con Motion y el alcance de Formspree/Turnstile únicamente fuera de campañas, sustituyendo la alternativa de formulario de REM-01/VIV-01.
+
+**Validación técnica ejecutada:**
+
+- El primer typecheck detectó tipos generados obsoletos en `.next/types`, con referencias a rutas antiguas. `node node_modules/next/dist/bin/next typegen` regeneró la caché con código 0; no se modificaron contratos para ocultar esos errores.
+- `npm run typecheck` → `tsc --noEmit`: **código 0**, también tras el ajuste final de espaciado móvil.
+- `npm run lint` → `eslint . --max-warnings=0`: **código 0, cero errores y cero advertencias**, también tras el ajuste final.
+- `npm run build`: **código 0**, siete páginas estáticas generadas. La primera ejecución restringida no pudo descargar Geist/Geist Mono; la compilación con acceso de red autorizado a Google Fonts pasó y volvió a pasar después del ajuste móvil, sin cambiar fuentes ni configuración global. Se mantiene el aviso previo del lockfile externo. El typecheck se ejecutó aparte por `ignoreBuildErrors` heredado. Entorno: npm mediante `npm.cmd`, Next.js 16.4.2 instalado y sin cambios de dependencias.
+- Auditoría de fuentes: los trece componentes locales importan Motion y utilizan el hook compartido; dieciocho archivos de UI afectados no contienen copy comercial literal en nodos `JSXText`. No hay `ContactForm`, `Formspree`, `useTurnstile`, `<form>`, `mailto:` o `tel:` en las fuentes de `(ads)`.
+
+**Validación de navegador y conversión:**
+
+- Ambas landings comprobadas en **360, 639, 640, 767, 768, 1023, 1024, 1279 y 1280 px**, alto 800 px: 18 combinaciones sin desbordamiento horizontal, H1 único, H2 centrados, tres CTAs de contenido, cero formularios/campos o iframes Turnstile y un widget visible. El CTA principal aparece en el primer viewport.
+- Probados los seis CTA de contenido: cada uno abre un único selector con Costa/Marga Marga y conserva exactamente el mensaje de su campaña en ambos enlaces. Foco inicial en el cierre, Escape y devolución al disparador correctos. A 360 px el panel cabe en pantalla y el widget permanece a 24 px del borde inferior. No se enviaron mensajes reales ni se certificó recepción de leads.
+- Cierre solar comprobado: cero formularios, Turnstile o enlaces de email/teléfono y apertura del mismo selector con mensaje de paneles en ambas zonas.
+- Inspección visual de tarjetas de miedos a 1280 px: contenido centrado, iconos de 32 px, padding de 32 px y sombras activas; se comprobó opacidad final 1 al terminar las entradas. La nota de preparación del Hero recibió margen interior móvil para evitar el botón flotante; la corrección se revisó en la compilación final a 360 px.
+- Consola JavaScript de las pruebas locales sin errores ni advertencias. Sin formularios de campaña, no se carga el Turnstile que generaba el error local previamente excluido. No se simularon reproducciones ni envíos. Servidor temporal detenido y pestaña de validación cerrada.
+
+**Pendientes de marketing conservados:** los cuatro archivos de vídeo/poster placeholder de REM-01 y VIV-01 siguen ausentes; no se proporcionaron recursos reales ni se verificó reproducción. Continúan pendientes las cifras y plazos entre corchetes y el respaldo de la prueba social. Este hito cierra presentación y embudo solicitado, sin declarar completos esos materiales ni el lanzamiento comercial.
+
+**Entrega:** commit de esta entrada con el mensaje `feat(ads): aplicar UI premium, animaciones y forzar embudo exclusivo de WhatsApp`. Capturas de evidencia fuera del repositorio: `C:/Users/ESS/Documents/Codex/ads02-remodelacion-desktop.jpg` y `C:/Users/ESS/Documents/Codex/ads02-viviendas-mobile.jpg`. El commit permite revertir el alcance; el historial previo permanece intacto.

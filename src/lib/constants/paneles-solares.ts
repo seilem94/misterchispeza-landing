@@ -19,6 +19,21 @@ export const panelesSolaresMetadata = {
   },
 }
 
+export const panelesContactData: {
+  id: string
+  title: string
+  description: string
+  ctaText: string
+  whatsappMessage: string
+} = {
+  id: 'contacto-paneles',
+  title: '¿Listo para generar tu propia energía?',
+  description: 'Obtén una cotización personalizada sin compromiso.',
+  ctaText: 'Cotizar paneles solares por WhatsApp',
+  whatsappMessage:
+    'Hola Mr Chispeza, quiero cotizar la instalación de paneles solares.',
+}
+
 export type PanelSolarService = {
   title: string
   slug: 'instalacion' | 'mantenimiento'
@@ -32,7 +47,8 @@ export const panelesSolares: PanelSolarService[] = [
   {
     title: 'Instalación de paneles solares',
     slug: 'instalacion',
-    shortDescription: 'Diseño e instalación llave en mano para hogares y negocios.',
+    shortDescription:
+      'Diseño e instalación llave en mano para hogares y negocios.',
     longDescription:
       'Realizamos el levantamiento técnico, dimensionamiento del sistema, instalación y puesta en marcha. Te asesoramos para elegir la mejor solución según tu consumo, espacio disponible y objetivos (ahorro, respaldo o energía limpia).',
     benefits: [
@@ -62,7 +78,7 @@ export type ProyectoPaneles = {
   ahorro: string
   año: number
   imagen: string
-  width: number  // ✅ Dimensiones reales para Next.js Image
+  width: number // ✅ Dimensiones reales para Next.js Image
   height: number
 }
 
@@ -76,8 +92,8 @@ export const proyectosPaneles: ProyectoPaneles[] = [
     ahorro: '85%',
     año: 2025,
     imagen: '/paneles-1.webp',
-    width: 1200,  // ✅ Ajusta según tu imagen real
-    height: 675,  // ✅ Aspect ratio 16:9
+    width: 1200, // ✅ Ajusta según tu imagen real
+    height: 675, // ✅ Aspect ratio 16:9
   },
   {
     id: 2,

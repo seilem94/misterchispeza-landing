@@ -1,30 +1,33 @@
+'use client'
+
+import { motion } from 'framer-motion'
 import { CircleAlert } from 'lucide-react'
 import { Card, Container, Section } from '@/app/components/ui'
+import { useAdsReveal } from '@/app/components/hooks/useAdsReveal'
+import { adsStyles } from '@/lib/constants/ads'
 import type { ViviendasNuevasProblemData } from '@/lib/constants/viviendas-nuevas'
 
 export function ProblemSection({ data }: { data: ViviendasNuevasProblemData }) {
+  const reveal = useAdsReveal()
   return (
-    <Section id={data.id} variant="accent" className="py-12 sm:py-16">
+    <Section id={data.id} className={adsStyles.section}>
       <Container>
-        <h2 className="max-w-3xl text-2xl font-bold text-slate-950 sm:text-3xl">
-          {data.title}
-        </h2>
-        <p className="mt-4 max-w-2xl leading-relaxed text-slate-700">
-          {data.description}
-        </p>
-        <ul className="mt-8 grid gap-5 lg:grid-cols-3">
+        <motion.div {...reveal}>
+          <h2 className={adsStyles.heading}>{data.title}</h2>
+          <p className={adsStyles.description}>{data.description}</p>
+        </motion.div>
+        <ul className="grid gap-6 lg:grid-cols-3">
           {data.items.map((item) => (
-            <li key={item.id}>
-              <Card className="h-full">
-                <CircleAlert
-                  className="mb-4 h-6 w-6 text-amber-700"
-                  aria-hidden="true"
-                />
-                <p className="font-medium leading-relaxed text-slate-900">
+            <motion.li key={item.id} {...reveal}>
+              <Card className={adsStyles.card} padding="lg">
+                <span className={adsStyles.iconBadge}>
+                  <CircleAlert className={adsStyles.icon} aria-hidden="true" />
+                </span>
+                <p className="text-base font-semibold leading-7 text-slate-900">
                   {item.text}
                 </p>
               </Card>
-            </li>
+            </motion.li>
           ))}
         </ul>
       </Container>

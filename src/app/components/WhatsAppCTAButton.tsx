@@ -23,11 +23,16 @@ export function WhatsAppCTAButton({
       size="lg"
       onClick={() => openWhatsAppSelector(message)}
       className={cn(
-        'w-full whitespace-normal px-5 text-base sm:w-auto sm:text-lg',
+        'w-full gap-3 whitespace-normal rounded-2xl px-5 text-base shadow-md hover:shadow-lg sm:w-auto sm:px-7 sm:text-lg',
         className,
       )}
     >
-      <MessageCircle className="h-5 w-5 shrink-0" aria-hidden="true" />
+      <span
+        className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-slate-900"
+        aria-hidden="true"
+      >
+        <MessageCircle className="h-8 w-8 text-amber-500" />
+      </span>
       <span>{label}</span>
     </Button>
   )

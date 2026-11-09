@@ -82,8 +82,6 @@ export interface RemodelacionVideoData extends RemodelacionSectionData {
 export interface RemodelacionContactData extends RemodelacionSectionData {
   eyebrow: string
   ctaText: string
-  formTitle: string
-  formDescription: string
 }
 
 export const heroData: RemodelacionHeroData = {
@@ -259,7 +257,4 @@ export const contactData: RemodelacionContactData = {
   description:
     'Cuéntanos qué necesitas y en qué comuna está tu vivienda. Elige tu zona en WhatsApp para conversar con el equipo correspondiente.',
   ctaText: heroData.ctaText,
-  formTitle: '¿Prefieres dejar tus datos?',
-  formDescription:
-    'También puedes enviar tu consulta por este formulario para coordinar la revisión de tu instalación.',
 }

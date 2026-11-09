@@ -73,8 +73,6 @@ export interface ViviendasNuevasVideoData extends ViviendasNuevasSectionData {
 export interface ViviendasNuevasContactData extends ViviendasNuevasSectionData {
   eyebrow: string
   ctaText: string
-  formTitle: string
-  formDescription: string
 }
 
 export const heroData: ViviendasNuevasHeroData = {
@@ -255,7 +253,4 @@ export const contactData: ViviendasNuevasContactData = {
   description:
     'Elige tu zona en WhatsApp y cuéntanos en qué etapa está la construcción. Desde esa conversación puedes compartir los planos con el equipo.',
   ctaText: heroData.ctaText,
-  formTitle: '¿Prefieres dejar una consulta?',
-  formDescription:
-    'Déjanos tus datos y los detalles del proyecto. Este formulario no recibe archivos; los planos se comparten por WhatsApp.',
 }

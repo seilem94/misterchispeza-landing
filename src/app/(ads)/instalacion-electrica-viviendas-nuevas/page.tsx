@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { AdsVideoPlayer, Container, Section } from '@/app/components/ui'
+import { AdsVideoSection } from '@/app/components/AdsVideoSection'
 import {
   contactData,
   heroData,
@@ -29,28 +29,13 @@ export default function ViviendasNuevasPage() {
   return (
     <main className="min-h-screen">
       <ViviendasNuevasHero data={heroData} whatsappMessage={whatsappMessage} />
-      <Section id={videoData.id} className="py-12 sm:py-16">
-        <Container size="md">
-          <h2 className="text-2xl font-bold text-slate-950 sm:text-3xl">
-            {videoData.title}
-          </h2>
-          <p className="mt-4 max-w-2xl leading-relaxed text-slate-700">
-            {videoData.description}
-          </p>
-          <figure className="mt-6">
-            <AdsVideoPlayer
-              src={videoData.src}
-              poster={videoData.poster}
-              label={videoData.label}
-            />
-            <figcaption className="mt-3 text-sm leading-relaxed text-slate-600">
-              {videoData.pendingNote}
-            </figcaption>
-          </figure>
-        </Container>
-      </Section>
+      <AdsVideoSection data={videoData} />
       <ProblemSection data={problemData} />
-      <SolutionSection data={solutionData} />
+      <SolutionSection
+        data={solutionData}
+        ctaText={heroData.ctaText}
+        whatsappMessage={whatsappMessage}
+      />
       <ProcessSection data={processSectionData} steps={processData} />
       <IncludesSection data={includesSectionData} items={includesData} />
       <TargetSection data={targetSectionData} items={targetData} />

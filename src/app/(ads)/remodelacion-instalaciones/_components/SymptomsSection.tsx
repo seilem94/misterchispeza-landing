@@ -1,36 +1,33 @@
+'use client'
+
+import { motion } from 'framer-motion'
 import { CircleAlert } from 'lucide-react'
 import { Card, Container, Section } from '@/app/components/ui'
+import { useAdsReveal } from '@/app/components/hooks/useAdsReveal'
+import { adsStyles } from '@/lib/constants/ads'
 import type { RemodelacionSymptomsData } from '@/lib/constants/remodelacion-antiguas'
 
 export function SymptomsSection({ data }: { data: RemodelacionSymptomsData }) {
+  const reveal = useAdsReveal()
   return (
-    <Section
-      id={data.id}
-      variant="accent"
-      className="scroll-mt-6 py-12 sm:py-16"
-    >
+    <Section id={data.id} className={adsStyles.section}>
       <Container>
-        <h2 className="text-2xl font-bold text-slate-950 sm:text-3xl">
-          {data.title}
-        </h2>
-        <p className="mt-4 max-w-2xl leading-relaxed text-slate-700">
-          {data.description}
-        </p>
-        <ul className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <motion.div {...reveal}>
+          <h2 className={adsStyles.heading}>{data.title}</h2>
+          <p className={adsStyles.description}>{data.description}</p>
+        </motion.div>
+        <ul className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {data.items.map((item) => (
-            <li key={item.id}>
-              <Card className="h-full">
-                <div className="flex items-start gap-3">
-                  <CircleAlert
-                    className="mt-0.5 h-5 w-5 shrink-0 text-amber-700"
-                    aria-hidden="true"
-                  />
-                  <p className="font-medium leading-relaxed text-slate-900">
-                    {item.text}
-                  </p>
-                </div>
+            <motion.li key={item.id} {...reveal}>
+              <Card className={adsStyles.card} padding="lg">
+                <span className={adsStyles.iconBadge}>
+                  <CircleAlert className={adsStyles.icon} aria-hidden="true" />
+                </span>
+                <p className="text-base font-semibold leading-7 text-slate-900">
+                  {item.text}
+                </p>
               </Card>
-            </li>
+            </motion.li>
           ))}
         </ul>
       </Container>

@@ -1,6 +1,11 @@
-import ContactForm from '@/app/components/ContactForm'
+'use client'
+
+import { motion } from 'framer-motion'
 import { Card, Container, Section } from '@/app/components/ui'
 import { WhatsAppCTAButton } from '@/app/components/WhatsAppCTAButton'
+import { useAdsReveal } from '@/app/components/hooks/useAdsReveal'
+import { adsStyles } from '@/lib/constants/ads'
+import { cn } from '@/lib/utils/cn'
 import type { ViviendasNuevasContactData } from '@/lib/constants/viviendas-nuevas'
 
 interface CTAViviendasNuevasProps {
@@ -12,34 +17,30 @@ export function CTAViviendasNuevas({
   data,
   whatsappMessage,
 }: CTAViviendasNuevasProps) {
+  const reveal = useAdsReveal()
   return (
     <Section
       id={data.id}
-      variant="dark"
-      className="scroll-mt-6 pb-28 pt-12 sm:pt-16"
+      variant="accent"
+      className="scroll-mt-6 pb-28 pt-16 sm:pt-24"
     >
-      <Container className="grid items-start gap-10 lg:grid-cols-2">
-        <div>
-          <p className="mb-4 text-sm font-semibold text-amber-300">
-            {data.eyebrow}
-          </p>
-          <h2 className="text-2xl font-bold text-white sm:text-3xl">
-            {data.title}
-          </h2>
-          <p className="mt-4 leading-relaxed text-slate-200">
-            {data.description}
-          </p>
-          <div className="mt-6">
+      <Container>
+        <motion.div {...reveal}>
+          <Card
+            padding="lg"
+            className={cn(
+              adsStyles.card,
+              'mx-auto max-w-4xl py-12 sm:px-12 sm:py-16',
+            )}
+          >
+            <p className="mb-6 rounded-full bg-amber-50 px-4 py-2 text-sm font-semibold text-amber-800">
+              {data.eyebrow}
+            </p>
+            <h2 className={adsStyles.heading}>{data.title}</h2>
+            <p className={adsStyles.description}>{data.description}</p>
             <WhatsAppCTAButton label={data.ctaText} message={whatsappMessage} />
-          </div>
-        </div>
-        <Card className="border-slate-700 bg-slate-900" padding="sm">
-          <h3 className="text-xl font-bold text-white">{data.formTitle}</h3>
-          <p className="mb-6 mt-3 text-sm leading-relaxed text-slate-200">
-            {data.formDescription}
-          </p>
-          <ContactForm />
-        </Card>
+          </Card>
+        </motion.div>
       </Container>
     </Section>
   )

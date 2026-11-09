@@ -423,6 +423,26 @@ Los CTA internos de `src/lib/constants/services.ts` enlazan directamente a las r
 
 **Reversión:** revertir VIV-01 mediante Git y devolver el botón al ámbito privado solo si deja de existir el segundo consumidor. Conservar rutas públicas, redirecciones nativas y configuración externa. Esta decisión amplía REM-01; sus observaciones históricas sobre mensajes genéricos de viviendas describen el estado anterior.
 
+### UI premium y WhatsApp exclusivo — ADS-02
+
+**Decisión adoptada antes del código, 2026-11-09:** finalizar la presentación y el embudo de remodelación y viviendas según la instrucción de marketing «Sin formulario de email». Sustituye expresamente la conservación del formulario secundario de REM-01/VIV-01; sus registros históricos describen el estado anterior.
+
+**Orden de implementación:**
+
+1. Revisar `next.config.ts`: las cuatro reglas temporales hacia las rutas finales ya están activas en la base `2bf4873`. No crear carpetas proxy ni redirecciones nuevas para simular una reactivación. Comprobar por HTTP sus destinos y parámetros tras compilar.
+2. Eliminar `ContactForm` y cualquier contacto de email/teléfono de `(ads)`. Esto incluye el cierre de paneles solares, que todavía contiene formulario y enlace `tel:`. El Home conserva su integración de formulario fuera del grupo. Los cierres consumen datos de constantes y conservan sus anclas; no se cambia el backend ni la configuración de CAPTCHA. Retirar los campos de copy del formulario que dejan de tener consumidores.
+3. Montar tres `WhatsAppCTAButton` en cada campaña: Hero, final de `FearsSection` en remodelación o `SolutionSection` en viviendas y cierre. Reutilizar label y mensaje desde constantes a través de props. El widget flotante permanece único y no cuenta entre esas tres instancias.
+4. Refactorizar los trece componentes visuales locales de ambas rutas con Motion: entradas `opacity: 0, y: 20` hacia `opacity: 1, y: 0`, `whileInView` y `viewport.once`. Se permiten Client Components para estas secciones animadas; `page.tsx`, metadata y layout se conservan de servidor. Un hook compartido `useAdsReveal` centraliza la configuración y elimina desplazamiento/duración ante `prefers-reduced-motion`.
+5. Registrar la implementación y evidencias al final del changelog después de validar.
+
+**Presentación y reutilización:** alternar blanco y `slate-50`, reservar el ámbar para acentos y CTAs, mantener H2 centrados en `text-3xl sm:text-4xl font-bold text-slate-900 mb-10`. Utilizar `Card` con `rounded-2xl`, fondo blanco, borde sutil, padding 6/8 y sombras `shadow-md hover:shadow-lg`; centrar el contenido de las grillas. Los iconos decorativos son de al menos 32 px y ámbar, con `aria-hidden`. Hero y cierre tienen composición centrada, espacios amplios y CTA de contraste legible; no introducir datos comerciales en JSX. El bloque de vídeo compartido `AdsVideoSection` adopta la misma presentación y animación en ambas páginas, conservando `AdsVideoPlayer`.
+
+**Alcance compartido mínimo:** extraer configuración de Motion al hook, el bloque audiovisual a `components/` por sus dos consumidores y ajustar el botón común para integrar el icono con contraste. Las secciones siguen siendo privadas de su ruta; no se importan entre sí. El cierre solar se limita a retirar contacto alternativo y consumir constantes, sin ampliar la refactorización premium a sus demás secciones. No añadir bibliotecas, servicios o imágenes de banco.
+
+**Alternativas y riesgos:** mantener formularios contradice el brief; duplicar animaciones dificulta respetar movimiento reducido. Animar las secciones requiere hidratación, pero las páginas siguen generando HTML y metadata. Mantener entradas breves, sin carruseles o cambios de dimensiones que causen CLS. Los vídeos, posters y cifras comerciales pendientes conservan su estado de preparación; activar aliases no declara aprobada una campaña publicitaria ni valida estos recursos ausentes.
+
+**Validación y reversión:** typecheck, lint sin advertencias y build; comprobar cuatro alias 307 con UTM, rutas finales 200, ausencia de formularios/Turnstile/mailto/tel en `(ads)`, tres CTAs reales por landing, mensaje correcto en ambas zonas, responsive y estado visible después de las animaciones. Verificar foco/Escape sin enviar mensajes. Revertir el commit mediante Git recuperaría la presentación anterior; cualquier reintroducción de formularios requiere una decisión nueva del SSOT y autorización del brief.
+
 ### Route Groups `(home)`
 
 **¿Por qué usar `(home)`?**

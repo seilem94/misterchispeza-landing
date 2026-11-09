@@ -1,10 +1,15 @@
+'use client'
+
+import { motion } from 'framer-motion'
 import {
   Card,
-  CardContent,
   CardHeader,
+  CardContent,
   Container,
   Section,
 } from '@/app/components/ui'
+import { useAdsReveal } from '@/app/components/hooks/useAdsReveal'
+import { adsStyles } from '@/lib/constants/ads'
 import type {
   ViviendasNuevasProcessStep,
   ViviendasNuevasSectionData,
@@ -16,31 +21,30 @@ interface ProcessSectionProps {
 }
 
 export function ProcessSection({ data, steps }: ProcessSectionProps) {
+  const reveal = useAdsReveal()
   return (
-    <Section id={data.id} variant="accent" className="py-12 sm:py-16">
+    <Section id={data.id} className={adsStyles.section}>
       <Container>
-        <h2 className="text-2xl font-bold text-slate-950 sm:text-3xl">
-          {data.title}
-        </h2>
-        <p className="mt-4 max-w-2xl leading-relaxed text-slate-700">
-          {data.description}
-        </p>
-        <ol className="mt-8 grid gap-5 lg:grid-cols-3">
+        <motion.div {...reveal}>
+          <h2 className={adsStyles.heading}>{data.title}</h2>
+          <p className={adsStyles.description}>{data.description}</p>
+        </motion.div>
+        <ol className="grid gap-6 lg:grid-cols-3">
           {steps.map((step) => (
-            <li key={step.id}>
-              <Card className="h-full">
+            <motion.li key={step.id} {...reveal}>
+              <Card className={adsStyles.card} padding="lg">
                 <span
                   aria-hidden="true"
-                  className="mb-5 flex h-10 w-10 items-center justify-center rounded-full bg-amber-200 font-bold text-slate-950"
+                  className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl border border-amber-100 bg-amber-50 text-2xl font-bold text-amber-700"
                 >
                   {step.number}
                 </span>
                 <CardHeader title={step.title} />
-                <CardContent className="text-base leading-relaxed text-slate-700">
+                <CardContent className="text-base leading-7 text-slate-600">
                   <p>{step.description}</p>
                 </CardContent>
               </Card>
-            </li>
+            </motion.li>
           ))}
         </ol>
       </Container>

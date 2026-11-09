@@ -988,5 +988,12 @@ Este procedimiento vigente prevalece sobre los ejemplos históricos de edición 
 2. Marketing debe confirmar la cifra `[número]` y el plazo `[X días]`, además de respaldar la prueba social y el alcance ofrecido, antes de publicar la campaña. No convertir estos marcadores en cifras inventadas. `[comuna]` se completa por el visitante en WhatsApp.
 3. Sustituir `/videos/viviendas-placeholder.mp4` y `/galeria/viviendas-poster.jpg` por material real propio desde `videoData`, retirar el aviso de preparación tras verificar ambos archivos e incorporar subtítulos si el vídeo tiene voz. Mantener controles, `preload="none"` y ausencia de autoplay.
 4. Las dos campañas consumen `src/app/components/WhatsAppCTAButton.tsx`: no crear botones privados que dupliquen el mismo comportamiento ni importar `_components` de otra ruta. Cada CTA recibe su mensaje desde las constantes de su servicio.
-5. Verificar la asociación de la ruta final en `constants/whatsapp.ts`, ambos enlaces Costa/Marga Marga y la conservación del texto al construir `wa.me`. Los planos se comparten en la conversación de WhatsApp; el formulario web es solo una alternativa de consulta, sin carga de archivos.
+5. Verificar la asociación de la ruta final en `constants/whatsapp.ts`, ambos enlaces Costa/Marga Marga y la conservación del texto al construir `wa.me`. Los planos se comparten en la conversación de WhatsApp. Desde ADS-02 no se permiten formularios en campañas.
 6. Ejecutar typecheck, lint y build. Revisar móvil y breakpoints, regresión de remodelación, enlaces genéricos de Home/solar, foco y Escape. Añadir resultados y pendientes a `PROJECT_STATUS.md`; los placeholders no acreditan el DoD multimedia ni autorizan el lanzamiento de Ads.
+
+## Mantenimiento vigente de UI y contacto — ADS-02, 2026-11-09
+
+- Toda ruta de `(ads)` usa exclusivamente WhatsApp, incluido paneles solares. No reintroducir `ContactForm`, Formspree, Turnstile, `mailto:` ni `tel:`. El formulario del Home permanece fuera del grupo.
+- Mantener tres botones de contenido por campaña: Hero, mitad del recorrido y cierre. Consumir texto y mensaje desde constantes; verificar las dos zonas y el widget único. Las anclas de contacto llevan al cierre de WhatsApp.
+- Las secciones locales animadas importan `motion` y la configuración de `useAdsReveal`; respetar movimiento reducido. Conservar las páginas y metadata en servidor, la alternancia de fondos, H2 centrados y tarjetas del Design System. `AdsVideoSection` es compartido entre las dos campañas.
+- Confirmar alias nativos, typecheck, lint, build y UI móvil/escritorio antes del commit. Vídeos, miniaturas y cifras entre corchetes siguen pendientes de marketing hasta disponer de evidencia y recursos reales.

@@ -1,11 +1,16 @@
+'use client'
+
+import { motion } from 'framer-motion'
 import { CheckCircle2 } from 'lucide-react'
 import {
   Card,
-  CardContent,
   CardHeader,
+  CardContent,
   Container,
   Section,
 } from '@/app/components/ui'
+import { useAdsReveal } from '@/app/components/hooks/useAdsReveal'
+import { adsStyles } from '@/lib/constants/ads'
 import type {
   ViviendasNuevasIncludesData,
   ViviendasNuevasItem,
@@ -17,38 +22,35 @@ interface IncludesSectionProps {
 }
 
 export function IncludesSection({ data, items }: IncludesSectionProps) {
+  const reveal = useAdsReveal()
   return (
-    <Section id={data.id} className="py-12 sm:py-16">
+    <Section id={data.id} variant="accent" className={adsStyles.section}>
       <Container>
-        <h2 className="text-2xl font-bold text-slate-950 sm:text-3xl">
-          {data.title}
-        </h2>
-        <p className="mt-4 max-w-2xl leading-relaxed text-slate-700">
-          {data.description}
-        </p>
-        <ul className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        <motion.div {...reveal}>
+          <h2 className={adsStyles.heading}>{data.title}</h2>
+          <p className={adsStyles.description}>{data.description}</p>
+        </motion.div>
+        <ul className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {items.map((item) => (
-            <li key={item.id}>
-              <Card className="h-full">
-                <CardHeader
-                  title={item.title}
-                  icon={
-                    <CheckCircle2
-                      className="h-5 w-5 text-amber-800"
-                      aria-hidden="true"
-                    />
-                  }
-                />
-                <CardContent className="text-base leading-relaxed text-slate-700">
+            <motion.li key={item.id} {...reveal}>
+              <Card className={adsStyles.card} padding="lg">
+                <span className={adsStyles.iconBadge}>
+                  <CheckCircle2 className={adsStyles.icon} aria-hidden="true" />
+                </span>
+                <CardHeader title={item.title} />
+                <CardContent className="text-base leading-7 text-slate-600">
                   <p>{item.description}</p>
                 </CardContent>
               </Card>
-            </li>
+            </motion.li>
           ))}
         </ul>
-        <p className="mt-6 max-w-3xl text-sm leading-relaxed text-slate-600">
+        <motion.p
+          {...reveal}
+          className="mx-auto mt-8 max-w-3xl text-center text-sm leading-6 text-slate-500"
+        >
           {data.scopeNote}
-        </p>
+        </motion.p>
       </Container>
     </Section>
   )
