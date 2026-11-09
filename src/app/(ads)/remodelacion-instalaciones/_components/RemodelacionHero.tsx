@@ -6,6 +6,7 @@ import { Container, Section } from '@/app/components/ui'
 import { WhatsAppCTAButton } from '@/app/components/WhatsAppCTAButton'
 import { useAdsReveal } from '@/app/components/hooks/useAdsReveal'
 import { adsStyles } from '@/lib/constants/ads'
+import { cn } from '@/lib/utils/cn'
 import type { RemodelacionHeroData } from '@/lib/constants/remodelacion-antiguas'
 
 interface RemodelacionHeroProps {
@@ -21,15 +22,16 @@ export function RemodelacionHero({
   return (
     <Section
       id={data.id}
-      className="relative overflow-hidden border-b border-slate-100 py-10 sm:py-14 lg:py-16"
+      variant="gradient"
+      className="relative overflow-hidden border-b border-amber-600/30 py-16 text-slate-900 sm:py-20 lg:py-24"
     >
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -left-32 top-0 h-72 w-72 rounded-full bg-amber-100/50 blur-3xl"
+        className="pointer-events-none absolute -left-32 top-0 h-72 w-72 rounded-full bg-white/20 blur-3xl"
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -right-32 bottom-0 h-72 w-72 rounded-full bg-slate-100 blur-3xl"
+        className="pointer-events-none absolute -right-32 bottom-0 h-72 w-72 rounded-full bg-amber-900/10 blur-3xl"
       />
       <Container className="relative">
         <motion.div {...reveal} className="mx-auto max-w-4xl text-center">
@@ -40,20 +42,27 @@ export function RemodelacionHero({
             />
             {data.eyebrow}
           </p>
-          <h1 className="text-balance text-3xl font-bold leading-tight tracking-tight text-slate-900 sm:text-4xl lg:text-5xl xl:text-6xl">
+          <h1 className="text-balance text-3xl font-extrabold leading-tight tracking-tight text-slate-900 sm:text-4xl lg:text-5xl xl:text-6xl">
             {data.title}
           </h1>
-          <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-slate-600 sm:text-lg">
+          <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-slate-900 sm:text-lg">
             {data.description}
           </p>
           <div className="mt-7">
-            <WhatsAppCTAButton label={data.ctaText} message={whatsappMessage} />
+            <WhatsAppCTAButton
+              label={data.ctaText}
+              message={whatsappMessage}
+              className="border-2 border-slate-900/20 shadow-xl shadow-amber-950/20"
+            />
           </div>
-          <div className="mx-auto mt-7 flex max-w-2xl items-center justify-center gap-3 text-sm leading-6 text-slate-600">
-            <ShieldCheck className={adsStyles.icon} aria-hidden="true" />
+          <div className="mx-auto mt-7 flex max-w-2xl items-center justify-center gap-3 text-sm leading-6 text-slate-900">
+            <ShieldCheck
+              className={cn(adsStyles.icon, 'text-slate-900')}
+              aria-hidden="true"
+            />
             <p>{data.socialProof}</p>
           </div>
-          <p className="mx-auto mt-3 max-w-xl px-16 text-xs leading-5 text-slate-500 sm:px-0">
+          <p className="mx-auto mt-3 max-w-xl px-16 text-xs leading-5 text-slate-900 sm:px-0">
             {data.referencesNote}
           </p>
         </motion.div>

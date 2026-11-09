@@ -10,6 +10,7 @@ import {
 } from '@/app/components/ui'
 import { useAdsReveal } from '@/app/components/hooks/useAdsReveal'
 import { adsStyles } from '@/lib/constants/ads'
+import { cn } from '@/lib/utils/cn'
 import type {
   ViviendasNuevasProcessStep,
   ViviendasNuevasSectionData,
@@ -23,24 +24,47 @@ interface ProcessSectionProps {
 export function ProcessSection({ data, steps }: ProcessSectionProps) {
   const reveal = useAdsReveal()
   return (
-    <Section id={data.id} className={adsStyles.section}>
+    <Section
+      id={data.id}
+      variant="dark"
+      className={cn(adsStyles.section, 'py-20')}
+    >
       <Container>
         <motion.div {...reveal}>
-          <h2 className={adsStyles.heading}>{data.title}</h2>
-          <p className={adsStyles.description}>{data.description}</p>
+          <h2
+            className={cn(
+              adsStyles.heading,
+              'mb-4 font-extrabold text-white sm:text-3xl md:text-4xl lg:text-5xl',
+            )}
+          >
+            {data.title}
+          </h2>
+          <div
+            aria-hidden="true"
+            className="mx-auto mb-10 mt-6 h-1 w-16 rounded-full bg-amber-500"
+          />
+          <p className={cn(adsStyles.description, 'text-slate-300')}>
+            {data.description}
+          </p>
         </motion.div>
         <ol className="grid gap-6 lg:grid-cols-3">
           {steps.map((step) => (
             <motion.li key={step.id} {...reveal}>
-              <Card className={adsStyles.card} padding="lg">
+              <Card
+                className={cn(
+                  adsStyles.card,
+                  'border-slate-700 bg-slate-800 text-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl motion-reduce:transform-none motion-reduce:transition-none',
+                )}
+                padding="lg"
+              >
                 <span
                   aria-hidden="true"
-                  className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl border border-amber-100 bg-amber-50 text-2xl font-bold text-amber-700"
+                  className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl border border-amber-500/30 bg-slate-900 text-2xl font-extrabold text-amber-400"
                 >
                   {step.number}
                 </span>
-                <CardHeader title={step.title} />
-                <CardContent className="text-base leading-7 text-slate-600">
+                <CardHeader title={step.title} className="[&_h3]:text-white" />
+                <CardContent className="text-base leading-7 text-slate-300">
                   <p>{step.description}</p>
                 </CardContent>
               </Card>
