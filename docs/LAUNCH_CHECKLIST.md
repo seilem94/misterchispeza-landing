@@ -39,7 +39,7 @@ Los cuatro recursos siguientes siguen ausentes según el cierre ADS-02. Las ruta
 
 - [ ] **M12 — Galería:** sustituir las tres imágenes de Unsplash por fotografías reales de obras de Mr. Chispeza.
 - [ ] **M13 — Banner:** entregar una fotografía real para reemplazar el fondo de banco de `BannerParallax`.
-- [ ] **M14 — Hero:** acreditar la procedencia de `/hero.webp`. Si no se puede confirmar como fotografía propia de una obra real, aportar un reemplazo verificable antes de presentar el Home como 100 % de obras reales.
+- [x] **M14 — Hero:** acreditar la procedencia de `/hero.webp`. Si no se puede confirmar como fotografía propia de una obra real, aportar un reemplazo verificable antes de presentar el Home como 100 % de obras reales.
 
 **Trazabilidad:** [PROJECT_STATUS.md](./PROJECT_STATUS.md), «Seguimiento 2026-11-05 — Preparación del Home para Ads», «Resultado de la preparación del Home» y cierre ADS-01. La existencia de un archivo local no acredita por sí sola su procedencia.
 

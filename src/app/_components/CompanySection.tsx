@@ -5,7 +5,7 @@ import { Section, Container, Button } from "@/app/components/ui";
  */
 export function CompanySection() {
   return (
-    <Section id="empresa" variant="default" className="relative bg-gradient-to-br from-sky-800/70 to-blue-950/60">
+    <Section id="empresa" variant="default" className="relative bg-linear-to-br from-sky-800/70 to-blue-950/60">
       <Container className="py-20 ">
         <div className="max-w-4xl">
           <h2 className="text-3xl font-bold sm:text-4xl text-amber-400">
@@ -21,7 +21,7 @@ export function CompanySection() {
             variant="primary" 
             size="md" 
             icon 
-            href="#empresa"
+            href="#contacto"
             className="w-full sm:w-auto justify-center"
           >
             Contáctenos
