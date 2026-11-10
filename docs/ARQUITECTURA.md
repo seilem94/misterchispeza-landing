@@ -707,3 +707,11 @@ src/
 **Archivos afectados:** Heroes, cierres, procesos y grillas locales, ambos `page.tsx`, constantes de campaña para el título solicitado, módulo compartido `useAdsReveal.ts`, retirada del bloque audiovisual sin consumidores y documentación de arquitectura, mantenimiento y estado.
 
 **Riesgos, validación y reversión:** revisar CTA inicial visible, contraste del texto y botón, vídeo único dentro del Hero, orden móvil, desbordamientos en los límites de Tailwind, fijación y liberación reales del sticky y escalonamiento de las tarjetas. Ejecutar typecheck, lint y build y comprobar los seis CTA, foco/Escape y mensajes de ambas zonas sin envíos reales. Los vídeos/posters y cifras pendientes de marketing no se dan por resueltos. Revertir el commit recupera la composición anterior sin modificar rutas ni configuración externa.
+
+## Decisión 2026-11-10 — Hero sobrio y vídeo sin textos redundantes ADS-05
+
+**Estado:** adoptada por petición del responsable antes del código. Refinamiento de presentación de ADS-04: sustituir el degradado brillante por `from-slate-900 via-slate-800 to-blue-950`, conservar `items-center` y ampliar el grid a `gap-12 lg:gap-16`. La columna derecha mantiene únicamente el reproductor con su marco y el aviso pendiente; retirar el título y la descripción audiovisuales del renderizado, conservando sus datos y contratos en constantes.
+
+El aviso se conserva hasta recibir y comprobar los recursos reales, centrado con `text-xs text-slate-500/70` por solicitud expresa de diseño. Esta apariencia tenue del aviso de preparación es una excepción puntual al contraste habitual del SSOT; no constituye una certificación global de accesibilidad. Los textos comerciales y el CTA mantienen su contraste. No cambiar lógica, mensajes, animaciones, rutas, proveedores ni medios placeholder.
+
+**Validación y reversión:** typecheck, lint, build por el cambio de renderizado y revisión de ambas rutas en móvil y breakpoints, CTA inicial, vídeo único, ausencia de textos superiores y funcionamiento del selector. Registrar resultados y recursos pendientes en `PROJECT_STATUS.md`. Revertir el commit recupera la presentación ADS-04 sin alterar el contacto.

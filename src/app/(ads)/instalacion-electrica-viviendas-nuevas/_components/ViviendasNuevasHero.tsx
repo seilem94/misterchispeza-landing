@@ -28,9 +28,9 @@ export function ViviendasNuevasHero({
     <Section
       id={data.id}
       variant="dark"
-      className="relative overflow-hidden border-b border-blue-950 bg-gradient-to-br from-blue-700 to-slate-900 py-12 text-white sm:py-16 lg:py-20"
+      className="relative overflow-hidden border-b border-blue-950 bg-gradient-to-br from-slate-900 via-slate-800 to-blue-950 py-12 text-white sm:py-16 lg:py-20"
     >
-      <Container className="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
+      <Container className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
         <motion.div {...reveal} className="min-w-0 text-center lg:text-left">
           <p className="mb-5 inline-flex items-center gap-2 rounded-full border border-blue-200/20 bg-blue-950/40 px-4 py-2 text-xs font-semibold text-blue-100 sm:text-sm">
             <span
@@ -68,12 +68,6 @@ export function ViviendasNuevasHero({
           id={video.id}
           className="min-w-0 scroll-mt-6"
         >
-          <h2 className="mb-3 text-xl font-bold tracking-tight text-white sm:text-2xl">
-            {video.title}
-          </h2>
-          <p className="mb-6 text-sm leading-6 text-blue-100">
-            {video.description}
-          </p>
           <Card
             padding="sm"
             className="rounded-3xl border-blue-200/20 bg-slate-950/40 shadow-2xl shadow-slate-950/40"
@@ -84,7 +78,7 @@ export function ViviendasNuevasHero({
               label={video.label}
             />
           </Card>
-          <figcaption className="mt-5 pr-16 text-xs leading-6 text-blue-100 sm:pr-0">
+          <figcaption className="mt-5 px-16 text-center text-xs leading-5 text-slate-500/70 sm:px-0">
             {video.pendingNote}
           </figcaption>
         </motion.figure>
