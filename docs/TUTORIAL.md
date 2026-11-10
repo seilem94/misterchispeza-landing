@@ -997,3 +997,11 @@ Este procedimiento vigente prevalece sobre los ejemplos históricos de edición 
 - Mantener tres botones de contenido por campaña: Hero, mitad del recorrido y cierre. Consumir texto y mensaje desde constantes; verificar las dos zonas y el widget único. Las anclas de contacto llevan al cierre de WhatsApp.
 - Las secciones locales animadas importan `motion` y la configuración de `useAdsReveal`; respetar movimiento reducido. Conservar las páginas y metadata en servidor, la alternancia de fondos, H2 centrados y tarjetas del Design System. `AdsVideoSection` es compartido entre las dos campañas.
 - Confirmar alias nativos, typecheck, lint, build y UI móvil/escritorio antes del commit. Vídeos, miniaturas y cifras entre corchetes siguen pendientes de marketing hasta disponer de evidencia y recursos reales.
+
+## Mantenimiento visual vigente — ADS-04, 2026-11-10
+
+- El Hero recibe `videoData` desde la página de servidor y renderiza una sola instancia de `AdsVideoPlayer` en su segunda columna; en móvil aparece después del CTA. No reintroducir la antigua sección audiovisual independiente. Mantener el aviso de preparación hasta recibir y comprobar los recursos reales.
+- Conservar el degradado azul/marino del Hero y el cierre oscuro para separar el CTA ámbar del fondo. El contenido comercial continúa en constantes, incluido «Cómo trabajamos» en `processSectionData.title`.
+- Usar `useAdsStagger` del módulo `useAdsReveal.ts` en las grillas: contenedor con variantes y viewport, hijos con variantes heredadas. No añadir `whileInView` independiente a cada hijo, que anularía la coordinación. Respetar movimiento reducido.
+- El proceso fija solo su columna de título desde `lg`, con `top-32`; animar el contenido interior y evitar ancestros con overflow que rompan el sticky. Comprobar desplazamiento dentro del proceso y liberación al finalizarlo, además del flujo normal en móvil.
+- Las reglas de WhatsApp exclusivo, tres CTAs y validaciones de ADS-02 permanecen vigentes. Registrar evidencias y pendientes en una nueva entrada del changelog sin reescribir el historial.

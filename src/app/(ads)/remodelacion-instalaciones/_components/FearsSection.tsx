@@ -9,7 +9,10 @@ import {
   Container,
   Section,
 } from '@/app/components/ui'
-import { useAdsReveal } from '@/app/components/hooks/useAdsReveal'
+import {
+  useAdsReveal,
+  useAdsStagger,
+} from '@/app/components/hooks/useAdsReveal'
 import { WhatsAppCTAButton } from '@/app/components/WhatsAppCTAButton'
 import { adsStyles } from '@/lib/constants/ads'
 import { cn } from '@/lib/utils/cn'
@@ -27,6 +30,7 @@ export function FearsSection({
   whatsappMessage,
 }: FearsSectionProps) {
   const reveal = useAdsReveal()
+  const stagger = useAdsStagger()
   return (
     <Section
       id={data.id}
@@ -49,13 +53,16 @@ export function FearsSection({
           />
           <p className={adsStyles.description}>{data.description}</p>
         </motion.div>
-        <div className="grid gap-6 lg:grid-cols-3">
+        <motion.div
+          {...stagger.container}
+          className="grid gap-6 lg:grid-cols-3"
+        >
           {data.items.map((item) => (
-            <motion.div key={item.id} {...reveal}>
+            <motion.div key={item.id} variants={stagger.item}>
               <Card
                 className={cn(
                   adsStyles.card,
-                  'border-slate-200 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl motion-reduce:transform-none motion-reduce:transition-none',
+                  'border-slate-200 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl motion-reduce:transform-none motion-reduce:transition-none motion-reduce:hover:translate-y-0',
                 )}
                 padding="lg"
               >
@@ -69,7 +76,7 @@ export function FearsSection({
               </Card>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
         <motion.div {...reveal} className="mt-12 text-center">
           <WhatsAppCTAButton label={ctaText} message={whatsappMessage} />
         </motion.div>

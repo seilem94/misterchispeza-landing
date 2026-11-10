@@ -2,70 +2,92 @@
 
 import { motion } from 'framer-motion'
 import { ShieldCheck } from 'lucide-react'
-import { Container, Section } from '@/app/components/ui'
+import { AdsVideoPlayer, Card, Container, Section } from '@/app/components/ui'
 import { WhatsAppCTAButton } from '@/app/components/WhatsAppCTAButton'
 import { useAdsReveal } from '@/app/components/hooks/useAdsReveal'
 import { adsStyles } from '@/lib/constants/ads'
 import { cn } from '@/lib/utils/cn'
-import type { ViviendasNuevasHeroData } from '@/lib/constants/viviendas-nuevas'
+import type {
+  ViviendasNuevasHeroData,
+  ViviendasNuevasVideoData,
+} from '@/lib/constants/viviendas-nuevas'
 
 interface ViviendasNuevasHeroProps {
   data: ViviendasNuevasHeroData
+  video: ViviendasNuevasVideoData
   whatsappMessage: string
 }
 
 export function ViviendasNuevasHero({
   data,
+  video,
   whatsappMessage,
 }: ViviendasNuevasHeroProps) {
   const reveal = useAdsReveal()
   return (
     <Section
       id={data.id}
-      variant="gradient"
-      className="relative overflow-hidden border-b border-amber-600/30 py-16 text-slate-900 sm:py-20 lg:py-24"
+      variant="dark"
+      className="relative overflow-hidden border-b border-blue-950 bg-gradient-to-br from-blue-700 to-slate-900 py-12 text-white sm:py-16 lg:py-20"
     >
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -left-32 top-0 h-72 w-72 rounded-full bg-white/20 blur-3xl"
-      />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -right-32 bottom-0 h-72 w-72 rounded-full bg-amber-900/10 blur-3xl"
-      />
-      <Container className="relative">
-        <motion.div {...reveal} className="mx-auto max-w-4xl text-center">
-          <p className="mb-5 inline-flex items-center gap-2 rounded-full border border-amber-200 bg-amber-50 px-4 py-2 text-xs font-semibold text-amber-800 sm:text-sm">
+      <Container className="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
+        <motion.div {...reveal} className="min-w-0 text-center lg:text-left">
+          <p className="mb-5 inline-flex items-center gap-2 rounded-full border border-blue-200/20 bg-blue-950/40 px-4 py-2 text-xs font-semibold text-blue-100 sm:text-sm">
             <span
-              className="h-1.5 w-1.5 shrink-0 rounded-full bg-amber-500"
+              className="h-1.5 w-1.5 shrink-0 rounded-full bg-amber-400"
               aria-hidden="true"
             />
             {data.eyebrow}
           </p>
-          <h1 className="text-balance text-3xl font-extrabold leading-tight tracking-tight text-slate-900 sm:text-4xl lg:text-5xl xl:text-6xl">
+          <h1 className="text-balance text-3xl font-extrabold leading-tight tracking-tight text-white sm:text-4xl xl:text-[2.75rem]">
             {data.title}
           </h1>
-          <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-slate-900 sm:text-lg">
+          <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-blue-100 sm:text-lg lg:mx-0">
             {data.description}
           </p>
           <div className="mt-7">
             <WhatsAppCTAButton
               label={data.ctaText}
               message={whatsappMessage}
-              className="border-2 border-slate-900/20 shadow-xl shadow-amber-950/20"
+              className="shadow-lg shadow-amber-500/20 hover:shadow-amber-500/30"
             />
           </div>
-          <div className="mx-auto mt-7 flex max-w-2xl items-center justify-center gap-3 text-sm leading-6 text-slate-900">
+          <div className="mx-auto mt-7 flex max-w-2xl items-center justify-center gap-3 text-sm leading-6 text-blue-100 lg:mx-0 lg:justify-start">
             <ShieldCheck
-              className={cn(adsStyles.icon, 'text-slate-900')}
+              className={cn(adsStyles.icon, 'text-amber-400')}
               aria-hidden="true"
             />
             <p>{data.socialProof}</p>
           </div>
-          <p className="mx-auto mt-3 max-w-xl px-16 text-xs leading-5 text-slate-900 sm:px-0">
+          <p className="mx-auto mt-3 max-w-xl px-16 text-xs leading-5 text-blue-100 sm:px-0 lg:mx-0">
             {data.referencesNote}
           </p>
         </motion.div>
+        <motion.figure
+          {...reveal}
+          id={video.id}
+          className="min-w-0 scroll-mt-6"
+        >
+          <h2 className="mb-3 text-xl font-bold tracking-tight text-white sm:text-2xl">
+            {video.title}
+          </h2>
+          <p className="mb-6 text-sm leading-6 text-blue-100">
+            {video.description}
+          </p>
+          <Card
+            padding="sm"
+            className="rounded-3xl border-blue-200/20 bg-slate-950/40 shadow-2xl shadow-slate-950/40"
+          >
+            <AdsVideoPlayer
+              src={video.src}
+              poster={video.poster}
+              label={video.label}
+            />
+          </Card>
+          <figcaption className="mt-5 pr-16 text-xs leading-6 text-blue-100 sm:pr-0">
+            {video.pendingNote}
+          </figcaption>
+        </motion.figure>
       </Container>
     </Section>
   )

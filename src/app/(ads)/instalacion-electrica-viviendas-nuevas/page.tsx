@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import { AdsVideoSection } from '@/app/components/AdsVideoSection'
 import {
   contactData,
   heroData,
@@ -28,8 +27,11 @@ export const metadata: Metadata = viviendasNuevasMetadata
 export default function ViviendasNuevasPage() {
   return (
     <main className="min-h-screen">
-      <ViviendasNuevasHero data={heroData} whatsappMessage={whatsappMessage} />
-      <AdsVideoSection data={videoData} />
+      <ViviendasNuevasHero
+        data={heroData}
+        video={videoData}
+        whatsappMessage={whatsappMessage}
+      />
       <ProblemSection data={problemData} />
       <SolutionSection
         data={solutionData}

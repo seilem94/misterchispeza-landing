@@ -9,7 +9,10 @@ import {
   Container,
   Section,
 } from '@/app/components/ui'
-import { useAdsReveal } from '@/app/components/hooks/useAdsReveal'
+import {
+  useAdsReveal,
+  useAdsStagger,
+} from '@/app/components/hooks/useAdsReveal'
 import { adsStyles } from '@/lib/constants/ads'
 import { cn } from '@/lib/utils/cn'
 import type {
@@ -24,6 +27,7 @@ interface TargetSectionProps {
 
 export function TargetSection({ data, items }: TargetSectionProps) {
   const reveal = useAdsReveal()
+  const stagger = useAdsStagger()
   return (
     <Section
       id={data.id}
@@ -46,13 +50,13 @@ export function TargetSection({ data, items }: TargetSectionProps) {
           />
           <p className={adsStyles.description}>{data.description}</p>
         </motion.div>
-        <ul className="grid gap-6 md:grid-cols-2">
+        <motion.ul {...stagger.container} className="grid gap-6 md:grid-cols-2">
           {items.map((item) => (
-            <motion.li key={item.id} {...reveal}>
+            <motion.li key={item.id} variants={stagger.item}>
               <Card
                 className={cn(
                   adsStyles.card,
-                  'border-slate-200 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl motion-reduce:transform-none motion-reduce:transition-none',
+                  'border-slate-200 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl motion-reduce:transform-none motion-reduce:transition-none motion-reduce:hover:translate-y-0',
                 )}
                 padding="lg"
               >
@@ -66,7 +70,7 @@ export function TargetSection({ data, items }: TargetSectionProps) {
               </Card>
             </motion.li>
           ))}
-        </ul>
+        </motion.ul>
       </Container>
     </Section>
   )

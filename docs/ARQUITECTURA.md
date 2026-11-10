@@ -690,3 +690,20 @@ src/
 **Validación:** generar tipos de rutas, ejecutar typecheck, ESLint y build; comprobar orden, CTAs, existencia y unicidad de anclas en el HTML y destino de ambas redirecciones. Registrar las limitaciones del entorno y los fallos previos separadamente de los resultados del cambio.
 
 **Riesgos y reversión:** las fotos de banco seguirán visibles hasta disponer de sustitutos aprobados y el recorrido de campaña incluye una redirección. Para revertir, restaurar propiedades, orden, navegación y contrato anteriores y retirar los dos alias, manteniendo intactas las páginas existentes. No se altera Formspree, Turnstile ni la medición.
+
+## Decisión 2026-11-10 — Refinamiento visual de conversión ADS-04
+
+**Estado:** adoptada por solicitud del responsable antes de implementar. Actualiza la presentación centrada de ADS-02/ADS-03; sus registros históricos se conservan. El problema es la falta de separación entre Hero ámbar y CTA del mismo color, el cierre con recuadro blanco y las grillas que aparecen simultáneamente.
+
+**Alcance y decisión:**
+
+- Los dos Heroes usan la variante `dark` de `Section` con degradado azul a marino y texto blanco/azul claro. Desde `lg`, texto y CTA ocupan la columna izquierda y `AdsVideoPlayer` la derecha; en móvil se mantiene el CTA antes del vídeo. Cada página de servidor pasa `videoData` al Hero mediante su contrato tipado. Se conservan rutas placeholder, controles, `preload="none"`, títulos, avisos y anclas audiovisuales. Retirar `AdsVideoSection` cuando pierda sus dos consumidores, sin sustituir la primitiva compartida ni crear un segundo reproductor por campaña.
+- Los cierres usan `Section.dark`, contenido centrado y CTA ámbar con sombra, sin recuadro blanco. Se conservan las anclas y las tres instancias de `WhatsAppCTAButton` por campaña; el selector, sus mensajes, teléfonos, eventos y redirecciones no cambian.
+- Las seis grillas de señales/problemas, miedos, incluidos y perfiles comparten `useAdsStagger` en el módulo de animación existente: variantes de contenedor/hijos, `staggerChildren: 0.15` y entrada única al viewport. Con movimiento reducido, eliminar desplazamiento, duración y escalonamiento y mantener el contenido visible.
+- Los procesos conservan sus pasos y adoptan dos columnas desde `lg`: título y descripción en cuatro columnas con `sticky top-32`, pasos verticales en ocho. El contenedor sticky no recibe transformaciones de Motion; animar su contenido interior. En móvil vuelve al flujo normal. El título solicitado «Cómo trabajamos» procede de `processSectionData.title` en las constantes de cada campaña; no se cambia el resto del copy, los marcadores ni los datos de negocio.
+
+**Alternativas y límites:** dejar el vídeo bajo el Hero mantiene la composición que se pidió sustituir; duplicarlo aumenta ruido y carga. No añadir bibliotecas, formularios, recursos ficticios, proveedores ni cambios de URLs. Mantener páginas, metadata y layout en servidor; las secciones animadas conservan la excepción cliente vigente.
+
+**Archivos afectados:** Heroes, cierres, procesos y grillas locales, ambos `page.tsx`, constantes de campaña para el título solicitado, módulo compartido `useAdsReveal.ts`, retirada del bloque audiovisual sin consumidores y documentación de arquitectura, mantenimiento y estado.
+
+**Riesgos, validación y reversión:** revisar CTA inicial visible, contraste del texto y botón, vídeo único dentro del Hero, orden móvil, desbordamientos en los límites de Tailwind, fijación y liberación reales del sticky y escalonamiento de las tarjetas. Ejecutar typecheck, lint y build y comprobar los seis CTA, foco/Escape y mensajes de ambas zonas sin envíos reales. Los vídeos/posters y cifras pendientes de marketing no se dan por resueltos. Revertir el commit recupera la composición anterior sin modificar rutas ni configuración externa.

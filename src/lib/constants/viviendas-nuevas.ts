@@ -119,7 +119,7 @@ export const solutionData: ViviendasNuevasSolutionData = {
 
 export const processSectionData: ViviendasNuevasSectionData = {
   id: 'etapas',
-  title: 'De tus planos a la instalación terminada',
+  title: 'Cómo trabajamos',
   description:
     'Tres pasos para definir el proyecto, acordar el presupuesto y coordinar la ejecución con tu obra.',
 }

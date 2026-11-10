@@ -9,7 +9,10 @@ import {
   Container,
   Section,
 } from '@/app/components/ui'
-import { useAdsReveal } from '@/app/components/hooks/useAdsReveal'
+import {
+  useAdsReveal,
+  useAdsStagger,
+} from '@/app/components/hooks/useAdsReveal'
 import { adsStyles } from '@/lib/constants/ads'
 import { cn } from '@/lib/utils/cn'
 import type {
@@ -24,6 +27,7 @@ interface IncludesSectionProps {
 
 export function IncludesSection({ data, items }: IncludesSectionProps) {
   const reveal = useAdsReveal()
+  const stagger = useAdsStagger()
   return (
     <Section
       id={data.id}
@@ -46,13 +50,16 @@ export function IncludesSection({ data, items }: IncludesSectionProps) {
           />
           <p className={adsStyles.description}>{data.description}</p>
         </motion.div>
-        <ul className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <motion.ul
+          {...stagger.container}
+          className="grid gap-6 md:grid-cols-2 lg:grid-cols-3"
+        >
           {items.map((item) => (
-            <motion.li key={item.id} {...reveal}>
+            <motion.li key={item.id} variants={stagger.item}>
               <Card
                 className={cn(
                   adsStyles.card,
-                  'border-slate-200 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl motion-reduce:transform-none motion-reduce:transition-none',
+                  'border-slate-200 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl motion-reduce:transform-none motion-reduce:transition-none motion-reduce:hover:translate-y-0',
                 )}
                 padding="lg"
               >
@@ -66,7 +73,7 @@ export function IncludesSection({ data, items }: IncludesSectionProps) {
               </Card>
             </motion.li>
           ))}
-        </ul>
+        </motion.ul>
         <motion.p
           {...reveal}
           className="mx-auto mt-8 max-w-3xl text-center text-sm leading-6 text-slate-500"

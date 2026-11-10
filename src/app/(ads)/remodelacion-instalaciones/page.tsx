@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import { AdsVideoSection } from '@/app/components/AdsVideoSection'
 import { RemodelacionHero } from './_components/RemodelacionHero'
 import { SymptomsSection } from './_components/SymptomsSection'
 import { FearsSection } from './_components/FearsSection'
@@ -25,8 +24,11 @@ export const metadata: Metadata = remodelacionMetadata
 export default function RemodelacionInstalacionesPage() {
   return (
     <main className="min-h-screen">
-      <RemodelacionHero data={heroData} whatsappMessage={whatsappMessage} />
-      <AdsVideoSection data={videoData} />
+      <RemodelacionHero
+        data={heroData}
+        video={videoData}
+        whatsappMessage={whatsappMessage}
+      />
       <SymptomsSection data={symptomsData} />
       <FearsSection
         data={fearsData}

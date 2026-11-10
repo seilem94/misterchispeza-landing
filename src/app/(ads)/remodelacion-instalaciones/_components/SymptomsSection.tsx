@@ -3,13 +3,17 @@
 import { motion } from 'framer-motion'
 import { CircleAlert } from 'lucide-react'
 import { Card, Container, Section } from '@/app/components/ui'
-import { useAdsReveal } from '@/app/components/hooks/useAdsReveal'
+import {
+  useAdsReveal,
+  useAdsStagger,
+} from '@/app/components/hooks/useAdsReveal'
 import { adsStyles } from '@/lib/constants/ads'
 import { cn } from '@/lib/utils/cn'
 import type { RemodelacionSymptomsData } from '@/lib/constants/remodelacion-antiguas'
 
 export function SymptomsSection({ data }: { data: RemodelacionSymptomsData }) {
   const reveal = useAdsReveal()
+  const stagger = useAdsStagger()
   return (
     <Section
       id={data.id}
@@ -32,13 +36,16 @@ export function SymptomsSection({ data }: { data: RemodelacionSymptomsData }) {
           />
           <p className={adsStyles.description}>{data.description}</p>
         </motion.div>
-        <ul className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <motion.ul
+          {...stagger.container}
+          className="grid gap-6 md:grid-cols-2 lg:grid-cols-3"
+        >
           {data.items.map((item) => (
-            <motion.li key={item.id} {...reveal}>
+            <motion.li key={item.id} variants={stagger.item}>
               <Card
                 className={cn(
                   adsStyles.card,
-                  'border-slate-200 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl motion-reduce:transform-none motion-reduce:transition-none',
+                  'border-slate-200 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl motion-reduce:transform-none motion-reduce:transition-none motion-reduce:hover:translate-y-0',
                 )}
                 padding="lg"
               >
@@ -51,7 +58,7 @@ export function SymptomsSection({ data }: { data: RemodelacionSymptomsData }) {
               </Card>
             </motion.li>
           ))}
-        </ul>
+        </motion.ul>
       </Container>
     </Section>
   )

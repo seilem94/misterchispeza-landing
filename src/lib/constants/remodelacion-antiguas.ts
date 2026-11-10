@@ -158,7 +158,7 @@ export const fearsData: RemodelacionFearsData = {
 
 export const processSectionData: RemodelacionSectionData = {
   id: 'proceso',
-  title: 'Así renovamos tu instalación, paso a paso',
+  title: 'Cómo trabajamos',
   description:
     'Conoce el alcance antes de empezar y coordina cada etapa con el equipo.',
 }
