@@ -1005,3 +1005,10 @@ Este procedimiento vigente prevalece sobre los ejemplos históricos de edición 
 - Usar `useAdsStagger` del módulo `useAdsReveal.ts` en las grillas: contenedor con variantes y viewport, hijos con variantes heredadas. No añadir `whileInView` independiente a cada hijo, que anularía la coordinación. Respetar movimiento reducido.
 - El proceso fija solo su columna de título desde `lg`, con `top-32`; animar el contenido interior y evitar ancestros con overflow que rompan el sticky. Comprobar desplazamiento dentro del proceso y liberación al finalizarlo, además del flujo normal en móvil.
 - Las reglas de WhatsApp exclusivo, tres CTAs y validaciones de ADS-02 permanecen vigentes. Registrar evidencias y pendientes en una nueva entrada del changelog sin reescribir el historial.
+
+## Mantenimiento de paneles solares — SOL-01, 2026-11-12
+
+- Editar Hero, características, beneficios, pasos, portafolio, etiquetas y vídeo en `constants/paneles-solares.ts`; la UI solar no incorpora copy comercial literal. Conservar el mensaje solar único de `panelesContactData`, utilizado también por la asociación de ruta de WhatsApp.
+- La página solar renderiza `AdsVideoSection` inmediatamente después del Hero centrado. Esta composición es distinta a la de remodelación y viviendas; no trasladar sus vídeos ni montar reproductores duplicados. El bloque compartido recibe datos tipados de `lib/types/ads.ts` y ocupa el ancho del contenedor.
+- Las cinco secciones locales usan `useAdsReveal`; conservar movimiento reducido, alternancia de fondos, foco y contraste. El Hero usa la foto existente optimizada, overlay oscuro, características glassmorphism y CTA compartido. El enlace «Ver Proceso» conserva `#proceso` y el CTA de ese proceso sigue llevando a `#contacto-paneles`.
+- Solicitar material solar real y poster propio antes de sustituir los placeholders y retirar el aviso. Validar también la procedencia de las fotografías y el respaldo del copy heredado; no dar por confirmadas las cifras al extraerlas. Ejecutar typecheck, lint, build y revisar el recorrido en móvil y escritorio. Registrar avances en `PROJECT_STATUS.md` y recursos pendientes en `LAUNCH_CHECKLIST.md`.

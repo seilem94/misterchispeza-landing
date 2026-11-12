@@ -12,15 +12,17 @@ Marcar una casilla solo al disponer de evidencia, anotando fecha, entorno y refe
 
 ### Multimedia real de las campañas
 
-Los cuatro recursos siguientes siguen ausentes según el cierre ADS-02. Las rutas indicadas son las referencias actuales de preparación; el material definitivo puede usar otros nombres que Desarrollo deberá reflejar en las constantes.
+Los recursos de remodelación y viviendas siguientes siguen ausentes según el cierre ADS-02. SOL-01, del 2026-11-12, añade el vídeo y poster solares. Las rutas indicadas son las referencias de preparación; el material definitivo puede usar otros nombres que Desarrollo deberá reflejar en las constantes.
 
 - [ ] **M01 — Vídeo de remodelación:** entregar material real de las obras de Mr. Chispeza para sustituir la referencia `/videos/remodelacion-placeholder.mp4`.
 - [ ] **M02 — Poster de remodelación:** entregar miniatura propia para sustituir `/galeria/remodelacion-poster.jpg`.
 - [ ] **M03 — Vídeo de viviendas nuevas:** entregar material real de las obras para sustituir `/videos/viviendas-placeholder.mp4`.
 - [ ] **M04 — Poster de viviendas nuevas:** entregar miniatura propia para sustituir `/galeria/viviendas-poster.jpg`.
 - [ ] **M05 — Subtítulos:** proporcionar las pistas correspondientes cuando cualquiera de los vídeos tenga voz.
+- [ ] **M15 — Vídeo solar:** entregar material real de instalaciones de Mr. Chispeza para sustituir `/videos/solar-placeholder.mp4`.
+- [ ] **M16 — Poster solar:** entregar miniatura propia para sustituir `/galeria/solar-poster.jpg`.
 
-**Trazabilidad:** [PROJECT_STATUS.md](./PROJECT_STATUS.md), REM-01 «Antes de publicar», VIV-01 «Pendientes explícitos del equipo de marketing antes de publicar» y ADS-02 «Pendientes de marketing conservados».
+**Trazabilidad:** [PROJECT_STATUS.md](./PROJECT_STATUS.md), REM-01 «Antes de publicar», VIV-01 «Pendientes explícitos del equipo de marketing antes de publicar», ADS-02 «Pendientes de marketing conservados» y SOL-01 para los recursos solares.
 
 ### Copy, cifras, plazos y respaldo comercial
 
@@ -30,6 +32,7 @@ Los cuatro recursos siguientes siguen ausentes según el cierre ADS-02. Las ruta
 - [ ] **M09 — Experiencia en viviendas nuevas:** confirmar la cantidad de `[número] viviendas instaladas` y su respaldo.
 - [ ] **M10 — Plazo de presupuesto:** confirmar `[X días]` para entregar el presupuesto de viviendas nuevas; este plazo es distinto del tiempo de ejecución de una remodelación.
 - [ ] **M11 — Prueba social y alcance ofrecido:** respaldar las afirmaciones comerciales de ambas campañas, incluida la prueba social de electricistas certificados SEC y el alcance de diseño, instalación y TE1, antes de dar por aprobado el copy definitivo.
+- [ ] **M17 — Respaldo solar heredado:** confirmar las afirmaciones de ahorro, precio, garantías y plazos conservadas en la extracción de SOL-01, así como la procedencia de `/grid-pattern.webp` y `/paneles-1.webp`, `/paneles-2.webp`, `/paneles-3.webp` y su correspondencia con los casos publicados. La refactorización visual no acredita esos datos ni las fotografías.
 
 `[comuna]` y `[años]` son campos intencionados de las plantillas de WhatsApp que completa el visitante. No son métricas pendientes de marketing ni deben sustituirse por una comuna o antigüedad fija para toda la campaña.
 
@@ -47,7 +50,7 @@ Los cuatro recursos siguientes siguen ausentes según el cierre ADS-02. Las ruta
 
 ### Integración de los recursos y del copy aprobados
 
-- [ ] **D01 — Integrar multimedia definitiva:** incorporar vídeos, posters y subtítulos entregados; actualizar `videoData` en `src/lib/constants/remodelacion-antiguas.ts` y `src/lib/constants/viviendas-nuevas.ts`. Verificar carga sin 404 y reproducción real antes de retirar los avisos de preparación. Conservar controles, `preload="none"` y ausencia de autoplay.
+- [ ] **D01 — Integrar multimedia definitiva:** incorporar vídeos, posters y subtítulos entregados; actualizar `videoData` en `src/lib/constants/remodelacion-antiguas.ts`, `src/lib/constants/viviendas-nuevas.ts` y `src/lib/constants/paneles-solares.ts`. Verificar carga sin 404 y reproducción real antes de retirar los avisos de preparación. Conservar controles, `preload="none"` y ausencia de autoplay.
 - [ ] **D02 — Aplicar el copy confirmado:** reemplazar los marcadores comerciales de M06–M11 exclusivamente en las constantes y retirar sus notas de confirmación pendiente cuando exista respaldo. Conservar los campos intencionados de las plantillas de WhatsApp.
 - [ ] **D03 — Integrar las fotos reales del Home:** actualizar las referencias de galería, banner y Hero con el material aprobado en M12–M14, respetando la separación de datos y UI. Comprobar imágenes optimizadas, dimensiones reservadas, tamaños responsive y ausencia de saltos atribuibles a la sustitución.
 - [ ] **D04 — Validar la entrega definitiva:** después de incorporar recursos o copy, ejecutar `npm run typecheck`, `npm run lint` y `npm run build`; revisar responsive, contraste y CTAs con el material final. Adjuntar resultados al registro de entrega. Los tres comandos y el responsive de la base actual ya están aprobados en ADS-02; esta casilla corresponde a los cambios pendientes y a su despliegue final.

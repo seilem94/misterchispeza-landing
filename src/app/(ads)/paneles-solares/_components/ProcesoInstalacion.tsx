@@ -1,119 +1,87 @@
-import { Button, Container } from "@/app/components/ui";
-import {
-  ClipboardCheck,
-  Calculator,
-  Wrench,
-  CheckCircle,
-  FileCheck,
-} from "lucide-react";
+'use client'
 
-const pasos = [
-  {
-    numero: 1,
-    icon: ClipboardCheck,
-    titulo: "Evaluación Inicial",
-    descripcion:
-      "Visita técnica gratuita para evaluar tu techo, consumo eléctrico y viabilidad del proyecto.",
-    duracion: "1 día",
-  },
-  {
-    numero: 2,
-    icon: Calculator,
-    titulo: "Cotización Personalizada",
-    descripcion:
-      "Diseñamos el sistema óptimo según tu consumo y presupuesto. Incluye simulación de ahorro.",
-    duracion: "2-3 días",
-  },
-  {
-    numero: 3,
-    icon: FileCheck,
-    titulo: "Tramitación y Permisos",
-    descripcion:
-      "Gestionamos todos los permisos municipales y trámites SEC requeridos.",
-    duracion: "15-20 días",
-  },
-  {
-    numero: 4,
-    icon: Wrench,
-    titulo: "Instalación",
-    descripcion:
-      "Montaje de paneles, inversor y estructura. Equipo certificado y equipamiento profesional.",
-    duracion: "3-5 días",
-  },
-  {
-    numero: 5,
-    icon: CheckCircle,
-    titulo: "Puesta en Marcha",
-    descripcion:
-      "Conexión a red eléctrica, pruebas y capacitación en uso del sistema de monitoreo.",
-    duracion: "1 día",
-  },
-];
+import { motion } from 'framer-motion'
+import { Button, Card, Container, Section } from '@/app/components/ui'
+import { useAdsReveal } from '@/app/components/hooks/useAdsReveal'
+import { adsStyles } from '@/lib/constants/ads'
+import { processData } from '@/lib/constants/paneles-solares'
+import { cn } from '@/lib/utils/cn'
+import { getIconComponent } from '@/lib/utils/get-icon'
 
 export function ProcesoInstalacion() {
+  const reveal = useAdsReveal()
+
   return (
-    <section id="proceso" className="bg-slate-50 py-20">
+    <Section
+      id={processData.id}
+      variant="dark"
+      className={cn(adsStyles.section, 'py-20')}
+    >
       <Container>
-        <div className="mb-16 text-center">
-          <h2 className="mb-4 text-4xl font-bold text-slate-900">
-            Proceso de Instalación
+        <motion.div {...reveal}>
+          <h2
+            className={cn(
+              adsStyles.heading,
+              'mb-4 font-extrabold text-white md:text-4xl lg:text-5xl',
+            )}
+          >
+            {processData.title}
           </h2>
-          <p className="mx-auto max-w-2xl text-lg text-slate-600">
-            Un proceso transparente y profesional de principio a fin
-          </p>
-        </div>
-
-        <div className="relative">
-          {/* Línea conectora (desktop) */}
           <div
-            className="absolute left-8 top-0 hidden h-full w-0.5 bg-amber-200 md:block"
-            style={{ left: "2rem" }}
+            aria-hidden="true"
+            className="mx-auto mb-10 mt-6 h-1 w-16 rounded-full bg-amber-500"
           />
-
-          <div className="space-y-8">
-            {pasos.map((paso) => {
-              const Icon = paso.icon;
-              return (
-                <div
-                  key={paso.numero}
-                  className="relative flex flex-col gap-6 md:flex-row md:items-start"
-                >
-                  {/* Número e icono */}
-                  <div className="relative z-10 flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-linear-to-br from-amber-500 to-orange-500 text-white shadow-lg">
-                    <Icon className="h-8 w-8" />
-                  </div>
-
-                  {/* Contenido */}
-                  <div className="flex-1 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-                    <div className="mb-2 flex items-center gap-3">
-                      <span className="inline-flex items-center gap-2 rounded-full bg-amber-100 px-3 py-1 text-sm font-semibold text-amber-700">
-                        Paso {paso.numero}
-                      </span>
-                      <span className="text-sm text-slate-500">
-                        {paso.duracion}
-                      </span>
-                    </div>
-                    <h3 className="mb-2 text-2xl font-bold text-slate-900">
-                      {paso.titulo}
-                    </h3>
-                    <p className="text-slate-600">{paso.descripcion}</p>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-
-        <div className="mt-12 text-center">
-          <p className="mb-6 text-lg font-medium text-slate-700">
-            Tiempo total estimado:{" "}
-            <strong className="text-amber-600">4-6 semanas</strong>
+          <p className={cn(adsStyles.description, 'text-slate-300')}>
+            {processData.description}
           </p>
-          <Button href="#contacto-paneles" size="lg">
-            Iniciar mi Proyecto
+        </motion.div>
+        <ol className="relative grid gap-6 before:absolute before:bottom-8 before:left-8 before:top-8 before:hidden before:w-px before:bg-slate-700 md:before:block">
+          {processData.steps.map((step) => {
+            const Icon = getIconComponent(step.icon)
+            return (
+              <motion.li
+                key={step.number}
+                {...reveal}
+                className="relative grid gap-4 md:grid-cols-[4rem_minmax(0,1fr)] md:gap-8"
+              >
+                <div className="relative z-10 flex h-16 w-16 items-center justify-center rounded-2xl border border-amber-500/30 bg-slate-800 text-amber-400 shadow-md">
+                  <Icon className="h-8 w-8" aria-hidden="true" />
+                </div>
+                <Card
+                  padding="lg"
+                  className="border-slate-700 bg-slate-800 text-white shadow-md"
+                >
+                  <div className="mb-4 flex flex-wrap items-center gap-3">
+                    <span className="rounded-full border border-amber-400/25 bg-amber-500/10 px-3 py-1 text-sm font-semibold text-amber-300">
+                      {processData.stepLabel} {step.number}
+                    </span>
+                    <span className="text-sm text-slate-300">
+                      {step.duration}
+                    </span>
+                  </div>
+                  <h3 className="mb-3 text-xl font-bold text-white sm:text-2xl">
+                    {step.title}
+                  </h3>
+                  <p className="text-base leading-7 text-slate-300">
+                    {step.description}
+                  </p>
+                </Card>
+              </motion.li>
+            )
+          })}
+        </ol>
+        <motion.div {...reveal} className="mt-12 text-center">
+          <p className="mb-6 text-lg font-medium text-slate-300">
+            {processData.totalLabel}{' '}
+            <strong className="text-amber-300">
+              {processData.totalDuration}
+            </strong>
+          </p>
+          <Button href={processData.ctaHref} variant="primary" size="lg">
+            {processData.ctaText}
           </Button>
-        </div>
+        </motion.div>
       </Container>
-    </section>
-  );
+    </Section>
+  )
 }
