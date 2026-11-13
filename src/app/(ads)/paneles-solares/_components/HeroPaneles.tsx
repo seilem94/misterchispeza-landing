@@ -16,7 +16,7 @@ export function HeroPaneles() {
     <Section
       id={heroData.id}
       variant="dark"
-      className="relative isolate overflow-hidden py-10 text-white sm:py-16 lg:py-20"
+      className="relative isolate flex min-h-[75vh] flex-col justify-center overflow-hidden py-10 text-white sm:py-16 lg:min-h-[85vh] lg:py-20"
     >
       <Image
         src={heroData.background.src}
@@ -35,7 +35,7 @@ export function HeroPaneles() {
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 bg-gradient-to-b from-slate-950/10 via-slate-950/20 to-slate-950/70"
       />
-      <Container className="relative">
+      <Container className="relative flex flex-col justify-center">
         <motion.div {...reveal} className="mx-auto max-w-4xl text-center">
           <p className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/10 bg-slate-900/50 px-4 py-2 text-xs font-semibold text-white backdrop-blur-sm sm:text-sm">
             <Sun className="h-4 w-4 text-amber-300" aria-hidden="true" />
