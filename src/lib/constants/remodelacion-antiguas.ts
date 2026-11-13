@@ -243,9 +243,10 @@ export const videoData: RemodelacionVideoData = {
   title: 'Conoce cómo se prepara una renovación',
   description:
     'Un espacio para mostrar el trabajo real y explicar la intervención en tu casa.',
-  src: '/videos/remodelacion-placeholder.mp4',
-  poster: '/galeria/remodelacion-poster.jpg',
-  label: 'Vídeo de remodelación eléctrica: material pendiente de incorporar',
+  src: 'https://gapghs72pvdn9hax.public.blob.vercel-storage.com/Remodelaci%C3%B3n-Patrimonial.mp4',
+  poster:
+    'https://gapghs72pvdn9hax.public.blob.vercel-storage.com/remodelacion-poster.jpg',
+  label: 'Vídeo de remodelación eléctrica',
   pendingNote:
     'Vídeo y miniatura pendientes: este reproductor utiliza rutas de preparación hasta recibir material real de Mr. Chispeza.',
 }

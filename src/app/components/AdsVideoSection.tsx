@@ -43,9 +43,6 @@ export function AdsVideoSection({ data }: { data: AdsVideoSectionData }) {
               label={data.label}
             />
           </Card>
-          <figcaption className="mx-auto mt-5 max-w-3xl px-16 text-center text-sm leading-6 text-slate-600 sm:px-0">
-            {data.pendingNote}
-          </figcaption>
         </motion.figure>
       </Container>
     </Section>

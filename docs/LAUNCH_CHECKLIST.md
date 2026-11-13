@@ -1,6 +1,6 @@
 # Checklist de lanzamiento — Mr. Chispeza
 
-**Consolidación:** 2026-11-09, America/Santiago. **Base de desarrollo completada:** `a4f002f` (ADS-02), rama `feature/sublandings-remodelacion-viviendas-nuevas`. **Estado:** en espera de recursos y confirmaciones de marketing, con validaciones finales de producción pendientes.
+**Consolidación:** 2026-11-09, America/Santiago. **Actualización multimedia:** 2026-11-13 (ADS-07). **Base de desarrollo completada:** `a4f002f` (ADS-02), rama `feature/sublandings-remodelacion-viviendas-nuevas`. **Estado:** vídeos reales integrados; miniaturas, confirmaciones de marketing y validaciones finales de producción pendientes.
 
 Este documento concentra los pendientes de [PROJECT_STATUS.md](./PROJECT_STATUS.md), interpretando la línea base junto con sus resoluciones posteriores. Las casillas de producción y de integración de recursos corresponden a comprobaciones todavía no realizadas; no indican que estén fallando los chequeos locales ya aprobados. No se crean proveedores, funcionalidades ni tareas ajenas al registro del sprint.
 
@@ -12,15 +12,15 @@ Marcar una casilla solo al disponer de evidencia, anotando fecha, entorno y refe
 
 ### Multimedia real de las campañas
 
-Los recursos de remodelación y viviendas siguientes siguen ausentes según el cierre ADS-02. SOL-01, del 2026-11-12, añade el vídeo y poster solares. Las rutas indicadas son las referencias de preparación; el material definitivo puede usar otros nombres que Desarrollo deberá reflejar en las constantes.
+ADS-07 actualiza los pendientes de REM-01, VIV-01 y SOL-01: los tres vídeos reales entregados por marketing ya están integrados en `videoData` mediante URLs públicas de Vercel Blob y responden HTTP 200. Los avisos de preparación fueron retirados de las tres campañas. Las URLs configuradas de las miniaturas responden HTTP 404; su entrega efectiva sigue pendiente. Evidencias y alcance en [PROJECT_STATUS.md](./PROJECT_STATUS.md), entrada ADS-07 del 2026-11-13.
 
-- [ ] **M01 — Vídeo de remodelación:** entregar material real de las obras de Mr. Chispeza para sustituir la referencia `/videos/remodelacion-placeholder.mp4`.
-- [ ] **M02 — Poster de remodelación:** entregar miniatura propia para sustituir `/galeria/remodelacion-poster.jpg`.
-- [ ] **M03 — Vídeo de viviendas nuevas:** entregar material real de las obras para sustituir `/videos/viviendas-placeholder.mp4`.
-- [ ] **M04 — Poster de viviendas nuevas:** entregar miniatura propia para sustituir `/galeria/viviendas-poster.jpg`.
+- [x] **M01 — Vídeo de remodelación:** material real entregado e integrado desde Vercel Blob en `videoData.src`; HTTP 200 y `Content-Type: video/mp4` comprobados el 2026-11-13 (ADS-07).
+- [ ] **M02 — Poster de remodelación:** corregir la URL o publicar la miniatura propia. `remodelacion-poster.jpg` en Vercel Blob responde HTTP 404 el 2026-11-13 (ADS-07).
+- [x] **M03 — Vídeo de viviendas nuevas:** material real entregado e integrado desde Vercel Blob en `videoData.src`; HTTP 200 y `Content-Type: video/mp4` comprobados el 2026-11-13 (ADS-07).
+- [ ] **M04 — Poster de viviendas nuevas:** corregir la URL o publicar la miniatura propia. `viviendas-poster.jpg` en Vercel Blob responde HTTP 404 el 2026-11-13 (ADS-07).
 - [ ] **M05 — Subtítulos:** proporcionar las pistas correspondientes cuando cualquiera de los vídeos tenga voz.
-- [ ] **M15 — Vídeo solar:** entregar material real de instalaciones de Mr. Chispeza para sustituir `/videos/solar-placeholder.mp4`.
-- [ ] **M16 — Poster solar:** entregar miniatura propia para sustituir `/galeria/solar-poster.jpg`.
+- [x] **M15 — Vídeo solar:** material real entregado e integrado desde Vercel Blob en `videoData.src`; HTTP 200 y `Content-Type: video/mp4` comprobados el 2026-11-13 (ADS-07).
+- [ ] **M16 — Poster solar:** corregir la URL o publicar la miniatura propia. `solar-poster.jpg` en Vercel Blob responde HTTP 404 el 2026-11-13 (ADS-07).
 
 **Trazabilidad:** [PROJECT_STATUS.md](./PROJECT_STATUS.md), REM-01 «Antes de publicar», VIV-01 «Pendientes explícitos del equipo de marketing antes de publicar», ADS-02 «Pendientes de marketing conservados» y SOL-01 para los recursos solares.
 
@@ -50,12 +50,12 @@ Los recursos de remodelación y viviendas siguientes siguen ausentes según el c
 
 ### Integración de los recursos y del copy aprobados
 
-- [ ] **D01 — Integrar multimedia definitiva:** incorporar vídeos, posters y subtítulos entregados; actualizar `videoData` en `src/lib/constants/remodelacion-antiguas.ts`, `src/lib/constants/viviendas-nuevas.ts` y `src/lib/constants/paneles-solares.ts`. Verificar carga sin 404 y reproducción real antes de retirar los avisos de preparación. Conservar controles, `preload="none"` y ausencia de autoplay.
+- [ ] **D01 — Completar validación multimedia:** vídeos reales y URLs de Vercel Blob ya integrados en las tres constantes; avisos retirados por solicitud expresa del responsable en ADS-07. Resolver los HTTP 404 de los tres posters, incorporar subtítulos cuando corresponda y verificar reproducción real antes de cerrar esta casilla. Controles, `preload="none"` y ausencia de autoplay conservados.
 - [ ] **D02 — Aplicar el copy confirmado:** reemplazar los marcadores comerciales de M06–M11 exclusivamente en las constantes y retirar sus notas de confirmación pendiente cuando exista respaldo. Conservar los campos intencionados de las plantillas de WhatsApp.
 - [ ] **D03 — Integrar las fotos reales del Home:** actualizar las referencias de galería, banner y Hero con el material aprobado en M12–M14, respetando la separación de datos y UI. Comprobar imágenes optimizadas, dimensiones reservadas, tamaños responsive y ausencia de saltos atribuibles a la sustitución.
 - [ ] **D04 — Validar la entrega definitiva:** después de incorporar recursos o copy, ejecutar `npm run typecheck`, `npm run lint` y `npm run build`; revisar responsive, contraste y CTAs con el material final. Adjuntar resultados al registro de entrega. Los tres comandos y el responsive de la base actual ya están aprobados en ADS-02; esta casilla corresponde a los cambios pendientes y a su despliegue final.
 
-**Trazabilidad:** [PROJECT_STATUS.md](./PROJECT_STATUS.md), backlog «Tarea 2», preparación del Home, REM-01, VIV-01 y ADS-02. Los vídeos todavía no se han reproducido con archivos reales.
+**Trazabilidad:** [PROJECT_STATUS.md](./PROJECT_STATUS.md), backlog «Tarea 2», preparación del Home, REM-01, VIV-01, ADS-02 y resolución parcial multimedia ADS-07. La disponibilidad HTTP de los vídeos fue comprobada; su reproducción y la validación multimedia completa siguen pendientes.
 
 ### Validación End-to-End en producción
 

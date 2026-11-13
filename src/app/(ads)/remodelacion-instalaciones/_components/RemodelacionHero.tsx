@@ -78,9 +78,6 @@ export function RemodelacionHero({
               label={video.label}
             />
           </Card>
-          <figcaption className="mt-5 px-16 text-center text-xs leading-5 text-slate-500/70 sm:px-0">
-            {video.pendingNote}
-          </figcaption>
         </motion.figure>
       </Container>
     </Section>

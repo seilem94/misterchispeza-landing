@@ -238,10 +238,10 @@ export const videoData: ViviendasNuevasVideoData = {
   title: 'Así se prepara la electricidad de una casa nueva',
   description:
     'Un espacio para mostrar el trabajo real y explicar cómo se coordina la instalación con la obra.',
-  src: '/videos/viviendas-placeholder.mp4',
-  poster: '/galeria/viviendas-poster.jpg',
-  label:
-    'Vídeo de instalación eléctrica para viviendas nuevas: material pendiente de incorporar',
+  src: 'https://gapghs72pvdn9hax.public.blob.vercel-storage.com/Casa-Desde-Cero.mp4',
+  poster:
+    'https://gapghs72pvdn9hax.public.blob.vercel-storage.com/viviendas-poster.jpg',
+  label: 'Vídeo de instalación eléctrica para viviendas nuevas',
   pendingNote:
     'Vídeo y miniatura pendientes: este reproductor utiliza rutas de preparación hasta recibir material real de Mr. Chispeza.',
 }
