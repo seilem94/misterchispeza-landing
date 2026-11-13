@@ -14,8 +14,8 @@ export function useAdsReveal(): MotionProps {
     whileInView: { opacity: 1, y: 0 },
     viewport: { once: true, amount: 0.12 },
     transition: {
-      duration: reducedMotion ? 0 : 0.45,
-      ease: [0.22, 1, 0.36, 1],
+      duration: reducedMotion ? 0 : 0.7,
+      ease: 'easeOut',
     },
   }
 }
@@ -36,7 +36,7 @@ export function useAdsStagger(): AdsStagger {
       variants: {
         hidden: {},
         visible: {
-          transition: { staggerChildren: reducedMotion ? 0 : 0.15 },
+          transition: { staggerChildren: reducedMotion ? 0 : 0.3 },
         },
       },
     },
@@ -46,8 +46,8 @@ export function useAdsStagger(): AdsStagger {
         opacity: 1,
         y: 0,
         transition: {
-          duration: reducedMotion ? 0 : 0.45,
-          ease: [0.22, 1, 0.36, 1],
+          duration: reducedMotion ? 0 : 0.7,
+          ease: 'easeOut',
         },
       },
     },

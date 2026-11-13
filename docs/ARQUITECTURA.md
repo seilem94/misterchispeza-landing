@@ -730,3 +730,9 @@ El aviso se conserva hasta recibir y comprobar los recursos reales, centrado con
 - Mantener imágenes del portafolio con `next/image`, contenedores de proporción reservada, `sizes` según la grilla y carga diferida. Solo el fondo del Hero recibe precarga. Los nuevos vídeos/posters y la comprobación de procedencia/copy solar se registran en el checklist de lanzamiento.
 
 **Alternativas, riesgos y validación:** recuperar el bloque inferior permite comparar visualmente composiciones sin modificar las otras campañas. Duplicar el vídeo dentro del Hero o añadir un segundo widget sería innecesario. Validar typecheck, lint y build, responsive y contraste, CTA visible, orden de secciones, dos CTA directos con mensaje solar, ancla del proceso y widget. Registrar los 404 esperados de los recursos placeholder y no certificar reproducción ni recepción real de mensajes. Revertir el commit recupera la presentación solar previa sin cambiar URLs, redirecciones ni proveedores.
+
+## Ajuste 2026-11-13 — ADS-06: revelado secuencial más pausado
+
+**Adoptado antes del código por petición del responsable:** en `useAdsReveal.ts`, la cascada de `useAdsStagger` pasa de 0,15 a **0,3 s** entre hijos; la entrada de cada hijo y la de `useAdsReveal` duran **0,7 s** con `easeOut`. Así, grillas, procesos y secciones solares heredan el mismo suavizado sin duplicar configuraciones en componentes. Este ajuste sustituye los tiempos anteriores de ADS-02/ADS-04; conserva desplazamiento, entrada única al viewport y comportamiento de contacto.
+
+Con `prefers-reduced-motion`, mantener duración y separación de **0**, sin desplazamiento y con el contenido visible. Validar ambos modos del hook, su herencia en los consumidores y el orden de aparición en navegador, además de typecheck, lint y build. El commit puede revertirse sin alterar UI comercial, rutas, datos ni proveedores.
