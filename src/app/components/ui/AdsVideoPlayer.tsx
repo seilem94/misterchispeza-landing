@@ -21,25 +21,28 @@ export function AdsVideoPlayer({
   captions,
 }: AdsVideoPlayerProps) {
   return (
-    <video
-      src={src}
-      poster={poster}
-      controls
-      preload="none"
-      playsInline
-      aria-label={label}
-      className={cn('aspect-video w-full rounded-2xl bg-slate-950', className)}
-    >
-      {captions && (
-        <track
-          kind="captions"
-          src={captions.src}
-          srcLang={captions.language}
-          label={captions.label}
-          default
-        />
-      )}
-      {adsVideoContent.fallback}
-    </video>
+    <div className="mx-auto aspect-[9/16] w-full max-w-[320px] overflow-hidden rounded-2xl border border-slate-700/50 bg-slate-950 shadow-2xl shadow-black/50 sm:max-w-sm">
+      <video
+        src={src}
+        poster={poster}
+        controls
+        muted
+        preload="none"
+        playsInline
+        aria-label={label}
+        className={cn('block h-full w-full object-cover', className)}
+      >
+        {captions && (
+          <track
+            kind="captions"
+            src={captions.src}
+            srcLang={captions.language}
+            label={captions.label}
+            default
+          />
+        )}
+        {adsVideoContent.fallback}
+      </video>
+    </div>
   )
 }

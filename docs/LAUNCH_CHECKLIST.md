@@ -50,12 +50,12 @@ ADS-07 y ADS-08 actualizan los pendientes de REM-01, VIV-01 y SOL-01: los tres v
 
 ### Integración de los recursos y del copy aprobados
 
-- [ ] **D01 — Completar validación multimedia:** vídeos reales y posters de Vercel Blob integrados y disponibles por HTTP; los 404 de las miniaturas quedan resueltos en ADS-08. Avisos retirados en ADS-07. Incorporar subtítulos cuando corresponda y verificar reproducción real antes de cerrar esta casilla. Controles, `preload="none"` y ausencia de autoplay conservados.
+- [ ] **D01 — Completar validación multimedia:** vídeos reales y posters de Vercel Blob integrados y disponibles por HTTP; los 404 de las miniaturas quedan resueltos en ADS-08. Avisos retirados en ADS-07. ADS-09 comprueba reproducción real de los tres vídeos mediante interacción en producción local, con silencio inicial, marco 9:16, controles, `playsInline`, `preload="none"` y sin autoplay. Incorporar subtítulos cuando corresponda antes de cerrar esta casilla.
 - [ ] **D02 — Aplicar el copy confirmado:** reemplazar los marcadores comerciales de M06–M11 exclusivamente en las constantes y retirar sus notas de confirmación pendiente cuando exista respaldo. Conservar los campos intencionados de las plantillas de WhatsApp.
 - [ ] **D03 — Integrar las fotos reales del Home:** actualizar las referencias de galería, banner y Hero con el material aprobado en M12–M14, respetando la separación de datos y UI. Comprobar imágenes optimizadas, dimensiones reservadas, tamaños responsive y ausencia de saltos atribuibles a la sustitución.
 - [ ] **D04 — Validar la entrega definitiva:** después de incorporar recursos o copy, ejecutar `npm run typecheck`, `npm run lint` y `npm run build`; revisar responsive, contraste y CTAs con el material final. Adjuntar resultados al registro de entrega. Los tres comandos y el responsive de la base actual ya están aprobados en ADS-02; esta casilla corresponde a los cambios pendientes y a su despliegue final.
 
-**Trazabilidad:** [PROJECT_STATUS.md](./PROJECT_STATUS.md), backlog «Tarea 2», preparación del Home, REM-01, VIV-01, ADS-02 y resoluciones multimedia ADS-07/ADS-08. La disponibilidad de vídeos y posters fue comprobada; la reproducción y la validación multimedia completa siguen pendientes.
+**Trazabilidad:** [PROJECT_STATUS.md](./PROJECT_STATUS.md), backlog «Tarea 2», preparación del Home, REM-01, VIV-01, ADS-02 y resoluciones multimedia ADS-07/ADS-08/ADS-09. Disponibilidad de vídeos/posters y reproducción local comprobadas; subtítulos cuando correspondan y validación final en producción pendientes.
 
 ### Validación End-to-End en producción
 
