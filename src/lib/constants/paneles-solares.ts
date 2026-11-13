@@ -122,7 +122,7 @@ export const videoData: AdsVideoSectionData = {
     'Conoce las etapas del trabajo y cómo se prepara una instalación de paneles solares.',
   src: 'https://gapghs72pvdn9hax.public.blob.vercel-storage.com/Paneles-Solares.mp4',
   poster:
-    'https://gapghs72pvdn9hax.public.blob.vercel-storage.com/solar-poster.jpg',
+    'https://gapghs72pvdn9hax.public.blob.vercel-storage.com/solar-poster.png',
   label: 'Vídeo de instalación de paneles solares',
   pendingNote:
     'Vídeo y miniatura pendientes: este reproductor utiliza rutas de preparación hasta recibir material real de Mr. Chispeza.',

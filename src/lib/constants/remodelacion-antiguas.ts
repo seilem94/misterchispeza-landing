@@ -245,7 +245,7 @@ export const videoData: RemodelacionVideoData = {
     'Un espacio para mostrar el trabajo real y explicar la intervención en tu casa.',
   src: 'https://gapghs72pvdn9hax.public.blob.vercel-storage.com/Remodelaci%C3%B3n-Patrimonial.mp4',
   poster:
-    'https://gapghs72pvdn9hax.public.blob.vercel-storage.com/remodelacion-poster.jpg',
+    'https://gapghs72pvdn9hax.public.blob.vercel-storage.com/remodelacion-poster.png',
   label: 'Vídeo de remodelación eléctrica',
   pendingNote:
     'Vídeo y miniatura pendientes: este reproductor utiliza rutas de preparación hasta recibir material real de Mr. Chispeza.',

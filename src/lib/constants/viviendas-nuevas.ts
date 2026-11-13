@@ -240,7 +240,7 @@ export const videoData: ViviendasNuevasVideoData = {
     'Un espacio para mostrar el trabajo real y explicar cómo se coordina la instalación con la obra.',
   src: 'https://gapghs72pvdn9hax.public.blob.vercel-storage.com/Casa-Desde-Cero.mp4',
   poster:
-    'https://gapghs72pvdn9hax.public.blob.vercel-storage.com/viviendas-poster.jpg',
+    'https://gapghs72pvdn9hax.public.blob.vercel-storage.com/viviendas-poster.png',
   label: 'Vídeo de instalación eléctrica para viviendas nuevas',
   pendingNote:
     'Vídeo y miniatura pendientes: este reproductor utiliza rutas de preparación hasta recibir material real de Mr. Chispeza.',
