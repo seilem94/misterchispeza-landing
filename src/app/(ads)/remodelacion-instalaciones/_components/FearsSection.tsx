@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import { CircleHelp } from 'lucide-react'
 import {
   Card,
-  CardHeader,
+  AdsMobileAccordion,
   CardContent,
   Container,
   Section,
@@ -74,12 +74,11 @@ export function FearsSection({
                 >
                   <CircleHelp className={adsStyles.icon} aria-hidden="true" />
                 </span>
-                <div className="min-w-0 flex-1">
-                  <CardHeader title={item.question} className="mb-2 md:mb-4" />
+                <AdsMobileAccordion title={item.question}>
                   <CardContent className="text-base leading-7 text-slate-600">
                     <p>{item.answer}</p>
                   </CardContent>
-                </div>
+                </AdsMobileAccordion>
               </Card>
             </motion.div>
           ))}

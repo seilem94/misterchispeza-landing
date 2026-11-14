@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import {
   Card,
-  CardHeader,
+  AdsMobileAccordion,
   CardContent,
   Container,
   Section,
@@ -60,26 +60,25 @@ export function ProcessSection({ data, steps }: ProcessSectionProps) {
               <Card
                 className={cn(
                   adsStyles.card,
-                  'items-start border-slate-700 bg-slate-800 text-left text-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl motion-reduce:transform-none motion-reduce:transition-none motion-reduce:hover:translate-y-0 sm:p-10',
+                  'items-start border-slate-700 bg-slate-800 text-left text-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl motion-reduce:transform-none motion-reduce:transition-none motion-reduce:hover:translate-y-0 md:p-10',
                 )}
-                padding="lg"
+                padding="sm"
               >
-                <div className="grid w-full gap-6 sm:grid-cols-[4rem_minmax(0,1fr)]">
+                <div className="grid w-full grid-cols-[2.5rem_minmax(0,1fr)] items-start gap-3 md:grid-cols-[4rem_minmax(0,1fr)] md:gap-6">
                   <span
                     aria-hidden="true"
-                    className="flex h-16 w-16 items-center justify-center rounded-2xl border border-amber-500/30 bg-slate-900 text-2xl font-extrabold text-amber-400"
+                    className="flex h-10 w-10 items-center justify-center rounded-xl border border-amber-500/30 bg-slate-900 text-xl font-extrabold text-amber-400 md:h-16 md:w-16 md:rounded-2xl md:text-2xl"
                   >
                     {step.number}
                   </span>
-                  <div className="min-w-0">
-                    <CardHeader
-                      title={step.title}
-                      className="[&_h3]:text-white"
-                    />
+                  <AdsMobileAccordion
+                    title={step.title}
+                    titleClassName="text-white"
+                  >
                     <CardContent className="text-base leading-7 text-slate-300">
                       <p>{step.description}</p>
                     </CardContent>
-                  </div>
+                  </AdsMobileAccordion>
                 </div>
               </Card>
             </motion.li>

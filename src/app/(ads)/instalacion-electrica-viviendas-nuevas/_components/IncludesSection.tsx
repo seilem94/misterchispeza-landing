@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import { CheckCircle2 } from 'lucide-react'
 import {
   Card,
-  CardHeader,
+  AdsMobileAccordion,
   CardContent,
   Container,
   Section,
@@ -71,12 +71,11 @@ export function IncludesSection({ data, items }: IncludesSectionProps) {
                 >
                   <CheckCircle2 className={adsStyles.icon} aria-hidden="true" />
                 </span>
-                <div className="min-w-0 flex-1">
-                  <CardHeader title={item.title} className="mb-2 md:mb-4" />
+                <AdsMobileAccordion title={item.title}>
                   <CardContent className="text-base leading-7 text-slate-600">
                     <p>{item.description}</p>
                   </CardContent>
-                </div>
+                </AdsMobileAccordion>
               </Card>
             </motion.li>
           ))}
