@@ -1,3 +1,5 @@
+import type { AdsWorkGalleryItem } from '@/lib/types/ads'
+
 export const viviendasNuevasMetadata = {
   title: 'Instalación eléctrica para viviendas nuevas',
   description:
@@ -228,6 +230,22 @@ export const targetData: readonly ViviendasNuevasItem[] = [
 ]
 
 export { viviendasWhatsappMessage as whatsappMessage } from '@/lib/constants/whatsapp'
+
+export const realWorkGallery: readonly AdsWorkGalleryItem[] = [
+  {
+    src: 'https://gapghs72pvdn9hax.public.blob.vercel-storage.com/proyectos-nuevos/poste.webp',
+    label: 'Trabajos aéreos y empalmes - Con-Con, Valparaíso',
+  },
+  {
+    src: 'https://gapghs72pvdn9hax.public.blob.vercel-storage.com/proyectos-nuevos/ladrillo.webp',
+    label:
+      'Instalación desde cero en obra gruesa - Colmo, Provincia de Quillota',
+  },
+  {
+    src: 'https://gapghs72pvdn9hax.public.blob.vercel-storage.com/proyectos-nuevos/tablero-3-filas.webp',
+    label: 'Cableado interior prolijo y certificado - Forestal, Viña del Mar',
+  },
+]
 
 export const videoData: ViviendasNuevasVideoData = {
   id: 'video-viviendas-nuevas',

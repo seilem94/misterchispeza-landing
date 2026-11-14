@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { RealWorkGallery } from '@/app/components/RealWorkGallery'
 import {
   contactData,
   heroData,
@@ -7,6 +8,7 @@ import {
   problemData,
   processData,
   processSectionData,
+  realWorkGallery,
   solutionData,
   targetData,
   targetSectionData,
@@ -33,6 +35,7 @@ export default function ViviendasNuevasPage() {
         whatsappMessage={whatsappMessage}
       />
       <ProblemSection data={problemData} />
+      <RealWorkGallery items={realWorkGallery} />
       <SolutionSection
         data={solutionData}
         ctaText={heroData.ctaText}

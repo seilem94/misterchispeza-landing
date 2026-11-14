@@ -47,6 +47,20 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
+        hostname: 'gapghs72pvdn9hax.public.blob.vercel-storage.com',
+        port: '',
+        pathname: '/remodelacion/**',
+        search: '',
+      },
+      {
+        protocol: 'https',
+        hostname: 'gapghs72pvdn9hax.public.blob.vercel-storage.com',
+        port: '',
+        pathname: '/proyectos-nuevos/**',
+        search: '',
+      },
+      {
+        protocol: 'https',
         hostname: 'images.unsplash.com',
         port: '',
         pathname: '/**',

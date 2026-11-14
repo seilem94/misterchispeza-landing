@@ -1,3 +1,5 @@
+import type { AdsWorkGalleryItem } from '@/lib/types/ads'
+
 export const remodelacionMetadata = {
   title: 'Remodelación de Instalaciones Antiguas',
   description:
@@ -42,6 +44,8 @@ export interface RemodelacionSymptom {
 
 export interface RemodelacionSymptomsData extends RemodelacionSectionData {
   items: readonly RemodelacionSymptom[]
+  ctaPrompt: string
+  ctaText: string
 }
 
 export interface RemodelacionFear {
@@ -100,6 +104,8 @@ export const symptomsData: RemodelacionSymptomsData = {
   title: '¿Te pasa algo de esto?',
   description:
     'Estas señales merecen una revisión de la instalación. Cuéntanos cuáles reconoces en tu casa para orientar la visita técnica.',
+  ctaPrompt: 'Si alguna de estas te suena, te ayudamos a revisarlo.',
+  ctaText: heroData.ctaText,
   items: [
     {
       id: 'automatico',
@@ -233,6 +239,23 @@ export const includesData: readonly RemodelacionIncludedItem[] = [
 ]
 
 export { remodelacionWhatsappMessage as whatsappMessage } from '@/lib/constants/whatsapp'
+
+export const realWorkGallery: readonly AdsWorkGalleryItem[] = [
+  {
+    src: 'https://gapghs72pvdn9hax.public.blob.vercel-storage.com/remodelacion/galpon_iluminado.webp',
+    label:
+      'Restauración e iluminación de espacios - Colmo, Provincia de Quillota',
+  },
+  {
+    src: 'https://gapghs72pvdn9hax.public.blob.vercel-storage.com/remodelacion/tecnico-tablero.webp',
+    label: 'Actualización y normalización de tableros - Limache, Marga-Marga',
+  },
+  {
+    src: 'https://gapghs72pvdn9hax.public.blob.vercel-storage.com/remodelacion/reconstruccion-vina.webp',
+    label:
+      'Reconstrucción Viviendas de Emergencia - Villa Independencia, Viña del Mar',
+  },
+]
 
 export const videoData: RemodelacionVideoData = {
   id: 'video-remodelacion',

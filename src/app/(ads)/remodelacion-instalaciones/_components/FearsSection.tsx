@@ -62,17 +62,24 @@ export function FearsSection({
               <Card
                 className={cn(
                   adsStyles.card,
-                  'border-slate-200 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl motion-reduce:transform-none motion-reduce:transition-none motion-reduce:hover:translate-y-0',
+                  'flex-row items-start gap-4 border-slate-200 text-left transition-all duration-300 hover:-translate-y-1 hover:shadow-xl motion-reduce:transform-none motion-reduce:transition-none motion-reduce:hover:translate-y-0 md:flex-col md:items-center md:gap-0 md:p-8 md:text-center',
                 )}
-                padding="lg"
+                padding="sm"
               >
-                <span className={adsStyles.iconBadge}>
+                <span
+                  className={cn(
+                    adsStyles.iconBadge,
+                    'mx-0 mb-0 h-10 w-10 rounded-xl md:mx-auto md:mb-6 md:h-16 md:w-16 md:rounded-2xl',
+                  )}
+                >
                   <CircleHelp className={adsStyles.icon} aria-hidden="true" />
                 </span>
-                <CardHeader title={item.question} />
-                <CardContent className="text-base leading-7 text-slate-600">
-                  <p>{item.answer}</p>
-                </CardContent>
+                <div className="min-w-0 flex-1">
+                  <CardHeader title={item.question} className="mb-2 md:mb-4" />
+                  <CardContent className="text-base leading-7 text-slate-600">
+                    <p>{item.answer}</p>
+                  </CardContent>
+                </div>
               </Card>
             </motion.div>
           ))}

@@ -7,3 +7,8 @@ export interface AdsVideoSectionData {
   label: string
   pendingNote: string
 }
+
+export interface AdsWorkGalleryItem {
+  src: string
+  label: string
+}

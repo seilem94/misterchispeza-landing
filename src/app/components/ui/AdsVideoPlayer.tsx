@@ -30,6 +30,10 @@ export function AdsVideoPlayer({
         preload="none"
         playsInline
         aria-label={label}
+        style={{
+          WebkitTransform: 'translateZ(0)',
+          backfaceVisibility: 'hidden',
+        }}
         className={cn(
           'backface-hidden block h-full w-full transform-gpu object-cover brightness-100',
           className,

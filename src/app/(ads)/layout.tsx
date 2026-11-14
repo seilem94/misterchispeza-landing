@@ -23,7 +23,7 @@ export default function AdsLayout({ children }: { children: ReactNode }) {
       <div className="flex-1">{children}</div>
 
       <footer className="border-t border-slate-200 bg-white">
-        <Container className="py-6 text-center text-sm text-slate-600">
+        <Container className="pb-24 pt-6 text-center text-sm text-slate-600 lg:pb-8">
           <p>
             © {new Date().getFullYear()} {adsLayoutContent.copyright.holder}.{' '}
             {adsLayoutContent.copyright.rights}

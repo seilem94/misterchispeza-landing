@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { RealWorkGallery } from '@/app/components/RealWorkGallery'
 import { RemodelacionHero } from './_components/RemodelacionHero'
 import { SymptomsSection } from './_components/SymptomsSection'
 import { FearsSection } from './_components/FearsSection'
@@ -13,6 +14,7 @@ import {
   includesSectionData,
   processData,
   processSectionData,
+  realWorkGallery,
   remodelacionMetadata,
   symptomsData,
   videoData,
@@ -29,7 +31,8 @@ export default function RemodelacionInstalacionesPage() {
         video={videoData}
         whatsappMessage={whatsappMessage}
       />
-      <SymptomsSection data={symptomsData} />
+      <SymptomsSection data={symptomsData} whatsappMessage={whatsappMessage} />
+      <RealWorkGallery items={realWorkGallery} />
       <FearsSection
         data={fearsData}
         ctaText={heroData.ctaText}
