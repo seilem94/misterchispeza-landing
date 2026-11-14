@@ -1,48 +1,63 @@
 # Checklist de lanzamiento — Mr. Chispeza
 
-**Consolidación:** 2026-11-09, America/Santiago. **Actualización multimedia:** 2026-11-13 (ADS-08). **Base de desarrollo completada:** `a4f002f` (ADS-02), rama `feature/sublandings-remodelacion-viviendas-nuevas`. **Estado:** vídeos reales y miniaturas integrados; subtítulos cuando correspondan, confirmaciones de marketing y validaciones finales de producción pendientes.
+**Consolidación:** 2026-11-09, America/Santiago. **Actualización de cierre comercial:** 2026-11-14 (ADS-11/ADS-12 y registro de consolidación). **Base de desarrollo completada:** `a4f002f` (ADS-02), rama `feature/sublandings-remodelacion-viviendas-nuevas`. **Estado:** copy comercial, trazabilidad de WhatsApp, galerías reales y optimizaciones móviles de las campañas completados y validados localmente; se conservan los pendientes externos y de producción detallados más abajo.
 
-Este documento concentra los pendientes de [PROJECT_STATUS.md](./PROJECT_STATUS.md), interpretando la línea base junto con sus resoluciones posteriores. Las casillas de producción y de integración de recursos corresponden a comprobaciones todavía no realizadas; no indican que estén fallando los chequeos locales ya aprobados. No se crean proveedores, funcionalidades ni tareas ajenas al registro del sprint.
+Este documento separa los hitos completados de los pendientes de [PROJECT_STATUS.md](./PROJECT_STATUS.md), interpretando la línea base junto con sus resoluciones posteriores. Las casillas de producción corresponden a comprobaciones todavía no realizadas; no indican que estén fallando los chequeos locales ya aprobados. No se crean proveedores, funcionalidades ni tareas ajenas al registro del sprint.
 
 **Regla vigente:** desde ADS-02, todo `(ads)` utiliza exclusivamente WhatsApp. Las tareas de Formspree y Turnstile de este checklist corresponden al **Home, fuera de campañas**. El responsable confirmó el dominio de producción en Cloudflare; el error local `110200` está excluido y no constituye un bloqueo que deba corregirse para estas landings.
 
 Marcar una casilla solo al disponer de evidencia, anotando fecha, entorno y referencia del resultado en el ítem o en el changelog. Cuando una condición no aplique, como subtítulos en un vídeo sin voz, dejar constancia del motivo. No marcar como entregados recursos que todavía son placeholders.
 
-## Pendientes de Marketing y Negocio
+## Completados
 
 ### Multimedia real de las campañas
 
-ADS-07 y ADS-08 actualizan los pendientes de REM-01, VIV-01 y SOL-01: los tres vídeos reales y sus miniaturas están integrados en `videoData` mediante URLs públicas de Vercel Blob. Vídeos y posters responden HTTP 200. ADS-08 resuelve los 404 de las miniaturas usando las URLs `.png` entregadas por el responsable; las tres imágenes se verificaron como PNG de 608 × 1080 px. Los avisos de preparación permanecen retirados de las tres campañas. Evidencias y alcance en [PROJECT_STATUS.md](./PROJECT_STATUS.md), entradas ADS-07 y ADS-08 del 2026-11-13.
+ADS-07 y ADS-08 resuelven la entrega de vídeos y miniaturas de REM-01, VIV-01 y SOL-01 mediante URLs públicas de Vercel Blob, verificadas con HTTP 200. ADS-12 incorpora las galerías reales de remodelación y viviendas. Los avisos de preparación permanecen retirados de las tres campañas. Evidencias en [PROJECT_STATUS.md](./PROJECT_STATUS.md), registros ADS-07/ADS-08 y ADS-12.
 
 - [x] **M01 — Vídeo de remodelación:** material real entregado e integrado desde Vercel Blob en `videoData.src`; HTTP 200 y `Content-Type: video/mp4` comprobados el 2026-11-13 (ADS-07).
 - [x] **M02 — Poster de remodelación:** URL corregida a `remodelacion-poster.png` en Vercel Blob; HTTP 200, `Content-Type: image/png` e imagen válida comprobados el 2026-11-13 (ADS-08).
 - [x] **M03 — Vídeo de viviendas nuevas:** material real entregado e integrado desde Vercel Blob en `videoData.src`; HTTP 200 y `Content-Type: video/mp4` comprobados el 2026-11-13 (ADS-07).
 - [x] **M04 — Poster de viviendas nuevas:** URL corregida a `viviendas-poster.png` en Vercel Blob; HTTP 200, `Content-Type: image/png` e imagen válida comprobados el 2026-11-13 (ADS-08).
-- [ ] **M05 — Subtítulos:** proporcionar las pistas correspondientes cuando cualquiera de los vídeos tenga voz.
 - [x] **M15 — Vídeo solar:** material real entregado e integrado desde Vercel Blob en `videoData.src`; HTTP 200 y `Content-Type: video/mp4` comprobados el 2026-11-13 (ADS-07).
 - [x] **M16 — Poster solar:** URL corregida a `solar-poster.png` en Vercel Blob; HTTP 200, `Content-Type: image/png` e imagen válida comprobados el 2026-11-13 (ADS-08).
+- [x] **M18 — Galería real de las sub-landings: COMPLETADA.** Dependencia bloqueante de entrega fotográfica de marketing cerrada el 2026-11-14. Seis fotografías reales `.webp` de Vercel Blob, tres por campaña, integradas con `next/image`, captions de comunas exactos y carga responsive. Originales y variantes optimizadas comprobados con HTTP 200, y seis fotos cargadas en navegador. Evidencia: ADS-12, commit `fc4580e`. Este cierre corresponde a las galerías de campañas; M12/M13 mantienen el alcance del Home.
 
 **Trazabilidad:** [PROJECT_STATUS.md](./PROJECT_STATUS.md), REM-01 «Antes de publicar», VIV-01 «Pendientes explícitos del equipo de marketing antes de publicar», ADS-02 «Pendientes de marketing conservados» y SOL-01 para los recursos solares.
 
-### Copy, cifras, plazos y respaldo comercial
+### Copy comercial final y mensajes de WhatsApp
 
 - [x] **M06 — Experiencia en remodelación:** retirada la cifra `[numero]` y su nota por instrucción de marketing el 2026-11-14 (ADS-11). No se sustituye por una métrica inventada ni se acredita una cantidad de obras.
 - [x] **M07 — Superficie de referencia:** retirado `[100 m2]` al aplicar la respuesta aprobada de recableado el 2026-11-14 (ADS-11). No se publica un límite de superficie.
 - [x] **M08 — Plazo de remodelación:** marketing proporciona el 2026-11-14 el copy «típicamente en 4 días, dependiendo de la envergadura del proyecto» y la respuesta «usualmente máximo 4 días» (ADS-11). Copy implementado por autorización del responsable; no es una medición independiente del agente.
 - [x] **M09 — Experiencia en viviendas nuevas:** retirada la referencia `[número] viviendas instaladas` y su nota el 2026-11-14 (ADS-11), sin publicar una cifra sustituta.
 - [x] **M10 — Plazo de presupuesto:** aplicado «Presupuesto detallado en menos de 3 días» aprobado por marketing el 2026-11-14 (ADS-11). La ejecución se comunica aparte como «entre 4 y 10 días, dependiendo de la envergadura y tamaño de la instalación».
-- [ ] **M11 — Prueba social y alcance ofrecido:** respaldar las afirmaciones comerciales de ambas campañas, incluida la prueba social de electricistas certificados SEC y el alcance de diseño, instalación y TE1, antes de dar por aprobado el copy definitivo.
-- [ ] **M17 — Respaldo solar heredado:** confirmar las afirmaciones de ahorro, precio, garantías y plazos conservadas en la extracción de SOL-01, así como la procedencia de `/grid-pattern.webp` y `/paneles-1.webp`, `/paneles-2.webp`, `/paneles-3.webp` y su correspondencia con los casos publicados. La refactorización visual no acredita esos datos ni las fotografías.
+- [x] **D02 — Copy comercial implementado:** feedback final de marketing aplicado en constantes, cifras y notas retiradas, tono empático, plazos aprobados y mensajes de WhatsApp abiertos para capturar la comuna. Comprobaciones locales y trazabilidad en ADS-11, commit `8bd98a8`; este cierre registra la implementación y aprobación del feedback, conservando el respaldo documental de certificaciones en M11.
 
 Desde ADS-11, las plantillas de WhatsApp de remodelación y viviendas terminan en «comuna de » para que el visitante complete su ubicación; se retiraron los marcadores `[comuna]` y `[años]`. No añadir una comuna fija ni perder el espacio final al normalizar o codificar el mensaje.
 
-**Trazabilidad:** [PROJECT_STATUS.md](./PROJECT_STATUS.md), REM-01 «Antes de publicar», VIV-01 «Pendientes explícitos del equipo de marketing antes de publicar» y ADS-02 «Pendientes de marketing conservados».
+**Trazabilidad:** [PROJECT_STATUS.md](./PROJECT_STATUS.md), ADS-11 de Fase 1 (`8bd98a8`) y consolidación del feedback final del 2026-11-14. Los registros de REM-01/VIV-01 y ADS-02 se conservan como antecedentes inmutables.
+
+### Trazabilidad y optimizaciones móviles
+
+- [x] **C01 — Trazabilidad de WhatsApp implementada:** lectura de ruta con `usePathname()` y parámetro `servicio=remodelacion`, `casa-nueva` o `solar` en `/gracias` para ambas zonas; Home sin atribución de campaña. Mensajes exactos y espacio final conservados. Validación local en ADS-11/ADS-12, commits `8bd98a8` y `fc4580e`. La comprobación del evento y la segmentación en Google Analytics en producción se conserva en D14.
+- [x] **C02 — Optimizaciones móviles y UI/UX implementadas:** 21 tarjetas compactas con icono izquierdo, CTA intermedio adicional, viewport compartido de Motion, movimiento reducido conservado, aislamiento GPU/WebKit del vídeo 9:16 y footer con `pb-24 lg:pb-8`. ADS-12, commit `fc4580e`: 27 combinaciones responsive sin desbordamientos y 12 accesos de contacto comprobados; footer sin superposición con WhatsApp. El workaround está aplicado; su validación en el hardware HDR afectado conserva el límite registrado en ADS-10/ADS-12.
+
+### Hero del Home ya acreditado
+
+- [x] **M14 — Hero:** acreditar la procedencia de `/hero.webp`. Si no se puede confirmar como fotografía propia de una obra real, aportar un reemplazo verificable antes de presentar el Home como 100 % de obras reales.
+
+## Pendientes de Marketing y Negocio
+
+### Subtítulos y respaldo comercial restante
+
+- [ ] **M05 — Subtítulos:** proporcionar las pistas correspondientes cuando cualquiera de los vídeos tenga voz.
+- [ ] **M11 — Respaldo de certificaciones y alcance:** conservar evidencia de las afirmaciones de electricistas certificados SEC y del alcance de diseño, instalación y TE1. La implementación del copy final y la entrega de las galerías ya constan en «Completados»; este ítem mantiene únicamente el respaldo comercial documental pendiente.
+- [ ] **M17 — Respaldo solar heredado:** confirmar las afirmaciones de ahorro, precio, garantías y plazos conservadas en la extracción de SOL-01, así como la procedencia de `/grid-pattern.webp` y `/paneles-1.webp`, `/paneles-2.webp`, `/paneles-3.webp` y su correspondencia con los casos publicados. La refactorización visual no acredita esos datos ni las fotografías.
 
 ### Fotografías reales del Home
 
 - [ ] **M12 — Galería:** sustituir las tres imágenes de Unsplash por fotografías reales de obras de Mr. Chispeza.
 - [ ] **M13 — Banner:** entregar una fotografía real para reemplazar el fondo de banco de `BannerParallax`.
-- [x] **M14 — Hero:** acreditar la procedencia de `/hero.webp`. Si no se puede confirmar como fotografía propia de una obra real, aportar un reemplazo verificable antes de presentar el Home como 100 % de obras reales.
 
 **Trazabilidad:** [PROJECT_STATUS.md](./PROJECT_STATUS.md), «Seguimiento 2026-11-05 — Preparación del Home para Ads», «Resultado de la preparación del Home» y cierre ADS-01. La existencia de un archivo local no acredita por sí sola su procedencia.
 
@@ -51,9 +66,8 @@ Desde ADS-11, las plantillas de WhatsApp de remodelación y viviendas terminan e
 ### Integración de los recursos y del copy aprobados
 
 - [ ] **D01 — Completar validación multimedia:** vídeos reales y posters de Vercel Blob integrados y disponibles por HTTP; los 404 de las miniaturas quedan resueltos en ADS-08. Avisos retirados en ADS-07. ADS-09 comprueba reproducción real de los tres vídeos mediante interacción en producción local, con silencio inicial, marco 9:16, controles, `playsInline`, `preload="none"` y sin autoplay. Incorporar subtítulos cuando corresponda antes de cerrar esta casilla.
-- [ ] **D02 — Completar respaldo del copy:** Fase 1 aplicada en ADS-11 con el feedback autorizado de marketing: cifras retiradas, respuestas y plazos actualizados y mensajes centralizados en `whatsapp.ts`. Permanece el respaldo comercial de M11 antes de dar por cerrada la aceptación final; no sustituirlo por la aprobación técnica del cambio.
 - [ ] **D03 — Integrar las fotos reales del Home:** actualizar las referencias de galería, banner y Hero con el material aprobado en M12–M14, respetando la separación de datos y UI. Comprobar imágenes optimizadas, dimensiones reservadas, tamaños responsive y ausencia de saltos atribuibles a la sustitución.
-- [ ] **D04 — Validar la entrega definitiva:** después de incorporar recursos o copy, ejecutar `npm run typecheck`, `npm run lint` y `npm run build`; revisar responsive, contraste y CTAs con el material final. Adjuntar resultados al registro de entrega. Los tres comandos y el responsive de la base actual ya están aprobados en ADS-02; esta casilla corresponde a los cambios pendientes y a su despliegue final.
+- [ ] **D04 — Validar la entrega en el entorno final:** repetir las comprobaciones de responsive, contraste y CTAs en el despliegue definitivo. Typecheck, lint, build y responsive locales de Copy/UI ya están aprobados en ADS-11/ADS-12; esta casilla conserva únicamente la validación del entorno final, sin reabrir los hitos completados.
 
 **Trazabilidad:** [PROJECT_STATUS.md](./PROJECT_STATUS.md), backlog «Tarea 2», preparación del Home, REM-01, VIV-01, ADS-02 y resoluciones multimedia ADS-07/ADS-08/ADS-09. Disponibilidad de vídeos/posters y reproducción local comprobadas; subtítulos cuando correspondan y validación final en producción pendientes.
 
