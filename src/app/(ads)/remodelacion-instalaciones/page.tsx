@@ -35,7 +35,7 @@ export default function RemodelacionInstalacionesPage() {
       <RealWorkGallery items={realWorkGallery} />
       <FearsSection
         data={fearsData}
-        ctaText={heroData.ctaText}
+        ctaText={fearsData.ctaText}
         whatsappMessage={whatsappMessage}
       />
       <ProcessSection data={processSectionData} steps={processData} />

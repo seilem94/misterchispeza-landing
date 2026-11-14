@@ -44,6 +44,7 @@ export interface ViviendasNuevasProblem {
 
 export interface ViviendasNuevasProblemData extends ViviendasNuevasSectionData {
   items: readonly ViviendasNuevasProblem[]
+  ctaText: string
 }
 
 export interface ViviendasNuevasSolutionData extends ViviendasNuevasSectionData {
@@ -89,9 +90,10 @@ export const heroData: ViviendasNuevasHeroData = {
 
 export const problemData: ViviendasNuevasProblemData = {
   id: 'problemas-obra',
-  title: 'Lo que se instala mal en la obra se paga dos veces',
+  title: 'Evita pagar doble por una mala instalación',
   description:
     'Definir la electricidad a tiempo ayuda a evitar correcciones que interrumpen el avance de la construcción.',
+  ctaText: heroData.ctaText,
   items: [
     {
       id: 'circuitos',
@@ -118,9 +120,9 @@ export const solutionData: ViviendasNuevasSolutionData = {
 
 export const processSectionData: ViviendasNuevasSectionData = {
   id: 'etapas',
-  title: 'Cómo trabajamos',
+  title: '¿Cómo trabajamos?',
   description:
-    'Tres pasos para definir el proyecto, acordar el presupuesto y coordinar la ejecución con tu obra.',
+    'Red eléctrica instalada entre 4 y 10 días, dependiendo de la envergadura y tamaño de la instalación.',
 }
 
 export const processData: readonly ViviendasNuevasProcessStep[] = [
@@ -149,7 +151,7 @@ export const processData: readonly ViviendasNuevasProcessStep[] = [
 
 export const includesSectionData: ViviendasNuevasIncludesData = {
   id: 'incluidos',
-  title: 'Qué incluye el proyecto de tu casa nueva',
+  title: 'Soluciones eléctricas a medida para tu obra',
   description:
     'Una propuesta que conecta el diseño con lo que se ejecutará en terreno.',
   scopeNote:

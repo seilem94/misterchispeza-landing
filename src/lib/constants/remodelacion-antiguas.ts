@@ -56,6 +56,7 @@ export interface RemodelacionFear {
 
 export interface RemodelacionFearsData extends RemodelacionSectionData {
   items: readonly RemodelacionFear[]
+  ctaText: string
 }
 
 export interface RemodelacionProcessStep {
@@ -136,15 +137,16 @@ export const symptomsData: RemodelacionSymptomsData = {
 
 export const fearsData: RemodelacionFearsData = {
   id: 'dudas-remodelacion',
-  title: 'Lo que más nos preguntan antes de recablear',
+  title: 'Preguntas Frecuentes Antes de Recablear',
   description:
     'Antes de decidir, necesitas saber cómo afectará el trabajo a tu casa y tu rutina.',
+  ctaText: '¿Tienes más preguntas? Háblanos al WhatsApp',
   items: [
     {
       id: 'viabilidad',
       question: '¿Mi casa se puede recablear?',
       answer:
-        'En la visita revisamos el estado real del cableado y tablero. Te explicamos qué se puede salvar y qué conviene renovar. Todo súper claro antes de avanzar.',
+        'En la visita revisamos el estado real del cableado y tablero. Te explicamos exactamente qué se puede salvar y qué conviene renovar. Todo súper claro antes de avanzar.',
     },
     {
       id: 'intervenciones',

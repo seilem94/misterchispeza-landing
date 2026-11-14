@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { CircleAlert } from 'lucide-react'
 import { Card, Container, Section } from '@/app/components/ui'
+import { WhatsAppCTAButton } from '@/app/components/WhatsAppCTAButton'
 import {
   useAdsReveal,
   useAdsStagger,
@@ -11,7 +12,13 @@ import { adsStyles } from '@/lib/constants/ads'
 import { cn } from '@/lib/utils/cn'
 import type { ViviendasNuevasProblemData } from '@/lib/constants/viviendas-nuevas'
 
-export function ProblemSection({ data }: { data: ViviendasNuevasProblemData }) {
+export function ProblemSection({
+  data,
+  whatsappMessage,
+}: {
+  data: ViviendasNuevasProblemData
+  whatsappMessage: string
+}) {
   const reveal = useAdsReveal()
   const stagger = useAdsStagger()
   return (
@@ -56,6 +63,9 @@ export function ProblemSection({ data }: { data: ViviendasNuevasProblemData }) {
             </motion.li>
           ))}
         </motion.ul>
+        <motion.div {...reveal} className="mt-12 text-center">
+          <WhatsAppCTAButton label={data.ctaText} message={whatsappMessage} />
+        </motion.div>
       </Container>
     </Section>
   )

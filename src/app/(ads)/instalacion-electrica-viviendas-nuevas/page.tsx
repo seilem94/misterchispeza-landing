@@ -34,7 +34,7 @@ export default function ViviendasNuevasPage() {
         video={videoData}
         whatsappMessage={whatsappMessage}
       />
-      <ProblemSection data={problemData} />
+      <ProblemSection data={problemData} whatsappMessage={whatsappMessage} />
       <RealWorkGallery items={realWorkGallery} />
       <SolutionSection
         data={solutionData}
