@@ -236,16 +236,18 @@ export { viviendasWhatsappMessage as whatsappMessage } from '@/lib/constants/wha
 export const realWorkGallery: readonly AdsWorkGalleryItem[] = [
   {
     src: 'https://gapghs72pvdn9hax.public.blob.vercel-storage.com/proyectos-nuevos/poste.webp',
-    label: 'Trabajos aéreos y empalmes - Con-Con, Valparaíso',
+    title: 'Trabajos aéreos y empalmes',
+    location: 'Con-Con, Valparaíso',
   },
   {
     src: 'https://gapghs72pvdn9hax.public.blob.vercel-storage.com/proyectos-nuevos/ladrillo.webp',
-    label:
-      'Instalación desde cero en obra gruesa - Colmo, Provincia de Quillota',
+    title: 'Instalación desde cero en obra gruesa',
+    location: 'Colmo, Provincia de Quillota',
   },
   {
     src: 'https://gapghs72pvdn9hax.public.blob.vercel-storage.com/proyectos-nuevos/tablero-3-filas.webp',
-    label: 'Cableado interior prolijo y certificado - Forestal, Viña del Mar',
+    title: 'Cableado interior prolijo y certificado',
+    location: 'Forestal, Viña del Mar',
   },
 ]
 

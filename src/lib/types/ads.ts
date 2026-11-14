@@ -10,5 +10,6 @@ export interface AdsVideoSectionData {
 
 export interface AdsWorkGalleryItem {
   src: string
-  label: string
+  title: string
+  location: string
 }

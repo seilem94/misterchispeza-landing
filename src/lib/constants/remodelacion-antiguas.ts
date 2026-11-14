@@ -245,17 +245,18 @@ export { remodelacionWhatsappMessage as whatsappMessage } from '@/lib/constants/
 export const realWorkGallery: readonly AdsWorkGalleryItem[] = [
   {
     src: 'https://gapghs72pvdn9hax.public.blob.vercel-storage.com/remodelacion/galpon_iluminado.webp',
-    label:
-      'Restauración e iluminación de espacios - Colmo, Provincia de Quillota',
+    title: 'Restauración e iluminación de espacios',
+    location: 'Colmo, Provincia de Quillota',
   },
   {
     src: 'https://gapghs72pvdn9hax.public.blob.vercel-storage.com/remodelacion/tecnico-tablero.webp',
-    label: 'Actualización y normalización de tableros - Limache, Marga-Marga',
+    title: 'Actualización y normalización de tableros',
+    location: 'Limache, Marga-Marga',
   },
   {
     src: 'https://gapghs72pvdn9hax.public.blob.vercel-storage.com/remodelacion/reconstruccion-vina.webp',
-    label:
-      'Reconstrucción Viviendas de Emergencia - Villa Independencia, Viña del Mar',
+    title: 'Reconstrucción Viviendas de Emergencia',
+    location: 'Villa Independencia, Viña del Mar',
   },
 ]
 
