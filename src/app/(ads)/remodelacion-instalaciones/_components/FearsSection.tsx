@@ -62,7 +62,7 @@ export function FearsSection({
               <Card
                 className={cn(
                   adsStyles.card,
-                  'flex-row items-start gap-4 border-slate-200 text-left transition-all duration-300 hover:-translate-y-1 hover:shadow-xl motion-reduce:transform-none motion-reduce:transition-none motion-reduce:hover:translate-y-0 md:flex-col md:items-center md:gap-0 md:p-8 md:text-center',
+                  'flex-row items-start gap-3 border-slate-200 text-left transition-all duration-300 hover:-translate-y-1 hover:shadow-xl motion-reduce:transform-none motion-reduce:transition-none motion-reduce:hover:translate-y-0 md:flex-col md:items-center md:gap-0 md:p-8 md:text-center',
                 )}
                 padding="sm"
               >

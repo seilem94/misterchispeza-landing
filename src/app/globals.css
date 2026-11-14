@@ -1,5 +1,12 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
+@utility scrollbar-hide {
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
 
 :root {
   --background: #ffffff;

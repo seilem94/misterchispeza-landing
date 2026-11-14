@@ -18,6 +18,13 @@ export const adsVideoContent = {
   fallback: 'Tu navegador no permite reproducir este vídeo.',
 } as const
 
+export const adsWorkGalleryContent = {
+  id: 'trabajos-reales',
+  title: 'Nuestro trabajo en terreno',
+  description:
+    'Proyectos reales ejecutados bajo norma y con los mayores estándares de seguridad.',
+} as const
+
 export const adsStyles = {
   section: 'scroll-mt-6 py-16 sm:py-24',
   heading:
