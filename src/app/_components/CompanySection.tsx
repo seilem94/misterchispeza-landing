@@ -21,7 +21,7 @@ export function CompanySection() {
             variant="primary" 
             size="md" 
             icon 
-            href="#empresa"
+            href="#contacto"
             className="w-full sm:w-auto justify-center"
           >
             Contáctenos

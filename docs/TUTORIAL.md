@@ -971,3 +971,44 @@ Si tienes dudas, recuerda que:
 - Los **componentes visuales** están en `/app/_components/`
 - Las **páginas** están en `/app/`
 - Los **estilos globales** están en `/app/globals.css`
+## Mantenimiento de la campaña de remodelación — REM-01
+
+Este procedimiento vigente prevalece sobre los ejemplos históricos de edición de JSX que aparecen más abajo. Leer primero `AGENT.md`, el estado vigente de `PROJECT_STATUS.md` y la decisión REM-01 en `ARQUITECTURA.md`.
+
+1. Editar copy, títulos, objeciones, pasos, incluidos, CTA y metadata exclusivamente en `src/lib/constants/remodelacion-antiguas.ts`. Mantener sus contratos TypeScript; no introducir JSX ni imports desde `app/` en las constantes.
+2. Confirmar con el negocio los valores entre corchetes antes de publicar: `[numero]`, `[100 m2]` y `[X días]` son pendientes, no afirmaciones verificadas. `[comuna]` y `[años]` son campos que el visitante completa en la conversación.
+3. Añadir el vídeo real a `public/videos/` y su miniatura propia a `public/galeria/`; actualizar `videoData` y su aviso al reemplazar los placeholders. No copiar material de banco ni inventar obras. Incorporar subtítulos cuando haya voz; `AdsVideoPlayer` ya admite una pista opcional. Conservar `controls`, `preload="none"` y ausencia de autoplay.
+4. La UI local vive en `src/app/(ads)/remodelacion-instalaciones/_components/`; `page.tsx` solo ensambla datos y secciones. No añadir header, footer o widget adicionales: pertenecen al layout `(ads)`.
+5. El CTA pasa `whatsappMessage` al selector existente. Costa/Marga Marga conservan sus teléfonos desde `navigation.ts`; los textos compartidos viven en `constants/whatsapp.ts`. No editar mensajes en el widget ni en la pantalla de redirección. No añadir el nombre, teléfono o datos personales de un cliente a la plantilla de campaña.
+6. Ejecutar typecheck, lint y build; revisar responsive y los dos enlaces de zona sin enviar mensajes reales. Registrar evidencia y pendientes en una nueva entrada de `PROJECT_STATUS.md`, sin reescribir el historial.
+
+## Mantenimiento de la campaña de viviendas nuevas — VIV-01
+
+1. Editar únicamente `src/lib/constants/viviendas-nuevas.ts` para cambiar H1, bajada, problemas, solución, pasos, incluidos, perfiles, CTA, mensaje o metadata. Mantener los contratos tipados y la UI local en `src/app/(ads)/instalacion-electrica-viviendas-nuevas/_components/`.
+2. Marketing debe confirmar la cifra `[número]` y el plazo `[X días]`, además de respaldar la prueba social y el alcance ofrecido, antes de publicar la campaña. No convertir estos marcadores en cifras inventadas. `[comuna]` se completa por el visitante en WhatsApp.
+3. Sustituir `/videos/viviendas-placeholder.mp4` y `/galeria/viviendas-poster.jpg` por material real propio desde `videoData`, retirar el aviso de preparación tras verificar ambos archivos e incorporar subtítulos si el vídeo tiene voz. Mantener controles, `preload="none"` y ausencia de autoplay.
+4. Las dos campañas consumen `src/app/components/WhatsAppCTAButton.tsx`: no crear botones privados que dupliquen el mismo comportamiento ni importar `_components` de otra ruta. Cada CTA recibe su mensaje desde las constantes de su servicio.
+5. Verificar la asociación de la ruta final en `constants/whatsapp.ts`, ambos enlaces Costa/Marga Marga y la conservación del texto al construir `wa.me`. Los planos se comparten en la conversación de WhatsApp. Desde ADS-02 no se permiten formularios en campañas.
+6. Ejecutar typecheck, lint y build. Revisar móvil y breakpoints, regresión de remodelación, enlaces genéricos de Home/solar, foco y Escape. Añadir resultados y pendientes a `PROJECT_STATUS.md`; los placeholders no acreditan el DoD multimedia ni autorizan el lanzamiento de Ads.
+
+## Mantenimiento vigente de UI y contacto — ADS-02, 2026-11-09
+
+- Toda ruta de `(ads)` usa exclusivamente WhatsApp, incluido paneles solares. No reintroducir `ContactForm`, Formspree, Turnstile, `mailto:` ni `tel:`. El formulario del Home permanece fuera del grupo.
+- Mantener tres botones de contenido por campaña: Hero, mitad del recorrido y cierre. Consumir texto y mensaje desde constantes; verificar las dos zonas y el widget único. Las anclas de contacto llevan al cierre de WhatsApp.
+- Las secciones locales animadas importan `motion` y la configuración de `useAdsReveal`; respetar movimiento reducido. Conservar las páginas y metadata en servidor, la alternancia de fondos, H2 centrados y tarjetas del Design System. `AdsVideoSection` es compartido entre las dos campañas.
+- Confirmar alias nativos, typecheck, lint, build y UI móvil/escritorio antes del commit. Vídeos, miniaturas y cifras entre corchetes siguen pendientes de marketing hasta disponer de evidencia y recursos reales.
+
+## Mantenimiento visual vigente — ADS-04, 2026-11-10
+
+- El Hero recibe `videoData` desde la página de servidor y renderiza una sola instancia de `AdsVideoPlayer` en su segunda columna; en móvil aparece después del CTA. No reintroducir la antigua sección audiovisual independiente. Mantener el aviso de preparación hasta recibir y comprobar los recursos reales.
+- Conservar el degradado azul/marino del Hero y el cierre oscuro para separar el CTA ámbar del fondo. El contenido comercial continúa en constantes, incluido «Cómo trabajamos» en `processSectionData.title`.
+- Usar `useAdsStagger` del módulo `useAdsReveal.ts` en las grillas: contenedor con variantes y viewport, hijos con variantes heredadas. No añadir `whileInView` independiente a cada hijo, que anularía la coordinación. Respetar movimiento reducido.
+- El proceso fija solo su columna de título desde `lg`, con `top-32`; animar el contenido interior y evitar ancestros con overflow que rompan el sticky. Comprobar desplazamiento dentro del proceso y liberación al finalizarlo, además del flujo normal en móvil.
+- Las reglas de WhatsApp exclusivo, tres CTAs y validaciones de ADS-02 permanecen vigentes. Registrar evidencias y pendientes en una nueva entrada del changelog sin reescribir el historial.
+
+## Mantenimiento de paneles solares — SOL-01, 2026-11-12
+
+- Editar Hero, características, beneficios, pasos, portafolio, etiquetas y vídeo en `constants/paneles-solares.ts`; la UI solar no incorpora copy comercial literal. Conservar el mensaje solar único de `panelesContactData`, utilizado también por la asociación de ruta de WhatsApp.
+- La página solar renderiza `AdsVideoSection` inmediatamente después del Hero centrado. Esta composición es distinta a la de remodelación y viviendas; no trasladar sus vídeos ni montar reproductores duplicados. El bloque compartido recibe datos tipados de `lib/types/ads.ts` y ocupa el ancho del contenedor.
+- Las cinco secciones locales usan `useAdsReveal`; conservar movimiento reducido, alternancia de fondos, foco y contraste. El Hero usa la foto existente optimizada, overlay oscuro, características glassmorphism y CTA compartido. El enlace «Ver Proceso» conserva `#proceso` y el CTA de ese proceso sigue llevando a `#contacto-paneles`.
+- Solicitar material solar real y poster propio antes de sustituir los placeholders y retirar el aviso. Validar también la procedencia de las fotografías y el respaldo del copy heredado; no dar por confirmadas las cifras al extraerlas. Ejecutar typecheck, lint, build y revisar el recorrido en móvil y escritorio. Registrar avances en `PROJECT_STATUS.md` y recursos pendientes en `LAUNCH_CHECKLIST.md`.

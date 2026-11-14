@@ -7,6 +7,7 @@ import { Route } from 'next'
  */
 export interface Service {
   id: string
+  anchorId?: string // Ancla de campaña; por defecto se utiliza id
   icon: string // ✅ Mantenemos string
   title: string
   description: string

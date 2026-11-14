@@ -10,6 +10,7 @@ import { CTASection } from "./_components/CTASection";
 import { ContactSection } from "./_components/ContactSection";
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
+import { WhatsAppWidget } from "./components/WhatsAppWidget";
 
 export const metadata: Metadata = {
   title: 'Inicio', // Se convierte en "Inicio | Mr.Chispeza" por el template
@@ -43,6 +44,7 @@ export default function HomePage() {
       <ContactSection />
 
       <Footer />
+      <WhatsAppWidget />
     </main>
   );
 }

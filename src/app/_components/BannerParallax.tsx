@@ -8,6 +8,7 @@ import { Container, Button } from "@/app/components/ui";
 /**
  * Banner con efecto parallax en la imagen de fondo
  */
+// TODO: Sustituir el fondo de Unsplash por una fotografía real de una obra de Mr. Chispeza aprobada por marketing.
 export function BannerParallax() {
   const targetRef = useRef<HTMLDivElement | null>(null);
   const { scrollYProgress } = useScroll({
