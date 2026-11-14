@@ -26,15 +26,15 @@ ADS-07 y ADS-08 actualizan los pendientes de REM-01, VIV-01 y SOL-01: los tres v
 
 ### Copy, cifras, plazos y respaldo comercial
 
-- [ ] **M06 — Experiencia en remodelación:** confirmar el número de renovaciones que reemplazará `[numero]` y aportar el respaldo de esa cifra.
-- [ ] **M07 — Superficie de referencia:** confirmar o corregir `[100 m2]` en la objeción de recableado de remodelación. La referencia pendiente no debe presentarse como un límite del servicio sin confirmación del negocio.
-- [ ] **M08 — Plazo de remodelación:** confirmar o corregir `[X días]` referido al tiempo de intervención, conforme al alcance que se ofrecerá.
-- [ ] **M09 — Experiencia en viviendas nuevas:** confirmar la cantidad de `[número] viviendas instaladas` y su respaldo.
-- [ ] **M10 — Plazo de presupuesto:** confirmar `[X días]` para entregar el presupuesto de viviendas nuevas; este plazo es distinto del tiempo de ejecución de una remodelación.
+- [x] **M06 — Experiencia en remodelación:** retirada la cifra `[numero]` y su nota por instrucción de marketing el 2026-11-14 (ADS-11). No se sustituye por una métrica inventada ni se acredita una cantidad de obras.
+- [x] **M07 — Superficie de referencia:** retirado `[100 m2]` al aplicar la respuesta aprobada de recableado el 2026-11-14 (ADS-11). No se publica un límite de superficie.
+- [x] **M08 — Plazo de remodelación:** marketing proporciona el 2026-11-14 el copy «típicamente en 4 días, dependiendo de la envergadura del proyecto» y la respuesta «usualmente máximo 4 días» (ADS-11). Copy implementado por autorización del responsable; no es una medición independiente del agente.
+- [x] **M09 — Experiencia en viviendas nuevas:** retirada la referencia `[número] viviendas instaladas` y su nota el 2026-11-14 (ADS-11), sin publicar una cifra sustituta.
+- [x] **M10 — Plazo de presupuesto:** aplicado «Presupuesto detallado en menos de 3 días» aprobado por marketing el 2026-11-14 (ADS-11). La ejecución se comunica aparte como «entre 4 y 10 días, dependiendo de la envergadura y tamaño de la instalación».
 - [ ] **M11 — Prueba social y alcance ofrecido:** respaldar las afirmaciones comerciales de ambas campañas, incluida la prueba social de electricistas certificados SEC y el alcance de diseño, instalación y TE1, antes de dar por aprobado el copy definitivo.
 - [ ] **M17 — Respaldo solar heredado:** confirmar las afirmaciones de ahorro, precio, garantías y plazos conservadas en la extracción de SOL-01, así como la procedencia de `/grid-pattern.webp` y `/paneles-1.webp`, `/paneles-2.webp`, `/paneles-3.webp` y su correspondencia con los casos publicados. La refactorización visual no acredita esos datos ni las fotografías.
 
-`[comuna]` y `[años]` son campos intencionados de las plantillas de WhatsApp que completa el visitante. No son métricas pendientes de marketing ni deben sustituirse por una comuna o antigüedad fija para toda la campaña.
+Desde ADS-11, las plantillas de WhatsApp de remodelación y viviendas terminan en «comuna de » para que el visitante complete su ubicación; se retiraron los marcadores `[comuna]` y `[años]`. No añadir una comuna fija ni perder el espacio final al normalizar o codificar el mensaje.
 
 **Trazabilidad:** [PROJECT_STATUS.md](./PROJECT_STATUS.md), REM-01 «Antes de publicar», VIV-01 «Pendientes explícitos del equipo de marketing antes de publicar» y ADS-02 «Pendientes de marketing conservados».
 
@@ -51,7 +51,7 @@ ADS-07 y ADS-08 actualizan los pendientes de REM-01, VIV-01 y SOL-01: los tres v
 ### Integración de los recursos y del copy aprobados
 
 - [ ] **D01 — Completar validación multimedia:** vídeos reales y posters de Vercel Blob integrados y disponibles por HTTP; los 404 de las miniaturas quedan resueltos en ADS-08. Avisos retirados en ADS-07. ADS-09 comprueba reproducción real de los tres vídeos mediante interacción en producción local, con silencio inicial, marco 9:16, controles, `playsInline`, `preload="none"` y sin autoplay. Incorporar subtítulos cuando corresponda antes de cerrar esta casilla.
-- [ ] **D02 — Aplicar el copy confirmado:** reemplazar los marcadores comerciales de M06–M11 exclusivamente en las constantes y retirar sus notas de confirmación pendiente cuando exista respaldo. Conservar los campos intencionados de las plantillas de WhatsApp.
+- [ ] **D02 — Completar respaldo del copy:** Fase 1 aplicada en ADS-11 con el feedback autorizado de marketing: cifras retiradas, respuestas y plazos actualizados y mensajes centralizados en `whatsapp.ts`. Permanece el respaldo comercial de M11 antes de dar por cerrada la aceptación final; no sustituirlo por la aprobación técnica del cambio.
 - [ ] **D03 — Integrar las fotos reales del Home:** actualizar las referencias de galería, banner y Hero con el material aprobado en M12–M14, respetando la separación de datos y UI. Comprobar imágenes optimizadas, dimensiones reservadas, tamaños responsive y ausencia de saltos atribuibles a la sustitución.
 - [ ] **D04 — Validar la entrega definitiva:** después de incorporar recursos o copy, ejecutar `npm run typecheck`, `npm run lint` y `npm run build`; revisar responsive, contraste y CTAs con el material final. Adjuntar resultados al registro de entrega. Los tres comandos y el responsive de la base actual ya están aprobados en ADS-02; esta casilla corresponde a los cambios pendientes y a su despliegue final.
 
@@ -61,7 +61,7 @@ ADS-07 y ADS-08 actualizan los pendientes de REM-01, VIV-01 y SOL-01: los tres v
 
 - [ ] **D05 — Dominio y metadata finales:** verificar canonical y `openGraph.url` de cada ruta final contra el dominio de producción de `metadataBase`, junto con la existencia de las imágenes SEO. La comprobación local no acredita las variables del despliegue final ni permite publicar localhost como dominio.
 - [ ] **D06 — Entradas de campaña:** comprobar en producción los enlaces del Home hacia las dos landings, sus respuestas 200 y los cuatro alias nativos 307 con preservación de parámetros UTM. Destinos de viviendas: `/instalacion-electrica-viviendas-nuevas`; destinos de remodelación: `/remodelacion-instalaciones`.
-- [ ] **D07 — Recorrido completo de WhatsApp:** probar en producción los tres CTA de cada landing y el widget único, la selección Costa/Marga Marga, el paso por `/gracias?to=whatsapp&zone=…` y la apertura del destino de WhatsApp con el teléfono configurado y el mensaje exacto. Completar una prueba controlada de recepción antes de afirmar que se verificó una entrega real; las pruebas del sprint solo comprobaron apertura y construcción de enlaces.
+- [ ] **D07 — Recorrido completo de WhatsApp:** probar en producción los tres CTA de cada landing y el widget único, la selección Costa/Marga Marga, el paso por `/gracias?to=whatsapp&zone=…&servicio=…` y la apertura del destino de WhatsApp con el teléfono configurado y el mensaje exacto. ADS-11 comprueba localmente el parámetro `servicio` (`remodelacion`, `casa-nueva`, `solar`) y su ausencia en el Home. Completar una prueba controlada de recepción antes de afirmar que se verificó una entrega real; las pruebas del sprint solo comprobaron apertura y construcción de enlaces.
 - [ ] **D08 — Regla de contacto en el despliegue:** verificar que remodelación, viviendas y paneles solares siguen sin formularios, Turnstile o enlaces de email/teléfono; mantener el header y footer restrictivos y los tres CTA de contenido de cada una de las dos campañas. Confirmar también foco, Escape, consola y comportamiento móvil con los recursos finales.
 
 Los cuatro alias documentados son `/proyectos-nuevos`, `/instalacion-electrica-casa-nueva`, `/remodelacion-instalaciones-antiguas` y `/remodelacion-electrica`. Ya funcionan localmente; esta lista no solicita recrearlos ni volver a introducir carpetas proxy.

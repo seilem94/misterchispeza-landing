@@ -6,6 +6,7 @@ import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 import { MapPin, X } from 'lucide-react'
 import {
   whatsappCampaignMessages,
+  whatsappCampaignServices,
   whatsappWidgetContent,
   whatsappZones,
 } from '@/lib/constants/whatsapp'
@@ -29,6 +30,7 @@ export function WhatsAppWidget() {
     message: string
   } | null>(null)
   const pathname = usePathname()
+  const service = whatsappCampaignServices[pathname]
   const widgetRef = useRef<HTMLDivElement>(null)
   const closeRef = useRef<HTMLButtonElement>(null)
   const triggerRef = useRef<HTMLElement | null>(null)
@@ -129,7 +131,7 @@ export function WhatsAppWidget() {
                 {whatsappZones.map((zone) => (
                   <a
                     key={zone.id}
-                    href={getWhatsAppRedirectHref(zone.id, message)}
+                    href={getWhatsAppRedirectHref(zone.id, message, service)}
                     className="flex flex-col items-center rounded-xl border border-slate-300 bg-white px-4 py-3 text-center text-sm font-semibold text-slate-800 hover:border-emerald-700 hover:text-emerald-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-800"
                   >
                     <span className="flex items-center gap-1">

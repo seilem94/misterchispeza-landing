@@ -59,9 +59,6 @@ export function ViviendasNuevasHero({
             />
             <p>{data.socialProof}</p>
           </div>
-          <p className="mx-auto mt-3 max-w-xl px-16 text-xs leading-5 text-blue-100 sm:px-0 lg:mx-0">
-            {data.referencesNote}
-          </p>
         </motion.div>
         <motion.figure
           {...reveal}

@@ -33,7 +33,6 @@ export interface ViviendasNuevasHeroData extends ViviendasNuevasSectionData {
   eyebrow: string
   ctaText: string
   socialProof: string
-  referencesNote: string
 }
 
 export interface ViviendasNuevasProblem {
@@ -83,9 +82,7 @@ export const heroData: ViviendasNuevasHeroData = {
     'Proyecto, instalación y certificado TE1 para casas, cabañas y ampliaciones. Coordinamos la electricidad con las etapas de tu obra, desde los planos hasta la entrega.',
   ctaText: 'Enviar mis planos por WhatsApp',
   socialProof:
-    'Electricistas certificados SEC Costa y Marga Marga · [número] viviendas instaladas',
-  referencesNote:
-    'Cifra de viviendas y respaldo de experiencia pendientes de confirmación.',
+    'Electricistas certificados SEC - Atendemos V Costa y Marga Marga',
 }
 
 export const problemData: ViviendasNuevasProblemData = {
@@ -135,16 +132,16 @@ export const processData: readonly ViviendasNuevasProcessStep[] = [
   {
     id: 'presupuesto',
     number: 2,
-    title: 'Presupuesto en [X días]',
+    title: 'Presupuesto detallado en menos de 3 días',
     description:
-      'Revisamos la información y definimos alcance, materiales y etapas de trabajo. El plazo [X días] está pendiente de confirmar con el equipo; la fecha de entrega del presupuesto se acuerda al revisar tu proyecto.',
+      'Revisamos la información y definimos alcance, materiales y etapas de trabajo.',
   },
   {
     id: 'instalacion',
     number: 3,
     title: 'Instalación y TE1',
     description:
-      'Coordinamos las canalizaciones, el cableado y las terminaciones con el avance de la construcción. Realizamos las pruebas y gestionamos el TE1 y la documentación según el alcance contratado.',
+      'Coordinamos las canalizaciones, el cableado y las terminaciones con el avance de la construcción. Realizamos las pruebas y gestionamos el TE1 y la documentación según el alcance contratado. Red eléctrica instalada entre 4 y 10 días, dependiendo de la envergadura y tamaño de la instalación.',
   },
 ]
 
@@ -230,8 +227,7 @@ export const targetData: readonly ViviendasNuevasItem[] = [
   },
 ]
 
-export const whatsappMessage: string =
-  'Hola Mr Chispeza, estoy construyendo en [comuna] y quiero cotizar la instalación eléctrica. ¿Les mando los planos?'
+export { viviendasWhatsappMessage as whatsappMessage } from '@/lib/constants/whatsapp'
 
 export const videoData: ViviendasNuevasVideoData = {
   id: 'video-viviendas-nuevas',

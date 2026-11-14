@@ -1,4 +1,5 @@
 import { whatsappZones } from '@/lib/constants/whatsapp'
+import type { WhatsAppService } from '@/lib/constants/whatsapp'
 
 export const WHATSAPP_OPEN_EVENT = 'mr-chispeza:whatsapp:open'
 
@@ -8,8 +9,10 @@ export interface WhatsAppOpenDetail {
 
 export function normalizeWhatsAppMessage(value: unknown): string | undefined {
   if (typeof value !== 'string') return undefined
-  const message = value.trim()
-  return message.length > 0 && message.length <= 1000 ? message : undefined
+  const message = value.trimStart()
+  return message.trim().length > 0 && message.length <= 1000
+    ? message
+    : undefined
 }
 
 export function isWhatsAppOpenDetail(
@@ -37,10 +40,12 @@ export function openWhatsAppSelector(message: string): void {
 export function getWhatsAppRedirectHref(
   zone: string,
   message?: string,
+  service?: WhatsAppService,
 ): string {
   const params = new URLSearchParams({ to: 'whatsapp', zone })
   const normalizedMessage = normalizeWhatsAppMessage(message)
   if (normalizedMessage) params.set('message', normalizedMessage)
+  if (service) params.set('servicio', service)
   return `/gracias?${params.toString()}`
 }
 

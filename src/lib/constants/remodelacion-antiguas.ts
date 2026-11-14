@@ -33,7 +33,6 @@ export interface RemodelacionHeroData extends RemodelacionSectionData {
   eyebrow: string
   ctaText: string
   socialProof: string
-  referencesNote: string
 }
 
 export interface RemodelacionSymptom {
@@ -86,14 +85,14 @@ export interface RemodelacionContactData extends RemodelacionSectionData {
 
 export const heroData: RemodelacionHeroData = {
   id: 'remodelacion',
-  eyebrow: 'Renovación eléctrica de casas antiguas',
+  eyebrow: 'Renovación eléctrica de casas antiguas y patrimoniales',
   title:
     'Renueva la electricidad de tu casa antigua sin convertirla en una obra',
   description:
     'Revisamos tu instalación y planificamos la renovación por sectores. Antes de intervenir, acordamos contigo qué se hará, los cortes de energía y el presupuesto.',
   ctaText: 'Cotizar mi renovación por WhatsApp',
-  socialProof: 'Electricistas certificados SEC Costa y Marga Marga',
-  referencesNote: 'Renovaciones realizadas: [numero] por confirmar.',
+  socialProof:
+    'Electricistas certificados SEC - Atendemos V Costa y Marga Marga',
 }
 
 export const symptomsData: RemodelacionSymptomsData = {
@@ -131,7 +130,7 @@ export const symptomsData: RemodelacionSymptomsData = {
 
 export const fearsData: RemodelacionFearsData = {
   id: 'dudas-remodelacion',
-  title: 'Los 3 miedos principales',
+  title: 'Lo que más nos preguntan antes de recablear',
   description:
     'Antes de decidir, necesitas saber cómo afectará el trabajo a tu casa y tu rutina.',
   items: [
@@ -139,19 +138,19 @@ export const fearsData: RemodelacionFearsData = {
       id: 'viabilidad',
       question: '¿Mi casa se puede recablear?',
       answer:
-        'La visita técnica permite revisar el cableado, los ductos y el tablero para definir una solución viable. El alcance se calcula para tu vivienda; [100 m2] es una superficie de referencia pendiente de confirmar, no un límite del servicio.',
+        'En la visita revisamos el estado real del cableado y tablero. Te explicamos qué se puede salvar y qué conviene renovar. Todo súper claro antes de avanzar.',
     },
     {
       id: 'intervenciones',
       question: '¿Me van a romper todo?',
       answer:
-        'Primero evaluamos si podemos aprovechar las canalizaciones existentes. Si algún tramo necesita abrirse o requiere una canalización nueva, te explicamos dónde y por qué antes de acordar la intervención. La visita define qué terminaciones incluye el presupuesto.',
+        'Buscamos aprovechar al máximo los ductos que ya tienes. Si es estrictamente necesario abrir un tramo, te mostramos dónde y por qué antes de empezar.',
     },
     {
       id: 'plazos',
       question: '¿Cuánto tiempo voy a estar en obra?',
       answer:
-        'Planificamos el trabajo por sectores y acordamos los cortes de energía antes de comenzar. La referencia [X días] está pendiente de confirmar; el plazo real depende del estado de la instalación, su tamaño y el alcance aprobado.',
+        'Nos organizamos por sectores para que no te quedes sin luz de golpe. Los cortes los acordamos contigo y el plazo exacto (usualmente máximo 4 días) va en el presupuesto.',
     },
   ],
 }
@@ -183,7 +182,7 @@ export const processData: readonly RemodelacionProcessStep[] = [
     number: 3,
     title: 'Renovamos por sectores',
     description:
-      'Ejecutamos las etapas acordadas, verificamos el funcionamiento y te explicamos el nuevo tablero. La documentación y la declaración TE1 se gestionan según el alcance contratado.',
+      'Ejecutamos las etapas acordadas, verificamos el funcionamiento y te explicamos el nuevo tablero. Renovación completada típicamente en 4 días, dependiendo de la envergadura del proyecto.',
   },
 ]
 
@@ -192,8 +191,7 @@ export const includesSectionData: RemodelacionIncludesData = {
   title: 'Qué contempla la renovación',
   description:
     'Una propuesta que considera la instalación completa y las necesidades de tu hogar.',
-  scopeNote:
-    'La visita técnica y el presupuesto definen qué elementos se incluyen en tu caso. Las reparaciones de muros, pintura y trabajos adicionales deben quedar expresamente acordados.',
+  scopeNote: 'El presupuesto detalla qué incluye tu caso.',
 }
 
 export const includesData: readonly RemodelacionIncludedItem[] = [
@@ -230,13 +228,11 @@ export const includesData: readonly RemodelacionIncludedItem[] = [
   {
     id: 'te1',
     title: 'Certificado TE1',
-    description:
-      'Gestión de la declaración y documentación técnica según el alcance contratado.',
+    description: 'Gestión de la declaración y documentación técnica.',
   },
 ]
 
-export const whatsappMessage: string =
-  'Hola Mr Chispeza, quiero cotizar la renovación eléctrica de mi casa. Está en [comuna] y tiene aprox. [años] años.'
+export { remodelacionWhatsappMessage as whatsappMessage } from '@/lib/constants/whatsapp'
 
 export const videoData: RemodelacionVideoData = {
   id: 'video-remodelacion',
