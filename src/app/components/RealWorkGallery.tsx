@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import { CarouselDots } from '@/app/components/CarouselDots'
 import { Card, Container, Section } from '@/app/components/ui'
 import { adsStyles, adsWorkGalleryContent } from '@/lib/constants/ads'
 import type { AdsWorkGalleryItem } from '@/lib/types/ads'
@@ -9,6 +10,7 @@ export function RealWorkGallery({
 }: {
   items: readonly AdsWorkGalleryItem[]
 }) {
+  const carouselId = `${adsWorkGalleryContent.id}-carousel`
   return (
     <Section
       id={adsWorkGalleryContent.id}
@@ -26,6 +28,7 @@ export function RealWorkGallery({
           {adsWorkGalleryContent.description}
         </p>
         <div
+          id={carouselId}
           role="region"
           aria-labelledby={`${adsWorkGalleryContent.id}-title`}
           tabIndex={0}
@@ -56,6 +59,11 @@ export function RealWorkGallery({
             </Card>
           ))}
         </div>
+        <CarouselDots
+          carouselId={carouselId}
+          itemCount={items.length}
+          label={adsWorkGalleryContent.title}
+        />
       </Container>
     </Section>
   )

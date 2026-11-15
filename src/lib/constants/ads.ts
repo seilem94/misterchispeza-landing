@@ -25,6 +25,11 @@ export const adsWorkGalleryContent = {
     'Proyectos reales ejecutados bajo norma y con los mayores estándares de seguridad.',
 } as const
 
+export const adsCarouselContent = {
+  itemLabel: (position: number, total: number) =>
+    `Ir al elemento ${position} de ${total}`,
+} as const
+
 export const adsStyles = {
   section: 'scroll-mt-6 py-16 sm:py-24',
   heading:

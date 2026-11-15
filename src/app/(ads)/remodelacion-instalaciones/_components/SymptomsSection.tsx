@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { CircleAlert } from 'lucide-react'
+import { CarouselDots } from '@/app/components/CarouselDots'
 import { Card, Container, Section } from '@/app/components/ui'
 import { WhatsAppCTAButton } from '@/app/components/WhatsAppCTAButton'
 import {
@@ -48,6 +49,7 @@ export function SymptomsSection({
 }) {
   const reveal = useAdsReveal()
   const stagger = useAdsStagger()
+  const carouselId = `${data.id}-carousel`
   const symptomPairs = Array.from(
     { length: Math.ceil(data.items.length / 2) },
     (_, index) => data.items.slice(index * 2, index * 2 + 2),
@@ -76,6 +78,7 @@ export function SymptomsSection({
         </motion.div>
         <motion.ul
           {...stagger.container}
+          id={carouselId}
           aria-label={data.title}
           tabIndex={0}
           className="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-4 -mx-4 px-4 scrollbar-hide md:hidden focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-500"
@@ -92,6 +95,11 @@ export function SymptomsSection({
             </motion.li>
           ))}
         </motion.ul>
+        <CarouselDots
+          carouselId={carouselId}
+          itemCount={symptomPairs.length}
+          label={data.title}
+        />
         <motion.ul
           {...stagger.container}
           className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-6"

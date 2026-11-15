@@ -828,3 +828,15 @@ Evolucionar `RealWorkGallery.tsx`, compartido por ambas campañas, a proporción
 `RealWorkGallery.tsx` utiliza `Section` con `variant="accent"`, bordes `border-slate-200/80` y espaciado `py-16 md:py-24` en ambas campañas. Se conservan sus fotos, datos, tarjetas blancas, proporción 4:5 y hover de ADS-12.
 
 **Validación y entrega:** typecheck, lint, build, secuencia/copy exactos, pares móviles, grilla de escritorio, contraste de bloques, responsive en ambas rutas, fotos y CTA con ambas zonas, mensaje, servicio, foco y Escape. Añadir la entrada ADS-13 solicitada a `PROJECT_STATUS.md`, crear el commit indicado y hacer push a la rama actual. Revertir el commit recupera la presentación y textos previos.
+
+## Decisión 2026-11-15 — ADS-14: tarjetas desktop e indicadores de carrusel
+
+**Adoptada antes del código por solicitud del responsable:** conservar exactamente las tarjetas compactas móviles de Target y restaurar desde `md` una grilla simétrica de dos columnas con `gap-8`, padding de 32 px, icono superior de 48 px, título de 20 px y descripción de 16 px centrados. Mantener el mismo `Container` y los datos existentes.
+
+Crear `components/CarouselDots.tsx` como frontera cliente pequeña, reutilizada bajo las dos galerías, los cuatro perfiles y las tres columnas de síntomas. Cada pista recibe un ID estable; el componente observa su scroll con listener pasivo y sus medidas con `ResizeObserver`, selecciona el ítem cuyo centro está más próximo al centro visible y desplaza hasta su centro al tocar un indicador. El navegador limita los extremos al recorrido disponible; no dividir por el viewport, que incluye separación y vista parcial del siguiente ítem. Respetar movimiento reducido y limpiar observadores/listeners al desmontar. `RealWorkGallery` continúa en servidor y solo los indicadores se hidratan; no añadir dependencias.
+
+Los indicadores son botones con `aria-controls`, nombre desde constantes, `aria-current` y foco visible, con píldoras decorativas y área táctil mínima de 24 px. El ejemplo `aria-hidden="true"` se aplica a la píldora, no al grupo interactivo, para mantener los botones accesibles. Se ocultan desde `md` y conservan el desplazamiento nativo por teclado.
+
+Sincronizar `LAUNCH_CHECKLIST.md` con los cierres ya acreditados y este hito. Dejar como validación conjunta activa de remodelación/viviendas la sesión de 15 minutos en `/gracias` para Google Ads; conservar las tareas abiertas del Home y solares. Reagrupar los antecedentes generales fuera del feedback actual sin presentarlos como auditorías externas completadas; el historial permanece en `PROJECT_STATUS.md`.
+
+**Validación y entrega:** typecheck, lint, build, responsive, tarjetas móviles conservadas y escritorio centrado, cuatro conjuntos de dots (3/3 fotos, 4 perfiles y 3 pares), desplazamiento nativo, primer/último indicador, activación por teclado, cambios de breakpoint y regresión de fotos/WhatsApp. Actualizar el checklist solo tras la validación, añadir la entrada ADS-14 solicitada, commit y push a la rama vigente. Revertir el commit restaura la presentación y los documentos previos.
