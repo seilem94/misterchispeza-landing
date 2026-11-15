@@ -8,19 +8,19 @@ import {
 
 const adsRevealViewport = {
   once: true,
-  margin: '0px 0px -50px 0px',
-  amount: 0.1,
+  margin: '0px 0px 120px 0px',
+  amount: 0.05,
 } satisfies NonNullable<MotionProps['viewport']>
 
 export function useAdsReveal(): MotionProps {
   const reducedMotion = useReducedMotion()
 
   return {
-    initial: reducedMotion ? false : { opacity: 0, y: 20 },
+    initial: reducedMotion ? false : { opacity: 0.85, y: 10 },
     whileInView: { opacity: 1, y: 0 },
     viewport: adsRevealViewport,
     transition: {
-      duration: reducedMotion ? 0 : 0.7,
+      duration: reducedMotion ? 0 : 0.28,
       ease: 'easeOut',
     },
   }
@@ -42,17 +42,17 @@ export function useAdsStagger(): AdsStagger {
       variants: {
         hidden: {},
         visible: {
-          transition: { staggerChildren: reducedMotion ? 0 : 0.3 },
+          transition: { staggerChildren: reducedMotion ? 0 : 0.06 },
         },
       },
     },
     item: {
-      hidden: { opacity: reducedMotion ? 1 : 0, y: reducedMotion ? 0 : 20 },
+      hidden: { opacity: reducedMotion ? 1 : 0.85, y: reducedMotion ? 0 : 8 },
       visible: {
         opacity: 1,
         y: 0,
         transition: {
-          duration: reducedMotion ? 0 : 0.7,
+          duration: reducedMotion ? 0 : 0.25,
           ease: 'easeOut',
         },
       },

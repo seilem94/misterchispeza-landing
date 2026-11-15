@@ -21,7 +21,7 @@ function SymptomCard({ item }: { item: RemodelacionSymptom }) {
     <Card
       className={cn(
         adsStyles.card,
-        'h-auto flex-row items-start gap-3 border-slate-200 p-4 text-left transition-all duration-300 md:h-full md:flex-col md:items-center md:gap-0 md:p-8 md:text-center md:hover:-translate-y-1 md:hover:shadow-xl motion-reduce:transition-none motion-reduce:md:hover:translate-y-0',
+        'h-full flex flex-row items-center gap-3 border-slate-200 p-4 text-left transition-all duration-300 md:flex-col md:items-center md:gap-0 md:p-8 md:text-center md:hover:-translate-y-1 md:hover:shadow-xl motion-reduce:transition-none motion-reduce:md:hover:translate-y-0',
       )}
       padding="sm"
     >
@@ -81,13 +81,13 @@ export function SymptomsSection({
           id={carouselId}
           aria-label={data.title}
           tabIndex={0}
-          className="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-4 -mx-4 px-4 scrollbar-hide md:hidden focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-500"
+          className="flex items-stretch overflow-x-auto snap-x snap-mandatory gap-4 pb-4 -mx-4 px-4 scrollbar-hide md:hidden focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-500"
         >
           {symptomPairs.map((pair) => (
             <motion.li
               key={pair[0].id}
               variants={stagger.item}
-              className="w-[85vw] shrink-0 snap-center flex flex-col gap-3"
+              className="w-[85vw] shrink-0 snap-center grid grid-rows-2 gap-3"
             >
               {pair.map((item) => (
                 <SymptomCard key={item.id} item={item} />
