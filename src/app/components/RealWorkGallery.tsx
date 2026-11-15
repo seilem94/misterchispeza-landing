@@ -10,7 +10,11 @@ export function RealWorkGallery({
   items: readonly AdsWorkGalleryItem[]
 }) {
   return (
-    <Section id={adsWorkGalleryContent.id} variant="default" className="pb-20">
+    <Section
+      id={adsWorkGalleryContent.id}
+      variant="accent"
+      className="border-y border-slate-200/80 py-16 md:py-24"
+    >
       <Container>
         <h2
           id={`${adsWorkGalleryContent.id}-title`}

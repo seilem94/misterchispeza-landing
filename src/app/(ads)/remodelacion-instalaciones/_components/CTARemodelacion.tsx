@@ -44,6 +44,9 @@ export function CTARemodelacion({
             message={whatsappMessage}
             className="shadow-lg shadow-amber-500/20 hover:shadow-amber-500/30"
           />
+          <p className="text-xs text-slate-400 mt-3 text-center">
+            {data.ctaMicrocopy}
+          </p>
         </motion.div>
       </Container>
     </Section>

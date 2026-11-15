@@ -10,7 +10,34 @@ import {
 } from '@/app/components/hooks/useAdsReveal'
 import { adsStyles } from '@/lib/constants/ads'
 import { cn } from '@/lib/utils/cn'
-import type { RemodelacionSymptomsData } from '@/lib/constants/remodelacion-antiguas'
+import type {
+  RemodelacionSymptom,
+  RemodelacionSymptomsData,
+} from '@/lib/constants/remodelacion-antiguas'
+
+function SymptomCard({ item }: { item: RemodelacionSymptom }) {
+  return (
+    <Card
+      className={cn(
+        adsStyles.card,
+        'h-auto flex-row items-start gap-3 border-slate-200 p-4 text-left transition-all duration-300 md:h-full md:flex-col md:items-center md:gap-0 md:p-8 md:text-center md:hover:-translate-y-1 md:hover:shadow-xl motion-reduce:transition-none motion-reduce:md:hover:translate-y-0',
+      )}
+      padding="sm"
+    >
+      <span
+        className={cn(
+          adsStyles.iconBadge,
+          'mx-0 mb-0 h-10 w-10 rounded-xl md:mx-auto md:mb-6 md:h-16 md:w-16 md:rounded-2xl',
+        )}
+      >
+        <CircleAlert className={adsStyles.icon} aria-hidden="true" />
+      </span>
+      <p className="min-w-0 flex-1 text-base font-semibold leading-7 text-slate-900">
+        {item.text}
+      </p>
+    </Card>
+  )
+}
 
 export function SymptomsSection({
   data,
@@ -21,6 +48,10 @@ export function SymptomsSection({
 }) {
   const reveal = useAdsReveal()
   const stagger = useAdsStagger()
+  const symptomPairs = Array.from(
+    { length: Math.ceil(data.items.length / 2) },
+    (_, index) => data.items.slice(index * 2, index * 2 + 2),
+  )
   return (
     <Section
       id={data.id}
@@ -45,29 +76,29 @@ export function SymptomsSection({
         </motion.div>
         <motion.ul
           {...stagger.container}
-          className="grid gap-6 md:grid-cols-2 lg:grid-cols-3"
+          aria-label={data.title}
+          tabIndex={0}
+          className="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-4 -mx-4 px-4 scrollbar-hide md:hidden focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-500"
+        >
+          {symptomPairs.map((pair) => (
+            <motion.li
+              key={pair[0].id}
+              variants={stagger.item}
+              className="w-[85vw] shrink-0 snap-center flex flex-col gap-3"
+            >
+              {pair.map((item) => (
+                <SymptomCard key={item.id} item={item} />
+              ))}
+            </motion.li>
+          ))}
+        </motion.ul>
+        <motion.ul
+          {...stagger.container}
+          className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-6"
         >
           {data.items.map((item) => (
             <motion.li key={item.id} variants={stagger.item}>
-              <Card
-                className={cn(
-                  adsStyles.card,
-                  'flex-row items-start gap-3 border-slate-200 text-left transition-all duration-300 hover:-translate-y-1 hover:shadow-xl motion-reduce:transform-none motion-reduce:transition-none motion-reduce:hover:translate-y-0 md:flex-col md:items-center md:gap-0 md:p-8 md:text-center',
-                )}
-                padding="sm"
-              >
-                <span
-                  className={cn(
-                    adsStyles.iconBadge,
-                    'mx-0 mb-0 h-10 w-10 rounded-xl md:mx-auto md:mb-6 md:h-16 md:w-16 md:rounded-2xl',
-                  )}
-                >
-                  <CircleAlert className={adsStyles.icon} aria-hidden="true" />
-                </span>
-                <p className="min-w-0 flex-1 text-base font-semibold leading-7 text-slate-900">
-                  {item.text}
-                </p>
-              </Card>
+              <SymptomCard item={item} />
             </motion.li>
           ))}
         </motion.ul>
@@ -76,6 +107,9 @@ export function SymptomsSection({
             {data.ctaPrompt}
           </p>
           <WhatsAppCTAButton label={data.ctaText} message={whatsappMessage} />
+          <p className="text-xs text-slate-500 mt-2 text-center">
+            {data.ctaMicrocopy}
+          </p>
         </motion.div>
       </Container>
     </Section>

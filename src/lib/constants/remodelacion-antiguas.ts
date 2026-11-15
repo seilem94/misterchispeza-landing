@@ -46,6 +46,7 @@ export interface RemodelacionSymptomsData extends RemodelacionSectionData {
   items: readonly RemodelacionSymptom[]
   ctaPrompt: string
   ctaText: string
+  ctaMicrocopy: string
 }
 
 export interface RemodelacionFear {
@@ -86,6 +87,7 @@ export interface RemodelacionVideoData extends RemodelacionSectionData {
 export interface RemodelacionContactData extends RemodelacionSectionData {
   eyebrow: string
   ctaText: string
+  ctaMicrocopy: string
 }
 
 export const heroData: RemodelacionHeroData = {
@@ -106,31 +108,32 @@ export const symptomsData: RemodelacionSymptomsData = {
   description:
     'Estas señales merecen una revisión de la instalación. Cuéntanos cuáles reconoces en tu casa para orientar la visita técnica.',
   ctaPrompt: 'Si alguna de estas te suena, te ayudamos a revisarlo.',
-  ctaText: heroData.ctaText,
+  ctaText: 'Revisar la seguridad de mi casa por WhatsApp',
+  ctaMicrocopy: 'Respondemos en menos de 24 hrs hábiles. Sin compromiso.',
   items: [
     {
       id: 'automatico',
       text: 'Se salta el automático si usas el hervidor y la estufa al mismo tiempo',
     },
     {
-      id: 'tablero',
-      text: 'Tu tablero todavía tiene tapones o no tiene diferencial',
-    },
-    {
       id: 'enchufes',
       text: 'Hay enchufes que se calientan, están sueltos o tienen marcas oscuras',
     },
     {
+      id: 'tablero',
+      text: 'Tu tablero todavía tiene tapones o no tiene protector diferencial',
+    },
+    {
       id: 'alargadores',
-      text: 'Dependes de alargadores porque faltan enchufes donde los necesitas',
+      text: 'Dependes de alargadores o zapatillas porque faltan enchufes donde los necesitas',
     },
     {
       id: 'luces',
-      text: 'Las luces parpadean cuando enciendes un electrodoméstico',
+      text: 'Las luces parpadean o bajan de intensidad cuando enciendes un electrodoméstico',
     },
     {
       id: 'cables',
-      text: 'No sabes cuándo se renovaron los cables ni si existe conexión a tierra',
+      text: 'No sabes hace cuántas décadas se renovaron los cables ni si existe conexión a tierra',
     },
   ],
 }
@@ -198,7 +201,7 @@ export const includesSectionData: RemodelacionIncludesData = {
   id: 'soluciones',
   title: 'Qué contempla la renovación',
   description:
-    'Una propuesta que considera la instalación completa y las necesidades de tu hogar.',
+    'Una propuesta 100% adaptada a las necesidades reales de tu casa y a tu presupuesto.',
   scopeNote: 'El presupuesto detalla qué incluye tu caso.',
 }
 
@@ -279,5 +282,6 @@ export const contactData: RemodelacionContactData = {
   title: 'Da el primer paso para renovar tu instalación',
   description:
     'Cuéntanos qué necesitas y en qué comuna está tu vivienda. Elige tu zona en WhatsApp para conversar con el equipo correspondiente.',
-  ctaText: heroData.ctaText,
+  ctaText: 'Hablar con un especialista por WhatsApp',
+  ctaMicrocopy: 'Respuesta rápida: te respondemos en menos de 24 hrs hábiles.',
 }
