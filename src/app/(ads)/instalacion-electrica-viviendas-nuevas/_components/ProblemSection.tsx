@@ -70,6 +70,9 @@ export function ProblemSection({
         </motion.ul>
         <motion.div {...reveal} className="mt-12 text-center">
           <WhatsAppCTAButton label={data.ctaText} message={whatsappMessage} />
+          <p className="text-xs text-slate-500 mt-2 text-center">
+            {data.ctaMicrocopy}
+          </p>
         </motion.div>
       </Container>
     </Section>

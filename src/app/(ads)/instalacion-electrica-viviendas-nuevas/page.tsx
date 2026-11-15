@@ -36,11 +36,7 @@ export default function ViviendasNuevasPage() {
       />
       <ProblemSection data={problemData} whatsappMessage={whatsappMessage} />
       <RealWorkGallery items={realWorkGallery} />
-      <SolutionSection
-        data={solutionData}
-        ctaText={heroData.ctaText}
-        whatsappMessage={whatsappMessage}
-      />
+      <SolutionSection data={solutionData} whatsappMessage={whatsappMessage} />
       <ProcessSection data={processSectionData} steps={processData} />
       <IncludesSection data={includesSectionData} items={includesData} />
       <TargetSection data={targetSectionData} items={targetData} />

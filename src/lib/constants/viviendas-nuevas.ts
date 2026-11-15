@@ -45,10 +45,13 @@ export interface ViviendasNuevasProblem {
 export interface ViviendasNuevasProblemData extends ViviendasNuevasSectionData {
   items: readonly ViviendasNuevasProblem[]
   ctaText: string
+  ctaMicrocopy: string
 }
 
 export interface ViviendasNuevasSolutionData extends ViviendasNuevasSectionData {
   statement: string
+  ctaText: string
+  ctaMicrocopy: string
 }
 
 export interface ViviendasNuevasItem {
@@ -75,6 +78,7 @@ export interface ViviendasNuevasVideoData extends ViviendasNuevasSectionData {
 export interface ViviendasNuevasContactData extends ViviendasNuevasSectionData {
   eyebrow: string
   ctaText: string
+  ctaMicrocopy: string
 }
 
 export const heroData: ViviendasNuevasHeroData = {
@@ -83,7 +87,7 @@ export const heroData: ViviendasNuevasHeroData = {
   title: 'La electricidad de tu casa nueva, bien hecha desde el primer día',
   description:
     'Proyecto, instalación y certificado TE1 para casas, cabañas y ampliaciones. Coordinamos la electricidad con las etapas de tu obra, desde los planos hasta la entrega.',
-  ctaText: 'Enviar mis planos por WhatsApp',
+  ctaText: 'Conversemos de tu obra por WhatsApp',
   socialProof:
     'Electricistas certificados SEC - Atendemos V Costa y Marga Marga',
 }
@@ -93,7 +97,8 @@ export const problemData: ViviendasNuevasProblemData = {
   title: 'Evita pagar doble por una mala instalación',
   description:
     'Definir la electricidad a tiempo ayuda a evitar correcciones que interrumpen el avance de la construcción.',
-  ctaText: heroData.ctaText,
+  ctaText: 'Consultar mi caso por WhatsApp',
+  ctaMicrocopy: 'Respondemos en menos de 24 hrs hábiles. Sin compromiso.',
   items: [
     {
       id: 'circuitos',
@@ -116,6 +121,9 @@ export const solutionData: ViviendasNuevasSolutionData = {
   description:
     'Revisamos tus planos y diseñamos la instalación según los espacios, los equipos que usarás y las etapas de tu obra. Coordinamos las canalizaciones antes de cerrar muros y cielos para que la electricidad acompañe la construcción.',
   statement: 'El mismo equipo que diseña, instala y certifica.',
+  ctaText: 'Enviar mis planos por WhatsApp',
+  ctaMicrocopy:
+    '¿Aún no tienes planos definitivos? Escríbenos igual y te orientamos.',
 }
 
 export const processSectionData: ViviendasNuevasSectionData = {
@@ -270,5 +278,6 @@ export const contactData: ViviendasNuevasContactData = {
   title: 'Comparte tus planos y conversemos sobre tu proyecto',
   description:
     'Elige tu zona en WhatsApp y cuéntanos en qué etapa está la construcción. Desde esa conversación puedes compartir los planos con el equipo.',
-  ctaText: heroData.ctaText,
+  ctaText: 'Hablar con el equipo y resolver mis dudas',
+  ctaMicrocopy: 'Respuesta rápida: te respondemos en menos de 24 hrs hábiles.',
 }

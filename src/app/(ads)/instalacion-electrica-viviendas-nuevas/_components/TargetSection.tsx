@@ -2,13 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { House } from 'lucide-react'
-import {
-  Card,
-  CardHeader,
-  CardContent,
-  Container,
-  Section,
-} from '@/app/components/ui'
+import { Card, Container, Section } from '@/app/components/ui'
 import {
   useAdsReveal,
   useAdsStagger,
@@ -50,23 +44,40 @@ export function TargetSection({ data, items }: TargetSectionProps) {
           />
           <p className={adsStyles.description}>{data.description}</p>
         </motion.div>
-        <motion.ul {...stagger.container} className="grid gap-6 md:grid-cols-2">
+        <motion.ul
+          {...stagger.container}
+          aria-label={data.title}
+          tabIndex={0}
+          className="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-4 -mx-4 px-4 scrollbar-hide focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-500 md:grid md:grid-cols-3 md:gap-6 md:overflow-visible md:p-0 md:m-0"
+        >
           {items.map((item) => (
-            <motion.li key={item.id} variants={stagger.item}>
+            <motion.li
+              key={item.id}
+              variants={stagger.item}
+              className="shrink-0 snap-center md:min-w-0"
+            >
               <Card
                 className={cn(
                   adsStyles.card,
-                  'border-slate-200 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl motion-reduce:transform-none motion-reduce:transition-none motion-reduce:hover:translate-y-0',
+                  'w-[82vw] sm:w-[320px] md:w-auto shrink-0 snap-center p-5 flex flex-col items-stretch gap-3 border-slate-200 text-left transition-all duration-300 md:hover:-translate-y-1 md:hover:shadow-xl motion-reduce:transition-none motion-reduce:md:hover:translate-y-0',
                 )}
-                padding="lg"
               >
-                <span className={adsStyles.iconBadge}>
-                  <House className={adsStyles.icon} aria-hidden="true" />
-                </span>
-                <CardHeader title={item.title} />
-                <CardContent className="text-base leading-7 text-slate-600">
-                  <p>{item.description}</p>
-                </CardContent>
+                <div className="flex items-center gap-3">
+                  <span
+                    className={cn(
+                      adsStyles.iconBadge,
+                      'mx-0 mb-0 h-10 w-10 rounded-xl',
+                    )}
+                  >
+                    <House className={adsStyles.icon} aria-hidden="true" />
+                  </span>
+                  <h3 className="text-lg font-bold leading-tight text-slate-900">
+                    {item.title}
+                  </h3>
+                </div>
+                <p className="text-sm text-slate-600 text-left">
+                  {item.description}
+                </p>
               </Card>
             </motion.li>
           ))}
