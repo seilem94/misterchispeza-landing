@@ -1,7 +1,13 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Button, Card, Container, Section } from '@/app/components/ui'
+import {
+  AdsMobileAccordion,
+  Button,
+  Card,
+  Container,
+  Section,
+} from '@/app/components/ui'
 import { useAdsReveal } from '@/app/components/hooks/useAdsReveal'
 import { adsStyles } from '@/lib/constants/ads'
 import { processData } from '@/lib/constants/paneles-solares'
@@ -35,36 +41,42 @@ export function ProcesoInstalacion() {
             {processData.description}
           </p>
         </motion.div>
-        <ol className="relative grid gap-6 before:absolute before:bottom-8 before:left-8 before:top-8 before:hidden before:w-px before:bg-slate-700 md:before:block">
+        <ol className="grid gap-6">
           {processData.steps.map((step) => {
             const Icon = getIconComponent(step.icon)
             return (
-              <motion.li
-                key={step.number}
-                {...reveal}
-                className="relative grid gap-4 md:grid-cols-[4rem_minmax(0,1fr)] md:gap-8"
-              >
-                <div className="relative z-10 flex h-16 w-16 items-center justify-center rounded-2xl border border-amber-500/30 bg-slate-800 text-amber-400 shadow-md">
-                  <Icon className="h-8 w-8" aria-hidden="true" />
-                </div>
+              <motion.li key={step.number} {...reveal} className="min-w-0">
                 <Card
-                  padding="lg"
-                  className="border-slate-700 bg-slate-800 text-white shadow-md"
+                  padding="sm"
+                  className="border-slate-700 bg-slate-800 p-4 text-white shadow-md md:p-8"
                 >
-                  <div className="mb-4 flex flex-wrap items-center gap-3">
-                    <span className="rounded-full border border-amber-400/25 bg-amber-500/10 px-3 py-1 text-sm font-semibold text-amber-300">
-                      {processData.stepLabel} {step.number}
-                    </span>
-                    <span className="text-sm text-slate-300">
-                      {step.duration}
-                    </span>
-                  </div>
-                  <h3 className="mb-3 text-xl font-bold text-white sm:text-2xl">
-                    {step.title}
-                  </h3>
-                  <p className="text-base leading-7 text-slate-300">
-                    {step.description}
-                  </p>
+                  <AdsMobileAccordion
+                    title={step.title}
+                    defaultOpen={step.number === 1}
+                    titleClassName="text-lg text-white md:text-2xl"
+                    headerContent={
+                      <span className="flex min-w-0 flex-1 items-center gap-3 md:gap-5">
+                        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-amber-500/30 bg-slate-800 text-amber-400 shadow-md md:h-16 md:w-16 md:rounded-2xl">
+                          <Icon className="h-8 w-8" aria-hidden="true" />
+                        </span>
+                        <span className="min-w-0 flex-1">
+                          <span className="mb-2 flex flex-wrap items-center gap-3">
+                            <span className="rounded-full border border-amber-400/25 bg-amber-500/10 px-3 py-1 text-sm font-semibold text-amber-300">
+                              {processData.stepLabel} {step.number}
+                            </span>
+                            <span className="text-sm font-normal text-slate-300">
+                              {step.duration}
+                            </span>
+                          </span>
+                          <span>{step.title}</span>
+                        </span>
+                      </span>
+                    }
+                  >
+                    <p className="text-base leading-7 text-slate-300">
+                      {step.description}
+                    </p>
+                  </AdsMobileAccordion>
                 </Card>
               </motion.li>
             )

@@ -2,6 +2,7 @@
 
 import Image from 'next/image'
 import { motion } from 'framer-motion'
+import { CarouselDots } from '@/app/components/CarouselDots'
 import { Card, Container, Section } from '@/app/components/ui'
 import { useAdsReveal } from '@/app/components/hooks/useAdsReveal'
 import { adsStyles } from '@/lib/constants/ads'
@@ -13,6 +14,7 @@ import { cn } from '@/lib/utils/cn'
 
 export function PortafolioPaneles() {
   const reveal = useAdsReveal()
+  const carouselId = `${portfolioData.id}-carousel`
 
   return (
     <Section
@@ -23,6 +25,7 @@ export function PortafolioPaneles() {
       <Container>
         <motion.div {...reveal}>
           <h2
+            id={`${portfolioData.id}-title`}
             className={cn(
               adsStyles.heading,
               'mb-4 font-extrabold md:text-4xl lg:text-5xl',
@@ -36,22 +39,32 @@ export function PortafolioPaneles() {
           />
           <p className={adsStyles.description}>{portfolioData.description}</p>
         </motion.div>
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div
+          id={carouselId}
+          role="region"
+          aria-labelledby={`${portfolioData.id}-title`}
+          tabIndex={0}
+          className="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-4 -mx-4 px-4 scrollbar-hide focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-500 md:grid md:grid-cols-3 md:gap-6 md:overflow-visible md:p-0 md:m-0"
+        >
           {proyectosPaneles.map((project) => (
-            <motion.article key={project.id} {...reveal}>
+            <motion.article
+              key={project.id}
+              {...reveal}
+              className="w-[85vw] sm:w-[340px] md:w-auto shrink-0 snap-center min-w-0"
+            >
               <Card
                 padding="sm"
-                className="group h-full overflow-hidden border-slate-200 p-0 shadow-md transition-shadow duration-300 hover:shadow-xl motion-reduce:transition-none"
+                className="group h-full overflow-hidden border-slate-200 p-0 shadow-md transition-all duration-300 md:hover:-translate-y-1.5 md:hover:shadow-xl motion-reduce:transition-none motion-reduce:md:hover:translate-y-0"
               >
                 <div className="relative aspect-video overflow-hidden bg-slate-100">
                   <Image
                     src={project.imagen}
                     alt={project.alt}
                     fill
-                    sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                    sizes="(min-width: 1152px) 347px, (min-width: 1024px) calc((100vw - 7rem) / 3), (min-width: 768px) calc((100vw - 6rem) / 3), (min-width: 640px) 340px, 85vw"
                     quality={85}
                     loading="lazy"
-                    className="object-cover transition-transform duration-300 group-hover:scale-105 motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+                    className="object-cover transition-transform duration-300 md:group-hover:scale-105 motion-reduce:transition-none motion-reduce:md:group-hover:scale-100"
                   />
                   <div className="absolute right-4 top-4 rounded-full bg-amber-500 px-3 py-1 text-sm font-semibold text-slate-950 shadow-md">
                     {project.capacidad}
@@ -87,6 +100,11 @@ export function PortafolioPaneles() {
             </motion.article>
           ))}
         </div>
+        <CarouselDots
+          carouselId={carouselId}
+          itemCount={proyectosPaneles.length}
+          label={portfolioData.title}
+        />
       </Container>
     </Section>
   )

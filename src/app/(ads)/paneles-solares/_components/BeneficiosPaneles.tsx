@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import {
   Card,
   CardContent,
-  CardHeader,
+  AdsMobileAccordion,
   Container,
   Section,
 } from '@/app/components/ui'
@@ -45,19 +45,34 @@ export function BeneficiosPaneles() {
             return (
               <motion.li key={benefit.id} {...reveal}>
                 <Card
-                  padding="lg"
+                  padding="sm"
                   className={cn(
                     adsStyles.card,
-                    'border-slate-200 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl motion-reduce:transition-none motion-reduce:hover:translate-y-0',
+                    'items-stretch border-slate-200 p-4 text-left transition-all duration-300 md:p-8 md:flex-col md:items-center md:text-center md:hover:-translate-y-1 md:hover:shadow-xl motion-reduce:transition-none motion-reduce:md:hover:translate-y-0',
                   )}
                 >
-                  <span className={adsStyles.iconBadge}>
-                    <Icon className={adsStyles.icon} aria-hidden="true" />
-                  </span>
-                  <CardHeader title={benefit.title} />
-                  <CardContent className="text-base leading-7 text-slate-600">
-                    <p>{benefit.description}</p>
-                  </CardContent>
+                  <AdsMobileAccordion
+                    title={benefit.title}
+                    className="w-full"
+                    titleClassName="text-lg md:text-xl"
+                    headerContent={
+                      <span className="flex min-w-0 flex-1 items-center gap-3 md:flex-col md:gap-0">
+                        <span
+                          className={cn(
+                            adsStyles.iconBadge,
+                            'mx-0 mb-0 h-10 w-10 rounded-xl md:mx-auto md:mb-6 md:h-16 md:w-16 md:rounded-2xl',
+                          )}
+                        >
+                          <Icon className={adsStyles.icon} aria-hidden="true" />
+                        </span>
+                        <span>{benefit.title}</span>
+                      </span>
+                    }
+                  >
+                    <CardContent className="text-base leading-7 text-slate-600">
+                      <p>{benefit.description}</p>
+                    </CardContent>
+                  </AdsMobileAccordion>
                 </Card>
               </motion.li>
             )

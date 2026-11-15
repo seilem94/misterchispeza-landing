@@ -4,6 +4,8 @@
 
 Este documento refleja el cierre de feedback solicitado por el responsable y la evidencia de [PROJECT_STATUS.md](./PROJECT_STATUS.md). Los cierres técnicos corresponden a implementación y pruebas locales; el disparo real de la conversión en Google Ads sigue reservado a D14. El historial y los antecedentes generales se conservan sin presentarlos como auditorías externas realizadas.
 
+**Homologación UX de las tres sub-landings: COMPLETADA**, 2026-11-15, SOL-03. Paneles Solares incorpora acordeones móviles en beneficios/proceso, iconos integrados y portafolio deslizable con indicadores; conserva las descripciones abiertas y la grilla de escritorio. Este cierre UX no modifica los pendientes comerciales, multimedia o de producción solares.
+
 **Regla vigente:** desde ADS-02, todo `(ads)` utiliza exclusivamente WhatsApp. Las tareas de Formspree y Turnstile de este checklist corresponden al **Home, fuera de campañas**. El responsable confirmó el dominio de producción en Cloudflare; el error local `110200` está excluido y no constituye un bloqueo que deba corregirse para estas landings.
 
 Marcar una casilla solo al disponer de evidencia, anotando fecha, entorno y referencia del resultado en el ítem o en el changelog. Cuando una condición no aplique, como subtítulos en un vídeo sin voz, dejar constancia del motivo. No marcar como entregados recursos que todavía son placeholders.
@@ -48,6 +50,7 @@ Desde ADS-11, las plantillas de WhatsApp de remodelación y viviendas terminan e
 - [x] **C04 — Target desktop: COMPLETADO.** Cuatro tarjetas simétricas en grilla de dos columnas, mismo `Container` que Incluidos, `gap-8`, padding de 32 px, icono superior de 48 px y textos centrados de 20/16 px. Móvil conserva 82 vw, 320 px desde `sm`, padding de 20 px, icono de 40 px y distribución compacta en fila. Evidencia ADS-14 del 2026-11-15.
 - [x] **C05 — Separación visual y footer móvil: COMPLETADOS.** Galería compartida con fondo `accent`, bordes sutiles y tarjetas blancas 4:5; separación vertical de 64/96 px y hover conservados. Footer con `pb-24 lg:pb-8`, 96 px inferiores comprobados en móvil. ADS-13 (`9dc5a6c`) y regresión ADS-14 del 2026-11-15.
 - [x] **C06 — Validación final local: COMPLETADA.** `npm run typecheck`, `npm run lint` y `npm run build`: código 0, cero errores y advertencias. Ambas rutas en nueve anchos, 18 combinaciones sin desbordamiento; seis fotos cargadas y cuatro CTA más widget por campaña con ambas zonas, mensaje exacto, `servicio`, foco y Escape. Sin envíos reales. Evidencia detallada en la última entrada ADS-14 de `PROJECT_STATUS.md`.
+- [x] **C07 — Homologación UX solar: COMPLETADA.** SOL-03 del 2026-11-15: seis beneficios y cinco pasos con acordeones móviles de 0,2 s, Paso 1 abierto inicialmente e iconos dentro de las tarjetas. Portafolio con tres proyectos, carrusel nativo y tres indicadores interactivos; tres columnas y hover desde `md`. Los once paneles solares y los 21 existentes de remodelación/viviendas (32 en total) responden a Enter/Espacio y muestran sus descripciones desde `md`. Tres campañas en nueve anchos, 27 combinaciones sin desbordamiento; imágenes, extremos del carrusel y contacto comprobados. Typecheck, lint y build con código 0, cero errores y advertencias. Se conservan M17, M05/D01, validaciones de producción y D14.
 
 ### Hero del Home ya acreditado
 

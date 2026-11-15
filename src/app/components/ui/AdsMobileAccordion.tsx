@@ -11,6 +11,8 @@ export interface AdsMobileAccordionProps {
   children: ReactNode
   className?: string
   titleClassName?: string
+  headerContent?: ReactNode
+  defaultOpen?: boolean
 }
 
 export function AdsMobileAccordion({
@@ -18,8 +20,10 @@ export function AdsMobileAccordion({
   children,
   className,
   titleClassName,
+  headerContent,
+  defaultOpen = false,
 }: AdsMobileAccordionProps) {
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(defaultOpen)
   const panelId = useId()
   const reducedMotion = useReducedMotion()
   const duration = reducedMotion ? 0 : 0.2
@@ -30,12 +34,13 @@ export function AdsMobileAccordion({
         <h3 className={cn('text-xl font-bold text-slate-900', titleClassName)}>
           <button
             type="button"
+            aria-label={title}
             aria-expanded={isOpen}
             aria-controls={panelId}
             onClick={() => setIsOpen((open) => !open)}
             className="flex min-h-11 w-full cursor-pointer items-center justify-between gap-3 rounded-md text-left focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-500 md:hidden"
           >
-            <span>{title}</span>
+            {headerContent ?? <span>{title}</span>}
             <motion.span
               aria-hidden="true"
               initial={false}
@@ -46,7 +51,7 @@ export function AdsMobileAccordion({
               <ChevronDown className="h-4 w-4" />
             </motion.span>
           </button>
-          <span className="hidden md:block">{title}</span>
+          <span className="hidden md:block">{headerContent ?? title}</span>
         </h3>
       </CardHeader>
       {/* Keep SSR content mounted so desktop CSS can override the closed state. */}
