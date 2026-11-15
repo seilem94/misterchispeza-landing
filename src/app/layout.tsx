@@ -31,7 +31,7 @@ const SITE_DESCRIPTION =
   process.env.NEXT_PUBLIC_SITE_DESCRIPTION ??
   'Expertos en instalaciones eléctricas, mantenimiento, certificaciones SEC y proyectos eléctricos residenciales e industriales en Valparaíso.'
 const SITE_LOCALE = process.env.NEXT_PUBLIC_SITE_LOCALE ?? 'es_CL'
-const OG_IMAGE = process.env.NEXT_PUBLIC_OG_IMAGE ?? '/og-image.jpg' // puede ser ruta relativa o URL absoluta
+const OG_IMAGE = process.env.NEXT_PUBLIC_OG_IMAGE ?? '/og-image.webp' // puede ser ruta relativa o URL absoluta
 
 const GOOGLE_SITE_VERIFICATION =
   process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ?? ''

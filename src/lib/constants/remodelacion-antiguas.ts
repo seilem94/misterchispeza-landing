@@ -92,14 +92,14 @@ export interface RemodelacionContactData extends RemodelacionSectionData {
 
 export const heroData: RemodelacionHeroData = {
   id: 'remodelacion',
-  eyebrow: 'Renovación eléctrica de casas antiguas y patrimoniales',
+  eyebrow: 'Electricistas certificados SEC',
   title:
-    'Renueva la electricidad de tu casa antigua sin convertirla en una obra',
+    'Renueva la electricidad de tu casa antigua o patrimonial sin destrozar tus muros',
   description:
     'Revisamos tu instalación y planificamos la renovación por sectores. Antes de intervenir, acordamos contigo qué se hará, los cortes de energía y el presupuesto.',
   ctaText: 'Cotizar mi renovación por WhatsApp',
   socialProof:
-    'Electricistas certificados SEC - Atendemos V Costa y Marga Marga',
+    'Atendemos V Costa y Marga Marga - Consulta disponibilidad según tu comuna y zona.',
 }
 
 export const symptomsData: RemodelacionSymptomsData = {
@@ -140,28 +140,28 @@ export const symptomsData: RemodelacionSymptomsData = {
 
 export const fearsData: RemodelacionFearsData = {
   id: 'dudas-remodelacion',
-  title: 'Preguntas Frecuentes Antes de Recablear',
+  title: 'Preguntas Frecuentes Antes del Trabajo',
   description:
     'Antes de decidir, necesitas saber cómo afectará el trabajo a tu casa y tu rutina.',
-  ctaText: '¿Tienes más preguntas? Háblanos al WhatsApp',
+  ctaText: '¿Tienes más preguntas? \nHáblanos al WhatsApp',
   items: [
     {
       id: 'viabilidad',
       question: '¿Mi casa se puede recablear?',
       answer:
-        'En la visita revisamos el estado real del cableado y tablero. Te explicamos exactamente qué se puede salvar y qué conviene renovar. Todo súper claro antes de avanzar.',
+        'En la visita revisamos el estado real del cableado y el tablero. Te explicamos exactamente qué se puede salvar y qué conviene renovar. Todo claro antes de avanzar.',
     },
     {
       id: 'intervenciones',
-      question: '¿Me van a romper todo?',
+      question: '¿Me van a romper las paredes o el techo?',
       answer:
-        'Buscamos aprovechar al máximo los ductos que ya tienes. Si es estrictamente necesario abrir un tramo, te mostramos dónde y por qué antes de empezar.',
+        'Buscamos aprovechar al máximo los ductos y canalizaciones existentes. Si es estrictamente necesario abrir un tramo, te mostramos dónde y por qué antes de empezar.',
     },
     {
       id: 'plazos',
       question: '¿Cuánto tiempo voy a estar en obra?',
       answer:
-        'Nos organizamos por sectores para que no te quedes sin luz de golpe. Los cortes los acordamos contigo y el plazo exacto (usualmente máximo 4 días) va en el presupuesto.',
+        'Nos organizamos por sectores para que no te quedes sin luz de golpe. Los cortes los acordamos contigo y el plazo exacto va en el presupuesto (usualmente máximo 4 días) .',
     },
   ],
 }
@@ -258,7 +258,7 @@ export const realWorkGallery: readonly AdsWorkGalleryItem[] = [
   },
   {
     src: 'https://gapghs72pvdn9hax.public.blob.vercel-storage.com/remodelacion/reconstruccion-vina.webp',
-    title: 'Reconstrucción Viviendas de Emergencia',
+    title: 'Reconstrucción post-incendio: Viviendas de emergencia',
     location: 'Villa Independencia, Viña del Mar',
   },
 ]

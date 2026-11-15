@@ -120,10 +120,10 @@ export const solutionData: ViviendasNuevasSolutionData = {
   title: 'Primero el proyecto, después el cable',
   description:
     'Revisamos tus planos y diseñamos la instalación según los espacios, los equipos que usarás y las etapas de tu obra. Coordinamos las canalizaciones antes de cerrar muros y cielos para que la electricidad acompañe la construcción.',
-  statement: 'El mismo equipo que diseña, instala y certifica.',
+  statement: 'El mismo equipo diseña, instala y certifica.',
   ctaText: 'Enviar mis planos por WhatsApp',
   ctaMicrocopy:
-    '¿Aún no tienes planos definitivos? Escríbenos igual y te orientamos.',
+    '¿No tienes planos? Escríbenos y te orientamos.',
 }
 
 export const processSectionData: ViviendasNuevasSectionData = {
@@ -153,7 +153,7 @@ export const processData: readonly ViviendasNuevasProcessStep[] = [
     number: 3,
     title: 'Instalación y TE1',
     description:
-      'Coordinamos las canalizaciones, el cableado y las terminaciones con el avance de la construcción. Realizamos las pruebas y gestionamos el TE1 y la documentación según el alcance contratado. Red eléctrica instalada entre 4 y 10 días, dependiendo de la envergadura y tamaño de la instalación.',
+      'Coordinamos las canalizaciones, el cableado y las terminaciones con el avance de la construcción. Realizamos las pruebas, gestionamos el TE1 y la documentación si lo necesitas.',
   },
 ]
 
@@ -161,9 +161,9 @@ export const includesSectionData: ViviendasNuevasIncludesData = {
   id: 'incluidos',
   title: 'Soluciones eléctricas a medida para tu obra',
   description:
-    'Una propuesta que conecta el diseño con lo que se ejecutará en terreno.',
+    'Una propuesta que conecta tus necesidades con lo que se ejecutará en terreno.',
   scopeNote:
-    'El presupuesto detalla los materiales, los trabajos y las etapas incluidos en tu caso. Empalmes, extensiones de red y otros trabajos adicionales deben quedar expresamente acordados.',
+    'El presupuesto detalla los materiales, los trabajos y las etapas incluidas en tu caso. Si quieres agregar o quitar algo, podemos ajustar el alcance antes de empezar.',
 }
 
 export const includesData: readonly ViviendasNuevasItem[] = [
