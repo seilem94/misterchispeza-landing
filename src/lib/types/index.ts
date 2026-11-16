@@ -16,10 +16,10 @@ export interface Service {
   category: 'electrical' | 'electronic' | 'solar' | 'security'
   featured?: boolean
   href?: Route // Para servicios con landing dedicada
-  
+
   // ✅ NUEVO: Texto personalizado del CTA
   ctaText?: string
-  
+
   // ✅ NUEVO: Features para mostrar en la card
   features?: string[]
 }
@@ -42,6 +42,8 @@ export interface GalleryImage {
   id: string
   src: string
   alt: string
+  title: string
+  location: string
   category?: string
 }
 

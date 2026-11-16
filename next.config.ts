@@ -49,6 +49,13 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'gapghs72pvdn9hax.public.blob.vercel-storage.com',
         port: '',
+        pathname: '/home/**',
+        search: '',
+      },
+      {
+        protocol: 'https',
+        hostname: 'gapghs72pvdn9hax.public.blob.vercel-storage.com',
+        port: '',
         pathname: '/remodelacion/**',
         search: '',
       },

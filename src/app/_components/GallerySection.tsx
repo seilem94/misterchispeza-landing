@@ -1,70 +1,72 @@
-"use client";
+import Image from 'next/image'
+import { Card, Section, Container } from '@/app/components/ui'
+import { CarouselDots } from '@/app/components/CarouselDots'
+import { galleryImages, homeGalleryContent } from '@/lib/constants/gallery'
+import { GalleryContactLink } from './GalleryContactLink'
 
-import React from "react";
-import Image from "next/image";
-import { Section, Container } from "@/app/components/ui";
-import { galleryImages } from "@/lib/constants/gallery";
-
-/**
- * Sección de galería de imágenes
- */
-// TODO: Reemplazar las fotos de banco de galleryImages (Unsplash) por fotografías reales de obras de Mr. Chispeza.
 export function GallerySection() {
+  const carouselId = 'galeria-home-carousel'
+
   return (
     <Section id="galeria" className="bg-white">
       <Container className="py-16 sm:py-20 lg:py-24">
-        {/* Título responsive */}
-        <h2 className="mb-8 sm:mb-12 text-center text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900">
-          Galería de Proyectos
+        <h2
+          id="galeria-home-title"
+          className="mb-8 text-center text-2xl font-bold text-slate-900 sm:mb-12 sm:text-3xl md:text-4xl"
+        >
+          {homeGalleryContent.title}
         </h2>
 
-        {/* Grid responsive optimizado */}
-        <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 max-w-5xl mx-auto">
-          {galleryImages.map((image, index) => (
-            <div
+        <div
+          id={carouselId}
+          role="region"
+          aria-labelledby="galeria-home-title"
+          tabIndex={0}
+          className="scrollbar-hide -mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4 pt-1 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-500 md:mx-auto md:grid md:max-w-5xl md:snap-none md:grid-cols-3 md:gap-6 md:overflow-visible md:px-0 md:pb-0 md:pt-0"
+        >
+          {galleryImages.map((image) => (
+            <Card
               key={image.id}
-              className="group relative aspect-square overflow-hidden rounded-lg bg-slate-200 shadow-md hover:shadow-xl transition-all duration-300"
+              className="group w-[85vw] min-w-0 shrink-0 snap-center overflow-hidden bg-white p-0 transition-all duration-300 sm:w-[340px] md:w-auto md:hover:-translate-y-1.5 md:hover:shadow-xl motion-reduce:transition-none motion-reduce:md:hover:translate-y-0"
             >
-              <Image
-                src={image.src}
-                alt={image.alt}
-                fill
-                sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, 33vw"
-                className="object-cover transition-transform duration-300 md:group-hover:scale-110"
-                unoptimized
-                priority={index < 3}
-              />
-                <div className="
-                  absolute inset-0 
-                  bg-linear-to-t from-slate-900/70 via-slate-900/20 to-transparent
-                  opacity-100 md:opacity-0
-                  transition-opacity duration-300 
-                  md:group-hover:opacity-100
-                ">
-                <div className="absolute bottom-0 left-0 right-0 p-4">
-                  <p className="text-sm font-semibold text-white">
-                    {image.alt}
-                  </p>
-                  {image.category && (
-                    <span className="mt-1 inline-block px-2 py-0.5 text-xs font-medium text-white/90 bg-white/20 rounded-full capitalize">
-                      {image.category}
-                    </span>
-                  )}
+              <GalleryContactLink>
+                <div className="relative aspect-[4/5] w-full overflow-hidden">
+                  <Image
+                    src={image.src}
+                    alt={image.alt}
+                    fill
+                    sizes="(min-width: 1152px) 325px, (min-width: 1024px) calc((100vw - 7rem) / 3), (min-width: 768px) calc((100vw - 6rem) / 3), (min-width: 640px) 340px, 85vw"
+                    className="object-cover transition-transform duration-500 md:group-hover:scale-105 motion-reduce:transition-none motion-reduce:md:group-hover:scale-100"
+                  />
                 </div>
-              </div>
-            </div>
+                <div className="flex grow flex-col gap-1 bg-white p-4">
+                  <h3 className="text-lg font-bold leading-tight text-slate-900">
+                    {image.title}
+                  </h3>
+                  <p className="text-sm font-medium text-slate-500">
+                    {image.location}
+                  </p>
+                  <p className="mt-2 flex items-center gap-1 text-xs font-semibold text-amber-600">
+                    {homeGalleryContent.ctaText}{' '}
+                    <span aria-hidden="true">→</span>
+                  </p>
+                </div>
+              </GalleryContactLink>
+            </Card>
           ))}
         </div>
+        <CarouselDots
+          carouselId={carouselId}
+          itemCount={galleryImages.length}
+          label={homeGalleryContent.title}
+        />
 
-        {/* Fallback si no hay imágenes */}
         {galleryImages.length === 0 && (
-          <div className="text-center py-12">
-            <p className="text-slate-500 text-lg">
-              No hay imágenes disponibles en este momento.
-            </p>
-          </div>
+          <p className="py-12 text-center text-lg text-slate-500">
+            {homeGalleryContent.emptyText}
+          </p>
         )}
       </Container>
     </Section>
-  );
+  )
 }

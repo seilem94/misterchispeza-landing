@@ -1,40 +1,57 @@
-import type { NavItem } from "@/lib/types";
+import type { NavItem } from '@/lib/types'
 
 /**
  * Items de navegación principal
  */
 export const mainNavigation: NavItem[] = [
   {
-    label: "Compañía",
-    href: "#empresa",
+    label: 'Compañía',
+    href: '#empresa',
   },
   {
-    label: "Servicios",
-    href: "#servicios",
+    label: 'Servicios',
+    href: '#servicios',
   },
   {
-    label: "Sectores",
-    href: "#sectores",
+    label: 'Sectores',
+    href: '#sectores',
   },
   {
-    label: "Imágenes",
-    href: "#galeria",
+    label: 'Imágenes',
+    href: '#galeria',
   },
-];
+]
 
 /**
  * Información de contacto
  */
 export const contactCosta = {
-  phone: "+56 9 8677 4423 (Solo WhatsApp)",
-  email: "elielo.hhs@gmail.com",
-  location: "Provincia de Valparaíso, Chile",
-  whatsapp: "+56986774423 ",
-};
+  phone: '+56 9 8677 4423 (Solo WhatsApp)',
+  email: 'elielo.hhs@gmail.com',
+  location: 'Provincia de Valparaíso, Chile',
+  whatsapp: '+56986774423 ',
+}
 
 export const contactMarga = {
-  phone: "+56 9 6820 4310 (Solo WhatsApp)",
-  email: "elielo.hhs@gmail.com",
-  location: "Provincia del Marga Marga, Chile",
-  whatsapp: "+56968204310",
-};
+  phone: '+56 9 6820 4310 (Solo WhatsApp)',
+  email: 'elielo.hhs@gmail.com',
+  location: 'Provincia del Marga Marga, Chile',
+  whatsapp: '+56968204310',
+}
+
+export const homeContactContent = {
+  title: 'Contacto',
+  description: 'Cuéntanos de tu proyecto y agenda una visita técnica.',
+  zones: [
+    {
+      title: 'Quinta Costa',
+      href: '/gracias?to=whatsapp&zone=costa',
+      contact: contactCosta,
+    },
+    {
+      title: 'Marga Marga',
+      href: '/gracias?to=whatsapp&zone=marga',
+      contact: contactMarga,
+    },
+  ],
+} as const

@@ -6,6 +6,8 @@ Este documento refleja el cierre de feedback solicitado por el responsable y la 
 
 **Homologación UX de las tres sub-landings: COMPLETADA**, 2026-11-15, SOL-03. Paneles Solares incorpora acordeones móviles en beneficios/proceso, iconos integrados y portafolio deslizable con indicadores; conserva las descripciones abiertas y la grilla de escritorio. Este cierre UX no modifica los pendientes comerciales, multimedia o de producción solares.
 
+**Homologación mobile-first del Home y galería real: COMPLETADA**, 2026-11-16, HOME-01. Servicios, sectores, galería 4:5 con indicadores, acceso compacto al formulario y reserva del footer comprobados localmente. M13 y las validaciones de producción/Formspree/Turnstile conservan su alcance pendiente.
+
 **Regla vigente:** desde ADS-02, todo `(ads)` utiliza exclusivamente WhatsApp. Las tareas de Formspree y Turnstile de este checklist corresponden al **Home, fuera de campañas**. El responsable confirmó el dominio de producción en Cloudflare; el error local `110200` está excluido y no constituye un bloqueo que deba corregirse para estas landings.
 
 Marcar una casilla solo al disponer de evidencia, anotando fecha, entorno y referencia del resultado en el ítem o en el changelog. Cuando una condición no aplique, como subtítulos en un vídeo sin voz, dejar constancia del motivo. No marcar como entregados recursos que todavía son placeholders.
@@ -56,6 +58,11 @@ Desde ADS-11, las plantillas de WhatsApp de remodelación y viviendas terminan e
 
 - [x] **M14 — Hero:** acreditar la procedencia de `/hero.webp`. Si no se puede confirmar como fotografía propia de una obra real, aportar un reemplazo verificable antes de presentar el Home como 100 % de obras reales.
 
+### Home — galería real y optimización móvil, COMPLETADAS, 2026-11-16
+
+- [x] **M12 — Home, galería: COMPLETADO.** Las tres imágenes placeholder de Unsplash fueron sustituidas por las fotos reales `.webp` indicadas de Vercel Blob: Restaurant Río Tinto (Casablanca), restauración e iluminación (Colmo) y tablero patrimonial (Con-Con). Originales HTTP 200 con `Content-Type: image/webp`; tres imágenes optimizadas cargadas en navegador mediante `next/image`, proporción reservada 4:5, títulos y ubicaciones exactos. Evidencia: HOME-01 en [PROJECT_STATUS.md](./PROJECT_STATUS.md).
+- [x] **C08 — Home, optimización mobile-first: COMPLETADO.** Tres servicios destacados abiertos y siete acordeones con IDs intactos y auto-apertura/scroll por hash de Google Ads; sectores con Residenciales abierto inicialmente. Galería con carrusel nativo, tres indicadores interactivos, tarjetas de 85 vw/340 px y grilla abierta desde `md`. Banner naranja oculto bajo `md`, información previa al formulario compacta, CTA con scroll suave/foco y footer con `pb-24 lg:pb-8`. Nueve tamaños entre 360 y 1280 px sin desbordamiento; typecheck, lint y build con código 0, cero errores y advertencias. Fase 1: `d212089`; cierre y límites: HOME-01.
+
 ## Pendientes activos
 
 ### Validación conjunta de Remodelación y Viviendas Nuevas
@@ -64,9 +71,8 @@ Desde ADS-11, las plantillas de WhatsApp de remodelación y viviendas terminan e
 
 ### Home — fotografías, entradas y formulario
 
-- [ ] **M12 — Home, galería:** sustituir las tres imágenes de Unsplash por fotografías reales de obras de Mr. Chispeza.
 - [ ] **M13 — Home, banner:** entregar una fotografía real para reemplazar el fondo de banco de `BannerParallax`.
-- [ ] **D03 — Home, integración fotográfica:** integrar el material aprobado de M12–M14 desde constantes; comprobar optimización, dimensiones reservadas, tamaños responsive y ausencia de saltos.
+- [ ] **D03 — Home, integración fotográfica completa:** galería M12 integrada y comprobada en HOME-01; resta sustituir el fondo de `BannerParallax` (M13) y completar la validación del conjunto. El cierre de la galería no acredita un Home enteramente libre de fotos de banco.
 - [ ] **D06 — Home, entradas de campaña:** verificar en producción los enlaces a `/instalacion-electrica-viviendas-nuevas` y `/remodelacion-instalaciones`, respuestas 200 y alias 307 con parámetros UTM. Conservar los cuatro alias nativos existentes, sin carpetas proxy.
 - [ ] **D09 — Home, variables y dominio:** comprobar `NEXT_PUBLIC_TURNSTILE_SITE_KEY` y `NEXT_PUBLIC_FORMSPREE_ID` del despliegue final y su uso en el formulario; conservar evidencia del dominio autorizado sin publicar valores sensibles ni reabrir el error local excluido.
 - [ ] **D10 — Home, Formspree:** verificar la activación/configuración de la integración nativa de Turnstile y una única validación efectiva del token.
