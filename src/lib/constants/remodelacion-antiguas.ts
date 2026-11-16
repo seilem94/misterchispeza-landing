@@ -113,7 +113,7 @@ export const symptomsData: RemodelacionSymptomsData = {
   items: [
     {
       id: 'automatico',
-      text: 'Se salta el automático si usas el hervidor y la estufa al mismo tiempo',
+      text: 'Se cae el automático si usas el hervidor y la estufa al mismo tiempo',
     },
     {
       id: 'enchufes',
@@ -248,13 +248,13 @@ export { remodelacionWhatsappMessage as whatsappMessage } from '@/lib/constants/
 export const realWorkGallery: readonly AdsWorkGalleryItem[] = [
   {
     src: 'https://gapghs72pvdn9hax.public.blob.vercel-storage.com/remodelacion/galpon_iluminado.webp',
-    title: 'Restauración e iluminación de espacios',
-    location: 'Colmo, Provincia de Quillota',
+    title: 'Proyecto de iluminación \n Centro de Eventos Casona Mackenna',
+    location: 'Colmo - Provincia de Quillota',
   },
   {
     src: 'https://gapghs72pvdn9hax.public.blob.vercel-storage.com/remodelacion/tecnico-tablero.webp',
-    title: 'Actualización y normalización de tableros',
-    location: 'Limache, Marga-Marga',
+    title: 'Tablero normalizado casa patrimonial',
+    location: 'Con Con, Valparaíso',
   },
   {
     src: 'https://gapghs72pvdn9hax.public.blob.vercel-storage.com/remodelacion/reconstruccion-vina.webp',

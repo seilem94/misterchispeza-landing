@@ -157,13 +157,13 @@ export const benefitsData: SolarBenefitsData = {
       icon: 'Shield',
       title: 'Garantía Extendida',
       description:
-        'Garantía estándar del producto: 10–12 años. Garantía de rendimiento: hasta 25 años.',
+        'Garantía de los equipos: 10 años. Garantía de instalación: 1 año.',
     },
     {
       id: 'plazo',
       icon: 'Clock',
       title: 'Instalación Rápida',
-      description: 'Sistema operativo en 5-7 días hábiles',
+      description: 'Sistema operativo en 4 días máximo llave en mano',
     },
     {
       id: 'certificacion',
@@ -180,8 +180,8 @@ export const processData: SolarProcessData = {
   description: 'Un proceso transparente y profesional de principio a fin',
   stepLabel: 'Paso',
   totalLabel: 'Tiempo total estimado:',
-  totalDuration: '4-6 semanas',
-  ctaText: 'Iniciar mi Proyecto',
+  totalDuration: '2-3 semanas desde que te contactas con nosotros',
+  ctaText: 'Inicia hoy mismo tú proyecto',
   ctaHref: '#contacto-paneles',
   steps: [
     {
@@ -189,7 +189,8 @@ export const processData: SolarProcessData = {
       icon: 'ClipboardCheck',
       title: 'Evaluación Inicial',
       description:
-        'Visita técnica gratuita para evaluar tu techo, consumo eléctrico y viabilidad del proyecto.',
+        'Envíanos tu cuenta de la luz para poder comenzar con el proceso de diseño y cotización de tu sistema solar.',
+        //'Visita técnica gratuita para evaluar tu techo, consumo eléctrico y viabilidad del proyecto.',
       duration: '1 día',
     },
     {
@@ -200,29 +201,29 @@ export const processData: SolarProcessData = {
         'Diseñamos el sistema óptimo según tu consumo y presupuesto. Incluye simulación de ahorro.',
       duration: '2-3 días',
     },
+    // {
+    //   number: 3,
+    //   icon: 'FileCheck',
+    //   title: 'Tramitación y Permisos',
+    //   description:
+    //     'Gestionamos todos los permisos municipales y trámites SEC requeridos.',
+    //   duration: '15-20 días',
+    // },
     {
       number: 3,
-      icon: 'FileCheck',
-      title: 'Tramitación y Permisos',
+      icon: 'Wrench',
+      title: 'Visita Técnica',
       description:
-        'Gestionamos todos los permisos municipales y trámites SEC requeridos.',
-      duration: '15-20 días',
+        'Visita técnica gratuita para evaluar tu techo, espacios para los equipos y realizar la ingeniería de detalle.',
+      duration: '1 día',
     },
     {
       number: 4,
-      icon: 'Wrench',
-      title: 'Instalación',
-      description:
-        'Montaje de paneles, inversor y estructura. Equipo certificado y equipamiento profesional.',
-      duration: '3-5 días',
-    },
-    {
-      number: 5,
       icon: 'CheckCircle',
-      title: 'Puesta en Marcha',
+      title: 'Instalación y Puesta en Marcha',
       description:
         'Conexión a red eléctrica, pruebas y capacitación en uso del sistema de monitoreo.',
-      duration: '1 día',
+      duration: '3-4 días',
     },
   ],
 }
