@@ -29,7 +29,7 @@ export function BannerParallax() {
           className="absolute left-0 right-0 top-[-40%] h-[200%] will-change-transform"
         >
           <Image
-            src="https://images.unsplash.com/photo-1507494924047-60b8ee826ca9?ixlib=rb-4.1.0&auto=format&fit=crop&q=80&w=1600"
+            src="/banner-parallax-fondo.jpg"
             alt="Profesionales eléctricos"
             fill
             sizes="100vw"
