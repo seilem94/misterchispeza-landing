@@ -110,7 +110,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="es" className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html lang="es" className={`relative ${geistSans.variable} ${geistMono.variable}`}>
       <head>
         {/* GA4 (solo si hay ID) */}
         {GA_MEASUREMENT_ID ? (

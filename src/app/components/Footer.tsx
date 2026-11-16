@@ -24,8 +24,8 @@ export function Footer() {
           <Image
               src="/logo_new.webp"
               alt="Logo Mr.Chispeza"
-              width={200}
-              height={120}
+              width={876}
+              height={312}
               priority
               sizes="(max-width: 768px) 160px, 256px"
               className="w-full h-auto object-contain"

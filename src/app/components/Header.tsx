@@ -21,8 +21,8 @@ export function Header() {
           <Image
             src="/logo_new.webp"
             alt="Logo Mr.Chispeza"
-            width={220}
-            height={120}
+            width={876}
+            height={312}
             priority={true}
             sizes="(max-width: 768px) 160px, 256px"
             className="w-full h-auto object-contain object-left"
