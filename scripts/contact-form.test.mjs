@@ -7,10 +7,7 @@ import test from 'node:test'
 import ts from 'typescript'
 
 const root = fileURLToPath(new URL('../', import.meta.url))
-const siteverifyUrl =
-  'https://challenges.cloudflare.com/turnstile/v0/siteverify'
 const formspreeUrl = 'https://formspree.io/f/testform'
-const validVerification = { success: true, action: 'contact' }
 
 // Ejecuta el código real con HTTP y entorno aislados. Nunca usa .env ni la red.
 function harness(replies = [], env = {}) {
@@ -42,11 +39,9 @@ function harness(replies = [], env = {}) {
           env: {
             NEXT_PUBLIC_FORMSPREE_ID: 'testform',
             NEXT_PUBLIC_TURNSTILE_SITE_KEY: 'test-site-key',
-            TURNSTILE_SECRET_KEY: 'test-secret-key',
             ...env,
           },
         },
-        URLSearchParams,
         FormData,
         AbortSignal,
         async fetch(url, options) {
@@ -87,7 +82,6 @@ function contactForm() {
 }
 
 for (const key of [
-  'TURNSTILE_SECRET_KEY',
   'NEXT_PUBLIC_TURNSTILE_SITE_KEY',
   'NEXT_PUBLIC_FORMSPREE_ID',
 ]) {
@@ -177,80 +171,62 @@ for (const name of ['nombre', 'email', 'telefono', 'ubicacion', 'mensaje']) {
   })
 }
 
-for (const code of ['invalid-input-response', 'timeout-or-duplicate']) {
-  test(`no reenvía tokens inválidos, expirados o reutilizados: ${code}`, async () => {
+for (const token of ['token-invalido', 'token-expirado', 'token-reutilizado']) {
+  test(`propaga el rechazo de Turnstile desde Formspree: ${token}`, async () => {
     const app = harness([
-      Response.json({ success: false, 'error-codes': [code] }),
+      Response.json(
+        { errors: [{ message: 'CAPTCHA rechazado' }] },
+        { status: 422 },
+      ),
     ])
-    assert.equal((await app.submit(contactForm())).status, 'error')
+    const data = contactForm()
+    data.set('cf-turnstile-response', token)
+    assert.equal((await app.submit(data)).status, 'error')
     assert.deepEqual(
       app.calls.map((call) => call.url),
-      [siteverifyUrl],
+      [formspreeUrl],
+    )
+    assert.equal(
+      JSON.parse(app.calls[0].options.body)['cf-turnstile-response'],
+      token,
     )
   })
 }
 
-for (const result of [
-  null,
-  {},
-  { success: 'true', action: 'contact' },
-  { success: true },
-  { success: true, action: 'otra-accion' },
-]) {
-  test(`rechaza respuesta de Siteverify sin éxito estricto y contexto: ${JSON.stringify(result)}`, async () => {
-    const app = harness([Response.json(result)])
-    assert.equal((await app.submit(contactForm())).status, 'error')
-    assert.equal(app.calls.length, 1)
-  })
-}
-
-for (const [name, response] of [
-  ['HTTP 503', new Response('No disponible', { status: 503 })],
-  ['JSON malformado', new Response('not-json')],
-  ['fallo de red', new TypeError('Network failure')],
-  ['timeout', new DOMException('Tiempo agotado', 'TimeoutError')],
-]) {
-  test(`Siteverify ${name}: falla cerrado y no llega a Formspree`, async () => {
-    const app = harness([response])
-    assert.equal((await app.submit(contactForm())).status, 'error')
-    assert.deepEqual(
-      app.calls.map((call) => call.url),
-      [siteverifyUrl],
-    )
-  })
-}
-
-test('espera Siteverify y solo después envía campos permitidos a Formspree', async () => {
-  let releaseVerification
+test('envía el token una sola vez a Formspree y espera su aceptación', async () => {
+  let releaseAcceptance
   const pending = new Promise((resolve) => {
-    releaseVerification = resolve
+    releaseAcceptance = resolve
   })
-  const app = harness([() => pending, Response.json({ ok: true })])
+  const app = harness([() => pending])
   const data = contactForm()
   data.set('nombre', '  Prueba de seguridad  ')
   data.set('_subject', 'Asunto manipulado')
   data.set('$ACTION_REF_1', 'dato interno')
   data.set('TURNSTILE_SECRET_KEY', 'secreto-falsificado')
+  data.set('_captcha', 'false')
+  data.set('g-recaptcha-response', 'token-alternativo')
+  data.set('cf-turnstile-response', 'token+opaco/sin-modificar=')
   const result = app.submit(data)
 
   assert.deepEqual(
     app.calls.map((call) => call.url),
-    [siteverifyUrl],
+    [formspreeUrl],
   )
-  releaseVerification(Response.json(validVerification))
+  releaseAcceptance(Response.json({ ok: true }))
   assert.equal((await result).status, 'success')
   assert.deepEqual(
     app.calls.map((call) => call.url),
-    [siteverifyUrl, formspreeUrl],
+    [formspreeUrl],
   )
 
-  const verification = app.calls[0].options
-  assert.equal(verification.method, 'POST')
-  assert.equal(verification.body.get('secret'), 'test-secret-key')
-  assert.equal(verification.body.get('response'), 'test-token')
-  const delivery = JSON.parse(app.calls[1].options.body)
+  assert.equal(app.calls[0].options.method, 'POST')
+  assert.equal(app.calls[0].options.headers['Content-Type'], 'application/json')
+  assert.equal(app.calls[0].options.headers.Accept, 'application/json')
+  const delivery = JSON.parse(app.calls[0].options.body)
   assert.deepEqual(Object.keys(delivery).sort(), [
     '_subject',
+    'cf-turnstile-response',
     'email',
     'mensaje',
     'nombre',
@@ -259,8 +235,8 @@ test('espera Siteverify y solo después envía campos permitidos a Formspree', a
   ])
   assert.equal(delivery.nombre, 'Prueba de seguridad')
   assert.equal(delivery._subject, 'Nuevo mensaje desde la web')
-  assert.ok(!JSON.stringify(delivery).includes('test-secret-key'))
-  assert.ok(!JSON.stringify(delivery).includes('test-token'))
+  assert.equal(delivery['cf-turnstile-response'], 'token+opaco/sin-modificar=')
+  assert.ok(!JSON.stringify(delivery).includes('secreto-falsificado'))
 
   for (const { options } of app.calls) {
     assert.equal(options.cache, 'no-store')
@@ -275,19 +251,17 @@ for (const [name, reply] of [
   ['timeout', new DOMException('Tiempo agotado', 'TimeoutError')],
 ]) {
   test(`Formspree ${name}: devuelve error sin aceptar el contacto`, async () => {
-    const app = harness([Response.json(validVerification), reply])
+    const app = harness([reply])
     const state = await app.submit(contactForm())
     assert.equal(state.status, 'error')
     assert.equal(typeof state.error, 'string')
-    assert.equal(app.calls.length, 2)
+    assert.equal(app.calls.length, 1)
   })
 }
 
-test('el reintento vuelve a verificar un token nuevo antes de reenviar', async () => {
+test('el reintento entrega un token nuevo a la validación nativa de Formspree', async () => {
   const app = harness([
-    Response.json(validVerification),
     new Response('Error', { status: 503 }),
-    Response.json(validVerification),
     Response.json({ ok: true }),
   ])
   const first = await app.submit(contactForm())
@@ -297,7 +271,10 @@ test('el reintento vuelve a verificar un token nuevo antes de reenviar', async (
   assert.equal((await app.submit(retry, first)).status, 'success')
   assert.deepEqual(
     app.calls.map((call) => call.url),
-    [siteverifyUrl, formspreeUrl, siteverifyUrl, formspreeUrl],
+    [formspreeUrl, formspreeUrl],
   )
-  assert.equal(app.calls[2].options.body.get('response'), 'nuevo-token')
+  assert.equal(
+    JSON.parse(app.calls[1].options.body)['cf-turnstile-response'],
+    'nuevo-token',
+  )
 })

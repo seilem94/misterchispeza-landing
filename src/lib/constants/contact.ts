@@ -53,8 +53,6 @@ export const contactFormContent = {
       'El formulario no está disponible en este momento. Intenta más tarde.',
     fields: 'Revisa los datos del formulario e intenta de nuevo.',
     captcha: 'No se pudo validar la verificación anti-spam. Intenta de nuevo.',
-    verificationUnavailable:
-      'No se pudo contactar al servicio anti-spam. Intenta más tarde.',
     delivery: 'No se pudo enviar el formulario. Por favor intenta de nuevo.',
     network: 'Error de red. Por favor intenta más tarde.',
   },
