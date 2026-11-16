@@ -16,10 +16,13 @@ export const metadata: Metadata = {
   title: 'Inicio', // Se convierte en "Inicio | Mr.Chispeza" por el template
   description:
     'Servicios eléctricos profesionales en Valparaíso. Instalaciones, mantenimiento preventivo, proyectos eléctricos y paneles solares para industrias, comercios y hogares.',
+  alternates: {
+    canonical: '/',
+  },
   openGraph: {
     title: 'Mr.Chispeza - Servicios Eléctricos en Valparaíso',
     description: 'Expertos en instalaciones eléctricas y proyectos de energía',
-    images: ['/og-image.jpg'],
+    images: ['/og-image.webp'],
   },
 }
 

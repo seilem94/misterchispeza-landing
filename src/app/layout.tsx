@@ -38,10 +38,8 @@ const GOOGLE_SITE_VERIFICATION =
   process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ?? ''
 const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ?? '' // ej: G-XXXXXXXXXX
 
-const metadataBase = SITE_URL ? new URL(SITE_URL) : undefined
-
 export const metadata: Metadata = {
-  metadataBase,
+  metadataBase: new URL(SITE_URL || 'https://mrchispeza.cl'),
 
   title: {
     default: `${SITE_NAME} | ${SITE_TAGLINE}`,
