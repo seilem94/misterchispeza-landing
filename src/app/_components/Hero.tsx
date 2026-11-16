@@ -1,9 +1,10 @@
-"use client"
+'use client'
 
-import React from "react"
-import { motion } from "framer-motion"
-import Image from "next/image"
-import { Section, Container, Button } from "@/app/components/ui"
+import React from 'react'
+import { motion } from 'framer-motion'
+import Image from 'next/image'
+import { Section, Container, Button } from '@/app/components/ui'
+import { homeHeroContent } from '@/lib/constants/home'
 
 /**
  * Sección Hero principal con imagen de fondo
@@ -15,8 +16,8 @@ export function Hero() {
       {/* Imagen de fondo */}
       <div className="absolute inset-0">
         <Image
-          src="/hero.webp"
-          alt="Mantenimiento eléctrico"
+          src={homeHeroContent.image.src}
+          alt={homeHeroContent.image.alt}
           fill
           priority
           sizes="100vw"
@@ -28,19 +29,24 @@ export function Hero() {
       </div>
 
       {/* Contenido */}
-      <Container className="relative z-10 py-20 sm:py-28 md:py-36 lg:py-44 text-white">
+      <Container className="relative z-10 flex flex-col items-center py-14 text-center text-white sm:py-20 md:items-start md:py-36 md:text-left lg:py-44">
         {/* Título con mejor escalado responsive */}
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ type: "tween", duration: 0.6, delay: 0.1 }}
-          className="max-w-3xl text-4xl font-bold leading-tight sm:text-4xl md:text-5xl lg:text-6xl"
+          transition={{ type: 'tween', duration: 0.6, delay: 0.1 }}
+          className="mx-auto w-full max-w-3xl text-[2.5rem] font-extrabold leading-[1.12] tracking-tight sm:text-5xl md:mx-0 md:text-5xl md:font-bold md:leading-tight md:tracking-normal lg:text-6xl"
         >
-          Soluciones{" "}
-          <span className="text-amber-400">Eléctricas</span>
+          {homeHeroContent.title.introduction}{' '}
+          <span className="text-amber-400">
+            {homeHeroContent.title.electrical}
+          </span>
           <br className="hidden sm:block" />
           <span className="sm:hidden"> </span>
-          y <span className="text-amber-400">Electrónicas</span>
+          {homeHeroContent.title.conjunction}{' '}
+          <span className="text-amber-400">
+            {homeHeroContent.title.electronics}
+          </span>
         </motion.h1>
 
         {/* Descripción con mejor espaciado */}
@@ -48,17 +54,17 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{
-            type: "tween",
+            type: 'tween',
             duration: 0.6,
             ease: [0.16, 1, 0.3, 1],
             delay: 0.3,
           }}
-          className="mt-4 sm:mt-6 max-w-2xl font-bold text-base sm:text-lg lg:text-xl text-slate-200 leading-relaxed"
+          className="mx-auto mt-4 w-full max-w-xl text-base font-bold leading-relaxed text-slate-200 sm:mt-6 sm:text-lg md:mx-0 md:max-w-2xl lg:text-xl"
         >
-          Para industrias, comercios y residenciales.
+          {homeHeroContent.audience}
           <br className="hidden sm:block" />
           <span className="sm:hidden"> </span>
-          Servicio preventivo y correctivo.
+          {homeHeroContent.description}
         </motion.p>
 
         {/* Botones responsive - Stack en mobile */}
@@ -66,29 +72,29 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{
-            type: "tween",
+            type: 'tween',
             duration: 0.6,
             ease: [0.16, 1, 0.3, 1],
             delay: 0.5,
           }}
-          className="mt-6 sm:mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4"
+          className="mt-6 flex w-full flex-col justify-center gap-3 sm:mt-8 sm:flex-row sm:gap-4 md:justify-start"
         >
-          <Button 
-            variant="primary" 
-            size="md" 
-            icon 
-            href="#empresa"
+          <Button
+            variant="primary"
+            size="md"
+            icon
+            href={homeHeroContent.aboutCta.href}
             className="w-full sm:w-auto justify-center"
           >
-            Conózcanos
+            {homeHeroContent.aboutCta.text}
           </Button>
-          <Button 
-            variant="ghost" 
-            size="md" 
-            href="#contacto"
+          <Button
+            variant="ghost"
+            size="md"
+            href={homeHeroContent.contactCta.href}
             className="w-full sm:w-auto justify-center"
           >
-            Solicitar cotización
+            {homeHeroContent.contactCta.text}
           </Button>
         </motion.div>
       </Container>

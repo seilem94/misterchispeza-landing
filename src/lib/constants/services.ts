@@ -145,6 +145,12 @@ export const serviceCtaDefaults = {
   quoteText: "Cotizar",
 } as const;
 
+export const servicesSectionContent = {
+  title: 'Nuestros Servicios',
+  description: 'Soluciones eléctricas integrales para todo tipo de proyectos',
+  additionalTitle: 'También realizamos estos servicios',
+} as const;
+
 /**
  * Obtener servicio por slug
  */

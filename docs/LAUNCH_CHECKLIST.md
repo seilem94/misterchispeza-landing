@@ -8,6 +8,8 @@ Este documento refleja el cierre de feedback solicitado por el responsable y la 
 
 **Homologación mobile-first del Home y galería real: COMPLETADA**, 2026-11-16, HOME-01. Servicios, sectores, galería 4:5 con indicadores, acceso compacto al formulario y reserva del footer comprobados localmente. M13 y las validaciones de producción/Formspree/Turnstile conservan su alcance pendiente.
 
+**Homologación UX/UI móvil del Home y las tres sub-landings: 100 % COMPLETADA**, 2026-11-16, HOME-02. El cierre visual reúne C02–C09, SOL-03, HOME-01 y el pulido de Hero/divisor de HOME-02. Este porcentaje corresponde al alcance UX/UI móvil solicitado; conserva los pendientes fotográficos, comerciales, de contacto y de validación en producción registrados más abajo.
+
 **Regla vigente:** desde ADS-02, todo `(ads)` utiliza exclusivamente WhatsApp. Las tareas de Formspree y Turnstile de este checklist corresponden al **Home, fuera de campañas**. El responsable confirmó el dominio de producción en Cloudflare; el error local `110200` está excluido y no constituye un bloqueo que deba corregirse para estas landings.
 
 Marcar una casilla solo al disponer de evidencia, anotando fecha, entorno y referencia del resultado en el ítem o en el changelog. Cuando una condición no aplique, como subtítulos en un vídeo sin voz, dejar constancia del motivo. No marcar como entregados recursos que todavía son placeholders.
@@ -62,6 +64,8 @@ Desde ADS-11, las plantillas de WhatsApp de remodelación y viviendas terminan e
 
 - [x] **M12 — Home, galería: COMPLETADO.** Las tres imágenes placeholder de Unsplash fueron sustituidas por las fotos reales `.webp` indicadas de Vercel Blob: Restaurant Río Tinto (Casablanca), restauración e iluminación (Colmo) y tablero patrimonial (Con-Con). Originales HTTP 200 con `Content-Type: image/webp`; tres imágenes optimizadas cargadas en navegador mediante `next/image`, proporción reservada 4:5, títulos y ubicaciones exactos. Evidencia: HOME-01 en [PROJECT_STATUS.md](./PROJECT_STATUS.md).
 - [x] **C08 — Home, optimización mobile-first: COMPLETADO.** Tres servicios destacados abiertos y siete acordeones con IDs intactos y auto-apertura/scroll por hash de Google Ads; sectores con Residenciales abierto inicialmente. Galería con carrusel nativo, tres indicadores interactivos, tarjetas de 85 vw/340 px y grilla abierta desde `md`. Banner naranja oculto bajo `md`, información previa al formulario compacta, CTA con scroll suave/foco y footer con `pb-24 lg:pb-8`. Nueve tamaños entre 360 y 1280 px sin desbordamiento; typecheck, lint y build con código 0, cero errores y advertencias. Fase 1: `d212089`; cierre y límites: HOME-01.
+
+- [x] **C09 — Pulido visual del Home y cierre de homologación UX/UI móvil: COMPLETADO.** HOME-02 del 2026-11-16: Hero centrado solo bajo `md`, H1 de 40/48 px con peso 800 y tracking ajustado; párrafo centrado y padding móvil equilibrado. Desde `md` se mantienen alineación izquierda, tamaños 48/60 px, peso 700 y espaciado de escritorio. Divisor «También realizamos estos servicios» con texto de 18 px/700 y acento ámbar decorativo, oculto desde `md`. Comprobados 320 × 640 px, 390 × 844 px y nueve anchos entre 360 y 1280 px: sin recortes ni desbordamiento; ambos CTA completos en la primera pantalla a 320 × 640 px. Typecheck, lint y build con código 0, cero errores y advertencias. Home y las tres sub-landings quedan 100 % homologados en UX/UI móvil conforme al alcance solicitado, con evidencia conjunta de C07, C08 y HOME-02.
 
 ## Pendientes activos
 

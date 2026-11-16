@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { Section, Container } from '@/app/components/ui'
-import { services } from '@/lib/constants/services'
+import { services, servicesSectionContent } from '@/lib/constants/services'
 import { ServiceCard } from './ServiceCard'
 
 const primaryLandingPaths = new Set([
@@ -73,10 +73,10 @@ export function ServicesGrid() {
       <Container>
         <div className="mb-12 text-center">
           <h2 className="mb-4 text-4xl font-bold text-slate-900">
-            Nuestros Servicios
+            {servicesSectionContent.title}
           </h2>
           <p className="mx-auto max-w-2xl text-lg text-slate-600">
-            Soluciones eléctricas integrales para todo tipo de proyectos
+            {servicesSectionContent.description}
           </p>
         </div>
 
@@ -89,9 +89,15 @@ export function ServicesGrid() {
               isPrimary
             />
           ))}
-          <h3 className="mt-6 mb-3 px-1 text-sm font-semibold uppercase tracking-wider text-slate-400 md:hidden">
-            Otros servicios y certificaciones SEC
-          </h3>
+          <div className="mt-8 mb-4 flex items-center gap-2.5 px-1 md:hidden">
+            <span
+              className="h-5 w-1.5 shrink-0 rounded-full bg-amber-500"
+              aria-hidden="true"
+            />
+            <h3 className="text-lg font-bold tracking-tight text-slate-900">
+              {servicesSectionContent.additionalTitle}
+            </h3>
+          </div>
           {additionalServices.map((service, index) => (
             <ServiceCard
               key={service.id}
