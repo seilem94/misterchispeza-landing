@@ -1,35 +1,116 @@
 'use server'
 
-export type FormState = {
-  success?: boolean;
-  error?: string;
-};
+import {
+  contactFormContent,
+  contactFormSecurity,
+} from '@/lib/constants/contact'
+import type { FormState } from '@/lib/types/contact'
 
-export async function submitContactForm(prevState: FormState, formData: FormData): Promise<FormState> {
-  const formId = process.env.NEXT_PUBLIC_FORMSPREE_ID;
-  
-  if (!formId) {
-    console.error('Falta el ID de Formspree (NEXT_PUBLIC_FORMSPREE_ID)');
-    return { error: 'Error de configuración del servidor.' };
+function readText(formData: FormData, name: string, maxLength: number) {
+  const values = formData.getAll(name)
+  if (values.length !== 1 || typeof values[0] !== 'string') return null
+
+  const value = values[0].trim()
+  return value.length > 0 && value.length <= maxLength ? value : null
+}
+
+function isVerified(result: unknown): boolean {
+  return (
+    typeof result === 'object' &&
+    result !== null &&
+    'success' in result &&
+    result.success === true &&
+    'action' in result &&
+    result.action === contactFormSecurity.action
+  )
+}
+
+export async function submitContactForm(
+  _prevState: FormState,
+  formData: FormData,
+): Promise<FormState> {
+  const formId = process.env.NEXT_PUBLIC_FORMSPREE_ID?.trim()
+  const secretKey = process.env.TURNSTILE_SECRET_KEY?.trim()
+  const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY?.trim()
+
+  if (!formId || !/^[a-zA-Z0-9]+$/.test(formId) || !secretKey || !siteKey) {
+    return { status: 'error', error: contactFormContent.errors.configuration }
   }
 
-  // Se podría incluir también la validación del Turnstile aquí usando la clave secreta
-  // Para este ejemplo, mantenemos el comportamiento anterior que pasaba la data a Formspree
+  if (!(formData instanceof FormData)) {
+    return { status: 'error', error: contactFormContent.errors.fields }
+  }
 
-  // Extraemos solo los campos relevantes, ignorando los tokens internos de React ($ACTION_REF...)
-  const cleanData = {
-    nombre: formData.get('nombre'),
-    email: formData.get('email'),
-    telefono: formData.get('telefono'),
-    ubicacion: formData.get('ubicacion'),
-    mensaje: formData.get('mensaje'),
-    _subject: formData.get('_subject'),
-    'cf-turnstile-response': formData.get('cf-turnstile-response'),
-  };
-
-  // Prevenimos el spam si _gotcha fue llenado por un bot
   if (formData.get('_gotcha')) {
-    return { success: true };
+    return { status: 'error', error: contactFormContent.errors.fields }
+  }
+
+  const nombre = readText(formData, 'nombre', 120)
+  const email = readText(formData, 'email', 254)
+  const telefono = readText(formData, 'telefono', 20)
+  const ubicacion = readText(formData, 'ubicacion', 200)
+  const mensaje = readText(formData, 'mensaje', 5000)
+
+  if (
+    !nombre ||
+    !email ||
+    !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) ||
+    !telefono ||
+    !/^\+569\s?\d{4}\s?\d{4}$/.test(telefono) ||
+    !ubicacion ||
+    !mensaje
+  ) {
+    return { status: 'error', error: contactFormContent.errors.fields }
+  }
+
+  const token = readText(
+    formData,
+    contactFormSecurity.tokenField,
+    contactFormSecurity.maxTokenLength,
+  )
+  if (!token) {
+    return { status: 'error', error: contactFormContent.errors.captcha }
+  }
+
+  try {
+    const verificationResponse = await fetch(
+      'https://challenges.cloudflare.com/turnstile/v0/siteverify',
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({ secret: secretKey, response: token }),
+        cache: 'no-store',
+        redirect: 'error',
+        signal: AbortSignal.timeout(10_000),
+      },
+    )
+
+    if (!verificationResponse.ok) {
+      return {
+        status: 'error',
+        error: contactFormContent.errors.verificationUnavailable,
+      }
+    }
+
+    const verification: unknown = await verificationResponse.json()
+    if (!isVerified(verification)) {
+      return { status: 'error', error: contactFormContent.errors.captcha }
+    }
+  } catch {
+    return {
+      status: 'error',
+      error: contactFormContent.errors.verificationUnavailable,
+    }
+  }
+
+  // El token ya fue consumido por Siteverify; no enviarlo para una segunda validación.
+  const cleanData = {
+    nombre,
+    email,
+    telefono,
+    ubicacion,
+    mensaje,
+    _subject: contactFormContent.subject,
   }
 
   try {
@@ -37,20 +118,20 @@ export async function submitContactForm(prevState: FormState, formData: FormData
       method: 'POST',
       body: JSON.stringify(cleanData),
       headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
       },
-    });
+      cache: 'no-store',
+      redirect: 'error',
+      signal: AbortSignal.timeout(10_000),
+    })
 
-    if (response.ok) {
-      return { success: true };
-    } else {
-      const data = await response.json();
-      console.error('Error de Formspree:', data);
-      return { error: data.error || 'Error al enviar el formulario.' };
+    if (!response.ok) {
+      return { status: 'error', error: contactFormContent.errors.delivery }
     }
-  } catch (error) {
-    console.error('Error de red al enviar el formulario:', error);
-    return { error: 'Error de red. Por favor intenta más tarde.' };
+
+    return { status: 'success' }
+  } catch {
+    return { status: 'error', error: contactFormContent.errors.network }
   }
 }

@@ -10,7 +10,7 @@ Este documento refleja el cierre de feedback solicitado por el responsable y la 
 
 **Homologación UX/UI móvil del Home y las tres sub-landings: 100 % COMPLETADA**, 2026-11-16, HOME-02. El cierre visual reúne C02–C09, SOL-03, HOME-01 y el pulido de Hero/divisor de HOME-02. Este porcentaje corresponde al alcance UX/UI móvil solicitado; conserva los pendientes fotográficos, comerciales, de contacto y de validación en producción registrados más abajo.
 
-**Regla vigente:** desde ADS-02, todo `(ads)` utiliza exclusivamente WhatsApp. Las tareas de Formspree y Turnstile de este checklist corresponden al **Home, fuera de campañas**. El responsable confirmó el dominio de producción en Cloudflare; el error local `110200` está excluido y no constituye un bloqueo que deba corregirse para estas landings.
+**Regla vigente:** desde ADS-02, todo `(ads)` utiliza exclusivamente WhatsApp. Las tareas de Formspree y Turnstile de este checklist corresponden al **Home, fuera de campañas**. Desde SEC-02, Next.js valida el token mediante Siteverify antes de reenviar los campos a Formspree. El responsable confirmó el dominio de producción en Cloudflare; el error local `110200` está excluido y no constituye un bloqueo que deba corregirse para estas landings.
 
 Marcar una casilla solo al disponer de evidencia, anotando fecha, entorno y referencia del resultado en el ítem o en el changelog. Cuando una condición no aplique, como subtítulos en un vídeo sin voz, dejar constancia del motivo. No marcar como entregados recursos que todavía son placeholders.
 
@@ -67,6 +67,12 @@ Desde ADS-11, las plantillas de WhatsApp de remodelación y viviendas terminan e
 
 - [x] **C09 — Pulido visual del Home y cierre de homologación UX/UI móvil: COMPLETADO.** HOME-02 del 2026-11-16: Hero centrado solo bajo `md`, H1 de 40/48 px con peso 800 y tracking ajustado; párrafo centrado y padding móvil equilibrado. Desde `md` se mantienen alineación izquierda, tamaños 48/60 px, peso 700 y espaciado de escritorio. Divisor «También realizamos estos servicios» con texto de 18 px/700 y acento ámbar decorativo, oculto desde `md`. Comprobados 320 × 640 px, 390 × 844 px y nueve anchos entre 360 y 1280 px: sin recortes ni desbordamiento; ambos CTA completos en la primera pantalla a 320 × 640 px. Typecheck, lint y build con código 0, cero errores y advertencias. Home y las tres sub-landings quedan 100 % homologados en UX/UI móvil conforme al alcance solicitado, con evidencia conjunta de C07, C08 y HOME-02.
 
+### Home — seguridad del backend, SEC-02, 2026-11-16
+
+- [x] **SEC-02 — Validación de seguridad del formulario del Home: RESUELTA EN CÓDIGO Y PRUEBAS LOCALES.** La Server Action llama a Siteverify con `TURNSTILE_SECRET_KEY`; solo reenvía a Formspree tras `success === true` y `action === 'contact'`. Rechaza configuración ausente, honeypot, datos inválidos, tokens ausentes/duplicados/excesivos, rechazo del verificador y fallos HTTP/red/JSON. Estados tipados, timeout de 10 segundos por proveedor y renovación del widget al reintentar; el token consumido no se reenvía. Pruebas aisladas con `node --test scripts/contact-form.test.mjs`: 43/43 aprobadas, sin red ni contactos reales. Typecheck, lint y build con código 0 y sin advertencias. Evidencia y límites en SEC-02 de [PROJECT_STATUS.md](./PROJECT_STATUS.md).
+- [x] **D10 — Home, validación única en backend:** sustituida la dependencia no comprobada de la integración nativa por la verificación obligatoria en Next.js. Orden Siteverify → Formspree y ausencia de reenvío ante rechazo comprobados localmente. La compatibilidad y protección del receptor externo siguen en D13; este cierre no certifica dashboards ni acceso directo al endpoint público de Formspree.
+- [x] **D11 — Home, validación de campos en servidor:** comprobados ausencia, formato de email/teléfono, límites, archivos y campos duplicados. Asunto fijo y lista de campos autorizados; no se reenvían valores internos de React ni campos arbitrarios.
+
 ## Pendientes activos
 
 ### Validación conjunta de Remodelación y Viviendas Nuevas
@@ -78,11 +84,9 @@ Desde ADS-11, las plantillas de WhatsApp de remodelación y viviendas terminan e
 - [ ] **M13 — Home, banner:** entregar una fotografía real para reemplazar el fondo de banco de `BannerParallax`.
 - [ ] **D03 — Home, integración fotográfica completa:** galería M12 integrada y comprobada en HOME-01; resta sustituir el fondo de `BannerParallax` (M13) y completar la validación del conjunto. El cierre de la galería no acredita un Home enteramente libre de fotos de banco.
 - [ ] **D06 — Home, entradas de campaña:** verificar en producción los enlaces a `/instalacion-electrica-viviendas-nuevas` y `/remodelacion-instalaciones`, respuestas 200 y alias 307 con parámetros UTM. Conservar los cuatro alias nativos existentes, sin carpetas proxy.
-- [ ] **D09 — Home, variables y dominio:** comprobar `NEXT_PUBLIC_TURNSTILE_SITE_KEY` y `NEXT_PUBLIC_FORMSPREE_ID` del despliegue final y su uso en el formulario; conservar evidencia del dominio autorizado sin publicar valores sensibles ni reabrir el error local excluido.
-- [ ] **D10 — Home, Formspree:** verificar la activación/configuración de la integración nativa de Turnstile y una única validación efectiva del token.
-- [ ] **D11 — Home, validación de campos:** completar las pruebas de entradas inválidas en servidor según el contrato existente.
-- [ ] **D12 — Home, rechazos y reintentos:** probar token ausente, inválido y expirado, renovación y recuperación.
-- [ ] **D13 — Home, envío y errores:** probar recepción real controlada en Formspree, fallo de red, reintentos y navegación a `/gracias` tras aceptación; comprobar su medición sin conversiones duplicadas.
+- [ ] **D09 — Home, variables y dominio:** configurar `TURNSTILE_SECRET_KEY` en el servidor del despliegue final junto con `NEXT_PUBLIC_TURNSTILE_SITE_KEY` del mismo widget y `NEXT_PUBLIC_FORMSPREE_ID`. La secret key no está disponible en el entorno local de SEC-02; su ausencia bloquea los envíos, comprobado en navegador. Conservar evidencia del dominio autorizado sin publicar valores sensibles ni reabrir el error local excluido.
+- [ ] **D12 — Home, prueba real de expiración y recuperación:** SEC-02 cubre tokens ausentes/inválidos y respuestas de caducidad/duplicación simuladas, reintentos del backend y rechazo real local sin clave. Resta comprobar el ciclo completo de un widget válido, expiración y token renovado en un entorno autorizado.
+- [ ] **D13 — Home, receptor protegido y envío real:** coordinar Formspree para recibir el reenvío validado por Next.js sin consumir de nuevo el token ni dejar accesos directos al endpoint público sin protección. No se cambian ni se desactivan controles del dashboard en SEC-02. Probar recepción real controlada, fallos/reintentos y `/gracias` solo tras aceptación; comprobar medición sin duplicados y desaparición de la advertencia de Siteverify en Cloudflare tras tráfico válido. Las pruebas locales no certifican estos puntos.
 
 Las tareas de Formspree/Turnstile pertenecen únicamente al Home, fuera de `(ads)`, conforme a [AGENT.md, sección 5](./AGENT.md).
 

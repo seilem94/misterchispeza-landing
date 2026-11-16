@@ -145,25 +145,26 @@ Estas reglas hacen explícitos los principios de mobile-first, Design System, he
 
 ### 5.1 Flujo y responsabilidad de validación
 
-El único backend de recepción de formularios autorizado es **Formspree**, con validación obligatoria de **Cloudflare Turnstile**. Reutilizar el recorrido existente:
+El único backend de recepción de formularios autorizado es **Formspree**, con validación obligatoria de **Cloudflare Turnstile**. Desde SEC-02 (2026-11-16), la validación pertenece a la Server Action del Home, conforme a la decisión adoptada en `ARQUITECTURA.md`:
 
 ```text
 ContactForm (cliente) + useTurnstile
   -> submitContactForm (Server Action)
-  -> Formspree con cf-turnstile-response
-  -> validación Turnstile en el servidor de Formspree
+  -> Siteverify con TURNSTILE_SECRET_KEY y cf-turnstile-response
+  -> solo success === true y action === contact
+  -> Formspree con campos de contacto, sin token consumido
   -> aceptación confirmada -> /gracias
 ```
 
-La decisión para este flujo es usar la integración nativa de Turnstile en Formspree: activar CAPTCHA, seleccionar Turnstile y configurar allí la clave secreta. Los dominios permitidos del widget se configuran en Cloudflare; la site key pública se utiliza en la web. Esta configuración externa debe verificarse antes de afirmar que el formulario está protegido. [Integración oficial](https://help.formspree.io/articles/form-and-project-settings/protecting-your-forms-with-cloudflare-turnstile).
+SEC-02 sustituye la decisión previa de delegar Siteverify a la integración nativa de Formspree. Esa alternativa requiere activar CAPTCHA, seleccionar Turnstile y configurar allí la clave secreta; reenviar el campo por sí solo no la activa. Los dominios permitidos del widget se configuran en Cloudflare y la site key pública se utiliza en la web. Las configuraciones del despliegue y del receptor deben verificarse antes de certificar el flujo en producción. [Integración oficial](https://help.formspree.io/articles/form-and-project-settings/protecting-your-forms-with-cloudflare-turnstile).
 
-El token es de un solo uso y caduca a los cinco minutos. No validarlo primero mediante Siteverify en la Server Action y reenviarlo después para que Formspree vuelva a consumirlo. Cambiar quién valida requiere una propuesta documental que mantenga una única verificación efectiva antes de aceptar el lead. Mostrar el widget no sustituye la validación de servidor. [Validación de Turnstile](https://developers.cloudflare.com/turnstile/get-started/server-side-validation/).
+El token es de un solo uso y caduca a los cinco minutos. No reenviarlo después de consumirlo en la Server Action ni desactivar controles externos para sortear un rechazo del receptor. La protección del endpoint público de Formspree requiere comprobación propia; no queda acreditada por las pruebas locales de la Server Action. Mostrar el widget no sustituye la validación de servidor. [Validación de Turnstile](https://developers.cloudflare.com/turnstile/get-started/server-side-validation/).
 
 ### 5.2 Contrato operativo
 
 - Reutilizar `src/app/components/ContactForm.tsx`, `src/app/components/hooks/useTurnstile.ts` y `src/app/actions/contact.ts` exclusivamente fuera de `(ads)` donde exista un formulario autorizado; no importarlos desde campañas.
-- Mantener las variables públicas existentes `NEXT_PUBLIC_FORMSPREE_ID` y `NEXT_PUBLIC_TURNSTILE_SITE_KEY`. Ninguna clave secreta puede llevar el prefijo `NEXT_PUBLIC_`, incluirse en constantes o publicarse en Git, logs o documentación.
-- Validar en servidor los campos `nombre`, `email`, `telefono`, `ubicacion` y `mensaje`; rechazar valores ausentes, tipos inesperados y contenido inválido. Aplicar una lista explícita de campos enviados, preservando el token y el comportamiento anti-spam acordado.
+- Mantener las variables públicas existentes `NEXT_PUBLIC_FORMSPREE_ID` y `NEXT_PUBLIC_TURNSTILE_SITE_KEY`; añadir `TURNSTILE_SECRET_KEY` exclusivamente en servidor. Ninguna clave secreta puede llevar el prefijo `NEXT_PUBLIC_`, incluirse en constantes o publicarse en Git, logs o documentación.
+- Validar en servidor los campos `nombre`, `email`, `telefono`, `ubicacion` y `mensaje`; rechazar valores ausentes, tipos inesperados y contenido inválido. Aplicar una lista explícita de campos enviados, consumir el token únicamente en Siteverify y rechazar el honeypot sin enviar ni simular aceptación del lead.
 - La ausencia de site key, token o configuración de validación impide dar el flujo por válido. El navegador debe ofrecer un error útil; no añadir bypasses de CAPTCHA para producción.
 - Resolver estados inicial, pendiente, éxito y error; evitar envíos duplicados y renovar el token cuando caduque o se necesite reintentar. Mantener accesibles los errores de validación y de red.
 - La redirección de un envío legítimo a `/gracias` ocurre después de la aceptación de Formspree. No simular éxito ante errores de red, rechazo del proveedor o CAPTCHA inválido.
