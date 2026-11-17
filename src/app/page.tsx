@@ -33,7 +33,7 @@ export const metadata: Metadata = {
       {
         url: site.ogImage,
         width: 1200,
-        height: 628,
+        height: 630,
         type: 'image/webp',
         alt: site.ogImageAlt,
       },
@@ -41,13 +41,14 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
+    site: '@MisterChispeza',
     title: homeSeoContent.title,
     description: homeSeoContent.description,
     images: [
       {
         url: site.ogImage,
         width: 1200,
-        height: 628,
+        height: 630,
         alt: site.ogImageAlt,
       },
     ],

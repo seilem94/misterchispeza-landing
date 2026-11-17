@@ -1,0 +1,14 @@
+{
+  "name": "Mr. Chispeza - Servicios Eléctricos",
+  "short_name": "Mr. Chispeza",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ],
+  "theme_color": "#004473",
+  "background_color": "#004473",
+  "display": "standalone"
+}

@@ -72,7 +72,7 @@ export const metadata: Metadata = {
       {
         url: site.ogImage,
         width: 1200,
-        height: 628,
+        height: 630,
         type: 'image/webp',
         alt: site.ogImageAlt,
       },
@@ -81,10 +81,14 @@ export const metadata: Metadata = {
 
   twitter: {
     card: 'summary_large_image',
+    site: '@MisterChispeza',
   },
 
   icons: {
-    icon: '/favicon.ico',
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+    ],
     apple: [
       {
         url: '/favicon_io/apple-touch-icon.png',
@@ -93,6 +97,8 @@ export const metadata: Metadata = {
       },
     ],
   },
+
+  manifest: '/site.webmanifest',
 
   appleWebApp: {
     capable: true,
