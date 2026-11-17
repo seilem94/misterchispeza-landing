@@ -11,18 +11,46 @@ import { ContactSection } from "./_components/ContactSection";
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
 import { WhatsAppWidget } from "./components/WhatsAppWidget";
+import { site } from '@/shared/config/site'
+import { homeSeoContent, homeBusinessJsonLd } from '@/lib/constants/home'
 
 export const metadata: Metadata = {
-  title: 'Inicio', // Se convierte en "Inicio | Mr.Chispeza" por el template
-  description:
-    'Servicios eléctricos profesionales en Valparaíso. Instalaciones, mantenimiento preventivo, proyectos eléctricos y paneles solares para industrias, comercios y hogares.',
+  title: {
+    absolute: homeSeoContent.title,
+  },
+  description: homeSeoContent.description,
   alternates: {
     canonical: '/',
   },
   openGraph: {
-    title: 'Mr.Chispeza - Servicios Eléctricos en Valparaíso',
-    description: 'Expertos en instalaciones eléctricas y proyectos de energía',
-    images: ['/og-image.webp'],
+    type: 'website',
+    locale: 'es_CL',
+    siteName: site.name,
+    url: '/',
+    title: homeSeoContent.title,
+    description: homeSeoContent.description,
+    images: [
+      {
+        url: site.ogImage,
+        width: 1200,
+        height: 628,
+        type: 'image/webp',
+        alt: site.ogImageAlt,
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: homeSeoContent.title,
+    description: homeSeoContent.description,
+    images: [
+      {
+        url: site.ogImage,
+        width: 1200,
+        height: 628,
+        alt: site.ogImageAlt,
+      },
+    ],
   },
 }
 
@@ -35,6 +63,13 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <main className="relative min-h-screen scroll-smooth font-sans text-slate-800">
+      <script
+        id="home-electrician-jsonld"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(homeBusinessJsonLd).replace(/</g, '\\u003c'),
+        }}
+      />
       <Header />
 
       <Hero />

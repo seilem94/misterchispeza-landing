@@ -4,6 +4,7 @@ import Script from 'next/script'
 import './globals.css'
 import { Analytics } from '@vercel/analytics/next'
 import { SpeedInsights } from '@vercel/speed-insights/next'
+import { SITE_URL, site } from '@/shared/config/site'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -23,17 +24,6 @@ const geistMono = Geist_Mono({
  * - No uses NEXT_PUBLIC aquí salvo que lo necesites en cliente.
  * - Igual, GA ID se usa en <Script> (cliente) => debe ser NEXT_PUBLIC_*
  */
-const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? '').replace(/\/+$/, '')
-const SITE_NAME = process.env.NEXT_PUBLIC_SITE_NAME ?? 'HHL Electricidad'
-const SITE_TAGLINE =
-  process.env.NEXT_PUBLIC_SITE_TAGLINE ??
-  'Servicio Eléctrico Profesional en Valparaíso'
-const SITE_DESCRIPTION =
-  process.env.NEXT_PUBLIC_SITE_DESCRIPTION ??
-  'Expertos en instalaciones eléctricas, mantenimiento, certificaciones SEC y proyectos eléctricos residenciales e industriales en Valparaíso.'
-const SITE_LOCALE = process.env.NEXT_PUBLIC_SITE_LOCALE ?? 'es_CL'
-const OG_IMAGE = process.env.NEXT_PUBLIC_OG_IMAGE ?? '/og-image.webp' // puede ser ruta relativa o URL absoluta
-
 const GOOGLE_SITE_VERIFICATION =
   process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ?? ''
 const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ?? '' // ej: G-XXXXXXXXXX
@@ -42,11 +32,11 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL || 'https://mrchispeza.cl'),
 
   title: {
-    default: `${SITE_NAME} | ${SITE_TAGLINE}`,
-    template: `%s | ${SITE_NAME}`,
+    default: `${site.name} | ${site.tagline}`,
+    template: `%s | ${site.name}`,
   },
 
-  description: SITE_DESCRIPTION,
+  description: site.description,
   keywords: [
     'electricista',
     'servicios eléctricos',
@@ -57,9 +47,8 @@ export const metadata: Metadata = {
     'proyectos eléctricos',
     'Chile',
   ],
-  authors: [{ name: SITE_NAME }],
-  creator: SITE_NAME,
-  alternates: SITE_URL ? { canonical: SITE_URL } : undefined,
+  authors: [{ name: site.legalName }],
+  creator: site.legalName,
 
   robots: {
     index: true,
@@ -75,20 +64,40 @@ export const metadata: Metadata = {
 
   openGraph: {
     type: 'website',
-    locale: SITE_LOCALE,
-    url: SITE_URL || undefined,
-    siteName: SITE_NAME,
-    title: `${SITE_NAME} - ${SITE_TAGLINE}`,
-    description: SITE_DESCRIPTION,
+    locale: 'es_CL',
+    siteName: site.name,
+    title: `${site.name} | ${site.tagline}`,
+    description: site.description,
     images: [
       {
-        // Si OG_IMAGE es relativo y existe metadataBase, Next lo vuelve absoluto
-        url: OG_IMAGE,
+        url: site.ogImage,
         width: 1200,
-        height: 630,
-        alt: `${SITE_NAME} - Servicios Eléctricos`,
+        height: 628,
+        type: 'image/webp',
+        alt: site.ogImageAlt,
       },
     ],
+  },
+
+  twitter: {
+    card: 'summary_large_image',
+  },
+
+  icons: {
+    icon: '/favicon.ico',
+    apple: [
+      {
+        url: '/favicon_io/apple-touch-icon.png',
+        sizes: '180x180',
+        type: 'image/png',
+      },
+    ],
+  },
+
+  appleWebApp: {
+    capable: true,
+    title: site.name,
+    statusBarStyle: 'default',
   },
 
   verification: GOOGLE_SITE_VERIFICATION

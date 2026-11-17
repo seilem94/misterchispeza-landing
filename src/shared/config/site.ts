@@ -1,10 +1,16 @@
+export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? '')
+  .trim()
+  .replace(/\/+$/, '')
+
 export const site = {
-  name: "Mr Chispeza",
-  tagline: "Ingeniería y Mantenimiento Eléctrico",
-  url: "https://mrchispeza.cl",
-  locale: "es_CL",
-  facebook: "https://www.facebook.com/MisterChispeza",
-  ogImage: "/og.png",
+  name: 'Mr. Chispeza',
+  legalName: 'Mr. Chispeza - HHL SpA',
+  tagline: 'Servicio Eléctrico Profesional en Valparaíso',
+  url: SITE_URL || 'https://mrchispeza.cl',
+  locale: 'es_CL',
+  facebook: 'https://www.facebook.com/MisterChispeza',
+  ogImage: '/og-image-1200x630.webp',
+  ogImageAlt: 'Mr. Chispeza - HHL SpA: servicios eléctricos en Valparaíso',
   description:
-    "Servicios eléctricos profesionales: Instalaciones, Mantención, Soluciones Fotovoltaicas y más.",
-} as const;
+    'Instalaciones eléctricas, mantenimiento, certificación SEC y paneles solares en Valparaíso. Cotiza tu proyecto con Mr. Chispeza - HHL SpA.',
+} as const
