@@ -4,7 +4,7 @@ import Script from 'next/script'
 import './globals.css'
 import { Analytics } from '@vercel/analytics/next'
 import { SpeedInsights } from '@vercel/speed-insights/next'
-import { SITE_URL, site } from '@/shared/config/site'
+import { site, siteSocialImage } from '@/shared/config/site'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -29,7 +29,7 @@ const GOOGLE_SITE_VERIFICATION =
 const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ?? '' // ej: G-XXXXXXXXXX
 
 export const metadata: Metadata = {
-  metadataBase: new URL(SITE_URL || 'https://mrchispeza.cl'),
+  metadataBase: new URL(site.url),
 
   title: {
     default: `${site.name} | ${site.tagline}`,
@@ -64,24 +64,16 @@ export const metadata: Metadata = {
 
   openGraph: {
     type: 'website',
-    locale: 'es_CL',
+    locale: site.locale,
     siteName: site.name,
     title: `${site.name} | ${site.tagline}`,
     description: site.description,
-    images: [
-      {
-        url: site.ogImage,
-        width: 1200,
-        height: 630,
-        type: 'image/webp',
-        alt: site.ogImageAlt,
-      },
-    ],
+    images: [{ ...siteSocialImage, type: 'image/webp' }],
   },
 
   twitter: {
     card: 'summary_large_image',
-    site: '@MisterChispeza',
+    site: site.twitter,
   },
 
   icons: {

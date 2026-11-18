@@ -11,7 +11,7 @@ import { ContactSection } from "./_components/ContactSection";
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
 import { WhatsAppWidget } from "./components/WhatsAppWidget";
-import { site } from '@/shared/config/site'
+import { site, siteSocialImage } from '@/shared/config/site'
 import { homeSeoContent, homeBusinessJsonLd } from '@/lib/constants/home'
 
 export const metadata: Metadata = {
@@ -24,34 +24,19 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: 'website',
-    locale: 'es_CL',
+    locale: site.locale,
     siteName: site.name,
     url: '/',
     title: homeSeoContent.title,
     description: homeSeoContent.description,
-    images: [
-      {
-        url: site.ogImage,
-        width: 1200,
-        height: 630,
-        type: 'image/webp',
-        alt: site.ogImageAlt,
-      },
-    ],
+    images: [{ ...siteSocialImage, type: 'image/webp' }],
   },
   twitter: {
     card: 'summary_large_image',
-    site: '@MisterChispeza',
+    site: site.twitter,
     title: homeSeoContent.title,
     description: homeSeoContent.description,
-    images: [
-      {
-        url: site.ogImage,
-        width: 1200,
-        height: 630,
-        alt: site.ogImageAlt,
-      },
-    ],
+    images: [siteSocialImage],
   },
 }
 

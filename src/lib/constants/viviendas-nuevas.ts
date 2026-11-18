@@ -1,6 +1,13 @@
+import type { Metadata } from 'next'
 import type { AdsWorkGalleryItem } from '@/lib/types/ads'
+import { site, siteSocialImage } from '@/shared/config/site'
 
-export const viviendasNuevasMetadata = {
+const canonical = '/instalacion-electrica-viviendas-nuevas'
+const socialTitle = 'La electricidad de tu casa nueva, bien hecha desde el primer día'
+const socialDescription =
+  'Primero el proyecto, después el cable: diseño, instalación y TE1 para tu casa, cabaña o ampliación.'
+
+export const viviendasNuevasMetadata: Metadata = {
   title: 'Instalación eléctrica para viviendas nuevas',
   description:
     'Proyecto, instalación eléctrica y certificado TE1 para casas nuevas, cabañas y ampliaciones en Costa y Marga Marga. Comparte tus planos para cotizar.',
@@ -15,13 +22,22 @@ export const viviendasNuevasMetadata = {
     'certificacion SEC TE1 casa nueva',
     'proyectos electricos desde cero',
   ],
-  alternates: { canonical: '/instalacion-electrica-viviendas-nuevas' },
+  alternates: { canonical },
   openGraph: {
-    title: 'La electricidad de tu casa nueva, bien hecha desde el primer día',
-    description:
-      'Primero el proyecto, después el cable: diseño, instalación y TE1 para tu casa, cabaña o ampliación.',
-    url: '/instalacion-electrica-viviendas-nuevas',
-    images: ['/hero.webp'],
+    type: 'website',
+    locale: site.locale,
+    siteName: site.name,
+    url: canonical,
+    title: socialTitle,
+    description: socialDescription,
+    images: [{ ...siteSocialImage, type: 'image/webp' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    site: site.twitter,
+    title: socialTitle,
+    description: socialDescription,
+    images: [siteSocialImage],
   },
 }
 

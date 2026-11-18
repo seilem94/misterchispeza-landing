@@ -1,6 +1,13 @@
+import type { Metadata } from 'next'
 import type { AdsWorkGalleryItem } from '@/lib/types/ads'
+import { site, siteSocialImage } from '@/shared/config/site'
 
-export const remodelacionMetadata = {
+const canonical = '/remodelacion-instalaciones'
+const socialTitle = 'Remodelación de Instalaciones Eléctricas Antiguas - Mr.Chispeza'
+const socialDescription =
+  'Protege tu hogar renovando cables antiguos, tableros y protecciones bajo normativa SEC RIC.'
+
+export const remodelacionMetadata: Metadata = {
   title: 'Remodelación de Instalaciones Antiguas',
   description:
     'Renovación integral y segura de instalaciones eléctricas antiguas en la Región de Valparaíso. Reemplazo de cableado vetusto, nuevos tableros con salvavidas y certificación SEC TE1.',
@@ -15,13 +22,22 @@ export const remodelacionMetadata = {
     'electricista Viña del Mar',
     'certificación TE1 SEC',
   ],
-  alternates: { canonical: '/remodelacion-instalaciones' },
+  alternates: { canonical },
   openGraph: {
-    title: 'Remodelación de Instalaciones Eléctricas Antiguas - Mr.Chispeza',
-    description:
-      'Protege tu hogar renovando cables antiguos, tableros y protecciones bajo normativa SEC RIC.',
-    url: '/remodelacion-instalaciones',
-    images: ['/hero.webp'],
+    type: 'website',
+    locale: site.locale,
+    siteName: site.name,
+    url: canonical,
+    title: socialTitle,
+    description: socialDescription,
+    images: [{ ...siteSocialImage, type: 'image/webp' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    site: site.twitter,
+    title: socialTitle,
+    description: socialDescription,
+    images: [siteSocialImage],
   },
 }
 

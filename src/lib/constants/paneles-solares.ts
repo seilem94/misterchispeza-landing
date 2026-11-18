@@ -1,6 +1,13 @@
+import type { Metadata } from 'next'
 import type { AdsVideoSectionData } from '@/lib/types/ads'
+import { site, siteSocialImage } from '@/shared/config/site'
 
-export const panelesSolaresMetadata = {
+const canonical = '/paneles-solares'
+const socialTitle = 'Instalación de Paneles Solares - Mr.Chispeza'
+const socialDescription =
+  'Reduce tu factura eléctrica con energía solar profesional'
+
+export const panelesSolaresMetadata: Metadata = {
   title: 'Instalación de Paneles Solares',
   description:
     'Instalación profesional de paneles solares fotovoltaicos. Reduce tu factura eléctrica hasta un 90%. Proyectos residenciales, comerciales e industriales.',
@@ -12,12 +19,22 @@ export const panelesSolaresMetadata = {
     'energía renovable',
     'instalador certificado',
   ],
-  alternates: { canonical: '/paneles-solares' },
+  alternates: { canonical },
   openGraph: {
-    title: 'Instalación de Paneles Solares - Mr.Chispeza',
-    description: 'Reduce tu factura eléctrica con energía solar profesional',
-    url: '/paneles-solares',
-    images: ['/og-image.webp'],
+    type: 'website',
+    locale: site.locale,
+    siteName: site.name,
+    url: canonical,
+    title: socialTitle,
+    description: socialDescription,
+    images: [{ ...siteSocialImage, type: 'image/webp' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    site: site.twitter,
+    title: socialTitle,
+    description: socialDescription,
+    images: [siteSocialImage],
   },
 }
 

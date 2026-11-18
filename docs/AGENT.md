@@ -9,8 +9,9 @@ Este contrato se aplica a cualquier agente que lea, modifique o valide el proyec
 1. [AGENT.md](./AGENT.md): restricciones operativas y Definición de Hecho (DoD).
 2. [PROJECT_STATUS.md](./PROJECT_STATUS.md): línea base, sprint, backlog, bloqueos y avances registrados.
 3. [ARQUITECTURA.md](./ARQUITECTURA.md): separación de responsabilidades, estructura y Design System.
-4. [MIGRACION.md](./MIGRACION.md): antecedentes de la migración modular ya completada.
-5. [TUTORIAL.md](./TUTORIAL.md): procedimientos de mantenimiento; contrastar sus ejemplos con los contratos vigentes.
+4. [LAUNCH_CHECKLIST.md](./LAUNCH_CHECKLIST.md): criterios de lanzamiento, evidencias de cierre y pendientes activos.
+5. [MIGRACION.md](./MIGRACION.md): antecedentes de la migración modular ya completada.
+6. [TUTORIAL.md](./TUTORIAL.md): procedimientos de mantenimiento; contrastar sus ejemplos con los contratos vigentes.
 
 Antes de cambiar arquitectura o flujo, **proponer primero el cambio en el documento correspondiente de `/docs`**. La propuesta debe indicar problema, alcance, alternativas, decisión recomendada, archivos afectados, riesgos, validación y reversión. Registrar el estado de la decisión antes de implementar; una propuesta pendiente no equivale a una decisión adoptada. Aplicar cambios dentro de la autorización de la tarea, sin añadir aprobaciones para decisiones rutinarias ya autorizadas.
 
@@ -49,7 +50,7 @@ src/app/actions/contact.ts              Frontera de servidor del formulario
 src/lib/constants/                      SSOT de contenido y datos estáticos
 src/lib/types/                          Contratos TypeScript compartidos
 src/lib/utils/                          Utilidades sin dependencias de páginas
-src/shared/config/site.ts               Configuración de sitio heredada
+src/shared/config/site.ts               Configuración global reconciliada de marca, dominio y activos SEO base
 ```
 
 - `page.tsx` compone secciones y declara metadata; no contiene catálogos, reglas comerciales ni integración de proveedores.
@@ -88,7 +89,7 @@ src/shared/config/site.ts               Configuración de sitio heredada
 - Reutilizar `services.ts`, `navigation.ts`, `gallery.ts`, `viviendas-nuevas.ts` y `remodelacion-antiguas.ts`. Extenderlos con objetos tipados cuando falte contenido; no crear fuentes paralelas para el mismo dato.
 - La separación documental y la de datos cumplen funciones distintas: `/docs` define el contrato; `src/lib/constants/` contiene los valores que consume la aplicación.
 - Pueden permanecer en la UI su estructura semántica y sus clases de presentación. No trasladar credenciales a constantes: la configuración sensible pertenece al entorno del servidor.
-- La configuración heredada de `src/shared/config/site.ts` y la configuración del layout deben reconciliarse mediante una propuesta documental antes de cambiar su fuente. No crear una tercera definición de marca, dominio o contacto.
+- `src/shared/config/site.ts` es el módulo reconciliado de configuración global de marca, dominio y activos SEO base. El layout usa `site.url` como `metadataBase`, y el Home y las campañas reutilizan la configuración social del sitio con el contenido específico de sus constantes.
 - Al tocar una sección con contenido incrustado, extraer el contenido afectado antes de ampliarlo. Las infracciones heredadas no son precedentes válidos.
 
 ### 3.6 Tailwind y Design System
